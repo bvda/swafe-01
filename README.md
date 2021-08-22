@@ -1,4 +1,4 @@
-# SWTAFE
+# SWAFE-01
 ## Introduction
 Welcome to the SWAFE-01 repository
 
