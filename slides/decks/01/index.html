@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lecture 01</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+		<link rel="stylesheet" type="text/css" href="../../css/asciinema-player.css" />
+
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section id="introduction">
+					<h2>Introduction</h2>
+					<h3>SWTAFE — Lecture 01</h3>
+				</section>
+				<section id="what-is-angular">
+					<h2>What is Angular?</h2>
+					<ul>
+						<li>An open source JavaScript client side MVC framework</li>
+						<li>Developed and maintained by Google</li>
+						<li>Angular is a complete rewrite of it's popular predecessor AngularJS
+							<ul>
+								<li>Initial released in 2016 (Angular) and 2010 (AngularJS)</li>
+								<li>Current versions 11.2.2 (Angular) and 1.8.2 (AngularJS)</li>
+							</ul>
+						</li>
+						<li>Angular applications are implemented with TypeScript</li>
+					</ul>
+				</section>
+				<section id="why-use-anuglar">
+					<h2>Why use Angular?</h2>
+					<ul>
+						<li>Modern web applications have lots of client-side JavaScript
+							<ul>
+								<li>Need a framework to structure the code</li>
+							</ul>
+						</li>
+						<li>Why select Angular, there are many client-side frameworks and libraries?
+							<ul>
+								<li>Angular is a complete framework</li>
+								<li>Component-based (as React)</li>
+								<li>Complies with upcoming Web Component standards</li>
+							</ul>
+						</li>
+						<li>Why Angular and not AngularJS?
+							<ul> 
+								<li>Better performance</li>
+								<li>Easier to learn</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Angular is a complete framework</h2>
+					<ul>
+						<li>Organize code through <a href="#/modules">modules</a></li>
+						<li>UI widgets through <a href="#/components">components</a></li>
+						<li>Manipulate DOM through <a href="#/directives">directives</a></li>
+						<li>Format data with <a href="#/pipes">pipes</a></li>
+						<li>Access to APIs through the HTTP module</li>
+						<li>Enhances HTML <a href="../04/index.html">forms</a></li>
+						<li>Application routing with routing modules</li>
+						<li>Execellent tooling support</li>
+					</ul>
+				</section>
+				<section>
+					<section id="angular-philosophy">
+						<h2>Angular philosophy</h2>
+						<ul>
+							<li>Declarative programming should be used to create user interfaces and connect software components</li>
+							<li>Imperative programming is better suited to defining business logic</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Declarative vs. Imperative</h2>
+						<ul>
+							<li>Declarative programming focuses on what the program should accomplish without specifying how the program should achieve the result.<sup>Wikipedia</sup>
+								<ul>
+									<li>Declarative code avoids mutation of state and variables</li>
+								</ul>
+							</li>
+							<li>Imperative programming focuses on describing how a program operates.<sup>Wikipedia</sup></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section id="#/angular-cli">
+						<h2>Angular CLI</h2>
+						<img src="../../assets/cli.svg" width="200" alt="cli" />
+						<aside class="notes" aria-label="notes">
+							<a href="https://angular.io/cli">https://angular.io/cli</a>
+						</aside>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Generate workspaces</li>
+							<li>Generate project files</li>
+							<li>Build release code</li>
+							<li>Package management</li>
+							<li>Run tests</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Installation</h2>
+						<asciinema-player src="../../assets/casts/358741.cast" cols="130" rows="30"></asciinema-player>
+					</section>
+					<section>
+						<h2>Workspace</h2>
+						<ul>
+							<li>A collection of Angular projects (this is, applications and libraries</li>
+							<li>Typically co-located in a single source-control repository</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/workspace-config">Angular - Angular workspace configuration</a></li>
+								<li><a href="https://angular.io/guide/glossary#workspace">Angular - Glossary (workspace)</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Create workspace</h2>
+						<asciinema-player src="../../assets/casts/425053.cast" cols="130" rows="30"></asciinema-player>
+					</section>
+					<section>
+						<h2>Workspace configuration</h2>
+						<pre data-id="code-animation"><code class='json' data-trim data-line-numbers="|6|7|8|16-30|"><script type="text/template">
+							{
+								"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+								...
+								"version": 1,
+								"newProjectRoot": "projects",
+								"projects": {
+									"my-first-application": {
+										"projectType": "application",
+										...
+										"root": "",
+										"sourceRoot": "src",
+										"prefix": "app",
+										"architect": {
+											"build": { 
+												"configurations": {
+													"production": {
+														"fileReplacements": [
+															{
+																"replace": "src/environments/environment.ts",
+																"with": "src/environments/environment.prod.ts"
+															}
+														],
+														"optimization": true,
+														"outputHashing": "all",
+														"sourceMap": false,
+														"namedChunks": false,
+														"extractLicenses": true,
+														"vendorChunk": false,
+														"buildOptimizer": true,...
+													}
+												}, ...
+											},...
+										}
+									},..
+								}
+								"defaultProject": "my-first-application"
+							}							
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Strict mode</h2>
+							<ul>
+								<li>Improves maintainability</li>
+							<li>Helps you catch bugs ahead of time:
+								<ul>
+									<li>Enable <code>strict</code> mode in TypeScript</li>
+									<li>Turns on strict Angular compiler flags</li>
+								</ul>
+								</li>
+								<li>Reduces bundle size budgets by 75%</li>
+								<li>Can be applied at workspace and project level</li>
+								<li>Enabled by default for projects/workspaces created with <a href="#/angular-cli">Angular CLI</a></li>
+							</ul>
+						<aside class="notes" aria-label="notes">
+							<ul>
+								<li><a href="https://angular.io/guide/strict-mode">Angular - Strict mode</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>The nuts and bolts</h2>
+					<ul>
+						<li><a href="#/components">Components</a></li>
+						<li><a href="#/services">Services</a></li>
+						<li><a href="#/modules">Modules</a></li>
+						<li><a href="#/directives">Directives</a>, <a href="#/pipes">Pipes</a> and <a href="#/data-binding">Bindings</a></li>
+					</ul>
+				</section>
+				<section>
+					<section id="components">
+						<h2>Components</h2>
+						<ul>
+							<li>The main building block for Angular applications</li>
+							<li>Each component consists of:
+								<ul>
+									<li>HTML template</li>
+									<li>A TypeScript class that defines behavior</li>
+									<li>A CSS selector that defines how the component is used a template
+									<li>CSS styles applied to the template (optional)</li>
+									</ul>
+							</li>
+							<li>Runtime behavior can be controlled by <a href="#/lifecycle-hooks">lifecycle hooks</a></li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/component-overview">Angular - Angular Component Overview</a></li>
+								<li><a href="https://angular.io/api/core/Component">Angular - Component</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>TypeScript</h2>
+						<pre>
+							<code class="typescript" data-trim data-line-numbers="|1|4|5|6|">
+								import { Component, OnInit } from '@angular/core';
+		
+								@Component({
+									selector: 'app-my-first',
+									templateUrl: './my-first.component.html',
+									styleUrls: ['./my-first.component.scss']
+								})
+								export class MyFirstComponent implements OnInit {
+								
+									constructor() { }
+									
+									ngOnInit(): void { }
+								}
+							</code>
+						</pre>
+						<aside class="notes" aria-label="notes">
+							<h2>Code walk through</h2>
+							<ul>
+								<li>1. Import dependencies</li>
+								<li>4. Define selector—Notice default prefix <code>app-*</code></li>
+								<li>5. Define template URL</li>
+								<li>6. Define style URLs</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTML template</h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
+							<h1>Test</h1>
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Styles</h2>
+						<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+							h1 {
+								background-color: lime;
+							}
+							
+							.container {
+								display: flex;
+							}
+						</script></code></pre>
+					</section>
+					<section id="lifecycle-hooks">
+						<h2>Lifecycle hooks</h2>
+						<ul>
+							<li>Component instance has a lifecycle when Angular instantiates the class and renders the view</li>
+							<li>Lifecycle handles change detection and updates view and instance as needed</li>
+							<li>The lifecycle ends when Angular destroys the component instance and removes the template from the DOM</li>
+							<li>Directive has a similar lifecycle</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Lifecycle hooks</h2>
+						<ul>
+							<li>Available lifehook methods
+								<ol>
+									<li><code>ngOnChanges()</code>*</li>
+									<li><code>ngOnInit()</code></li>
+									<li><code>ngOnDoCheck()</code>*</li>
+									<li><code>ngAfterContentInit()</code></li>
+									<li><code>ngAfterContentChecked()</code>*</li>
+									<li><code>ngAfterViewInit()</code></li>
+									<li><code>ngAfterViewChecked()</code>*</li>
+									<li><code>ngOnDestroy()</code></li>
+								</ol>
+							</li>
+							<li>Methods marked with "*" are called multiple times</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Lifecycle hooks</h2>
+						<ul>
+							<li>You only need to implement the hooks you need, if any</li>
+							<li>You will most likely never implement all hooks</li>
+							<li>The most commonly used are:
+								<ul>
+									<li><code>ngOnInit()</code>
+										<ul>
+											<li>Perform complex initialization outside of the constructor</li>
+											<li>A good place for a component to fetch its initial data</li>
+										</ul>
+									</li>
+									<li><code>ngOnDestroy()</code>
+										<ul>
+											<li>Unsubscribe from Observables and DOM events</li>
+											<li>Unregister callbacks that the directive registered with global or application services</li>
+											<li>Notify other parts of the application that the component is going away</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>Write lean hook methods to avoid performance issues
+								<ul>
+									<li>Be very careful about how much logic or computation you put into lifecycle methods</li>
+									<li>Some are called multiple times in quick succession</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="services">
+						<h2>Services</h2>
+						<ul>
+							<li>Fetching and manipulating data</li>
+							<li>Sharing data between unrelated components</li>
+							<li>A class with a narrow, well-defined purpose</li>
+							<li>Used with dependency injection</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/architecture-services">Angular - Introduction to services and dependency injection</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Defining a service</h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							import { Injectable } from '@angular/core';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class MyFirstService {
+							
+								constructor() { }
+							}
+						</script></code></pre>						
+					</section>
+					<section>
+						<h2>Defining a service</h2>
+						<ul>
+							<li>The <code>@Injectable()</code> decorator specifies that Angular can use the class in the DI system</li>
+							<li>Making a class with <code>@Injectable()</code> ensures that the compiler will generate the necessary metadata to create the class's dependencies when the class is injected</li>
+							<li>The metadata <code>providedIn</code> determines which injectors will provide the injectable</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/dependency-injection">Angular - Dependency injection in Angular</a></li>
+								<li><a href="https://angular.io/api/core/Injectable"></a>Angular - Injectable</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Injecting a service into a component</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3,12,15|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+		
+							import { MyFirstService } from '../service/my-first.service';
+		
+							@Component({
+							selector: 'app-my-first',
+							templateUrl: './my-first.component.html',
+							styleUrls: ['./my-first.component.scss']
+							})
+							export class MyFirstComponent implements OnInit {
+							
+								constructor(private myFirstService: MyFirstService) { }
+								
+								ngOnInit(): void {
+									this.myFirstService.myFirstServiceFunction()
+								}
+							
+							}
+						</script></code></pre>	
+					</section>
+					<section id="dependency-injection">
+						<h2>Dependency Injection (DI)</h2>
+						<ul>
+							<li>DI is wired into the Angular framework and used everywhere to provide new components with the services or other things they need</li>
+							<li>DI elements in Angular
+								<ul>
+									<li>The injector is the main mechanism. Angular creates a framework-wide injector during the bootstrap process</li>
+									<li>Injectors create dependencies and maintains containers of instances that is reused if possible</li>
+									<li>A provider is an object that tells an injector how to create or obtain a dependency</li>
+								</ul>
+							</li>
+							<li>A dependency does not have to be a service–it could be a function, for example, or a value</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/architecture-services">Angular - Introduction to services and dependency injection</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="providers">
+						<h2>Providers</h2>
+						<ul>
+							<li>Dependency providers make services available to the application</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Defining providers</h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							// Provider syntax
+							providers: [Logger]
+
+							// Expands into full provider object
+							[{ provide: Logger, useClass: Logger}]
+						</script></code></pre>
+						<ul>
+							<li>Property <code>provide</code> holds the token that serves as key for dependency value</li>
+							<li>The next property holds a Provider definition object:
+								<ul>
+									<li><code>useClass</code> is a provider definition object</li>
+									<li><code>useExisting</code> – the provider is a </li>
+									<li><code>useValue</code> – the provider is an object or primitive value</li>
+									<li><code>useFactory</code> – the provider is a factory method</li>
+								</ul>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/dependency-injection-providers">Angular - Dependency providers</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="modules">
+						<h2>Modules</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>A container for a group of related components, services, directives, and pipes</li>
+							<li>A package that contains certain business domain functionality</li>
+							<li>All apps must have at least one module (root module)</li>
+							<li>Modules can be loaded eagerly when the application starts or lazy loaded asynchrously by the router</li>
+						</ul>
+					</section>
+					<section id="angular-modules">
+						<h2>Angular Modules</h2>
+						<ul>
+							<li>Angular itself is split into modules
+								<ul>
+									<li><code>BrowserModule</code> – Exports infrastructure for all Angular apps</li>
+									<li><code>FormsModule</code> and <code>ReactiveFormsModule</code> – Exports the required providers and directives for template-driven and reactive forms</li>
+									<li><code>RouterModule</code> — Adds directives and providers for in-app navigation among views defined in an application</li>
+									<li><code>HttpClientModule</code> –	 Configures the dependency injector for <code>HttpClient</code> service</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/platform-browser/BrowserModule">Angular - BrowserModule</a></li>
+								<li><a href="https://angular.io/api/forms/FormsModule">Angular - FormsModule</a></li>
+								<li><a href="https://angular.io/api/forms/ReactiveFormsModule">Angular - ReactiveFormsModule</a></li>
+								<li><a href="https://angular.io/api/router/RouterModule">Angular - RouterModule</a></li>
+								<li><a href="https://angular.io/api/common/http/HttpClientModule"></a>Angular - HttpClientModule</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Declare module</h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|3|6-8|7|">
+							import { NgModule } from '@angular/core';
+							import { CommonModule } from '@angular/common';
+							import { MyFirstFeatureComponent } from './my-first-feature/my-first-feature.component';
+
+							@NgModule({
+								declarations: [
+									MyFirstFeatureComponent
+								],
+								imports: [
+									CommonModule
+								]
+							})
+							export class MyFirstModule { }
+						</code></pre>
+					</section>
+					<section id="feature-modules">
+						<h2>Feature modules</h2>
+						<ul>
+							<li>Feature modules are <code>NgModule</code> instances for the purpose of organizing code</li>
+							<li>Helps to apply clear boundaries for features
+								<ul>
+									<li>Keep code related to a specific functionality or feature separate from other code</li>
+								</ul>
+							</li>
+							<li>Helps with collaboration between developers and teams</li>
+							<li>Managing the size of the root module
+								<ul>
+									<li>Applications are split up in smaller chunks that gets delivered when needed</li>
+								</ul>
+							</li>
+							<li>Only the root module should import <code>BrowserModule</code>, use <code>CommmonModule</code> instead in feature modules</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/feature-modules">Angular - Feature modules</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="wrap-up-modules">
+						<h2>Wrap-up: Modules</h2>
+					</section>
+				</section>
+				<section>
+					<section id="directives">
+						<h2>Directives</h2>
+						<ul>
+							<li>Directives are classes that add additional behavior to elements</li>
+							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own attribute directives</li>
+							<li>Three different types of directives
+								<ul>
+									<li>Components
+										<ul>
+											<li>A component is simply a directive with a template</li>
+											<li>Use the <code>Component</code> decoratorwhen declaring components</li>
+										</ul>
+									</li>
+									<li>Attribute directives
+										<ul>
+											<li>Built-in attribute such as <code>NgClass</code> and <code>NgModel</code></li>
+											<li>Custom directives</li>
+										</ul>
+									</li>
+									<li>Structural directives
+										<ul>
+											<li>Change the DOM layout by adding and removing DOM elements</li>
+											<li>Examples are: <code>NgIf</code>, <code>NgForOf</code>, and <code>NgSwitch</code></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/built-in-directives">Angular - Built-in directives</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="attribute-directives">
+						<h2>Attribute directives</h2>
+						<ul>
+							<li><code>NgClass</code> – adds and removes a set of CSS classes</li>
+							<li><code>NgStyle</code> – adds and removes a set of HTML styles</li>
+							<li><code>NgModel</code> – adds two-way data binding to an HTML form element</li>
+						</ul>
+						<small>See examples/01/attribute-directives for implementation details</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/NgStyle">Angular - NgStyle</a></li>
+								<li><a href="https://angular.io/api/common/NgClass">Angular - NgClass</a></li>
+								<li><a href="https://angular.io/api/forms/NgModel">Angular - NgModel</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="structural-directives">
+						<h2>Structural directives</h2>
+						<ul>
+							<li><code>NgIf</code> – conditionally includes a template based on a boolean expression</li>
+							<li><code>NgForOf</code> – renders a template for each item in a collection</li>
+							<li><code>NgNgSwitch</code> –  specifies an expression to match against and show views in container</li>
+						</ul>
+						<small>See examples/01/structural-directives for implementation details</small>
+					</section>
+					<section id="custom-directive">
+						<h2>Custom directives</h2>
+						<ul>
+							<li>You can implement custom directives (both structural and attribute)</li>
+							<li>Generate custom directive code with CLI command <code>ng generate directive ...</code></li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/attribute-directives">Angular - Attribute directives</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Custom attribute directive</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3-5|10,14|19-21|"><script type="text/template">
+							import { Directive, ElementRef, HostListener } from '@angular/core';
+
+							@Directive({
+								selector: '[appHover]'
+							})
+							export class HoverDirective {
+							
+								constructor(private element: ElementRef) { }
+							
+								@HostListener('mouseenter')
+								onMouseEnter() {
+									this.highlight('lime')
+								}
+								@HostListener('mouseleave')
+								onMouseLeave() {
+									this.highlight('')
+								}
+							
+								highlight(color: string) {
+									this.element.nativeElement.style.backgroundColor = color;
+								}
+							
+							}						
+						</script></code></pre>
+						<small>examples/01/attribute-directives/src/app/hover.directive.ts</small>
+					</section>
+					<section>
+						<h2>Custom structural directive</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|5-7|12-15|17-25|20|22|27-29|"><script type="text/template">
+							import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+							import { Subscription } from 'rxjs';
+							import { AuthService } from './auth.service';
+							
+							@Directive({
+								selector: '[appIsAuthenticated]'
+							})
+							export class IsAuthenticatedDirective implements OnInit, OnDestroy {
+							
+								subscription!: Subscription;
+							
+								constructor(
+									private container: ViewContainerRef, 
+									private template: TemplateRef<any>, 
+									private auth: AuthService) { }
+							
+									ngOnInit() {
+										this.subscription = this.auth.isAuthenticated().subscribe(authenticated => {
+											if(authenticated) {
+												this.container.createEmbeddedView(this.template)
+											} else {
+												this.container.clear()
+											}
+										})
+									}
+							
+									ngOnDestroy() {
+										this.subscription.unsubscribe()
+									}
+							}
+						</script></code></pre>
+						<small>examples/01/custom-structural-directives/src/app/is-authenticated.directive.ts</small>
+					</section>
+					<section>
+						<h2>Custom structural directive</h2>
+						<pre><code class='html' data-trim data-line-numbers="|4|"><script type="text/template">
+							<app-navigation></app-navigation>
+							<div class="content">
+								<div class="wrapper">
+									<app-restricted *appIsAuthenticated></app-restricted>
+									<app-public></app-public>
+								</div>
+							</div>
+						</script></code></pre>	
+						<small>examples/01/custom-structural-directives/src/app/app.component.html</small>
+					</section>
+				</section>
+				<section>
+					<section id="pipes">
+						<h2>Pipes</h2>
+						<ul>
+							<li>Pipes are used to transform data for display</li>
+							<li>Pipes are declared once and used throughout application</li>
+							<li>Angular provides some built-in pipes
+								<ul>
+									<li><code>DatePipe</code> formats a date value according to locale rules</li>
+									<li><code>DecimalPipe</code> formats a value to digit options and locale rules</li>
+									<li><code>CurrencyPipe</code> transforms a number to a currency string, formatted according to locale rules</li>
+									<li><code>JsonPipe</code> converts a value into its JSON-format representation</li>
+									<li><code>AsyncPipe</code>Unwraps a value from an asynchronous primitive</li>
+								</ul>
+							</li>
+							<li>You can build your own pipes for custom data types</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<ul>
+								<li><a href="https://angular.io/guide/pipes">Angular - Transforming data using pipes</a></li>
+								<li><a href="https://angular.io/api/common/JsonPipe">Angular - JsonPipe</a></li>
+								<li><a href="https://angular.io/api/common/AsyncPipe">Angular - AsyncPipe</a></li>
+								<li><a href="https://angular.io/api/common/CurrencyPipe">Angular - CurrencyPipe</a></li>
+								<li><a href="https://angular.io/api/common/DecimalPipe">Angular - DecimalPipe</a></li>
+								<li><a href="https://angular.io/api/common/DatePipe">Angular - DatePipe</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>DatePipe</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|11|4,14|5,15|6,16|"><script type="text/template">
+							@Component({
+								selector: 'date-pipe',
+								template: `<div>
+									<p>Today is {{ today | date }}</p>
+									<p>Or if you prefer, {{ today | date:'fullDate' }}</p>
+									<p>The time is {{ today | date:'h:mm a z' }}</p>
+								</div>`
+							 })
+							 // Get the current date and time as a date-time value.
+							 export class DatePipeComponent {
+								 today: number = Date.now();
+							 }
+							 // Prints:
+							 // Today is Aug 20, 2021
+							 // Or if you prefer, Friday, August 20, 2021
+							 // The time is 2:19 PM GMT+2
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/DatePipe">Angular - DatePipe</a></li>
+							</ul>
+						</aside>	
+					</section>
+					<section>
+						<h2>Pure vs. impure pipes</h2>
+						<ul>
+							<li>Pipes are <em>pure</em> by default</li>
+							<li>A pipe must use a pure function
+								<ul>
+									<li>A function that processes the input and returns an output without side effects</li>
+									<li>Given the same input, the function always returns the same output</li>
+								</ul>
+							</li>
+							<li>Angular only executes pipes when it detects pure change to the input value
+								<ul>
+									<li>A change to primitive value, such as <code>String</code>, <code>Number</code>, <code>Boolean</code>, or <code>Symbol</code></li>
+									<li>A changed object reference, such as <code>Date</code>, <code>Array</code>, or <code>Object</code></li>
+									<li>Angular does not execute pipes when <em>mutating</em> data, only when the references <em>change</em></li>
+								</ul>
+							</li>
+							<li>Do not do heavy or long-running computation in impure pipes, it can dramatically slow down application execution</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Custom pipes</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|4-6|9-11|"><script type="text/template">
+							import { Pipe, PipeTransform } from '@angular/core';
+							import { User } from './user.model';
+							
+							@Pipe({
+								name: 'user'
+							})
+							export class UserPipe implements PipeTransform {
+							
+								transform(user: User): string {
+									return `${user.firstName} ${user.lastName}`;
+								}
+							}
+						</script></code></pre>
+						<small>examples/01/pipes/src/app/user.pipe.ts</small>
+					</section>
+				</section>
+				<section>
+					<section id="data-binding">
+						<h2>Data binding</h2>
+						<ul>
+							<li><a href="#/property-binding">Property binding</a>
+								<ul>
+									<li>One-way binding from a component's property to a target element</li>
+								</ul>
+							</li>
+							<li><a href="#/event-binding">Event binding</a>
+								<ul>
+									<li>Listen for and respond to user actions</li>
+								</ul>
+							</li>
+							<li><a href="#/two-way-binding">Two-way binding</a>
+								<ul>
+									<li>Listen for events and update values simultaneously between parent and child components</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section id="property-binding">
+						<h2>Property binding</h2>
+						<ul>
+							<li>Property binding set values for properties of HTML elements or directives</li>
+							<li>Property binding moves a value en one direction, from a component's property into a target element property</li>
+							<li>Use squared brackets (<code>[]</code>) to declare property as a target property	</li>
+							<li>Property binding best practices
+								<ul>
+									<li>Avoid side effects - Evaluation of a template expression should have no visible effect</li>
+									<li>Return proper type – A template expression should evaluate to the type of value that the target property expects</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/property-binding">Angular - Property binding</a></li>
+								<li><a href="https://angular.io/guide/property-binding-best-practices">Angular - Property binding best practices</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Them brackets</h2>
+						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
+							<!-- Evaluate right-hand side of the assignment as a dynamic expression -->
+							<img [src]="itemImageUrl" alt="image">
+
+							<!-- Renders the string 'parentItem' -->
+							<app-item-detail childItem="parentItem"></app-item-detail>
+
+							<!-- Set model property of a custom component -->
+							<app-item-detail [childItem]="parentItem"></app-item-detail>
+							
+							<!-- Set property of a directive -->
+							<p [ngClass]="classes">[ngClass] binding to the classes property making this blue</p>
+
+						</script></code></pre>
+					</section>
+					<section id="event-binding">
+						<h2>Event binding</h2>
+						<ul>
+							<li>Listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/event-binding">Angular - Event binding</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events">Event reference | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Binding to events</h2>
+						<ul>
+							<li>This syntax consists of a target event name within parentheses to the left of an equal sign, and a quoted template statement to the right</li>
+						</ul>
+						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
+							<!-- Bind to click event -->
+							<button (click)="onSave()">Save</button>
+						</script></code></pre>
+						<ul>
+							<li>The event binding listens for the button's click events and calls the component's <code>onSave()</code> method whenever a click occurs</li>
+						</ul>	
+					</section>
+					<section id="two-way-binding">
+						<h2>Two-way binding</h2>
+						<ul>
+							<li>Combines property binding with event binding
+								<ul>
+									<li>Property binding sets a specific element property</li>
+									<li>Event binding listens for en element change event</li>
+								</ul>
+							</li>
+							<li>Use a combination of square brackets and parentheses <code>[()]</code> to create a two-way binding in a template</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/two-way-binding">Angular - Two-way binding</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Create a two-way binding</h2>
+						<ul>
+							<li>A two-way-binding must follow a specific naming convention
+								<ul>									
+									<li>The <code>@Output()</code> must end with <code>Change</code> prefixed with the <code>@Input()</code> property name </li>
+									<li>For example, if <code>@Input() size</code> then <code>@Output() sizeChange</code></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Create a two-way binding</h2>
+						<pre><code class="typescript" data-trim data-line-numbers><script type="text/template">
+							export class SizerComponent {
+
+								@Input() size!: number | string;
+								@Output() sizeChange = new EventEmitter<number>();
+							
+								dec() { this.resize(-1); }
+								inc() { this.resize(+1); }
+							
+								resize(delta: number) {
+									this.size = Math.min(40, Math.max(8, +this.size + delta));
+									this.sizeChange.emit(this.size);
+								}
+							}
+						</script></code></pre>
+						<small>src/app/sizer.component.ts</small>
+					</section>
+					<section>
+						<h2>Create a two-way-binding</h2>
+						<pre><code class="typescript" data-trim data-line-numbers><script type="text/template">
+							<div>
+								<button (click)="dec()" title="smaller">-</button>
+								<button (click)="inc()" title="bigger">+</button>
+								<label [style.font-size.px]="size">FontSize: {{size}}px</label>
+							</div>
+						</script></code></pre>
+						<small>src/app/sizer.component.html</small>
+						<pre><code class="typescript" data-trim data-line-numbers><script type="text/template">
+							<app-sizer [(size)]="fontSizePx"></app-sizer>
+							<div [style.font-size.px]="fontSizePx">Resizable Text</div>
+						</script></code></pre>
+						<small>src/app/app.component.html</small>
+					</section>
+				</section>
+				<section>
+					<h2>Wrap-up</h2>
+					<ul>
+						<li>What is Angular?
+							<ul>
+								<li>A component-based framework for building scalable web applications</li>
+								<li>A suite of developer tools to help build, test and update code</li>
+							</ul>
+						</li>
+						<li>Angular CLI
+							<ul>
+								<li>A command-line interface used to build Angular applications</li>
+							</ul>
+						</li>
+						<li>Angular artifacts
+							<ul>
+								<li>Directives additional behavior to elements</li>
+								<li>Services contains business logic</li>
+								<li>Modules organizes code</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script src="../../js/asciinema-player.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
