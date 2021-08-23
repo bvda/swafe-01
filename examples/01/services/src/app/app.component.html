@@ -1,0 +1,10 @@
+<h1>{{ title }}</h1>
+<h2>app.component instance  </h2>
+<p>{{ name$ | async }}</p>
+<app-role-selector [value]="name$ | async" (selected)="onRoleChange($event)"></app-role-selector>
+<h2>shared-user.component instance</h2>
+<app-shared-user></app-shared-user>
+<h2>user.component instances</h2>
+<app-user userName="Batman">
+</app-user>
+<app-user userName="Robin"></app-user>

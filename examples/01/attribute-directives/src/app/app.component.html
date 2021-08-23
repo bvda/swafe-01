@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <h1>Attribute directives</h1>
+  <form #f="ngForm">
+    <input ngModel name="title" required #data="ngModel" type="text">
+    <button [disabled]="f.invalid" (click)="rows.push(data.value)">Submit</button>
+  </form>
+  <table>
+    <caption>Table caption</caption>
+    <thead>
+      <th scope="col">Index</th>
+      <th scope="col">Odd</th>
+      <th scope="col">Even</th>
+      <th scope="col">Value</th>
+    </thead>
+    <tbody>
+      <tr appHover *ngFor="let row of rows; index as i, odd as o, even as e" [ngClass]="{ 'odd': o, 'even': e}">
+        <th scope="row" [ngStyle]="{'background-color' : o ? 'aqua' : 'aquamarine'}">{{ i }}</th>
+        <td>{{ o }}</td>
+        <td>{{ e }}</td>
+        <td>{{ row | json }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

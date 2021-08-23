@@ -111,12 +111,37 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Generate workspaces</li>
-							<li>Generate project files</li>
-							<li>Build release code</li>
-							<li>Package management</li>
-							<li>Run tests</li>
+							<li>Installation</li>
+							<li>Generate workspaces
+								<ul>
+									<li>Create and initialize new Angular workspaces and applications</li>
+								</ul>
+							</li>
+							<li>Generate project files
+								<ul>
+									<li>Generate and/or modify files based on scematics</li>
+								</ul>
+							</li>
+							<li>Build code for distribution
+								<ul>
+									<li>Compile an Angular application and build a version optimized for distribution</li>
+								</ul>
+							</li>
+							<li>Package management
+								<ul>
+									<li>Update applications and keep dependencies up to date</li>
+								</ul>
+							</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/cli/new">Angular - ng new</a></li>
+								<li><a href="https://angular.io/cli/generate">Angular - ng generate</a></li>
+								<li><a href="https://angular.io/cli/serve">Angular - ng serve</a></li>
+								<li><a href="https://angular.io/cli/update">Angular - ng update</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Installation</h2>
@@ -181,6 +206,25 @@
 								"defaultProject": "my-first-application"
 							}							
 						</script></code></pre>
+					</section>
+					<section>
+						<h2>Generate files</h2>
+						<ul>
+							<li>Create angular artifacts with <code>ng generate</code>
+								<ul>
+									<li><code>ng g c</code> generates a new component scaffold</li>
+									<li><code>ng g m</code> generates a new module scaffold, add option <code>--routing</code> to generate a routing module as well</li>
+									<li><code>ng g s</code> generates a new service</li>
+								</ul>
+							</li>
+							<li>Check out <a href="https://angular.io/cli/generate">CLI Command Reference</a> for all options (and there are a lot)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/cli/generate">Angular - ng generate</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Strict mode</h2>
@@ -580,9 +624,6 @@
 								<li><a href="https://angular.io/guide/feature-modules">Angular - Feature modules</a></li>
 							</ul>
 						</aside>
-					</section>
-					<section id="wrap-up-modules">
-						<h2>Wrap-up: Modules</h2>
 					</section>
 				</section>
 				<section>

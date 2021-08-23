@@ -1,0 +1,20 @@
+* {
+  font-family: sans-serif;
+}
+
+.wrapper {
+  width: 512px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+}
+
+button {
+  margin: 4px 0;
+  padding: 4px 0;
+  flex: 1 1 0;
+}

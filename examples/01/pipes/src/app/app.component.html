@@ -1,0 +1,9 @@
+<p>{{ today | date }}</p>
+<p>{{ today | currency }}</p>
+<p>{{ fraction | number: '1.0-2' }}</p>
+<p>{{ user | user}}</p>
+<div>
+  <p>Today is {{ today | date }}</p>
+  <p>Or if you prefer, {{ today | date:'fullDate' }}</p>
+  <p>The time is {{ today | date:'h:mm a z' }}</p>
+</div>
