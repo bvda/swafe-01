@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <h1>Built-in structural directives</h1>
+  <button type="button" (click)="toggleShowList()">{{ showList ? 'Hide list' : 'Show list'}}</button>
+  <div *ngIf="showList">
+    <div class="button-container">
+      <ng-container [ngSwitch]="showAdd">
+        <button type="button" *ngSwitchCase="true" (click)="addElement()">Add element</button>
+        <button type="button" *ngSwitchDefault (click)="removeElement()">Remove element</button>
+      </ng-container>
+      <button type="button" (click)="switchElement()">Switch</button>
+    </div>
+    <ul>
+      <li *ngFor="let element of elements">{{ element }}</li>
+    </ul>
+  </div>
+</div>

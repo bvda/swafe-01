@@ -1,0 +1,13 @@
+<div class="content">
+  <div class="wrapper">
+    <div class="content">
+      <h1>Custom structural directive</h1>
+      <ul>
+        <li><button *ngIf="!(isAuthenticated | async)" (click)="onSignIn()">Sign in</button></li>
+        <li><button *ngIf="isAuthenticated | async" (click)="onSignOut()">Sign out</button></li>
+      </ul>
+    </div>
+    <app-restricted *appIsAuthenticated></app-restricted>
+    <app-public></app-public>
+  </div>
+</div>
