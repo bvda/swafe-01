@@ -6,10 +6,13 @@ import { FeatureOneComponent } from './feature-one/feature-one.component';
 
 @NgModule({
   declarations: [
-    FeatureOneComponent
+    FeatureOneComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+  ],
+  exports: [
+    FeatureOneComponent,
   ]
 })
 export class FeatureOneModule { }
