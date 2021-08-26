@@ -4,13 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Lecture 01</title>
+		<title>Lesson 01</title>
 
 		<link rel="stylesheet" href="../../dist/reset.css">
 		<link rel="stylesheet" href="../../dist/reveal.css">
 		<link rel="stylesheet" href="../../dist/theme/black.css">
 		<link rel="stylesheet" type="text/css" href="../../css/asciinema-player.css" />
-
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
@@ -296,11 +295,11 @@
 								import { Component, OnInit } from '@angular/core';
 		
 								@Component({
-									selector: 'app-my-first',
-									templateUrl: './my-first.component.html',
-									styleUrls: ['./my-first.component.scss']
+									selector: 'app-one',
+									templateUrl: './one.component.html',
+									styleUrls: ['./one.component.scss']
 								})
-								export class MyFirstComponent implements OnInit {
+								export class OneComponent implements OnInit {
 								
 									constructor() { }
 									
@@ -308,6 +307,7 @@
 								}
 							</code>
 						</pre>
+						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h2>Code walk through</h2>
 							<ul>
@@ -323,6 +323,7 @@
 						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
 							<h1>Test</h1>
 						</script></code></pre>
+						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.html</small>
 					</section>
 					<section>
 						<h2>Styles</h2>
@@ -335,6 +336,7 @@
 								display: flex;
 							}
 						</script></code></pre>
+						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.scss</small>
 					</section>
 					<section id="lifecycle-hooks">
 						<h2>Lifecycle hooks</h2>
@@ -448,8 +450,13 @@
 							export class MyFirstService {
 							
 								constructor() { }
-							}
+							
+								now(): string {
+									return new Date(Date.now()).toISOString()
+								}
+							}							
 						</script></code></pre>						
+						<small>examples/01/lesson01-introduction/projects/services/src/app/my-first.service.ts</small>
 					</section>
 					<section>
 						<h2>Defining a service</h2>
@@ -470,24 +477,25 @@
 						<h2>Injecting a service into a component</h2>
 						<pre><code class='typescript' data-trim data-line-numbers="|3,12,15|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
-		
-							import { MyFirstService } from '../service/my-first.service';
-		
+							import { MyFirstService } from './my-first.service';
+							
 							@Component({
-							selector: 'app-my-first',
-							templateUrl: './my-first.component.html',
-							styleUrls: ['./my-first.component.scss']
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
 							})
-							export class MyFirstComponent implements OnInit {
+							export class AppComponent implements OnInit {
+								title = 'services';
+								now: string | null = null
 							
-								constructor(private myFirstService: MyFirstService) { }
-								
-								ngOnInit(): void {
-									this.myFirstService.myFirstServiceFunction()
+								constructor(private service: MyFirstService) { }
+							
+								ngOnInit() {
+									this.now = this.service.now()
 								}
-							
 							}
-						</script></code></pre>	
+						</script></code></pre>
+						<small>examples/01/lesson01-introduction/projects/services/src/app/app.component.ts</small>	
 					</section>
 					<section id="dependency-injection">
 						<h2>Dependency Injection (DI)</h2>
@@ -560,6 +568,32 @@
 							<li>Modules can be loaded eagerly when the application starts or lazy loaded asynchrously by the router</li>
 						</ul>
 					</section>
+					<section>
+						<h2>Root module</h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|4|5-6|9-11|12-16|18|">
+							import { NgModule } from '@angular/core';
+							import { BrowserModule } from '@angular/platform-browser';
+							
+							import { AppComponent } from './app.component';
+							import { FeatureOneModule } from './feature-one/feature-one.module';
+							import { FeatureTwoModule } from './feature-two/feature-two.module';
+							
+							@NgModule({
+								declarations: [
+									AppComponent
+								],
+								imports: [
+									BrowserModule,
+									FeatureOneModule,
+									FeatureTwoModule,
+								],
+								providers: [],
+								bootstrap: [AppComponent]
+							})
+							export class AppModule { }
+							</code></pre>
+							<small>examples/01/lesson01-introduction/projects/modules/src/app/app.module.ts</small>
+						</section>
 					<section id="angular-modules">
 						<h2>Angular Modules</h2>
 						<ul>
@@ -585,21 +619,27 @@
 					</section>
 					<section>
 						<h2>Declare module</h2>
-						<pre><code class="typescript" data-trim data-line-numbers="|3|6-8|7|">
+						<pre><code class="typescript" data-trim data-line-numbers="|3-4|7-9|10,12-13|14-16|">
 							import { NgModule } from '@angular/core';
 							import { CommonModule } from '@angular/common';
-							import { MyFirstFeatureComponent } from './my-first-feature/my-first-feature.component';
+							import { FeatureThreeModule } from '../feature-three/feature-three.module';
+							import { FeatureTwoComponent } from './feature-two/feature-two.component';
 
 							@NgModule({
 								declarations: [
-									MyFirstFeatureComponent
+									FeatureTwoComponent
 								],
 								imports: [
-									CommonModule
+									CommonModule,
+									FeatureThreeModule,
+								],
+								exports: [
+									FeatureTwoComponent
 								]
 							})
-							export class MyFirstModule { }
+							export class FeatureTwoModule { }
 						</code></pre>
+						<small>examples/01/lesson01-introduction/projects/modules/src/app/feature-two/feature-two.module.ts</small>
 					</section>
 					<section id="feature-modules">
 						<h2>Feature modules</h2>
@@ -894,7 +934,7 @@
 				<section>
 					<section id="data-binding" data-background-image="../../assets/data-binding.jpg">
 						<h1>Data binding</h1>
-						<aside class="notes">
+						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li>Photo by <a href="https://unsplash.com/@waguluz_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andreas Wagner</a> on <a href="https://unsplash.com/s/photos/knot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></li>
