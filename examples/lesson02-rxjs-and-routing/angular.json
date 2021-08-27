@@ -1,0 +1,491 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "rxjs": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/rxjs",
+      "sourceRoot": "projects/rxjs/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/rxjs",
+            "index": "projects/rxjs/src/index.html",
+            "main": "projects/rxjs/src/main.ts",
+            "polyfills": "projects/rxjs/src/polyfills.ts",
+            "tsConfig": "projects/rxjs/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/rxjs/src/favicon.ico",
+              "projects/rxjs/src/assets"
+            ],
+            "styles": [
+              "projects/rxjs/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/rxjs/src/environments/environment.ts",
+                  "with": "projects/rxjs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "rxjs:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rxjs:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "rxjs:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rxjs/src/test.ts",
+            "polyfills": "projects/rxjs/src/polyfills.ts",
+            "tsConfig": "projects/rxjs/tsconfig.spec.json",
+            "karmaConfig": "projects/rxjs/karma.conf.js",
+            "assets": [
+              "projects/rxjs/src/favicon.ico",
+              "projects/rxjs/src/assets"
+            ],
+            "styles": [
+              "projects/rxjs/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rxjs/tsconfig.app.json",
+              "projects/rxjs/tsconfig.spec.json",
+              "projects/rxjs/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/rxjs/e2e/protractor.conf.js",
+            "devServerTarget": "rxjs:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rxjs:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "routing-basic": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/routing-basic",
+      "sourceRoot": "projects/routing-basic/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/routing-basic",
+            "index": "projects/routing-basic/src/index.html",
+            "main": "projects/routing-basic/src/main.ts",
+            "polyfills": "projects/routing-basic/src/polyfills.ts",
+            "tsConfig": "projects/routing-basic/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/routing-basic/src/favicon.ico",
+              "projects/routing-basic/src/assets"
+            ],
+            "styles": [
+              "projects/routing-basic/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/routing-basic/src/environments/environment.ts",
+                  "with": "projects/routing-basic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "routing-basic:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "routing-basic:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "routing-basic:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/routing-basic/src/test.ts",
+            "polyfills": "projects/routing-basic/src/polyfills.ts",
+            "tsConfig": "projects/routing-basic/tsconfig.spec.json",
+            "karmaConfig": "projects/routing-basic/karma.conf.js",
+            "assets": [
+              "projects/routing-basic/src/favicon.ico",
+              "projects/routing-basic/src/assets"
+            ],
+            "styles": [
+              "projects/routing-basic/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/routing-basic/tsconfig.app.json",
+              "projects/routing-basic/tsconfig.spec.json",
+              "projects/routing-basic/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/routing-basic/e2e/protractor.conf.js",
+            "devServerTarget": "routing-basic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "routing-basic:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "routing-advanced": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/routing-advanced",
+      "sourceRoot": "projects/routing-advanced/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/routing-advanced",
+            "index": "projects/routing-advanced/src/index.html",
+            "main": "projects/routing-advanced/src/main.ts",
+            "polyfills": "projects/routing-advanced/src/polyfills.ts",
+            "tsConfig": "projects/routing-advanced/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/routing-advanced/src/favicon.ico",
+              "projects/routing-advanced/src/assets"
+            ],
+            "styles": [
+              "projects/routing-advanced/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/routing-advanced/src/environments/environment.ts",
+                  "with": "projects/routing-advanced/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "routing-advanced:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "routing-advanced:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "routing-advanced:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/routing-advanced/src/test.ts",
+            "polyfills": "projects/routing-advanced/src/polyfills.ts",
+            "tsConfig": "projects/routing-advanced/tsconfig.spec.json",
+            "karmaConfig": "projects/routing-advanced/karma.conf.js",
+            "assets": [
+              "projects/routing-advanced/src/favicon.ico",
+              "projects/routing-advanced/src/assets"
+            ],
+            "styles": [
+              "projects/routing-advanced/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/routing-advanced/tsconfig.app.json",
+              "projects/routing-advanced/tsconfig.spec.json",
+              "projects/routing-advanced/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/routing-advanced/e2e/protractor.conf.js",
+            "devServerTarget": "routing-advanced:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "routing-advanced:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "routing-lazy-loading-modules": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/routing-lazy-loading-modules",
+      "sourceRoot": "projects/routing-lazy-loading-modules/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/routing-lazy-loading-modules",
+            "index": "projects/routing-lazy-loading-modules/src/index.html",
+            "main": "projects/routing-lazy-loading-modules/src/main.ts",
+            "polyfills": "projects/routing-lazy-loading-modules/src/polyfills.ts",
+            "tsConfig": "projects/routing-lazy-loading-modules/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/routing-lazy-loading-modules/src/favicon.ico",
+              "projects/routing-lazy-loading-modules/src/assets"
+            ],
+            "styles": [
+              "projects/routing-lazy-loading-modules/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/routing-lazy-loading-modules/src/environments/environment.ts",
+                  "with": "projects/routing-lazy-loading-modules/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "routing-lazy-loading-modules:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "routing-lazy-loading-modules:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "routing-lazy-loading-modules:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/routing-lazy-loading-modules/src/test.ts",
+            "polyfills": "projects/routing-lazy-loading-modules/src/polyfills.ts",
+            "tsConfig": "projects/routing-lazy-loading-modules/tsconfig.spec.json",
+            "karmaConfig": "projects/routing-lazy-loading-modules/karma.conf.js",
+            "assets": [
+              "projects/routing-lazy-loading-modules/src/favicon.ico",
+              "projects/routing-lazy-loading-modules/src/assets"
+            ],
+            "styles": [
+              "projects/routing-lazy-loading-modules/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/routing-lazy-loading-modules/tsconfig.app.json",
+              "projects/routing-lazy-loading-modules/tsconfig.spec.json",
+              "projects/routing-lazy-loading-modules/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/routing-lazy-loading-modules/e2e/protractor.conf.js",
+            "devServerTarget": "routing-lazy-loading-modules:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "routing-lazy-loading-modules:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "rxjs"
+}
