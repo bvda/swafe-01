@@ -41,7 +41,7 @@ Let us make library for our data model
 Now that we have some data, we are ready to show it in the application
 
 1. Go to `./src/app/app.component.html` and use to `*ngForOf`<sup>(<a href="https://angular.io/api/common/NgForOf">docs</a>)</sup> to create an instance of `CourseListItemComponent` for each element in the course array
-2. Go to the template file for `CourseListItem` and add an `@Input()` of type `Course`
+2. Go to the template file for `CourseListItem` and add an `@Input()`<sup>(<a href="https://angular.io/api/core/Input">docs</a>)</sup> of type `Course`
 3. Print out the contents of the provided object in the template
 
 ## Questions
