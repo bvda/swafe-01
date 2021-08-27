@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lecture 02</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Routing and RxJS</h2>
+					<h3>SWAFE – Lecture 03</h3>
+				</section>
+				<section>
+					<section>
+						<h2>Routing</h2>
+					</section>
+					<section>
+						<h2>Single-page application</h2>
+						<ul>
+							<li>All applicatiom functionality exists in a single HTML page</li>
+							<li>Browsers only render the parts that matters to the user</li>
+							<li>Significantly improves the user experience</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+					</section>
+				</section>
+				<section id="lazy-loading-modules">
+					<section>
+						<h2>Lazy-loading modules</h2>
+					</section>
+					<section>
+						<h2>Imports and route configuration</h2>
+					</section>
+				</section>
+				<section>
+					<section id="reactive-programming">
+						<h2>Reactive programming</h2>
+						<blockquote>A declarative programming paradigm concerned with data streams and the propagation of change</blockquote>
+						<ul>
+							<li>Data stream
+								<ul>
+									<li>Sequence of elements made available over time</li>
+								</ul>
+							</li>
+							<li>Asynchronous and event-based</li>
+						</ul>
+					</section>
+					<section>
+						<h2>DOM Events</h2>
+						
+					</section>
+					<section>
+						<h2>Observables</h2>
+					</section>
+					<section>
+						<h2>Hot vs. cold observables</h2>
+						<ul>
+							<li>Cold observables can only have one subscription
+								<ul>
+									<li>Do not create the value before it is subscribed to</li>
+								</ul>
+							</li>
+							<li>Hot observables can have multiple subscription
+								<ul>
+									<li>Subject
+										<ul>
+											<li>Can have new values pushed to it (add more values after creation)</li>
+											<li>Must be created before adding/pushing new values</li>
+										</ul>
+									</li>
+									<li>BehaviorSubject
+										<ul>
+											<li>A Subject with the concept of a current value</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section id="rxjs">
+						<h2>RxJs</h2>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/">RxJS</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Consumer
+								<ul>
+									<li>The code that is subscribing to the observable</li>
+								</ul>
+							</li>
+							<li>Producer</li>
+							<li>Subscription</li>
+							<li>Observable</li>
+							<li>Observer</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Operators</h2>
+						<table>
+							<thead>
+								<th scope="">Creation/Join Creation</th>
+								<th scope="">Transformation</th>
+								<th scope="">Filtering</th>
+								<th scope="">Utility</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+											<ul>
+												<li><a href="#/rx-operator-of">of</a></li>
+												<li><a href="#/rx-operator-from">from</a></li>
+												<li><a href="#/rx-operator-combine-latest">combineLastest</a></li>
+											</ul>
+									</td>
+									<td>
+										<ul>
+											<li><a href="#/rx-operator-map">map</a></li>
+											<li><a href="#/rx-operator-switch-map">switchMap</a></li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li><a href="#/rx-operator-filter">filter</a></li>
+											<li><a href="#/rx-operator-debounce">debounce</a></li>
+											<li><a href="#/rx-operator-debounce-time">debounceTime</a></li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li><a href="#/rx-operator-tap">tap</a></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section id="rx-operator-of">
+						<h2>of</h2>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { of } from 'rxjs';
+
+							of(10, 20, 30)
+							.subscribe(
+								next => console.log('next:', next),
+								err => console.log('error:', err),
+								() => console.log('the end'),
+							);
+
+							// Logs:
+							// next: 10
+							// next: 20
+							// next: 30
+							// the end
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/of">RxJs - of</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-from">
+						<h2>from</h2>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { from } from 'rxjs';
+
+							const array = [10, 20, 30];
+							const result = from(array);
+							
+							result.subscribe(x => console.log(x));
+
+							// Logs:
+							// 10
+							// 20
+							// 30
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/from">RxJS - from</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-combine-latest">
+						<h2>combineLatest</h2>
+						<p>Get latest values of multiple Observables</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { combineLatest, timer } from 'rxjs';
+
+							const firstTimer = timer(0, 1000); // emit 0, 1, 2... after every second, starting from now
+							const secondTimer = timer(500, 1000); // emit 0, 1, 2... after every second, starting 0,5s from now
+							const combinedTimers = combineLatest([firstTimer, secondTimer]);
+							combinedTimers.subscribe(value => console.log(value));
+							
+							// Logs
+							// [0, 0] after 0.5s
+							// [1, 0] after 1s
+							// [1, 1] after 1.5s
+							// [2, 1] after 2s
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/combineLatest">RxJS - combineLatest</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-map">
+						<h2>map</h2>
+						<p>Transform an input to a new output</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { map } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const positions = clicks.pipe(map(ev => ev.clientX));
+							positions.subscribe(x => console.log(x));
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/map">RxJS - map</a></li>
+								<li><a href="http://reactivex.io/documentation/operators/map.html">ReactiveX - Map operator</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-switch-map">
+						<h2>switchMap</h2>
+						<p>Switch from one Observable to another</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent, interval } from 'rxjs';
+							import { switchMap } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const result = clicks.pipe(switchMap((ev) => interval(1000)));
+							result.subscribe(x => console.log(x));
+						</script></code></pre>
+
+						<aside class="notes" aria-label="notes">
+							<h4>Use cases</h4>
+							<ul><li>When an observable is dependent on another observable</li></ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/switchMap">RxJS - switchMap</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-filter">
+						<h2>filter</h2>
+						<p>Control which values are emitted based on condition</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { filter } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const clicksOnDivs = clicks.pipe(filter(ev => ev.target.tagName === 'DIV'));
+							clicksOnDivs.subscribe(x => console.log(x));
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/filter">RxJS - filter</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-debounce">
+						<h2>debounce</h2>
+						<p>Emits notification after a time span determined by another Observable </p>
+						<pre><code class="javascript" data-trim data-line-numbers><script type="text/template">
+							import { fromEvent, interval } from 'rxjs';
+							import { scan, debounce } from 'rxjs/operators';
+
+							const clicks = fromEvent(document, 'click');
+							const result = clicks.pipe(
+								scan((i) => ++i, 1),
+								debounce((i) => interval(200 * i))
+							);
+							result.subscribe(x => console.log(x));
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<ul>
+								<li>Only emits notification after time span has elapsed without new source emissions</li>
+							</ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/debounce">RxJS - debounce</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-debounce-time">
+						<h2>debounceTime</h2>
+						<p>Emits notification after time span and no new source emissions</p>
+						<pre><code class="javascript" data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { debounceTime } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const result = clicks.pipe(debounceTime(1000));
+							result.subscribe(x => console.log(x));
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/debounceTime">RxJS - debounceTime</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-tap">
+						<h2>tap</h2>
+						<p>Trigger side effects from inside the observable pipe</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { of } from 'rxjs';
+							import { tap, map } from 'rxjs/operators';
+							
+							of(Math.random()).pipe(
+								tap(console.log),
+								map(n => n > 0.5 ? 'big' : 'small')
+							).subscribe(console.log);
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/tap">RxJS - tap</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Back pressure</h2>
+						<ul>
+							<li>When an Observable emits more values that is needed</li>
+							<li>Can be fixed with:
+								<ul>
+									<li>debounceTime</li>
+									<li>throttleTime</li>
+									<li>bufferCount</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section id="observables-in-angular">
+						<h2>Observables in Angular</h2>
+						<ul>
+							<li>Transmitting data between components</li>
+							<li>HTTP</li>
+							<li>Router</li>
+							<li>Reactive forms</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/observables-in-angular">Angular - Observables in Angular</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>AsyncPipe</h2>
+						<ul>
+							<li>The async pipe subscribes to an Observable or Promise</li>
+							<li>Returns the latest value emitted</li>
+							<li>Marks components to be checked for changes</li>
+							<li>Unsubscribes automatically upon component destruction</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/AsyncPipe">Angular - AsyncPipe</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
