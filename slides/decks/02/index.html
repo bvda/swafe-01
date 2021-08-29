@@ -71,7 +71,7 @@
 							}, {
 								path: 'second',
 								component: SecondComponent,
-							}];
+							},...];
 
 							@NgModule({
 								imports: [RouterModule.forRoot(routes)],
@@ -83,9 +83,79 @@
 					</section>
 					<section id="route-interface">
 						<h2>Route interface</h2>
+						<ul>
+							<li>A subset of available properties
+								<ul>
+									<li><code>path</code> The path to match against</li>
+									<li><code>component</code> The component to instantiate  when the path matches</li>
+									<li><code>outlet</code> A name of a <code>RouterOutlet</code> object where the component can be placed when the path matches</li>
+									<li><code>redirectTo</code> A URL to redirect to when the path matches</li>
+									<li><code>canActivate</code> An array of DI tokens used to look up handlers to determine if the current user is allowed to activate the path</li>
+									<li><code>children</code> An array of child <code>Route</code> objects that specifies a nested route configuration</li>
+									<li><code>loadChildren</code> An object specifying <a href="#/lazy-loading-modules">lazy-loading</a> child routes</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/Route">Angular - Route</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Router outlets</h2>
+						<ul>
+							<li>Acts as a placeholder that Angular dynamically fills based on current router state</li>
+							<li>Each outlet can have a unique name
+								<ul>
+									<li>Determined by the optional<code>name</code> attribute</li>
+									<li>If not set, default value is "primary"</li>
+								</ul>
+							</li>
+							<li>Named outlets can be targets of secondary routes</li>
+							<li>Using named outlets and secondary routes, you can target multiple outlets in the same <code>RouterLink</code> directive</li>
+							<li>The router keeps track of separate branches in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|8,11|13|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							...
+							import { ThirdComponent } from './third/third.component';
+							import { FourthComponent } from './fourth/fourth.component';
+
+							const routes: Routes = [..., {
+								path: 'third',
+								component: ThirdComponent,
+							}, { 
+								path: 'third',
+								component: FourthComponent,
+								outlet: 'feature'
+							}];
+
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
+							<nav>
+								<ul>
+									<li><a routerLink="first">First</a></li>
+									<li><a routerLink="second">Second</a></li>
+									<li><a [routerLink]="[{outlets: { primary: ['third'], feature: ['third']}}]">Third</a></li>
+								</ul>
+							</nav>
+							<router-outlet></router-outlet>
+							<router-outlet name="feature"></router-outlet>
+						</script></code></pre>
 					</section>
 					<section id="wildcard-routes">
 						<h2>Wildcard routes</h2>
