@@ -117,6 +117,12 @@
 							<li>Using named outlets and secondary routes, you can target multiple outlets in the same <code>RouterLink</code> directive</li>
 							<li>The router keeps track of separate branches in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/RouterOutlet">Angular - RouterOutlet</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Router outlets</h2>
@@ -142,10 +148,11 @@
 							})
 							export class AppRoutingModule { }
 						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app-routing.module.ts</small>
 					</section>
 					<section>
 						<h2>Router outlets</h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
 							<nav>
 								<ul>
 									<li><a routerLink="first">First</a></li>
@@ -156,9 +163,23 @@
 							<router-outlet></router-outlet>
 							<router-outlet name="feature"></router-outlet>
 						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app.component.html</small>
 					</section>
 					<section id="wildcard-routes">
 						<h2>Wildcard routes</h2>
+						<ul>
+							<li>A well-functiong application should gracefully handle when users attempt to navigate to a part of your application that does not exist</li>
+							<li>A wildcard route should be placed last because it matches any URL</li>
+						</ul>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
+							
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#setting-up-wildcard-routes">Angular - Common Routing Tasks</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section id="lazy-loading-modules">
