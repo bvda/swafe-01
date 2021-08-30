@@ -20,7 +20,7 @@ A common design pattern is to add have navigation bar at the very top of a web a
 
 ## Exercise 01-3
 ### Add course module
-Next, we will begin implementing a new feature: A course module that can handles presentation of courses offered. The first thing we will add 
+Next, we will begin implementing a new feature: A course module that can handles presentation of courses offered. First we add the module itself, and then we add list item component to it.
 
 1. Run `ng g m course`<sup>(<a href="https://angular.io/cli/generate#module-command">docs</a>)</sup> to create a course module
 2. Add `CourseListItem` component to `CourseModule` with `ng g c courseListItem -m course`
@@ -34,7 +34,8 @@ Let us make library for our data model
   - `name` – A string that contains the name of the course
   - `code` – The course code
   - `ects` – The ECTS credits awarded for completing the course
-3. Declare an array and some courses to it in `AppComponent`
+3. Before we can use the our newly created library, we need to build it<sup>(<a href="https://angular.io/guide/creating-libraries#using-your-own-library-in-apps">docs</a>)</sup> with `ng build models` _Hint: You might want to <a href="https://angular.io/guide/creating-libraries#building-and-rebuilding-your-library">keep up with changes</a> to avoid confusion_
+4. Declare an array and some courses to it in `AppComponent`
 
 ## Exercise 01-5
 ### Create a course list
