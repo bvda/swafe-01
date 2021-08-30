@@ -88,7 +88,11 @@
 									<li>Declarative code avoids mutation of state and variables</li>
 								</ul>
 							</li>
-							<li>Imperative programming focuses on describing how a program operates.</li>
+							<li>Imperative programming focuses on describing how a program operates.
+								<ul>
+									<li>State changes and order of execution is important</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -151,6 +155,8 @@
 						<ul>
 							<li>A collection of Angular projects (this is, applications and libraries</li>
 							<li>Typically co-located in a single source-control repository</li>
+							<li>Commands that generate or operate on applications and libraries must be executed from within a workspace folder</li>
+							<li>Workspace configuration is located in <code>angular.json</code> in the root directory</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -216,6 +222,7 @@
 									<li><code>ng g s</code> generates a new service</li>
 								</ul>
 							</li>
+							<li>These commands must be run from within a project folder</li>
 							<li>Check out <a href="https://angular.io/cli/generate">CLI Command Reference</a> for all options (and there are a lot)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
@@ -227,13 +234,13 @@
 					</section>
 					<section>
 						<h2>Strict mode</h2>
-							<ul>
+							<ul>	
 								<li>Improves maintainability</li>
-							<li>Helps you catch bugs ahead of time:
-								<ul>
-									<li>Enable <code>strict</code> mode in TypeScript</li>
-									<li>Turns on strict Angular compiler flags</li>
-								</ul>
+								<li>Helps you catch bugs ahead of time:
+									<ul>
+										<li>Enable <code>strict</code> mode in TypeScript</li>
+										<li>Turns on strict Angular compiler flags</li>
+									</ul>
 								</li>
 								<li>Reduces bundle size budgets by 75%</li>
 								<li>Can be applied at workspace and project level</li>
@@ -307,7 +314,7 @@
 								}
 							</code>
 						</pre>
-						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.ts</small>
+						<small>examples/lesson01-introduction/projects/components/src/app/one/one.component.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h2>Code walk through</h2>
 							<ul>
@@ -323,7 +330,7 @@
 						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
 							<h1>Test</h1>
 						</script></code></pre>
-						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.html</small>
+						<small>examples/lesson01-introduction/projects/components/src/app/one/one.component.html</small>
 					</section>
 					<section>
 						<h2>Styles</h2>
@@ -336,7 +343,7 @@
 								display: flex;
 							}
 						</script></code></pre>
-						<small>examples/01/lesson01-introduction/projects/components/src/app/one/one.component.scss</small>
+						<small>examples/lesson01-introduction/projects/components/src/app/one/one.component.scss</small>
 					</section>
 					<section id="lifecycle-hooks">
 						<h2>Lifecycle hooks</h2>
@@ -456,7 +463,7 @@
 								}
 							}							
 						</script></code></pre>						
-						<small>examples/01/lesson01-introduction/projects/services/src/app/my-first.service.ts</small>
+						<small>examples/lesson01-introduction/projects/services/src/app/my-first.service.ts</small>
 					</section>
 					<section>
 						<h2>Defining a service</h2>
@@ -475,7 +482,7 @@
 					</section>
 					<section>
 						<h2>Injecting a service into a component</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|3,12,15|"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|2,13,16|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { MyFirstService } from './my-first.service';
 							
@@ -495,7 +502,7 @@
 								}
 							}
 						</script></code></pre>
-						<small>examples/01/lesson01-introduction/projects/services/src/app/app.component.ts</small>	
+						<small>examples/lesson01-introduction/projects/services/src/app/app.component.ts</small>	
 					</section>
 					<section id="dependency-injection">
 						<h2>Dependency Injection (DI)</h2>
@@ -521,10 +528,29 @@
 						<h2>Providers</h2>
 						<ul>
 							<li>Dependency providers make services available to the application</li>
+							<li>A service can be provided in multiple ways
+								<ul>
+									<li>At application-level where the service is available to the whole application</li>
+									<li>At component-level where each component has it's own instance of the service (sandboxing)</li>
+								</ul>
+							</li>
 						</ul>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							@Component({
+								selector: 'selector',
+								template: ...,
+								providers: [MyFirstService]
+							})
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/dependency-injection-in-action">Angular - Dependency injection in action</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
-						<h2>Defining providers</h2>
+						<h2>Defining providers</h2>	
 						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
 							// Provider syntax
 							providers: [Logger]
@@ -537,11 +563,11 @@
 							<li>The next property holds a Provider definition object:
 								<ul>
 									<li><code>useClass</code> is a provider definition object</li>
-									<li><code>useExisting</code> – the provider is a </li>
+									<li><code>useExisting</code> – the provider is an instance of an existing object</li>
 									<li><code>useValue</code> – the provider is an object or primitive value</li>
 									<li><code>useFactory</code> – the provider is a factory method</li>
 								</ul>
-						</ul>
+							</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -592,7 +618,7 @@
 							})
 							export class AppModule { }
 							</code></pre>
-							<small>examples/01/lesson01-introduction/projects/modules/src/app/app.module.ts</small>
+							<small>examples/lesson01-introduction/projects/modules/src/app/app.module.ts</small>
 						</section>
 					<section id="angular-modules">
 						<h2>Angular Modules</h2>
@@ -639,7 +665,7 @@
 							})
 							export class FeatureTwoModule { }
 						</code></pre>
-						<small>examples/01/lesson01-introduction/projects/modules/src/app/feature-two/feature-two.module.ts</small>
+						<small>examples/lesson01-introduction/projects/modules/src/app/feature-two/feature-two.module.ts</small>
 					</section>
 					<section id="feature-modules">
 						<h2>Feature modules</h2>
@@ -718,7 +744,7 @@
 							<li><code>NgStyle</code> – adds and removes a set of HTML styles</li>
 							<li><code>NgModel</code> – adds two-way data binding to an HTML form element</li>
 						</ul>
-						<small>See examples/01/attribute-directives for implementation details</small>
+						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -735,7 +761,7 @@
 							<li><code>NgForOf</code> – renders a template for each item in a collection</li>
 							<li><code>NgNgSwitch</code> –  specifies an expression to match against and show views in container</li>
 						</ul>
-						<small>See examples/01/structural-directives for implementation details</small>
+						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 					</section>
 					<section id="custom-directive">
 						<h2>Custom directives</h2>
@@ -777,7 +803,7 @@
 							
 							}						
 						</script></code></pre>
-						<small>examples/01/attribute-directives/src/app/hover.directive.ts</small>
+						<small>examples/lesson01-introduction/projects/directives/src/app/attribute/hover.directive.ts</small>
 					</section>
 					<section>
 						<h2>Custom structural directive</h2>
@@ -813,7 +839,7 @@
 									}
 							}
 						</script></code></pre>
-						<small>examples/01/custom-structural-directives/src/app/is-authenticated.directive.ts</small>
+						<small>examples/lesson01-introduction/projects/directives/src/app/custom/is-authenticated.directive.ts</small>
 					</section>
 					<section>
 						<h2>Custom structural directive</h2>
@@ -826,7 +852,7 @@
 								</div>
 							</div>
 						</script></code></pre>	
-						<small>examples/01/custom-structural-directives/src/app/app.component.html</small>
+						<small>examples/lesson01-introduction/projects/directives/src/app/custom/app.component.html</small>
 					</section>
 				</section>
 				<section>
@@ -885,6 +911,7 @@
 							 // Or if you prefer, Friday, August 20, 2021
 							 // The time is 2:19 PM GMT+2
 						</script></code></pre>
+						<small>examples/lesson01-introduction/projects/pipes/src/app/app.component.html</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -928,7 +955,7 @@
 								}
 							}
 						</script></code></pre>
-						<small>examples/01/pipes/src/app/user.pipe.ts</small>
+						<small>examples/lesson01-introduction/projects/pipes/src/app/user.pipe.ts</small>
 					</section>
 				</section>
 				<section>
@@ -1071,7 +1098,7 @@
 								}
 							}
 						</script></code></pre>
-						<small>src/app/sizer.component.ts</small>
+						<small>examples/lesson01-introduction/projects/bindings/src/app/sizer/sizer.component.ts</small>
 					</section>
 					<section>
 						<h2>Create a two-way-binding</h2>
@@ -1082,12 +1109,12 @@
 								<label [style.font-size.px]="size">FontSize: {{size}}px</label>
 							</div>
 						</script></code></pre>
-						<small>src/app/sizer.component.html</small>
+						<small>examples/lesson01-introduction/projects/bindings/src/app/sizer/sizer.component.html</small>
 						<pre><code class="typescript" data-trim data-line-numbers><script type="text/template">
 							<app-sizer [(size)]="fontSizePx"></app-sizer>
 							<div [style.font-size.px]="fontSizePx">Resizable Text</div>
 						</script></code></pre>
-						<small>src/app/app.component.html</small>
+						<small>examples/lesson01-introduction/projects/bindings/src/app/app.component.ts</small>
 					</section>
 				</section>
 				<section>
