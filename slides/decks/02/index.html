@@ -171,9 +171,24 @@
 							<li>A well-functiong application should gracefully handle when users attempt to navigate to a part of your application that does not exist</li>
 							<li>A wildcard route should be placed last because it matches any URL</li>
 						</ul>
-						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|3,7-9|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 							
+							const routes: Routes = [{
+								...
+							}, { 
+								path: '**', 
+								component: PageNotFoundComponent,
+							}];
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
 						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
 							<ul>
