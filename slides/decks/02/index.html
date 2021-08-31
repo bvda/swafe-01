@@ -319,7 +319,7 @@
 						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
 							import { of } from 'rxjs';
 
-							of(10, 20, 30)
+							of(1, 2, 3)
 							.subscribe(
 								next => console.log('next:', next),
 								err => console.log('error:', err),
@@ -327,11 +327,12 @@
 							);
 
 							// Logs:
-							// next: 10
-							// next: 20
-							// next: 30
+							// next: 1
+							// next: 2
+							// next: 3
 							// the end
 						</script></code></pre>
+						<img width="60%" src="../../assets//marble-diagrams/of.svg" alt="of" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -354,6 +355,7 @@
 							// 20
 							// 30
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/from.svg" width="60%" alt="from"/>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -432,6 +434,7 @@
 							const clicksOnDivs = clicks.pipe(filter(ev => ev.target.tagName === 'DIV'));
 							clicksOnDivs.subscribe(x => console.log(x));
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/filter.svg" alt="filter" width="60%" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
