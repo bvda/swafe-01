@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { FeatureThreeRoutingModule } from './feature-three-routing.module';
 import { OverviewComponent } from './overview/overview.component';
+import { DeviceComponent } from './device/device.component';
 
 
 @NgModule({
   declarations: [
-    OverviewComponent
+    OverviewComponent,
+    DeviceComponent
   ],
   imports: [
     CommonModule,

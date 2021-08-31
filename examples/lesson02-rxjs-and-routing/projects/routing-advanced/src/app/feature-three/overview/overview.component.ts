@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Device, DEVICES } from '../device.type';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  deviceList: Device[] = this.devices;
 
-  ngOnInit(): void {
-  }
+  constructor(@Inject(DEVICES) private devices) { }
 
+  ngOnInit(): void { }
 }
