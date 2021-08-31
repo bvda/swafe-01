@@ -371,13 +371,8 @@
 							const secondTimer = timer(500, 1000); // emit 0, 1, 2... after every second, starting 0,5s from now
 							const combinedTimers = combineLatest([firstTimer, secondTimer]);
 							combinedTimers.subscribe(value => console.log(value));
-							
-							// Logs
-							// [0, 0] after 0.5s
-							// [1, 0] after 1s
-							// [1, 1] after 1.5s
-							// [2, 1] after 2s
 						</script></code></pre>
+						<img width="60%" src="../../assets/marble-diagrams/combinelatest.svg" alt="combinelatest"/>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -396,6 +391,7 @@
 							const positions = clicks.pipe(map(ev => ev.clientX));
 							positions.subscribe(x => console.log(x));
 						</script></code></pre>
+						<img width="60%" src="../../assets/marble-diagrams/map.svg" alt="map" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -415,7 +411,7 @@
 							const result = clicks.pipe(switchMap((ev) => interval(1000)));
 							result.subscribe(x => console.log(x));
 						</script></code></pre>
-
+						<img width="60%" src="../../assets/marble-diagrams/switchmap.svg" alt="switchmap"/>
 						<aside class="notes" aria-label="notes">
 							<h4>Use cases</h4>
 							<ul><li>When an observable is dependent on another observable</li></ul>

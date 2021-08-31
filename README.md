@@ -14,7 +14,7 @@ The slides in this course is built with [reveal.js](https://revealjs.com) that i
 
 When running the slides for the first time, you will need to download the dependencies using the Node package manager (npm). Run `npm install` in the terminal in the `./slides` directory.
 
-Run the slides by typing `npm start` and open a browser and go to [http://0.0.0.0:8000](http://0.0.0.0:8000).
+Run the slides by typing `npm start` and open a browser and go to [http://0.0.0.0:8000](http://0.0.0.0:8000) (or [http://localhost:8000](http://localhost:8000) if you are on Windows).
 
 ## Example code
 Each lesson has a workspace where all example code is located. The code is split up into multiple projects.
