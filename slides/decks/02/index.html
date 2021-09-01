@@ -311,54 +311,117 @@
 						<ul>
 							<li>Consumer
 								<ul>
-									<li>The code that is subscribing to the observable</li>
+									<li>The code that is subscribing to an Observable</li>
 								</ul>
 							</li>
-							<li>Producer</li>
-							<li>Subscription</li>
-							<li>Observable</li>
-							<li>Observer</li>
+							<li>Observer
+								<ul>
+									<li>The manifestation of a Consumer, that may have some (or all) handlers</li>
+								</ul>
+							</li>
+							<li>Producer
+								<ul>
+									<li>Any entity that is the source of values</li>
+								</ul>
+							</li>
+							<li>Observable
+								<ul>
+									<li>A template for connecting an Observer, as a Consumer, to a Producer, via a subscribe action, resulting in a Subscription</li>
+								</ul>
+							</li>
+							<li>Subscription
+								<ul>
+									<li>A contract where a consumer is observing values pushed by a producer</li>
+								</ul>
+							</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/glossary-and-semantics">RxJS - RxJS: Glossary And Semantics</a></li>
+							</ul>
+						</aside>
 					</section>
+				</section>
+				<section>
 					<section>
 						<h2>Operators</h2>
-						<table>
-							<thead>
-								<th scope="">Creation/Join Creation</th>
-								<th scope="">Transformation</th>
-								<th scope="">Filtering</th>
-								<th scope="">Utility</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-											<ul>
-												<li><a href="#/rx-operator-of">of</a></li>
-												<li><a href="#/rx-operator-from">from</a></li>
-												<li><a href="#/rx-operator-combine-latest">combineLastest</a></li>
-											</ul>
-									</td>
-									<td>
-										<ul>
-											<li><a href="#/rx-operator-map">map</a></li>
-											<li><a href="#/rx-operator-switch-map">switchMap</a></li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li><a href="#/rx-operator-filter">filter</a></li>
-											<li><a href="#/rx-operator-debounce">debounce</a></li>
-											<li><a href="#/rx-operator-debounce-time">debounceTime</a></li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li><a href="#/rx-operator-tap">tap</a></li>
-										</ul>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<ul>
+							<li>RxJS operators allow complex asynchronous code to be composed in a declarative manner</li>
+							<li>Operators are, simply speaking, just functions</li> 
+							<li>There are two kinds of operators:
+								<ul>
+									<li><strong>Pipeable operators</strong> takes an <code>Observable</code> as input and generates a new <code>Observable</code> as output</li></li>
+									<li><strong>Creation operators</strong> are standalone functions that creates new <code>Observable</code> objects</li>
+								</ul>
+							</li>
+							<li>Marble diagrams are used to explain how operators work
+								<ul>
+									<li>Many operators are related to time</li>
+									<li>Include the input <code>Observable</code> object(s), the operator and the output <code>Observable</code></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/operators">RxJS - RxJS Operators</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Operator categories</h2>
+						<ul>
+							<li>There various categories
+								<ul>
+									<li>Converting existing code for async opertaions into observables</li>
+									<li>Iterating through the values in a stream</li>
+									<li>Mapping values to different types</li>
+									<li>Filtering streams</li>
+									<li>Composing multiple streams</li>
+									<li>Utility for handling errors and debug</li>
+								</ul>
+							</li>
+							<li>There are over <mark>100</mark> operators, but some are used more than others</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<a href="https://angular.io/guide/rx-library">The RxJS library</a>
+						</aside>
+					</section>
+					<section>
+						<h2>Selected operators</h2>
+						<ul>
+							<li><mark>Creation</mark> create <code>Observable</code> objects from data and events
+								<ul>
+									<li><a href="#/rx-operator-of">of</a></li>
+									<li><a href="#/rx-operator-from">from</a></li>
+								</ul>
+							</li>
+							<li><mark>Combination</mark> combine multiple <code>Observable</code> objects
+								<ul>
+									<li><a href="#/rx-operator-combine-latest">combineLastest</a></li>
+								</ul>
+							</li>
+							<li><mark>Transformation</mark> transform source data into new types
+								<ul>
+									<li><a href="#/rx-operator-map">map</a></li>
+									<li><a href="#/rx-operator-switch-map">switchMap</a></li>
+								</ul>
+							</li>
+							<li><mark>Filtering</mark> filter values emitted from <code>Observable</code> objects
+								<ul>
+									<li><a href="#/rx-operator-filter">filter</a></li>
+									<li><a href="#/rx-operator-debounce">debounce</a></li>
+									<li><a href="#/rx-operator-debounce-time">debounceTime</a></li>
+								</ul>
+							</li>
+							<li><mark>Utility</mark> operators that perform helpful operations
+								<ul>
+									<li><a href="#/rx-operator-tap">tap</a></li>
+								</ul>
+							</li>
+						</ul>
 					</section>
 					<section id="rx-operator-of">
 						<h2>of</h2>
@@ -595,12 +658,10 @@
 						</aside>
 					</section>
 					<section>
-
 					</section>
 				</section>
 			</div>
 		</div>
-
 		<script src="../../dist/reveal.js"></script>
 		<script src="../../plugin/notes/notes.js"></script>
 		<script src="../../plugin/markdown/markdown.js"></script>
