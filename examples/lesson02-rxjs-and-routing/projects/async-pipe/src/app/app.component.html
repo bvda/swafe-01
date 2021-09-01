@@ -2,3 +2,7 @@
 <ul>
   <li *ngFor="let value of dataList$ | async">{{value}}</li>
 </ul>
+<div *ngIf="dataUser$ | async as user">
+  <p>{{ user.name }} {{ user.company }}</p>
+  <p>{{ user | json }}</p>
+</div>
