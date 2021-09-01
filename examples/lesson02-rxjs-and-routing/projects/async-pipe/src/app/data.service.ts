@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { interval, Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators'
+import { User, USERS } from './user.type';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,6 @@ import { switchMap, tap } from 'rxjs/operators'
 export class DataService {
 
   list: number[] = []
-
-  users: User[] = [{
-    name: 'Elon Musk',
-    company: 'Tesla'
-  }, {
-    name: 'Bill Gates',
-    company: 'Microsoft'
-  }, {
-    name: 'Jeff Bezos',
-    company: 'Amazon'
-  }]
 
   getData(): Observable<number> {
     return interval(1000)
@@ -33,12 +23,8 @@ export class DataService {
 
   getObjects(): Observable<User> {
     return interval(1000).pipe(
-      switchMap(_ => of(this.users[Math.floor(Math.random() * this.users.length)])),
+      switchMap(_ => of(USERS[Math.floor(Math.random() * USERS.length)])),
     )
   }
 }
 
-export interface User {
-  name: string;
-  company: string;
-}

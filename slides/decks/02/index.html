@@ -658,6 +658,86 @@
 						</aside>
 					</section>
 					<section>
+						<h2>Service</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|13-15|11,17-22|24-28|"><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { interval, Observable, of } from 'rxjs';
+							import { switchMap, tap } from 'rxjs/operators'
+							import { User, USERS } from './user.type';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class DataService {
+
+								list: number[] = []
+
+								getData(): Observable<number> {
+									return interval(1000)
+								}
+
+								getList(): Observable<number[]> {
+									return this.getData().pipe(
+										tap(value => this.list.push(value)),
+										switchMap(_ => of(this.list))
+									)
+								}
+
+								getObjects(): Observable<User> {
+									return interval(1000).pipe(
+										switchMap(_ => of(USERS[Math.floor(Math.random() * USERS.length)])),
+									)
+								}
+							}
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/data.service.ts</small>
+					</section>
+					<section>
+						<h2>Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|12-14|17-19|23-25|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Observable } from 'rxjs';
+							import { DataService } from './data.service';
+							import { User } from './user.type';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+								data$: Observable<number>
+								dataList$: Observable<number[]>
+								dataUser$: Observable<User>
+								
+								constructor(private service: DataService) {
+									this.data$ = this.service.getData()
+									this.dataList$ = this.service.getList()
+									this.dataUser$ = this.service.getObjects()
+								}
+							
+								ngOnInit() {
+									this.data$.subscribe(v => {
+										console.debug(v)
+									})
+								}
+							}							
+						</script></code></pre>	
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|1|2-4|5-8|"><script type="text/template">
+							<p>{{ data$ | async }}</p>
+							<ul>
+								<li *ngFor="let value of dataList$ | async">{{value}}</li>
+							</ul>
+							<div *ngIf="dataUser$ | async as user">
+								<p>{{ user.name }} {{ user.company }}</p>
+								<p>{{ user | json }}</p>
+							</div>
+						</script></code></pre>	
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.html</small>
 					</section>
 				</section>
 			</div>

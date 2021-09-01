@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataService, User } from './data.service';
+import { DataService } from './data.service';
+import { User } from './user.type';
 
 @Component({
   selector: 'app-root',
