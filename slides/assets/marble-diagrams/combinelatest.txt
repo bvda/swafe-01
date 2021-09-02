@@ -1,0 +1,15 @@
+-a--b------c-d-e-|
+
+--1---2-3-4---|
+
+> combineLatest()
+
+---a-bc-d-ef-g-h|
+a:=a1
+b:=b1
+c:=b2
+d:=b3
+e:=b4
+f:=c4
+g:=d4
+h:=e4 

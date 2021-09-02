@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="610" height="260">
+  <path d="M0 0h610v260H0z" fill="none"/>
+  <g stroke="#fff" stroke-width="2">
+    <path d="M25 50h560"/>
+    <path fill="none" stroke-linecap="square" d="M575 44.226L585 50l-10 5.774"/>
+  </g>
+  <path stroke="#fff" stroke-width="2" d="M534 25v50"/>
+  <g transform="translate(425 25)">
+    <circle cx="20" cy="25" fill="#2c0566" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+      4
+    </text>
+  </g>
+  <g transform="translate(335 25)">
+    <circle cx="20" cy="25" fill="#6626c7" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+      3
+    </text>
+  </g>
+  <g transform="translate(245 25)">
+    <circle cx="20" cy="25" fill="#27290d" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+      2
+    </text>
+  </g>
+  <g transform="translate(155 25)">
+    <circle cx="20" cy="25" fill="#08120d" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+      1
+    </text>
+  </g>
+  <g transform="translate(65 25)">
+    <circle cx="20" cy="25" fill="#700a36" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+      0
+    </text>
+  </g>
+  <g transform="translate(25 95)" fill="none">
+    <rect y="10" width="560" height="48" stroke="#fff" stroke-width="2" rx="0"/>
+    <text x="280" y="35" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="24" dominant-baseline="middle" text-anchor="middle">
+      filter(x =&gt; x % 2 === 1)
+    </text>
+  </g>
+  <g>
+    <g stroke="#fff" stroke-width="2">
+      <path d="M25 210h560"/>
+      <path fill="none" stroke-linecap="square" d="M575 204.226L585 210l-10 5.774"/>
+    </g>
+    <path stroke="#fff" stroke-width="2" d="M534 185v50"/>
+    <g transform="translate(335 185)">
+      <circle cx="20" cy="25" fill="#6626c7" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+        3
+      </text>
+    </g>
+    <g transform="translate(155 185)">
+      <circle cx="20" cy="25" fill="#08120d" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">
+        1
+      </text>
+    </g>
+  </g>
+</svg>

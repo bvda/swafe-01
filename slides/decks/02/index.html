@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lesson 02</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+		<link rel="stylesheet" type="text/css" href="../../css/asciinema-player.css" />
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>RxJS and Routing</h2>
+					<h3>Lesson 02</h3>
+					<h4>SWAFE–01</h4>
+				</section>
+				<section id="single-page-applications">
+					<section>
+						<h2>Single-page applications</h2>
+						<ul>
+							<li>All applicatiom functionality exists in a single HTML page</li>
+							<li>Browsers only render the parts that matters to the user</li>
+							<li>Significantly improves the user experience</li>
+						</ul>
+					</section>
+					<section>
+						<h2>HTML</h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers=|6|7|11|><script type="text/template">
+							<!doctype html>
+							<html lang="en">
+							<head>
+								<meta charset="utf-8">
+								<title>RoutingBasic</title>
+								<base href="/">
+								<meta name="viewport" content="width=device-width, initial-scale=1">
+								<link rel="icon" type="image/x-icon" href="favicon.ico">
+							</head>
+							<body>
+								<app-root></app-root>
+							</body>
+							</html>
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/router-basic/src/index.html</small>	
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Routing</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>A routing module exports a <code>RouterModule</code></li>
+							<li>A <code>Routes</code> is equivalent to <code>Route[]</code></li>
+							<li>The <code>Route</code> is a configuration <a href="#/route-interface">interface</a> that defines a single route</li>
+							<li>The order of routes is important
+								<ul>
+									<li>The <code>Router</code> uses a first-match wins strategy</li>
+									<li>More specific routes should be placed above less specific</li>
+								</ul>
+							</li>
+							<li>Add the <code>RouterLink</code> directive to an element to link to a route</li>
+							<li>You can define <a href="#/wildcard-routes">wildcard routes</a> to handle user attempts to navigate to a non-existing route</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/Route">Angular - Route</a></li>
+								<li><a href="https://angular.io/api/router/Routes">Angular - Routes</a></li>
+								<li><a href="https://angular.io/api/router/RouterLink">Angular - RouterLink</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Routing module</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2|6-12|7-8|10-12|14-17|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { FirstComponent } from './first/first.component';
+							import { SecondComponent } from './second/second.component';
+
+							const routes: Routes = [{
+								path: 'first',
+								component: FirstComponent,
+							}, {
+								path: 'second',
+								component: SecondComponent,
+							},...];
+
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/router-basic/src/app/app-routing.component.ts</small>					
+					</section>
+					<section id="route-interface">
+						<h2>Route interface</h2>
+						<ul>
+							<li>A subset of available properties
+								<ul>
+									<li><code>path</code> The path to match against</li>
+									<li><code>component</code> The component to instantiate  when the path matches</li>
+									<li><code>outlet</code> A name of a <code>RouterOutlet</code> object where the component can be placed when the path matches</li>
+									<li><code>redirectTo</code> A URL to redirect to when the path matches</li>
+									<li><code>canActivate</code> An array of DI tokens used to look up handlers to determine if the current user is allowed to activate the path</li>
+									<li><code>children</code> An array of child <code>Route</code> objects that specifies a nested route configuration</li>
+									<li><code>loadChildren</code> An object specifying <a href="#/lazy-loading-modules">lazy-loading</a> child routes</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/Route">Angular - Route</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+						<ul>
+							<li>Acts as a placeholder that Angular dynamically fills based on current router state</li>
+							<li>Each outlet can have a unique name
+								<ul>
+									<li>Determined by the optional<code>name</code> attribute</li>
+									<li>If not set, default value is "primary"</li>
+								</ul>
+							</li>
+							<li>Named outlets can be targets of secondary routes</li>
+							<li>Using named outlets and secondary routes, you can target multiple outlets in the same <code>RouterLink</code> directive</li>
+							<li>The router keeps track of separate branches in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/RouterOutlet">Angular - RouterOutlet</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|8,11|13|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							...
+							import { ThirdComponent } from './third/third.component';
+							import { FourthComponent } from './fourth/fourth.component';
+
+							const routes: Routes = [..., {
+								path: 'third',
+								component: ThirdComponent,
+							}, { 
+								path: 'third',
+								component: FourthComponent,
+								outlet: 'feature'
+							}];
+
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app-routing.module.ts</small>
+					</section>
+					<section>
+						<h2>Router outlets</h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|3-4|8|5|9|"><script type="text/template">
+							<nav>
+								<ul>
+									<li><a routerLink="first">First</a></li>
+									<li><a routerLink="second">Second</a></li>
+									<li><a [routerLink]="[{outlets: { primary: ['third'], feature: ['third']}}]">Third</a></li>
+								</ul>
+							</nav>
+							<router-outlet></router-outlet>
+							<router-outlet name="feature"></router-outlet>
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app.component.html</small>
+					</section>
+					<section id="wildcard-routes">
+						<h2>Wildcard routes</h2>
+						<ul>
+							<li>A well-functiong application should gracefully handle when users attempt to navigate to a part of your application that does not exist</li>
+							<li>A wildcard route should be placed last because it matches any URL</li>
+						</ul>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|3,7-9|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+							
+							const routes: Routes = [{
+								...
+							}, { 
+								path: '**', 
+								component: PageNotFoundComponent,
+							}];
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#setting-up-wildcard-routes">Angular - Common Routing Tasks</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section id="lazy-loading-modules">
+					<section>
+						<h2>Lazy-loading modules</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Modules are eagerly loaded by default</li>
+							<li>Configure routes to only load when needed
+								<ul>
+									<li>Rather than loading all modules when the application launches</li>
+								</ul>
+							</li>
+							<li>It is also possible to pre-load parts of the application in the background to improve user experience</li>
+							<li>Lazy-loading keeps the initial bundle sizes smaller
+								<ul>
+									<li>Which helps to reduce load times (and thereby improve user experience</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#lazy-loading">Angular - Common routing tasks</a></li>
+								<li><a href="https://angular.io/guide/lazy-loading-ngmodules">Angular - Lazy-loading feature modules</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Imports and route configuration</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|7,10,13|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+							const routes: Routes = [{
+								path: 'one',
+								loadChildren: () => import('./feature-one/feature-one.module').then(m => m.FeatureOneModule),
+							}, {
+								path: 'two',
+								loadChildren: () => import('./feature-two/feature-two.module').then(m => m.FeatureTwoModule),
+							}, {
+								path: 'three',
+								loadChildren: () => import('./feature-three/feature-three.module').then(m => m.FeatureThreeModule),
+							}, { 
+								path: '**', 
+								component: PageNotFoundComponent,
+							}];
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
+					</section>
+					<section>
+						<h2>Chunk files</h2>
+						<asciinema-player src="../../assets/casts/build.cast" cols="130" rows="30"></asciinema-player>
+					</section>
+				</section>
+				<section>
+					<section id="reactive-programming">
+						<h2>Reactive programming</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>A declarative programming paradigm concerned with data streams and the propagation of change</li>
+							<li>Data stream
+								<ul>
+									<li>Sequence of elements made available over time</li>
+								</ul>
+							</li>
+							<li>Asynchronous and event-based</li>
+						</ul>
+					</section>
+					<section>
+						<h2>ReactiveX</h2>
+						<ul>
+							<li>An API for asynchronous programming with observable streams</li>
+							<li>A combination of the best ideas from the <mark>Observer</mark> patter, the <mark>Iterator</mark> pattern, and functional programming</li>
+							<li>Created by Dutch computer scientist Erik Meijer in 2009</li>
+							<li>Initially designed to be used with .NET technology (Rx.NET), but have since been ported to multiple languages
+								<ul>
+									<li>Java (RxJava), JavaScript (RxJS), Swift (RxSwift), Kotlin (RxKotlin), Python (RxPY)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Features</h2>
+						<ul>
+							<li><mark>Functional</mark> Avoid intricate stateful programs, clean input/output functions over observable streams</li>
+							<li><mark>Less is more</mark> Operators reduce verbose implementations into a few lines of code</li>
+							<li><mark>Async error handling</mark> Mechanisms for handling errors in asynchronous computations</li>
+							<li><mark>Concurrency made easy</mark> observables and schedulers abstract away low-level threading and synchronization</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="http://reactivex.io/">ReactiveX</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="rxjs">
+						<h2>RxJS</h2>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/">RxJS</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li><mark>Consumer</mark> The code that is subscribing to an Observable</li>
+							<li><mark>Observer</mark> The manifestation of a Consumer, that may have some (or all) handlers</li>
+							<li><mark>Producer</mark> Any entity that is the source of values</li>
+							<li><mark>Observable</mark> A template for connecting an Observer, as a Consumer, to a Producer, via a subscribe action, resulting in a Subscription</li>
+							<li><mark>Subscription</mark> A contract where a consumer is observing values pushed by a producer</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/glossary-and-semantics">RxJS - RxJS: Glossary And Semantics</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Operators</h2>
+						<ul>
+							<li>RxJS operators allow complex asynchronous code to be composed in a declarative manner</li>
+							<li>Operators are, simply speaking, just functions</li> 
+							<li>There are two kinds of operators:
+								<ul>
+									<li><strong>Pipeable operators</strong> takes an <code>Observable</code> as input and generates a new <code>Observable</code> as output</li></li>
+									<li><strong>Creation operators</strong> are standalone functions that creates new <code>Observable</code> objects</li>
+								</ul>
+							</li>
+							<li>Marble diagrams are used to explain how operators work
+								<ul>
+									<li>Many operators are related to time</li>
+									<li>Include the input <code>Observable</code> object(s), the operator and the output <code>Observable</code></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/operators">RxJS - RxJS Operators</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Operator categories</h2>
+						<ul>
+							<li>There various categories
+								<ul>
+									<li>Converting existing code for async opertaions into observables</li>
+									<li>Iterating through the values in a stream</li>
+									<li>Mapping values to different types</li>
+									<li>Filtering streams</li>
+									<li>Composing multiple streams</li>
+									<li>Utility for handling errors and debug</li>
+								</ul>
+							</li>
+							<li>There are over <mark>100</mark> operators, but some are used more than others</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<a href="https://angular.io/guide/rx-library">The RxJS library</a>
+						</aside>
+					</section>
+					<section>
+						<h2>Selected operators</h2>
+						<ul>
+							<li><mark>Creation</mark> create <code>Observable</code> objects from data and events
+								<ul>
+									<li><a href="#/rx-operator-of">of</a></li>
+									<li><a href="#/rx-operator-from">from</a></li>
+								</ul>
+							</li>
+							<li><mark>Combination</mark> combine multiple <code>Observable</code> objects
+								<ul>
+									<li><a href="#/rx-operator-combine-latest">combineLastest</a></li>
+								</ul>
+							</li>
+							<li><mark>Transformation</mark> transform source data into new types
+								<ul>
+									<li><a href="#/rx-operator-map">map</a></li>
+									<li><a href="#/rx-operator-switch-map">switchMap</a></li>
+								</ul>
+							</li>
+							<li><mark>Filtering</mark> filter values emitted from <code>Observable</code> objects
+								<ul>
+									<li><a href="#/rx-operator-filter">filter</a></li>
+									<li><a href="#/rx-operator-take">take</a></li>
+									<li><a href="#/rx-operator-debounce-time">debounceTime</a></li>
+								</ul>
+							</li>
+							<li><mark>Utility</mark> operators that perform helpful operations
+								<ul>
+									<li><a href="#/rx-operator-tap">tap</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section id="rx-operator-of">
+						<h2>of</h2>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { of } from 'rxjs';
+
+							of(1, 2, 3)
+							.subscribe(
+								next => console.log('next:', next),
+								err => console.log('error:', err),
+								() => console.log('the end'),
+							);
+
+							// Logs:
+							// next: 1
+							// next: 2
+							// next: 3
+							// the end
+						</script></code></pre>
+						<img width="60%" src="../../assets//marble-diagrams/of.svg" alt="of" />
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/of">RxJs - of</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-from">
+						<h2>from</h2>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { from } from 'rxjs';
+
+							const array = [10, 20, 30];
+							const result = from(array);
+							
+							result.subscribe(x => console.log(x));
+
+							// Logs:
+							// 10
+							// 20
+							// 30
+						</script></code></pre>
+						<img src="../../assets/marble-diagrams/from.svg" width="60%" alt="from"/>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/from">RxJS - from</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-combine-latest">
+						<h2>combineLatest</h2>
+						<p>Get latest values of multiple Observables</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { combineLatest, timer } from 'rxjs';
+
+							const firstTimer = timer(0, 1000); // emit 0, 1, 2... after every second, starting from now
+							const secondTimer = timer(500, 1000); // emit 0, 1, 2... after every second, starting 0,5s from now
+							const combinedTimers = combineLatest([firstTimer, secondTimer]);
+							combinedTimers.subscribe(value => console.log(value));
+						</script></code></pre>
+						<img width="60%" src="../../assets/marble-diagrams/combinelatest.svg" alt="combinelatest"/>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/index/function/combineLatest">RxJS - combineLatest</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-map">
+						<h2>map</h2>
+						<p>Transform an input to a new output</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { map } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const positions = clicks.pipe(map(ev => ev.clientX));
+							positions.subscribe(x => console.log(x));
+						</script></code></pre>
+						<img width="60%" src="../../assets/marble-diagrams/map.svg" alt="map" />
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/map">RxJS - map</a></li>
+								<li><a href="http://reactivex.io/documentation/operators/map.html">ReactiveX - Map operator</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-switch-map">
+						<h2>switchMap</h2>
+						<p>Switch from one Observable to another</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent, interval } from 'rxjs';
+							import { switchMap } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const result = clicks.pipe(switchMap((ev) => interval(1000)));
+							result.subscribe(x => console.log(x));
+						</script></code></pre>
+						<img width="60%" src="../../assets/marble-diagrams/switchmap.svg" alt="switchmap"/>
+						<aside class="notes" aria-label="notes">
+							<h4>Use cases</h4>
+							<ul><li>When an observable is dependent on another observable</li></ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/switchMap">RxJS - switchMap</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-filter">
+						<h2>filter</h2>
+						<p>Control which values are emitted based on condition</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { filter } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const clicksOnDivs = clicks.pipe(filter(ev => ev.target.tagName === 'DIV'));
+							clicksOnDivs.subscribe(x => console.log(x));
+						</script></code></pre>
+						<img src="../../assets/marble-diagrams/filter.svg" alt="filter" width="60%" />
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/filter">RxJS - filter</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-take">
+						<h2>take</h2>
+						<p>Emits only the first count values emitted by the source Observable</p>
+						<pre><code class="javascript" data-trim data-line-numbers><script type="text/template">
+							import { interval } from 'rxjs';
+							import { take } from 'rxjs/operators';
+							 
+							const intervalCount = interval(1000);
+							const takeFive = intervalCount.pipe(take(5));
+							takeFive.subscribe(x => console.log(x));						 
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<ul>
+								<li>Only emits notification after time span has elapsed without new source emissions</li>
+							</ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/take">RxJS - take</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-debounce-time">
+						<h2>debounceTime</h2>
+						<p>Emits notification after time span and no new source emissions</p>
+						<pre><code class="javascript" data-trim data-line-numbers><script type="text/template">
+							import { fromEvent } from 'rxjs';
+							import { debounceTime } from 'rxjs/operators';
+							
+							const clicks = fromEvent(document, 'click');
+							const result = clicks.pipe(debounceTime(1000));
+							result.subscribe(x => console.log(x));
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/debounceTime">RxJS - debounceTime</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section id="rx-operator-tap">
+						<h2>tap</h2>
+						<p>Trigger side effects from inside the observable pipe</p>
+						<pre><code class='javascript' data-trim data-line-numbers><script type="text/template">
+							import { of } from 'rxjs';
+							import { tap, map } from 'rxjs/operators';
+							
+							of(Math.random()).pipe(
+								tap(console.log),
+								map(n => n > 0.5 ? 'big' : 'small')
+							).subscribe(console.log);
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/tap">RxJS - tap</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="observables-in-angular">
+						<h2>Observables in Angular</h2>
+						<ul>
+							<li>Transmitting data between components</li>
+							<li>HTTP</li>
+							<li>Router</li>
+							<li>Reactive forms</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/observables-in-angular">Angular - Observables in Angular</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>AsyncPipe</h2>
+						<ul>
+							<li>The async pipe subscribes to an <code>Observable</code> or <code>Promise</code></li>
+							<li>Returns the latest value emitted</li>
+							<li>Marks components to be checked for changes</li>
+							<li>Unsubscribes automatically upon component destruction</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/AsyncPipe">Angular - AsyncPipe</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Service</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|13-15|11,17-22|24-28|"><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { interval, Observable, of } from 'rxjs';
+							import { switchMap, tap } from 'rxjs/operators'
+							import { User, USERS } from './user.type';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class DataService {
+
+								list: number[] = []
+
+								getData(): Observable<number> {
+									return interval(1000)
+								}
+
+								getList(): Observable<number[]> {
+									return this.getData().pipe(
+										tap(value => this.list.push(value)),
+										switchMap(_ => of(this.list))
+									)
+								}
+
+								getObjects(): Observable<User> {
+									return interval(1000).pipe(
+										switchMap(_ => of(USERS[Math.floor(Math.random() * USERS.length)])),
+									)
+								}
+							}
+						</script></code></pre>
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/data.service.ts</small>
+					</section>
+					<section>
+						<h2>Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|12-14|17-19|23-25|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Observable } from 'rxjs';
+							import { DataService } from './data.service';
+							import { User } from './user.type';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+								data$: Observable<number>
+								dataList$: Observable<number[]>
+								dataUser$: Observable<User>
+								
+								constructor(private service: DataService) {
+									this.data$ = this.service.getData()
+									this.dataList$ = this.service.getList()
+									this.dataUser$ = this.service.getObjects()
+								}
+							
+								ngOnInit() {
+									this.data$.subscribe(v => {
+										console.debug(v)
+									})
+								}
+							}							
+						</script></code></pre>	
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|1|2-4|5-8|"><script type="text/template">
+							<p>{{ data$ | async }}</p>
+							<ul>
+								<li *ngFor="let value of dataList$ | async">{{value}}</li>
+							</ul>
+							<div *ngIf="dataUser$ | async as user">
+								<p>{{ user.name }} {{ user.company }}</p>
+								<p>{{ user | json }}</p>
+							</div>
+						</script></code></pre>	
+						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.html</small>
+					</section>
+				</section>
+			</div>
+		</div>
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script src="../../js/asciinema-player.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

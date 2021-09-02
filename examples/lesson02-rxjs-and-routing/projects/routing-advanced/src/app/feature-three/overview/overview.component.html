@@ -1,0 +1,6 @@
+<p>feature-three overview works!</p>
+<ul>
+  <li *ngFor="let device, index as i of deviceList">
+    <a [routerLink]="['device', i]">{{device.manufacturer}} {{device.model}}</a>
+  </li>
+</ul>
