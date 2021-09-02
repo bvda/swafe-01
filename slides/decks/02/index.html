@@ -265,40 +265,24 @@
 						</ul>
 					</section>
 					<section>
-						<h2>DOM Events</h2>
-					</section>
-					<section>
-						<h2>Observables</h2>
-					</section>
-					<section>
-						<h2>Hot vs. cold observables</h2>
+						<h2>ReactiveX</h2>
 						<ul>
-							<li>Cold observables can only have one subscription
-								<ul>
-									<li>Do not create the value before it is subscribed to</li>
-								</ul>
-							</li>
-							<li>Hot observables can have multiple subscription
-								<ul>
-									<li>Subject
-										<ul>
-											<li>Can have new values pushed to it (add more values after creation)</li>
-											<li>Must be created before adding/pushing new values</li>
-										</ul>
-									</li>
-									<li>BehaviorSubject
-										<ul>
-											<li>A Subject with the concept of a current value</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
+							<li><mark>Functional</mark> Avoid intricate stateful programs, clean input/output functions over observable streams</li>
+							<li><mark>Less is more</mark> Operators reduce verbose implementations into a few lines of code</li>
+							<li><mark>Async error handling</mark> Mechanisms for handling errors in asynchronous computations</li>
+							<li><mark>Concurrency made easy</mark> observables and schedulers abstract away low-level threading and synchronization</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="http://reactivex.io/">ReactiveX</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
 					<section id="rxjs">
-						<h2>RxJs</h2>
+						<h2>RxJS</h2>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
