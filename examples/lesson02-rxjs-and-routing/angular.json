@@ -606,6 +606,5 @@
         }
       }
     }
-  },
-  "defaultProject": "rxjs"
+  }
 }
