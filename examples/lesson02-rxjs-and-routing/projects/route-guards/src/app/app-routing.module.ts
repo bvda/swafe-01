@@ -10,7 +10,7 @@ const routes: Routes = [{
     path: '',
     component: PublicComponent
   }, {
-    path: '',
+    path: 'restricted',
     component: RestrictedComponent,
     outlet: 'authed'
   }]
