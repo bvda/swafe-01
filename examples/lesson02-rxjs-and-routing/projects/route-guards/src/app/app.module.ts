@@ -4,13 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicComponent } from './public/public.component';
-import { RestrictedComponent } from './restricted/restricted.component';
+import { AnotherPublicComponent } from './another-public/another-public.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PublicComponent,
-    RestrictedComponent
+    AnotherPublicComponent,
   ],
   imports: [
     BrowserModule,

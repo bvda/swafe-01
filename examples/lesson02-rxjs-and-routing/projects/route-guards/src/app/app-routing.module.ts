@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthedGuard } from './authed.guard';
+import { AnotherPublicComponent } from './another-public/another-public.component';
+import { AuthGuard } from './auth.guard';
 import { PublicComponent } from './public/public.component';
-import { RestrictedComponent } from './restricted/restricted.component';
 
 const routes: Routes = [{
   path: '',
@@ -10,12 +10,16 @@ const routes: Routes = [{
   children: [{
     path: '',
     component: PublicComponent
+  }, {
+    path: '',
+    component: AnotherPublicComponent,
+    outlet: 'another'
   }]
 }, {
-  path: '',
-  component: RestrictedComponent,
-  canActivate: [AuthedGuard],
-  outlet: 'authed'}];
+  path: 'restricted',
+  loadChildren: () => import('./restricted/restricted.module').then(m => m.RestrictedModule),
+  canLoad: [AuthGuard],
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

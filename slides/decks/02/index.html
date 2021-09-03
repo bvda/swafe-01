@@ -55,7 +55,7 @@
 					</section>
 				</section>
 				<section>
-					<section>
+					<section id="routing">
 						<h2>Routing</h2>
 					</section>
 					<section>
@@ -222,8 +222,8 @@
 						</aside>
 					</section>
 				</section>
-				<section id="lazy-loading-modules">
-					<section>
+				<section>
+					<section id="lazy-loading-modules">
 						<h2>Lazy-loading modules</h2>
 					</section>
 					<section>
@@ -281,6 +281,37 @@
 					<section>
 						<h2>Chunk files</h2>
 						<asciinema-player src="../../assets/casts/build.cast" cols="130" rows="30"></asciinema-player>
+					</section>
+				</section>
+				<section id="route-guards">
+					<section>
+						<h2>Route guards</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Prevents clients from navigating to parts of an application without authorization</li>
+							<li>The router supports the following guard interfaces are available in Angular
+								<ul>
+									<li><code>CanActivate</code> decide if route can be activated</li>
+									<li><code>CanActivateChild</code> decide if a child route can be activated</li>
+									<li><code>CanDeactivate</code> decide if a route can be deactivated</li>
+									<li><code>CanLoad</code> decide if children can be loaded</li>
+								</ul>
+							</li>
+							<li>A guard can return a synchronously (<code>boolean</code>) or asynchronously (<code>Observable</code>/<code>Promise</code>)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#preventing-unauthorized-access">Angular - Common Routing Tasks</a></li>
+								<li><a href="https://angular.io/api/router/CanActivate">Angular - CanActivate</a></li>
+								<li><a href="https://angular.io/api/router/CanActivateChild">Angular - CanActivateChild</a></li>
+								<li><a href="https://angular.io/api/router/CanDeactivate">Angular - CanDeactivate</a></li>
+								<li><a href="https://angular.io/api/router/CanLoad">Angular - CanLoad</a></li>
+								<li><a href="https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards">Angular - Router tutorial: tour of heroes</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
@@ -577,6 +608,7 @@
 							const takeFive = intervalCount.pipe(take(5));
 							takeFive.subscribe(x => console.log(x));						 
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/take.svg" alt="take" />
 						<aside class="notes" aria-label="notes">
 							<ul>
 								<li>Only emits notification after time span has elapsed without new source emissions</li>
@@ -598,6 +630,7 @@
 							const result = clicks.pipe(debounceTime(1000));
 							result.subscribe(x => console.log(x));
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/debouncetime.svg" alt="debouncetime" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -617,6 +650,7 @@
 								map(n => n > 0.5 ? 'big' : 'small')
 							).subscribe(console.log);
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/tap.svg" alt="tap"/>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
