@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthedGuard } from './authed.guard';
 import { PublicComponent } from './public/public.component';
 import { RestrictedComponent } from './restricted/restricted.component';
 
@@ -9,12 +10,12 @@ const routes: Routes = [{
   children: [{
     path: '',
     component: PublicComponent
-  }, {
-    path: '',
-    component: RestrictedComponent,
-    outlet: 'authed'
   }]
-}];
+}, {
+  path: '',
+  component: RestrictedComponent,
+  canActivate: [AuthedGuard],
+  outlet: 'authed'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
