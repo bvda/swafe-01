@@ -313,6 +313,103 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Example – AuthGuard</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|5,11|13-17|19-23|25-36|><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+							import { Observable } from 'rxjs';
+							import { tap } from 'rxjs/operators';
+							import { AuthService } from './auth.service';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class AuthGuard implements CanActivate, CanLoad {
+								constructor(private auth: AuthService) { }
+
+								canActivate(
+									route: ActivatedRouteSnapshot,
+									state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+										return this._checkAuthState(state.url)
+								}
+
+								canLoad(
+									route: Route,
+									segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+										return this._checkAuthState(route.path) 
+								}
+
+								_checkAuthState(path: string): Observable<boolean> {
+									return this.auth.authenticated$.pipe(
+										tap(authed => {
+											if(authed) {
+												return true;
+											} else {
+												window.confirm(`You need to be signed in to view path: '${path}'`)
+												return false;
+											} 
+										})
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson02-rxjs-and-routing/projects/route-guards/src/app/auth.guard.ts</small>	
+					</section>
+					<section>
+						<h2>Example – AuthGuard</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|4|18-22|><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { AnotherPublicComponent } from './another-public/another-public.component';
+							import { AuthGuard } from './auth.guard';
+							import { PublicComponent } from './public/public.component';
+							
+							const routes: Routes = [{
+								path: '',
+								pathMatch: 'full',
+								children: [{
+									path: '',
+									component: PublicComponent
+								}, {
+									path: '',
+									component: AnotherPublicComponent,
+									outlet: 'another'
+								}]
+							}, {
+								path: 'restricted',
+								loadChildren: () => import('./restricted/restricted.module').then(m => m.RestrictedModule),
+								canLoad: [AuthGuard],
+							}];
+							
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }							
+						</script></code></pre>					
+						<small>examples/lesson02-rxjs-and-routing/projects/route-guards/src/app/app-routing.module.ts</small>	
+					</section>
+					<section>
+						<h2>Route guard usage</h2>
+						<ul>
+							<li>Route guards (or services) should not be used for verication
+								<ul>Check your tokens in a trusted environment (backend)</ul>
+							</li>
+							<li>You can apply any number if guards to a path
+								<ul>
+									<li>When one returns <code>false</code>, the entire navigation will cancel</li>
+									<li>Pending guards that have not completed will be cancelled</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards">Angular - Router tutorial: tour of heroes</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 				<section>
 					<section id="reactive-programming">

@@ -8,38 +8,29 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private auth: AuthService) {
-
-  }  
+  constructor(private auth: AuthService) { }  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.auth.authenticated$.pipe(
-        tap(authed => {
-          if(authed) {
-            return true;
-          } else {
-            window.confirm(`You need to be signed in to view path: '${state.url}'`)
-            return false;
-          } 
-        }
-      )
-    )
+      return this._checkAuthState(state.url)
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.auth.authenticated$.pipe(
-        tap(authed => {
-          if(authed) {
-            return true;
-          } else {
-            window.confirm(`You need to be signed in to view path: '${route.path}'`)
-            return false;
-          } 
-        }
-      )
+      return this._checkAuthState(route.path) 
+  }
+
+  _checkAuthState(path: string): Observable<boolean> {
+    return this.auth.authenticated$.pipe(
+      tap(authed => {
+        if(authed) {
+          return true;
+        } else {
+          window.confirm(`You need to be signed in to view path: '${path}'`)
+          return false;
+        } 
+      })
     )
   }
 }
