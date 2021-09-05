@@ -393,7 +393,7 @@
 					<section>
 						<h2>Route guard usage</h2>
 						<ul>
-							<li>Route guards (or services) should not be used for verication
+							<li>Route guards (or services) should not be used for verification
 								<ul>Check your tokens in a trusted environment (backend)</ul>
 							</li>
 							<li>You can apply any number if guards to a path
@@ -871,6 +871,56 @@
 							</div>
 						</script></code></pre>	
 						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.html</small>
+					</section>
+					<section id="accessing-route-information">
+						<h2>Accessing route information</h2>
+						<ul>
+							<li>Often, applications want to pass information from one component to another</li>
+							<li>The <code>ActivatedRoute</code> interface can be used to extract information
+								<ul>
+									<li>The <code>snapshot</code> property contains information about a route at a particular moment in time</li>
+									<li>The <code>paramMap</code> property is an <code>Observable</code> that contains all required and optional parameters specific to the route</li>
+								</ul>
+							</li>
+							<li>Inject <code>ActivatedRoute</code> in the constructor of the components that need to access route information</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/ActivatedRouteSnapshot">Angular - ActivatedRouteSnapshot</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Accessing route information</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|2|17|20|21-23|"><script type="text/template">
+							import { Component, Inject, OnInit } from '@angular/core';
+							import { ActivatedRoute, ParamMap } from '@angular/router';
+							import { Observable } from 'rxjs';
+							import { tap } from 'rxjs/operators';
+							import { Device, DEVICES } from '../device.type';
+							
+							@Component({
+								selector: 'app-device',
+								templateUrl: './device.component.html',
+								styleUrls: ['./device.component.scss']
+							})
+							export class DeviceComponent implements OnInit {
+							
+								device: Device
+								paramMap$: Observable<ParamMap>
+							
+								constructor(private activatedRoute: ActivatedRoute, @Inject(DEVICES) private devices) { }
+							
+								ngOnInit(): void {
+									this.device = this.devices[this.activatedRoute.snapshot.paramMap.get('id')]
+									this.paramMap$ = this.activatedRoute.paramMap.pipe(
+										tap(route => console.log(route))
+									)
+								}
+							}							
+						</script></code></pre>	
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/feature-three/device/device.component.ts</small>				
 					</section>
 				</section>
 			</div>
