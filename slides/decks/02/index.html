@@ -51,7 +51,7 @@
 							</body>
 							</html>
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/router-basic/src/index.html</small>	
+						<small>examples/lesson02-rxjs-and-routing/projects/router-basic/src/index.html</small>	
 					</section>
 					<section>
 						<h2>&lt;BASE HREF&gt;</h2>
@@ -118,7 +118,7 @@
 							})
 							export class AppRoutingModule { }
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/router-basic/src/app/app-routing.component.ts</small>					
+						<small>examples/lesson02-rxjs-and-routing/projects/router-basic/src/app/app-routing.component.ts</small>					
 					</section>
 					<section id="route-interface">
 						<h2>Route interface</h2>
@@ -187,7 +187,7 @@
 							})
 							export class AppRoutingModule { }
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app-routing.module.ts</small>
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app-routing.module.ts</small>
 					</section>
 					<section>
 						<h2>Router outlets</h2>
@@ -202,7 +202,7 @@
 							<router-outlet></router-outlet>
 							<router-outlet name="feature"></router-outlet>
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app.component.html</small>
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-basic/src/app/app.component.html</small>
 					</section>
 					<section id="wildcard-routes">
 						<h2>Wildcard routes</h2>
@@ -227,7 +227,7 @@
 							})
 							export class AppRoutingModule { }
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
 							<ul>
@@ -252,7 +252,7 @@
 							<li>It is also possible to pre-load parts of the application in the background to improve user experience</li>
 							<li>Lazy-loading keeps the initial bundle sizes smaller
 								<ul>
-									<li>Which helps to reduce load times (and thereby improve user experience</li>
+									<li>Which helps to reduce load times (and thereby improve user experience)</li>
 								</ul>
 							</li>
 						</ul>
@@ -290,7 +290,7 @@
 							})
 							export class AppRoutingModule { }
 						</script></code></pre>
-						<small>./examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/app-routing.module.ts</small>
 					</section>
 					<section>
 						<h2>Chunk files</h2>
@@ -410,7 +410,7 @@
 							<li>Route guards (or services) should not be used for verification
 								<ul>Check your tokens in a trusted environment (backend)</ul>
 							</li>
-							<li>You can apply any number if guards to a path
+							<li>You can apply any number of guards to a path
 								<ul>
 									<li>When one returns <code>false</code>, the entire navigation will cancel</li>
 									<li>Pending guards that have not completed will be cancelled</li>
@@ -567,8 +567,8 @@
 							<li>Operators are, simply speaking, just functions</li> 
 							<li>There are two kinds of operators:
 								<ul>
-									<li><strong>Pipeable operators</strong> takes an <code>Observable</code> as input and generates a new <code>Observable</code> as output</li></li>
-									<li><strong>Creation operators</strong> are standalone functions that creates new <code>Observable</code> objects</li>
+									<li><mark>Pipeable operators</mark> takes an <code>Observable</code> as input and generates a new <code>Observable</code> as output</li></li>
+									<li><mark>Creation operators</mark> are standalone functions that creates new <code>Observable</code> objects</li>
 								</ul>
 							</li>
 							<li>Marble diagrams are used to explain how operators work
