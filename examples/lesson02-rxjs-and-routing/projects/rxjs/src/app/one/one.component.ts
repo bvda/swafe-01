@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Billionaire, SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-one',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OneComponent implements OnInit {
 
-  constructor() { }
+  billionaire$: Observable<Billionaire>
+
+  constructor(private shared: SharedService) { }
 
   ngOnInit(): void {
+    this.billionaire$ = this.shared.getBillionaire()
   }
 
 }

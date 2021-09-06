@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { Billionaire, SharedService } from './shared.service';
 
 @Component({
@@ -11,7 +13,11 @@ export class AppComponent implements OnInit {
   constructor(private data: SharedService) { }
 
   ngOnInit() {
-    
+    interval(1000).pipe(
+      take(this.billionaires.length),
+      tap(count => this.data.pushBillionaire(this.billionaires[count]),
+      )
+    ).subscribe()
   }
 
   billionaires: Billionaire[] = [{ 

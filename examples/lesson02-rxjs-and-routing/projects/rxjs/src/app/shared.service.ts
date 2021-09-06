@@ -10,8 +10,12 @@ export class SharedService {
 
   constructor() { }
   
-  getBillionaires(): Observable<Billionaire> {
+  getBillionaire(): Observable<Billionaire> {
     return this.data$
+  }
+
+  pushBillionaire(billionaire: Billionaire) {
+    this.data$.next(billionaire)
   }
 }
 
