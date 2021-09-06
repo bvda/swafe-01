@@ -1,0 +1,10 @@
+<div>
+  <ng-container [ngSwitch]="authed$ | async">
+    <button type="button" *ngSwitchCase="true" (click)="signOut()">Sign out</button>
+    <button type="button" *ngSwitchDefault (click)="signIn()">Sign in</button>
+  </ng-container>
+</div>
+<a routerLink="restricted">Go to restricted</a>
+<router-outlet></router-outlet>
+<router-outlet name="another"></router-outlet>
+  

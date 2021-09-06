@@ -22,9 +22,12 @@
 					<h3>Lesson 02</h3>
 					<h4>SWAFE–01</h4>
 				</section>
-				<section id="single-page-applications">
-					<section>
+				<section>
+					<section id="single-page-applications">
 						<h2>Single-page applications</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
 						<ul>
 							<li>All applicatiom functionality exists in a single HTML page</li>
 							<li>Browsers only render the parts that matters to the user</li>
@@ -32,7 +35,7 @@
 						</ul>
 					</section>
 					<section>
-						<h2>HTML</h2>
+						<h2>index.html</h2>
 						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers=|6|7|11|><script type="text/template">
 							<!doctype html>
 							<html lang="en">
@@ -50,9 +53,23 @@
 						</script></code></pre>
 						<small>./examples/lesson02-rxjs-and-routing/projects/router-basic/src/index.html</small>	
 					</section>
+					<section>
+						<h2>&lt;BASE HREF&gt;</h2>
+						<ul>
+							<li>The router uses the browser's <code>history.pushState</code> for navigation</li>
+							<li>The browser uses the <code>&lt;base href&gt;</code> to prefix relative URLs</li>
+							<li>This is needed to be able to locate other resources such as media assets, style, and script files</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#base-href-1">Angular - Common routing tasks</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 				<section>
-					<section>
+					<section id="routing">
 						<h2>Routing</h2>
 					</section>
 					<section>
@@ -219,8 +236,8 @@
 						</aside>
 					</section>
 				</section>
-				<section id="lazy-loading-modules">
-					<section>
+				<section>
+					<section id="lazy-loading-modules">
 						<h2>Lazy-loading modules</h2>
 					</section>
 					<section>
@@ -278,6 +295,134 @@
 					<section>
 						<h2>Chunk files</h2>
 						<asciinema-player src="../../assets/casts/build.cast" cols="130" rows="30"></asciinema-player>
+					</section>
+				</section>
+				<section id="route-guards">
+					<section>
+						<h2>Route guards</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Prevents clients from navigating to parts of an application without authorization</li>
+							<li>The router supports the following guard interfaces are available in Angular
+								<ul>
+									<li><code>CanActivate</code> decide if route can be activated</li>
+									<li><code>CanActivateChild</code> decide if a child route can be activated</li>
+									<li><code>CanDeactivate</code> decide if a route can be deactivated</li>
+									<li><code>CanLoad</code> decide if children can be loaded</li>
+								</ul>
+							</li>
+							<li>A guard can return a synchronously (<code>boolean</code>) or asynchronously (<code>Observable</code>/<code>Promise</code>)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router#preventing-unauthorized-access">Angular - Common Routing Tasks</a></li>
+								<li><a href="https://angular.io/api/router/CanActivate">Angular - CanActivate</a></li>
+								<li><a href="https://angular.io/api/router/CanActivateChild">Angular - CanActivateChild</a></li>
+								<li><a href="https://angular.io/api/router/CanDeactivate">Angular - CanDeactivate</a></li>
+								<li><a href="https://angular.io/api/router/CanLoad">Angular - CanLoad</a></li>
+								<li><a href="https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards">Angular - Router tutorial: tour of heroes</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Example – AuthGuard</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|5,11|13-17|19-23|25-36|><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+							import { Observable } from 'rxjs';
+							import { tap } from 'rxjs/operators';
+							import { AuthService } from './auth.service';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class AuthGuard implements CanActivate, CanLoad {
+								constructor(private auth: AuthService) { }
+
+								canActivate(
+									route: ActivatedRouteSnapshot,
+									state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+										return this._checkAuthState(state.url)
+								}
+
+								canLoad(
+									route: Route,
+									segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+										return this._checkAuthState(route.path) 
+								}
+
+								_checkAuthState(path: string): Observable<boolean> {
+									return this.auth.authenticated$.pipe(
+										tap(authed => {
+											if(authed) {
+												return true;
+											} else {
+												window.confirm(`You need to be signed in to view path: '${path}'`)
+												return false;
+											} 
+										})
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson02-rxjs-and-routing/projects/route-guards/src/app/auth.guard.ts</small>	
+					</section>
+					<section>
+						<h2>Example – AuthGuard</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|4|18-22|><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { RouterModule, Routes } from '@angular/router';
+							import { AnotherPublicComponent } from './another-public/another-public.component';
+							import { AuthGuard } from './auth.guard';
+							import { PublicComponent } from './public/public.component';
+							
+							const routes: Routes = [{
+								path: '',
+								pathMatch: 'full',
+								children: [{
+									path: '',
+									component: PublicComponent
+								}, {
+									path: '',
+									component: AnotherPublicComponent,
+									outlet: 'another'
+								}]
+							}, {
+								path: 'restricted',
+								loadChildren: () => import('./restricted/restricted.module').then(m => m.RestrictedModule),
+								canLoad: [AuthGuard],
+							}];
+							
+							@NgModule({
+								imports: [RouterModule.forRoot(routes)],
+								exports: [RouterModule]
+							})
+							export class AppRoutingModule { }							
+						</script></code></pre>					
+						<small>examples/lesson02-rxjs-and-routing/projects/route-guards/src/app/app-routing.module.ts</small>	
+					</section>
+					<section>
+						<h2>Route guard usage</h2>
+						<ul>
+							<li>Route guards (or services) should not be used for verification
+								<ul>Check your tokens in a trusted environment (backend)</ul>
+							</li>
+							<li>You can apply any number if guards to a path
+								<ul>
+									<li>When one returns <code>false</code>, the entire navigation will cancel</li>
+									<li>Pending guards that have not completed will be cancelled</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards">Angular - Router tutorial: tour of heroes</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
@@ -351,10 +496,72 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Hot vs. cold observables</h2>
+						<ul>
+							<li>Cold observables can only have one subscription
+								<ul>
+									<li>Do not create the value before it is subscribed to</li>
+									<li>Creates a new producer for each subscription</li>
+									<li>Always unicast: One producer observed by one consumer</li>
+								</ul>
+							</li>
+							<li>Hot observables can have multiple subscription
+								<ul>
+									<li>The producer is created outside of the context of a subscription</li>
+									<li>Most likely multicast: One producer is observed by multiple observers</li>
+									<li><code>Subject</code> is a special observable that allows multicasting
+										<ul>
+											<li>Can have new values pushed to it (add more values after creation)</li>
+											<li>Must be created before adding/pushing new values</li>
+										</ul>
+									</li>
+									<li><code>BehaviorSubject</code> is a <code>Subject</code> with the notion of current value
+										<ul>
+											<li>A <code>Subject</code> with the concept of a current value</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/glossary-and-semantics">RxJS - RxJS: Glossary and Semantics</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>BehaviorSubject</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|9,15-17|><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { BehaviorSubject, Observable } from 'rxjs';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SharedService {
+
+								data$: BehaviorSubject<Billionaire | null> = new BehaviorSubject(null)
+								
+								getBillionaire(): Observable<Billionaire> {
+									return this.data$
+								}
+
+								pushBillionaire(billionaire: Billionaire) {
+									this.data$.next(billionaire)
+								}
+							}
+						</script></code></pre>					
+						<small>examples/lesson02-rxjs-and-routing/projects/rxjs/src/app/shared.service.ts</small>	
+					</section>	
 				</section>
 				<section>
 					<section>
-						<h2>Operators</h2>
+						<h2>RxJS Operators</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
 						<ul>
 							<li>RxJS operators allow complex asynchronous code to be composed in a declarative manner</li>
 							<li>Operators are, simply speaking, just functions</li> 
@@ -571,6 +778,7 @@
 							const takeFive = intervalCount.pipe(take(5));
 							takeFive.subscribe(x => console.log(x));						 
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/take.svg" alt="take" />
 						<aside class="notes" aria-label="notes">
 							<ul>
 								<li>Only emits notification after time span has elapsed without new source emissions</li>
@@ -592,6 +800,7 @@
 							const result = clicks.pipe(debounceTime(1000));
 							result.subscribe(x => console.log(x));
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/debouncetime.svg" alt="debouncetime" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -611,6 +820,7 @@
 								map(n => n > 0.5 ? 'big' : 'small')
 							).subscribe(console.log);
 						</script></code></pre>
+						<img src="../../assets/marble-diagrams/tap.svg" alt="tap"/>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -622,6 +832,9 @@
 				<section>
 					<section id="observables-in-angular">
 						<h2>Observables in Angular</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
 						<ul>
 							<li>Transmitting data between components</li>
 							<li>HTTP</li>
@@ -731,6 +944,56 @@
 							</div>
 						</script></code></pre>	
 						<small>./examples/lesson02-rxjs-and-routing/projects/async-pipe/src/app/app.component.html</small>
+					</section>
+					<section id="accessing-route-information">
+						<h2>Accessing route information</h2>
+						<ul>
+							<li>Often, applications want to pass information from one component to another</li>
+							<li>The <code>ActivatedRoute</code> interface can be used to extract information
+								<ul>
+									<li>The <code>snapshot</code> property contains information about a route at a particular moment in time</li>
+									<li>The <code>paramMap</code> property is an <code>Observable</code> that contains all required and optional parameters specific to the route</li>
+								</ul>
+							</li>
+							<li>Inject <code>ActivatedRoute</code> in the constructor of the components that need to access route information</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/api/router/ActivatedRouteSnapshot">Angular - ActivatedRouteSnapshot</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Accessing route information</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|2|17|20|21-23|"><script type="text/template">
+							import { Component, Inject, OnInit } from '@angular/core';
+							import { ActivatedRoute, ParamMap } from '@angular/router';
+							import { Observable } from 'rxjs';
+							import { tap } from 'rxjs/operators';
+							import { Device, DEVICES } from '../device.type';
+							
+							@Component({
+								selector: 'app-device',
+								templateUrl: './device.component.html',
+								styleUrls: ['./device.component.scss']
+							})
+							export class DeviceComponent implements OnInit {
+							
+								device: Device
+								paramMap$: Observable<ParamMap>
+							
+								constructor(private activatedRoute: ActivatedRoute, @Inject(DEVICES) private devices) { }
+							
+								ngOnInit(): void {
+									this.device = this.devices[this.activatedRoute.snapshot.paramMap.get('id')]
+									this.paramMap$ = this.activatedRoute.paramMap.pipe(
+										tap(route => console.log(route))
+									)
+								}
+							}							
+						</script></code></pre>	
+						<small>examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/feature-three/device/device.component.ts</small>				
 					</section>
 				</section>
 			</div>

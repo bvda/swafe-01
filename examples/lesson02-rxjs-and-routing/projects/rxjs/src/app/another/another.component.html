@@ -1,0 +1,6 @@
+<h2>AnotherComponent</h2>
+<div *ngIf="billionaire$ | async as billionaire">
+  <p>{{ billionaire.name}} ({{ billionaire.nationality }})</p>
+  <p>{{ billionaire.net_worth | currency }}</p>
+  <p>{{ billionaire | json }}</p>
+</div>
