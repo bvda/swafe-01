@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lecture 03</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Network communication</h2>
+					<h3>SWAFE – Lecture 03</h3>
+				</section>
+				<section>
+					<h2>Network communication</h2>
+					<ul>
+						<li>Most dynamic web sites gets data from other sources</li>
+						<li>Hypertext Transfer Protocol (HTTP) and WebSocket Protocol is commonly used to serve data</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h2 class="r-fit-text">HTTP</h2>
+						<h3 class="r-fit-text">Hypertext Transfer Protocol</h3>
+					</section>
+					<section id="http-specification">
+						<h2>The HTTP/1.1 specification</h2>
+						<ul>
+							<li>Defined in IETF <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>
+								<ul>
+									<li>IETF – International Engineering Task Force</li>
+									<li>RFC – Request For Comments</li>
+								</ul>
+							</li>
+							<li>IETF is the Internet standards body
+								<ul>
+									<li>Developing open standards through open processes</li>
+									<li>An international community of network designers, operators, vendors, and researchers</li>
+									<li>Concerned with the evolution of the Internet architecture and the smooth operation of the Internet</li>
+								</ul>
+							</li>
+							<li>An RFC is a publication format used by IETF
+								<ul>
+									<li>Protocols, procedures and programs</li>
+									<li>Concepts</li>
+									<li>Meeting notes</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<ul>RFC 2616 is THE document for all your HTTP 1.1 needs</ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616">rfc2616</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">HTTP | MDN</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">An overview of HTTP - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTTP methods</h2>
+						<ul>
+							<li>POST
+								<ul>
+									<li>Send data to the server</li>
+								</ul>
+							</li>
+							<li>GET
+								<ul>
+									<li>Retrieve data from the server</li>
+								</ul>
+							</li>
+							<li>PUT
+								<ul>
+									<li>Send data to the server and update an existing entity</li>
+								</ul>
+							</li>
+							<li>DELETE
+								<ul>
+									<li>Remove an entity on the server</li>
+								</ul>
+							</li>
+							<li>OPTIONS
+								<ul>
+									<li>Get information about the communication options available</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9">rfc2616 – Method definitions</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.2">rfc – OPTIONS</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.3">rfc2616 – GET</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.5">rfc2616 – POST</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.6">rfc2616 – PUT</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.7">rfc2616 – DELETE</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTTP Response codes</h2>
+					</section>
+					<section>
+						<h2>HTTP specifications</h2>
+						<ul>
+							<li>Initial releases
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc2068">RFC 2068</a> Hypertext Transfer Protocol -- HTTP/1.1 <em>January 1997</em></li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a> Hypertext Transfer Protocol -- HTTP/1.1 <em>June 1999</em></li>
+								</ul>
+							</li>
+							<li>Updated and split up in June 2014
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7230">RFC 7230</a> HTTP/1.1: Message Syntax and Routing</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7231">RFC 7231</a> HTTP/1.1: Sematics and Content</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7232">RFC 7232</a> HTTP/1.1: Conditional Requests</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7233">RFC 7233</a> HTTP/1.1: Range Requests</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7234">RFC 7234</a> HTTP/1.1: Caching</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7235">RFC 7235</a> HTTP/1.1: Authentication</li>
+								</ul>
+							</li>
+							<li>Other versions
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7540">RFC 7540</a> Hypertext Transfer Protocol Version 2 (HTTP/2) <em>(May 2015)</em></li>
+									<li><a href="https://datatracker.ietf.org/doc/draft-ietf-quic-http/34/">draft-ietf-quic-http-34</a> Hypertext Transfer Protocol Version 3 (HTTP/3) <em>(February 2021)</em></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7230">rfc7230</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7231">rfc7231</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7232">rfc7232</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7233">rfc7233</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7234">rfc7234</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7235">rfc7235</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7540">rfc7540</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/draft-ietf-quic-http/34/">draft-ietf-quic-http-34 - Hypertext Transfer Protocol Version 3 (HTTP/3)</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="http-communication-in-angular">
+						<h2>HTTP communication in Angular</h2>
+						<ul>
+							<li>The ability to request typed response objects</li>
+							<li>Streamlined error handling</li>
+							<li>Request and response interception</li>
+							<li>Testability features</li>
+						</ul>
+					</section>
+					<section>
+						<h2>HTTPClient module</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3|9|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { BrowserModule } from '@angular/platform-browser';
+							import { HttpClientModule } from '@angular/common/http';
+
+							@NgModule({
+								imports: [
+									BrowserModule,
+									// import HttpClientModule after BrowserModule.
+									HttpClientModule,
+								],
+								declarations: [
+									AppComponent,
+								],
+								bootstrap: [ AppComponent ]
+							})
+							export class AppModule {}
+						</script></code></pre>	
+						<small>app/app.module.ts</small>
+					</section>
+					<section>
+						<h2>Injection</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|2|6|"><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { HttpClient } from '@angular/common/http';
+													
+							@Injectable()
+							export class ConfigService {
+							  constructor(private http: HttpClient) { }
+							}
+						</script></code></pre>	
+						<small>app/config.service.ts</small>
+					</section>					
+				</section>
+				<section>
+					<section id="type-response">
+						<h2>Typed response</h2>
+						<ul>
+							<li>Consume output more easily and obvious</li>
+							<li>Response types can act at type assertion at compile time
+								<ul>
+									<li>But is not guranteed that the server will respond with the expected type</li>
+									<li>Be sure to have proper <a href="#/error-handling">error handling</a></li>
+								</ul>
+							</li>
+							<li>RxJS transformation
+								<ul>
+									<li>Use the map operator to transform response data as needed by the UI</li>
+									<li>Read the transformed data with the async pipe in the template</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Declare response object type</h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							export interface Config {
+								heroesUrl: string;
+								textfile: string;
+								date: any;
+							}
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Set response object as type parameter</h2>
+					 <pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+						getConfig() {
+							// now returns an Observable of Config
+							return this.http.get<Config>(this.configUrl);
+						}
+					 </script></code></pre>
+				 </section>
+				</section>
+				<section>
+					<section id="error-handling">
+						<h2>Error handling</h2>
+						<ul>
+							<li>If the request fails, HttpClient returns an error object instead of a successfully response</li>
+							<li></li>
+						</ul>
+						<aside class="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#handling-request-errors">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>								
+						</aside>
+					</section>
+					<section>
+						<h2></h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Interception</h2>
+					</section>
+					<section>
+						<h2>Request and response interception</h2>
+						<ul>
+							<li>Request and response transformation
+								<ul>
+									<li>Before sending a request to the server</li>
+									<li>Before receiving a response in the application</li>
+								</ul>
+							</li>
+							<li>Perform implicit tasks
+								<ul>
+									<li>Such as setting an authentication token for all requests sent to the server</li>
+									<li>Alternatively implemented explicitly for every method call</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Code example</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|9|10|12-15|"><script type="text/template">
+						import { Injectable } from '@angular/core';
+						import {
+							HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
+						} from '@angular/common/http';
+
+						import { Observable } from 'rxjs';
+
+						/** Pass untouched request through to the next request handler. */
+						@Injectable()
+						export class NoopInterceptor implements HttpInterceptor {
+
+							intercept(req: HttpRequest<any>, next: HttpHandler):
+								Observable<HttpEvent<any>> {
+								return next.handle(req);
+							}
+						}
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#write-an-interceptor">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
