@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Billionaire } from './billionarie.type';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,8 @@ export class SharedService {
   pushBillionaire(billionaire: Billionaire) {
     this.data$.next(billionaire)
   }
-}
 
-export class Billionaire {
-  name: string;
-  net_worth: number;
-  nationality: string;
+  makeBillionaires(billionaires: Billionaire[]): Observable<Billionaire[]> {
+    return of(billionaires)
+  }
 }

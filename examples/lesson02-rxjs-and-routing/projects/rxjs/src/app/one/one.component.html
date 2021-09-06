@@ -1,2 +1,5 @@
 <h2>OneComponent</h2>
 <div>{{ billionaire$ | async | json }}</div>
+<ul>
+  <li *ngFor="let billionaire of billionaires$ | async">{{billionaire.name}}</li>
+</ul>

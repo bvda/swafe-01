@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { Billionaire, SharedService } from './shared.service';
+import { SharedService } from './shared.service';
+import { BILLIONAIRES } from './billionarie.type';
 
 @Component({
   selector: 'app-root',
@@ -14,27 +15,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     interval(1000).pipe(
-      take(this.billionaires.length),
-      tap(count => this.data.pushBillionaire(this.billionaires[count]),
+      take(BILLIONAIRES.length),
+      tap(count => this.data.pushBillionaire(BILLIONAIRES[count]),
       )
     ).subscribe()
   }
 
-  billionaires: Billionaire[] = [{ 
-    name: 'Bill Gates',
-    net_worth: 133200000000,
-    nationality: 'US',
-  }, {
-    name: 'Jeff Bezos',
-    net_worth: 200100000000,
-    nationality: 'US',
-  }, {
-    name: 'Elon Musk',
-    net_worth: 190700000000,
-    nationality: 'US',
-  }, {
-    name: 'Mark Zuckerberg',
-    net_worth: 135200000000,
-    nationality: 'US',
-  }]
+
 }

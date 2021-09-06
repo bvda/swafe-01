@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Billionaire, SharedService } from '../shared.service';
+import { Billionaire } from '../billionarie.type';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-another',
