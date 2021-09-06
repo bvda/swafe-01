@@ -29,7 +29,7 @@ Next, we will begin implementing a new feature: A course module that can handles
 ### Create a library
 Let us make library for our data model
 
-1. Generate a library with `ng g library models`<sup>(<a href="https://angular.io/cli/generate#library-command">docs</a>)</sup>
+1. Generate a library with `ng g library models`<sup>(<a href="https://angular.io/cli/generate#library-command">docs</a>, <a href="https://angular.io/guide/creating-libraries">docs</a>)</sup>
 2. Add a TypeScript `interface`<sup>(<a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces">docs</a>)</sup> with the following properties:
   - `name` – A string that contains the name of the course
   - `code` – The course code
