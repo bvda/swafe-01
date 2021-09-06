@@ -7,8 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class SharedService {
 
   data$: BehaviorSubject<Billionaire | null> = new BehaviorSubject(null)
-
-  constructor() { }
   
   getBillionaire(): Observable<Billionaire> {
     return this.data$

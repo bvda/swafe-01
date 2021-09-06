@@ -504,7 +504,7 @@
 									</li>
 									<li><code>BehaviorSubject</code> is a <code>Subject</code> with the notion of current value
 										<ul>
-											<li>A Subject with the concept of a current value</li>
+											<li>A <code>Subject</code> with the concept of a current value</li>
 										</ul>
 									</li>
 								</ul>
@@ -517,6 +517,30 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>BehaviorSubject</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=|9,15-17|><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import { BehaviorSubject, Observable } from 'rxjs';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SharedService {
+
+								data$: BehaviorSubject<Billionaire | null> = new BehaviorSubject(null)
+								
+								getBillionaire(): Observable<Billionaire> {
+									return this.data$
+								}
+
+								pushBillionaire(billionaire: Billionaire) {
+									this.data$.next(billionaire)
+								}
+							}
+						</script></code></pre>					
+						<small>examples/lesson02-rxjs-and-routing/projects/rxjs/src/app/shared.service.ts</small>	
+					</section>	
 				</section>
 				<section>
 					<section>
