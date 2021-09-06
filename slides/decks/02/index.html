@@ -482,6 +482,41 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Hot vs. cold observables</h2>
+						<ul>
+							<li>Cold observables can only have one subscription
+								<ul>
+									<li>Do not create the value before it is subscribed to</li>
+									<li>Creates a new producer for each subscription</li>
+									<li>Always unicast: One producer observed by one consumer</li>
+								</ul>
+							</li>
+							<li>Hot observables can have multiple subscription
+								<ul>
+									<li>The producer is created outside of the context of a subscription</li>
+									<li>Most likely multicast: One producer is observed by multiple observers</li>
+									<li><code>Subject</code> is a special observable that allows multicasting
+										<ul>
+											<li>Can have new values pushed to it (add more values after creation)</li>
+											<li>Must be created before adding/pushing new values</li>
+										</ul>
+									</li>
+									<li><code>BehaviorSubject</code> is a <code>Subject</code> with the notion of current value
+										<ul>
+											<li>A Subject with the concept of a current value</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/guide/glossary-and-semantics">RxJS - RxJS: Glossary and Semantics</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 				<section>
 					<section>
