@@ -48,6 +48,10 @@ export class SharedService {
   getBillionaires(): Observable<Billionaire[]> {
     return of(this.billionaires)
   }
+
+  getBillionaire(uid: number): Observable<Billionaire> {
+    return of(this.billionaires[uid])
+  }
   
   billionaires: Billionaire[] = [{ 
     name: 'Bill Gates',
@@ -76,4 +80,4 @@ export interface Billionaire {
 ```
 2. Print out `Billionaire[]` in `./src/app/user/list/list.component.html` using `*ngForOf`<sup>(<a href="https://angular.io/api/common/NgForOf">docs</a>)</sup> directive
 3. For each element printed, add a link to `details/UID` _Hint: Use the local variable `index`<sup>(<a href="https://angular.io/api/common/NgForOf#local-variables">docs</a>)</sup> to generate simple IDs for the entries_
-4. Retrieve the `Billionaire` in `DetailsComponent`
+4. Retrieve the `Billionaire` in `DetailsComponent` _Hint: Inject `SharedService` and `ActivatedRoute`<sup>(<a href="https://angular.io/api/router/ActivatedRoute">docs</a>)</sup> into the component_
