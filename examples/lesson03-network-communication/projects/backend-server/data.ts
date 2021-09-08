@@ -127,13 +127,6 @@ export const ASTRONAUTS = [{
   born: 19761102,
   time_in_space: 850440
 }, {
-  name: "Andreas Mogensen",
-  nationality: "DA",
-  organization: "ESA",
-  status: "active",
-  born: 19761102,
-  time_in_space: 850440  
-}, {
   name: "Chris Hadfield",
   nationality: "CA",
   organization: "NASA",
