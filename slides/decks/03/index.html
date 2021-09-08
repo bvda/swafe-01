@@ -278,7 +278,7 @@
 							<li>RxJS transformation
 								<ul>
 									<li>Use the map operator to transform response data as needed by the UI</li>
-									<li>Read the transformed data with the async pipe in the template</li>
+									<li>Read the transformed data with the <code>async</code> pipe in the template</li>
 								</ul>
 							</li>
 						</ul>
@@ -318,7 +318,7 @@
 					</section>
 					<section>
 						<h2>Requesting data from a server</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|5,17|14,15|14,20|15,21-23|"><script type="text/template">
+						<pre><code class="typescript" data-trim data-line-numbers="|5,17|14,15|14,20|15,21-23|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { LaunchVehicles } from 'lib-space';
 							import { Observable } from 'rxjs';
@@ -349,7 +349,7 @@
 					</section>
 					<section>
 						<h2>Display data in templates</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|3-5|9-11|"><script type="text/template">
+						<pre><code class="html" data-trim data-line-numbers="|3-5|9-11|"><script type="text/template">
 							<h2>Astronauts</h2>
 							<ul>  
 								<li *ngFor="let astronaut of astronauts$ | async">
@@ -375,6 +375,19 @@
 							<ul>
 								<li><a href="https://www.npmjs.com/package/cors">cors - npm</a></li>
 								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same-origin policy - Web security | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>The Cross-Origin Resource Sharing standard adds new HTTP headers, that lets servers describe which origins are premitted to access data from a web browser</li>
+							<li>CORS failures results in errors, but for security reasons, specifics about the error are not available to JavaScript</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
 							</ul>
 						</aside>
 					</section>
