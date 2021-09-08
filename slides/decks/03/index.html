@@ -120,11 +120,11 @@
 					<section>
 						<h2>HTTP Response codes</h2>
 						<ul>
-							<li>1xx: Informational</li>
-							<li>2xx: Success</li>
-							<li>3xx: Redirection</li>
-							<li>4xx: Client error</li>
-							<li>5xx: Server error</li>
+							<li><code>1xx</code>: Informational</li>
+							<li><code>2xx</code>: Success</li>
+							<li><code>3xx</code>: Redirection</li>
+							<li><code>4xx</code>: Client error</li>
+							<li><code>5xx</code>: Server error</li>
 						</ul>
 					</section>
 					<section>
@@ -169,50 +169,100 @@
 					</section>
 				</section>
 				<section>
-					<section id="http-communication-in-angular">
+					<section>
 						<h2>HTTP communication in Angular</h2>
+					</section>
+					<section id="http-communication-in-angular">
+						<h2>Overview</h2>
 						<ul>
 							<li>The ability to request typed response objects</li>
 							<li>Streamlined error handling</li>
 							<li>Request and response interception</li>
 							<li>Testability features</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
-						<h2>HTTPClient module</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|3|9|"><script type="text/template">
+						<h2>HTTPClientModule</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3,15|"><script type="text/template">
 							import { NgModule } from '@angular/core';
 							import { BrowserModule } from '@angular/platform-browser';
 							import { HttpClientModule } from '@angular/common/http';
-
+							
+							import { AppRoutingModule } from './app-routing.module';
+							import { AppComponent } from './app.component';
+							
 							@NgModule({
+								declarations: [
+									AppComponent
+								],
 								imports: [
 									BrowserModule,
-									// import HttpClientModule after BrowserModule.
+									AppRoutingModule,
 									HttpClientModule,
 								],
-								declarations: [
-									AppComponent,
-								],
-								bootstrap: [ AppComponent ]
+								providers: [],
+								bootstrap: [AppComponent]
 							})
-							export class AppModule {}
+							export class AppModule { }
 						</script></code></pre>	
-						<small>app/app.module.ts</small>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.module.ts</small>
 					</section>
 					<section>
-						<h2>Injection</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|2|6|"><script type="text/template">
-							import { Injectable } from '@angular/core';
+						<h2><code>HttpClient</code></h2>
+						<ul>
+							<li>Wraps HTTP requests in <code>Observable</code> objects</li>
+							<li>Contains methods for some of the most used HTTP requests
+								<ul>
+									<li><code>get()</code> returns a configured <code>GET</code> HTTP request</li>
+									<li><code>post()</code> returns a configured <code>POST</code> HTTP request</li>
+									<li><code>delete()</code> returns a configured <code>DELETE</code> HTTP request</li>
+									<li><code>request()</code> returns a generic HTTP request</li>
+								</ul>
+							</li>
+							<li>Used in combination with RxJS operators to filter values and format to desired output</li>
+							<li>Can be initiated with <code>subscribe()</code> or <code>async</code> pipe</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/http/HttpClient">Angular - HttpClient</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>SpaceService</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|1,13|15-17|19-21|"><script type="text/template">
 							import { HttpClient } from '@angular/common/http';
-													
-							@Injectable()
-							export class ConfigService {
-							  constructor(private http: HttpClient) { }
+							import { Injectable } from '@angular/core';
+							import { Astronaut, LaunchVehicles } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { environment } from '../environments/environment';
+							
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SpaceService {
+								rootUrl = `http://${environment.api.space.host}:${environment.api.space.port}`
+							
+								constructor(private http: HttpClient) { }
+							
+								getAstronauts(): Observable<Astronaut[]> {
+									return this.http.get<Astronaut[]>(`${this.rootUrl}/astronauts`)
+								}
+							
+								getLaunchVehicles(): Observable<LaunchVehicles[]> {
+									return this.http.get<LaunchVehicles[]>(`${this.rootUrl}/launch_vehicles`)
+								}
 							}
-						</script></code></pre>	
-						<small>app/config.service.ts</small>
-					</section>					
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/space.service.ts</small>
+					</section>
 				</section>
 				<section>
 					<section id="type-response">
@@ -234,32 +284,97 @@
 						</ul>
 					</section>
 					<section>
-						<h2>Declare response object type</h2>
+						<h2>Response type for <code>Astronaut</code></h2>
 						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
-							export interface Config {
-								heroesUrl: string;
-								textfile: string;
-								date: any;
+							export interface Astronaut {
+								name: string;
+								nationality: string;
+								organization: string;
+								status?: string;
+								born: number;
+								died?: number;
+								time_in_space?: number;
 							}
 						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/astronaut.type.ts</small>
 					</section>
 					<section>
-						<h2>Set response object as type parameter</h2>
-					 <pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
-						getConfig() {
-							// now returns an Observable of Config
-							return this.http.get<Config>(this.configUrl);
-						}
-					 </script></code></pre>
-				 </section>
+						<h2>Response type for <code>LaunchVehicle</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							export interface LaunchVehicles {
+								name: string;
+								country: string;
+								height: number;
+								status: string;
+								mass: number;
+								launch_history: {
+									first: number;
+									last?: number;
+									total: number;
+								} 
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/launch-vehicle.type.ts</small>
+					</section>
+					<section>
+						<h2>Requesting data from a server</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|5,17|14,15|14,20|15,21-23|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { LaunchVehicles } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { map } from 'rxjs/operators';
+							import { SpaceService } from './space.service';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+							
+								launchVehicles$: Observable<LaunchVehicles[]> | null = null;
+								astronauts$: Observable<string[]> | null = null;
+							
+								constructor(private spaceService: SpaceService) { }
+							
+								ngOnInit() {
+									this.launchVehicles$ = this.spaceService.getLaunchVehicles();
+									this.astronauts$ = this.spaceService.getAstronauts().pipe(
+										map(astronauts => astronauts.map(astronaut => astronaut.name))
+									);
+								}
+							}													
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Display data in templates</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3-5|9-11|"><script type="text/template">
+							<h2>Astronauts</h2>
+							<ul>  
+								<li *ngFor="let astronaut of astronauts$ | async">
+									{{ astronaut }}
+								</li>
+							</ul>
+							<h2>Launch vehicles</h2>
+							<ul>
+								<li *ngFor="let launchVehicle of launchVehicles$ | async">
+									{{ launchVehicle | json }}
+								</li>
+							<ul>												
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.component.html</small>	
+					</section>
 				</section>
 				<section>
 					<section id="cors">
 						<h2>CORS</h2>
+						<h4>Cross-Origin Resource Sharing</h4>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://www.npmjs.com/package/cors">cors - npm</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same-origin policy - Web security | MDN</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -280,7 +395,7 @@
 							<li>If the request fails, HttpClient returns an error object instead of a successfully response</li>
 							<li></li>
 						</ul>
-						<aside class="notes">
+						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/http#handling-request-errors">Angular - Communicating with backend services using HTTP</a></li>

@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Astronaut } from 'lib-space';
 import { LaunchVehicles } from 'lib-space';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SpaceService } from './space.service';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +11,15 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  astronauts$: Observable<Astronaut[]> | null = null
-  launchVehicles$: Observable<LaunchVehicles[]> | null = null
-  baseUrl = 'http://localhost:3000'
+  launchVehicles$: Observable<LaunchVehicles[]> | null = null;
+  astronauts$: Observable<string[]> | null = null;
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private spaceService: SpaceService) { }
 
   ngOnInit() {
-    this.astronauts$ = this.http.get<Astronaut[]>(`${this.baseUrl}/astronauts`)
-    this.launchVehicles$ = this.http.get<LaunchVehicles[]>(`${this.baseUrl}/launch_vehicles`)
+    this.launchVehicles$ = this.spaceService.getLaunchVehicles();
+    this.astronauts$ = this.spaceService.getAstronauts().pipe(
+      map(astronauts => astronauts.map(astronaut => astronaut.name))
+    );
   }
 }
