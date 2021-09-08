@@ -368,8 +368,9 @@
 				</section>
 				<section>
 					<section id="cors">
-						<h2>CORS</h2>
-						<h4>Cross-Origin Resource Sharing</h4>
+						<h2>Same-Origin security model</h2>
+						<h5>&</h5>
+						<h2>Cross-Origin Resource Sharing</h2>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -380,14 +381,38 @@
 					</section>
 					<section>
 						<h2>Overview</h2>
-						<ul>
-							<li>The Cross-Origin Resource Sharing standard adds new HTTP headers, that lets servers describe which origins are premitted to access data from a web browser</li>
+						<ul> 
+							<li>The Cross-Origin Resource Sharing (CORS) standard adds new HTTP headers, that let servers describe which origins are premitted to access data from a web browser</li>
 							<li>CORS failures results in errors, but for security reasons, specifics about the error are not available to JavaScript</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
 						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Same-origin policy</h2>
+					<ul>
+						<li>The same-origin policy is a critical security mechanism that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
+						<li>Definition of an origin</li>
+						<ul>
+							<li>A origin is a tuple comprised of <code>[protocol, host, port]</code>
+								<ul>
+									<li><code>protocol</code>—The protocol used: <code>http://</code>, <code>https://</code>, etc.</li>
+									<li><code>host</code>—The resource location: swafe-01.dk, ece.au.dk, etc.</li>
+									<li><code>port</code>—The port number, if specified</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>Implemented by the most commonly used browsers (Google Chrome, Firefox, Microsoft Edge, etc.)
+					</ul>
 						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
+							<h4>Reference</h4>
 							<ul>
-								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same-origin policy - Web security | MDN</a></li>
 							</ul>
 						</aside>
 					</section>
