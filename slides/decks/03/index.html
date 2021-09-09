@@ -418,12 +418,42 @@
 					</section>
 					<section>
 						<h2>Proxying to a backend server</h2>
+
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/build#building-and-serving-angular-apps">Angular - Building and serving Angular apps</a></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2><code>proxy.conf.json</code></h2>
+						<pre><code class="json" data-trim data-line-numbers="|2|3|"><script type="text/template">
+							{
+								"/api": {
+									"target": "http://localhost:3000",
+									"secure": false
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/proxying/src/proxy.conf.json</small>	
+						<pre><code class="json" data-trim data-line-numbers="|10|"><script type="text/template">
+							... ,
+							"serve": {
+								"builder": "@angular-devkit/build-angular:dev-server",
+								"configurations": {
+									"production": {
+										"browserTarget": "proxying:build:production"
+									},
+									"development": {
+										"browserTarget": "proxying:build:development",
+										"proxyConfig": "examples/lesson03-network-communication/projects/proxying/src/proxy.conf.json"
+									}
+								},
+								"defaultConfiguration": "development"
+							}, ...
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/angular.json</small>	
 					</section>
 				</section>
 				<section>
