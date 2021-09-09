@@ -1,10 +1,6 @@
 {
-  "/astronauts": {
+  "/api": {
     "target": "http://localhost:3000",
     "secure": false
-  },
-  "/launch_vehicle": {
-    "target": "http://localhost:3000",
-    "secure": false    
   }
 }

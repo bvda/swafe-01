@@ -12,7 +12,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('/astronauts').subscribe(astronauts => console.log(astronauts))
-    this.http.post('/launch_vehicle', {"launch_vehicle": {}}).subscribe(console.log)
+    this.http.get('api/astronauts').subscribe(astronauts => console.log(astronauts))
+    this.http.post('api/launch_vehicle', {"launch_vehicle": {}}).subscribe(console.log)
+
+    this.http.get('http://localhost:3000/cors/astronauts').subscribe(console.log)
   }
 }
