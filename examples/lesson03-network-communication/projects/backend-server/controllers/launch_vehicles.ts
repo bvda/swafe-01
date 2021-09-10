@@ -5,6 +5,5 @@ export const list = function(req, res) {
 }
 export const update = function(req, res) {
   var launchVehicle = req.body.launch_vehicle
-  console.debug(launchVehicle)
   res.send({"success": true})
 }

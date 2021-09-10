@@ -380,35 +380,35 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Overview</h2>
+					<h2>Overview</h2>
 						<ul> 
 							<li>The Cross-Origin Resource Sharing (CORS) standard adds new HTTP headers, that let servers describe which origins are premitted to access data from a web browser</li>
 							<li>CORS failures results in errors, but for security reasons, specifics about the error are not available to JavaScript</li>
-					</ul>
-					<aside class="notes" aria-label="notes">
-						<h4>References</h4>
-						<ul>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
 						</ul>
-					</aside>
-				</section>
-				<section>
-					<h2>Same-origin policy</h2>
-					<ul>
-						<li>The same-origin policy is a critical security mechanism that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
-						<li>Definition of an origin</li>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Same-origin policy</h2>
 						<ul>
-							<li>A origin is a tuple comprised of <code>[protocol, host, port]</code>
-								<ul>
-									<li><code>protocol</code>—The protocol used: <code>http://</code>, <code>https://</code>, etc.</li>
-									<li><code>host</code>—The resource location: swafe-01.dk, ece.au.dk, etc.</li>
-									<li><code>port</code>—The port number, if specified</li>
-								</ul>
-							</li>
+							<li>The same-origin policy is a critical security mechanism that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
+							<li>Definition of an origin</li>
+							<ul>
+								<li>A origin is a tuple comprised of <code>[protocol, host, port]</code>
+									<ul>
+										<li><code>protocol</code>—The protocol used: <code>http://</code>, <code>https://</code>, etc.</li>
+										<li><code>host</code>—The resource location: swafe-01.dk, ece.au.dk, etc.</li>
+										<li><code>port</code>—The port number, if specified</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>Implemented by all major browsers (Google Chrome, Firefox, Microsoft Edge, etc.)
 						</ul>
-					</li>
-					<li>Implemented by the most commonly used browsers (Google Chrome, Firefox, Microsoft Edge, etc.)
-					</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
 							<ul>
@@ -417,8 +417,94 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Proxying to a backend server</h2>
+						<h2>Cross-Origin Resource Sharing (CORS)</h2>
+						<ul>
+							<li>The need to relax the same origin policy</li>
+							<li>CORS is a protocol</li>
+							<li>Simple and preflighted requests
+								<ul>
+									<li>Simple requests (<code>GET</code>, <code>POST</code>, and <code>HEAD</code>) does not trigger a CORS preflight</li>
+									<li>Methods like <code>PUT</code>, <code>DELETE</code>, and <code>PATCH</code> trigger a CORS preflight</li>
+								</ul>
+							</li>
+							<li>Preflight requests happens when requests that causes side-effects on server data</li>
+							<li>Set in the header of HTTP requests and responses</li>
+						</ul>
+					</section>
+					<section>
+						<h2>GET</h2>
+						<pre><code class="http" data-trim data-line-numbers="|1-3|8-9|10-11|14|"><script type="text/template">
+							GET /cors/astronauts HTTP/1.1
+							Host: localhost:3000
+							Origin: http://localhost:4200
+							Referer: http://localhost:4200/
+							Accept: application/json, text/plain, */*
+							Accept-Encoding: gzip, deflate, br
+							
+							HTTP/1.1 200 OK
+							Access-Control-Allow-Origin: *
+							Content-Type: application/json; charset=utf-8
+							Content-Length: 742
+							Date: Fri, 10 Sep 2021 07:58:23 GMT
+														
+							[{"name":"Neil Armstrong","nationality":"US","organization":"NASA","born":19300805,"died":20120825,"time_in_space":742350},{"name":"Scott Kelly","nationality":"US","organization":"NASA","status":"retired","born":19640221,"time_in_space":44928000},{"name":"Andreas Mogensen","nationality":"DA","organization":"ESA","status":"active","born":19761102,"time_in_space":850440},{"name":"Chris Hadfield","nationality":"CA","organization":"NASA","status":"retired","born":19590829,"time_in_space":14342400},{"name":"Mark Kelly","nationality":"US","organization":"NASA","status":"retired","born":19640221,"time_in_space":4673040},{"name":"Yang Liwei","nationality":"ZH","organization":"PLAAC","status":"retired","born":19650621,"time_in_space":76965}]
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP headers - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Preflight requests</h2>
+						<ul>
+							<li>A CORS preflight request checks to see if the host supports CORS protocol</li>
+							<li>It is sent as an <code>OPTIONS</code> using three three HTTP request headers:
+							<ul>
+								<li><code>Access-Control-Request-Method</code></li>
+								<li><code>Access-Control-Request-Headers</code></li>
+								<li><code>Origin</code></li>	
+							</ul>
+						</li>
+						<li>Preflight request are automatically issued by the browser
+							<ul>
+								<li>In normal cases, this means that front-ends developers do not need to craft such requests themselves</li>
+							</ul>
+						</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request">Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Preflight request</h2>
+						<pre><code class="http" data-trim data-line-numbers="|1-2,4-5|10-12|"><script type="text/template">
+							OPTIONS /cors/astronauts HTTP/1.1
+							Host: localhost:3000
+							Accept: */*
+							Access-Control-Request-Method: DELETE
+							Origin: http://localhost:4200
+							Referer: http://localhost:4200/
+							Accept-Encoding: gzip, deflate, br
+							Accept-Language: en-US,en;q=0.9,da-DK;q=0.8,da;q=0.7,fr;q=0.6
 
+							HTTP/1.1 204 No Content
+							Access-Control-Allow-Origin: *
+							Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE
+							Vary: Access-Control-Request-Headers
+							Content-Length: 0
+							Date: Fri, 10 Sep 2021 08:25:35 GMT
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Proxying to a backend server</h2>
+						<ul>
+							<li></li>
+						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>

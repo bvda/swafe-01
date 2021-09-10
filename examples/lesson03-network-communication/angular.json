@@ -213,7 +213,7 @@
             },
             "development": {
               "browserTarget": "proxying:build:development",
-              "proxyConfig": "examples/lesson03-network-communication/projects/proxying/src/proxy.conf.json"
+              "proxyConfig": "./projects/proxying/src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
