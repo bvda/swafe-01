@@ -79,31 +79,12 @@
 					<section>
 						<h2>HTTP methods</h2>
 						<ul>
-							<li>POST
-								<ul>
-									<li>Send data to the server</li>
-								</ul>
-							</li>
-							<li>GET
-								<ul>
-									<li>Retrieve data from the server</li>
-								</ul>
-							</li>
-							<li>PUT
-								<ul>
-									<li>Send data to the server and update an existing entity</li>
-								</ul>
-							</li>
-							<li>DELETE
-								<ul>
-									<li>Remove an entity on the server</li>
-								</ul>
-							</li>
-							<li>OPTIONS
-								<ul>
-									<li>Get information about the communication options available</li>
-								</ul>
-							</li>
+							<li><code>POST</code>—send data to the server</li>
+							<li><code>GET</code>—retrieve a resource from the server</li>
+							<li><code>HEAD</code>–retrieve resource metadata from the server</li>
+							<li><code>PUT</code>—send data to the server and update an existing entity</li>
+							<li><code>DELETE</code>—Remove a resource on the server</li>
+							<li><code>OPTIONS</code>–Get information about the communication options available</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -111,6 +92,7 @@
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9">rfc2616 – Method definitions</a></li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.2">rfc – OPTIONS</a></li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.3">rfc2616 – GET</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.4"></a>rfc2616 – HEAD</li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.5">rfc2616 – POST</a></li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.6">rfc2616 – PUT</a></li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.7">rfc2616 – DELETE</a></li>
@@ -120,11 +102,16 @@
 					<section>
 						<h2>HTTP Response codes</h2>
 						<ul>
-							<li><code>1xx</code>: Informational</li>
-							<li><code>2xx</code>: Success</li>
-							<li><code>3xx</code>: Redirection</li>
-							<li><code>4xx</code>: Client error</li>
-							<li><code>5xx</code>: Server error</li>
+							<li><code>1xx</code> <mark>Informational</mark>–provisional response</li>
+							<li><code>2xx</code> <mark>Successful</mark>—indicates that the client's request was
+								successfully received, understood, and accepted</li>
+							<li><code>3xx</code> <mark>Redirection</mark>—further action needs to be
+								taken by the user agent in order to fulfill the request</li>
+							<li><code>4xx</code> <mark>Client error</mark>–intended for cases in which the
+								client seems to have erred</li>
+							<li><code>5xx</code> <mark>Server error</mark>—indicate cases in
+								which the server is aware that it has erred or is incapable of
+								performing the request</li>
 						</ul>
 					</section>
 					<section>
@@ -170,7 +157,7 @@
 				</section>
 				<section>
 					<section>
-						<h2>HTTP communication in Angular</h2>
+						<h2>HTTP in Angular</h2>
 					</section>
 					<section id="http-communication-in-angular">
 						<h2>Overview</h2>
