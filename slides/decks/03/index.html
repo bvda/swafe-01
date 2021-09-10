@@ -461,12 +461,13 @@
 						<ul>
 							<li>A CORS preflight request checks to see if the host supports CORS protocol</li>
 							<li>It is sent as an <code>OPTIONS</code> using three three HTTP request headers:
-							<ul>
-								<li><code>Access-Control-Request-Method</code></li>
-								<li><code>Access-Control-Request-Headers</code></li>
-								<li><code>Origin</code></li>	
-							</ul>
-						</li>
+								<ul>
+									<li><code>Access-Control-Request-Method</code>—defines what HTTP method(s) will be used for the actual request</li>
+									<li><code>Access-Control-Request-Headers</code>—defines what HTTP headers the client might send with the request</li>
+									<li><code>Origin</code>—indicates where the request originates from</li>	
+								</ul>
+							</li>
+						<li>A preflight response will contain </li>
 						<li>Preflight request are automatically issued by the browser
 							<ul>
 								<li>In normal cases, this means that front-ends developers do not need to craft such requests themselves</li>
@@ -503,7 +504,15 @@
 					<section>
 						<h2>Proxying to a backend server</h2>
 						<ul>
-							<li></li>
+							<li>Proxying support from <code>webpack</code> development server is available</li>
+							<li>Follow these steps to set up:
+								<ul>
+									<li>Create a file <code>proxy.conf.json</code> in the project <code>src</code> folder</li>
+									<li>Add the <code>proxyConfig</code> option to the <code>serve target</code></li>
+									<li>Check service URLs in the code</li>
+								</ul>
+							</li>
+							<li>Remember to relaunch the application when changing proxy configuration (rerun <code>ng serve</code>)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
