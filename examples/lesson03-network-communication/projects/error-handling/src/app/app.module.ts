@@ -4,10 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CatchErrorComponent } from './catch-error/catch-error.component';
+import { RetryComponent } from './retry/retry.component';
+import { RetryWhenComponent } from './retry-when/retry-when.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CatchErrorComponent,
+    RetryComponent,
+    RetryWhenComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,7 @@
-<h1>Data</h1>
-{{ faultyAstronauts$ | async | json }}
-<h2>Error</h2>
-{{ error | json }}
+<h1>Error handling</h1>
+<ul>
+  <li><a routerLink="catchError">catchError</a></li>
+  <li><a routerLink="retry">retry</a></li>
+  <li><a routerLink="retryWhen">retryWhen</a></li>
+</ul>
+<router-outlet></router-outlet>
