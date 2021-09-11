@@ -541,19 +541,24 @@
 				<section>
 					<section id="error-handling">
 						<h2>Error handling</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
 						<ul>
-							<li>If the request fails, HttpClient returns an error object instead of a successfully response</li>
+							<li>If the request fails, HttpClient returns an <code>HttpErrorResponse</code> error object instead of a successfully response</li>
 							<li>Two types of errors can occur:
 								<ul>
-									<li></li>
-									<li></li>
+									<li><mark>Error responses</mark> The backend might reject a request and return a response with status code <code>4xx</code> or <code>5xx</code></li>
+									<li><mark>Client-side errors</mark> Network errors or unhandled exceptions thrown in RxJS operators</li>
 								</ul>
 							</li>
+							<li>Client-side error will have <code>status</code> set to <code>0</code>, error responses will have the HTTP status code (such as <code>404</code> Not Found, <code>500</code> Internal Server Error, etc.</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/http#handling-request-errors">Angular - Communicating with backend services using HTTP</a></li>
+								<li><a href="https://angular.io/api/common/http/HttpErrorResponse">Angular - HttoErrorResponse</a></li>
 							</ul>								
 						</aside>
 					</section>
