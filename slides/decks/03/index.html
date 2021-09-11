@@ -562,7 +562,7 @@
 						<ul>
 							<li><code>catchError</code> catches errors on the <code>Observable</code> to be handled by returning a new observable or throwing an error</li>
 							<li><code>retry</code> retries the <code>Observable</code> a predefined number of times. Defaults to <code>Infinity</code></li>
-							<li><code>retryWhen</code> retries the <code>Observable</code></li>
+							<li><code>retryWhen</code> retries the <code>Observable</code> based on custom criteria</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
@@ -580,6 +580,7 @@
 					</section>
 					<section>
 						<h2><code>catchError</code></h2>
+						<p>Catch errors that happens inside the stream</p>
 						<pre><code class="typescript" data-trim data-line-numbers="|15|21-31|22,30|24-28|29|"><script type="text/template">
 							import { HttpErrorResponse } from '@angular/common/http';
 							import { Component, OnInit } from '@angular/core';
@@ -619,6 +620,7 @@
 					</section>
 					<section>
 						<h2><code>retry</code></h2>
+						<p>Retry an observable sequence should an error occur</p>
 						<pre><code class="typescript" data-trim data-line-numbers="|22-31|23,29|24-27|28|30|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { Astronaut } from 'lib-space';
@@ -658,6 +660,18 @@
 					</section>
 					<section>
 						<h2><code>retryWhen</code></h2>
+						<p>Retry an observable sequence on error based on custom criteria</p>
+						<img src="../../assets/marble-diagrams/retrywhen.svg" alt="retryWhen" />
+						<aside class="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/retryWhen">RxJS - retryWhen</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>retryWhen</code></h2>
+						<p>Retry an observable sequence on error based on custom criteria</p>
 						<pre><code class="typescript" data-trim data-line-numbers="|22-34|23-29|30-33|31|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { Astronaut } from 'lib-space';
