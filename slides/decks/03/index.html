@@ -543,7 +543,12 @@
 						<h2>Error handling</h2>
 						<ul>
 							<li>If the request fails, HttpClient returns an error object instead of a successfully response</li>
-							<li></li>
+							<li>Two types of errors can occur:
+								<ul>
+									<li></li>
+									<li></li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -553,7 +558,31 @@
 						</aside>
 					</section>
 					<section>
-						<h2></h2>
+						<h2>RxJS operators</h2>
+						<ul>
+							<li><code>catchError</code> catches errors on the <code>Observable</code> to be handled by returning a new observable or throwing an error</li>
+							<li><code>retry</code> retries the <code>Observable</code> a predefined number of times. Defaults to <code>Infinity</code></li>
+							<li><code>retryWhen</code> retries the <code>Observable</code></li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/catchError">RxJS - catchError</a></li>
+								<li><a href="https://rxjs.dev/api/operators/retry">RxJS - retry</a></li>
+								<li><a href="https://rxjs.dev/api/operators/retryWhen">RxJS - retryWhen</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>catchError</code></h2>
+						<p>Catch errors that happens inside the stream</p>
+						<img src="../../assets/marble-diagrams/catcherror.svg" alt="catcherror" width="60%" />
+					</section>
+					<section>
+						<h2><code>retryWhen</code></h2>
+					</section>
+					<section>
+
 					</section>
 				</section>
 				<section>
