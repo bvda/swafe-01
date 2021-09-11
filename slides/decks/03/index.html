@@ -579,6 +579,45 @@
 						<img src="../../assets/marble-diagrams/catcherror.svg" alt="catcherror" width="60%" />
 					</section>
 					<section>
+						<h2><code>catchError</code></h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|14|21-31|22,30|24-28|29|"><script type="text/template">
+							import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, of } from 'rxjs';
+							import { catchError } from 'rxjs/operators';
+							import { SpaceError } from './space-error.type';
+
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+								faultyAstronauts$: Observable<Astronaut[] | SpaceError> | null = null
+								host = 'http://localhost:3000/faulty/astronauts'
+								error = ''
+
+								constructor(private http: HttpClient) { }
+
+								ngOnInit() {
+									this.faultyAstronauts$ = this.http.get<Astronaut[]>(this.host).pipe(
+										catchError((e: HttpErrorResponse) => {
+											console.error(e.message)
+											if(e.status === 0) {
+												this.error = 'Client-side or network error'
+											} else {
+												this.error = 'Endpoint returned an unsuccessful response code'
+											}
+											return of({ message: e.message, status_code: e.status });
+										}),
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/app.component.ts</small>	
+					</section>
+					<section>
 						<h2><code>retryWhen</code></h2>
 					</section>
 					<section>
