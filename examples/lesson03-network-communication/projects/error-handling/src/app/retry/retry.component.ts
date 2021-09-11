@@ -30,5 +30,4 @@ export class RetryComponent implements OnInit {
       retry()
     )
   }
-
 }

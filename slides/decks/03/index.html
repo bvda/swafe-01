@@ -580,28 +580,28 @@
 					</section>
 					<section>
 						<h2><code>catchError</code></h2>
-						<pre><code class="typescript" data-trim data-line-numbers="|14|21-31|22,30|24-28|29|"><script type="text/template">
-							import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+						<pre><code class="typescript" data-trim data-line-numbers="|15|21-31|22,30|24-28|29|"><script type="text/template">
+							import { HttpErrorResponse } from '@angular/common/http';
 							import { Component, OnInit } from '@angular/core';
 							import { Astronaut } from 'lib-space';
 							import { Observable, of } from 'rxjs';
 							import { catchError } from 'rxjs/operators';
-							import { SpaceError } from './space-error.type';
-
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
+							
 							@Component({
-								selector: 'app-root',
-								templateUrl: './app.component.html',
-								styleUrls: ['./app.component.scss']
+								selector: 'app-catch-error',
+								templateUrl: './catch-error.component.html',
+								styleUrls: ['./catch-error.component.scss']
 							})
-							export class AppComponent implements OnInit {
-								faultyAstronauts$: Observable<Astronaut[] | SpaceError> | null = null
-								host = 'http://localhost:3000/faulty/astronauts'
+							export class CatchErrorComponent implements OnInit {
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
 								error = ''
-
-								constructor(private http: HttpClient) { }
-
-								ngOnInit() {
-									this.faultyAstronauts$ = this.http.get<Astronaut[]>(this.host).pipe(
+							
+								constructor(private faultyService: FaultyService) { }
+							
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
 										catchError((e: HttpErrorResponse) => {
 											console.error(e.message)
 											if(e.status === 0) {
@@ -615,13 +615,88 @@
 								}
 							}
 						</script></code></pre>
-						<small>examples/lesson03-network-communication/projects/error-handling/src/app/app.component.ts</small>	
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/catch-error/catch-error.component.ts</small>	
+					</section>
+					<section>
+						<h2><code>retry</code></h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|22-31|23,29|24-27|28|30|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, throwError } from 'rxjs';
+							import { catchError, retry } from 'rxjs/operators';
+							import { FaultyCall } from '../faulty-call.type';
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
+
+							@Component({
+							selector: 'app-retry',
+							templateUrl: './retry.component.html',
+							styleUrls: ['./retry.component.scss']
+							})
+							export class RetryComponent implements OnInit {
+
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								faults: FaultyCall[] = []
+
+								constructor(private faultyService: FaultyService) { }
+
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
+										catchError(e => {
+											this.faults.push({
+												date: Date.now(), 
+												message: e.message
+											})        
+											return throwError(e)
+										}),
+										retry()
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/retry/retry.component.ts</small>	
 					</section>
 					<section>
 						<h2><code>retryWhen</code></h2>
-					</section>
-					<section>
+						<pre><code class="typescript" data-trim data-line-numbers="|22-34|23-29|30-33|31|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, throwError, timer } from 'rxjs';
+							import { catchError, delayWhen, retryWhen } from 'rxjs/operators';
+							import { FaultyCall } from '../faulty-call.type';
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
 
+							@Component({
+								selector: 'app-retry-when',
+								templateUrl: './retry-when.component.html',
+								styleUrls: ['./retry-when.component.scss']
+							})
+							export class RetryWhenComponent implements OnInit {
+
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								faults: FaultyCall[] = []
+
+								constructor(private faultyService: FaultyService) { }
+
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
+										catchError(e => {
+											this.faults.push({
+												date: Date.now(), 
+												message: e.message
+											})
+											return throwError(e)
+										}),
+										retryWhen(e => e.pipe(
+												delayWhen(_ => timer(3000))
+											)
+										)
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/retry-when/retry-when.component.ts</small>	
 					</section>
 				</section>
 				<section>

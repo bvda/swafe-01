@@ -18,7 +18,7 @@ export class CatchErrorComponent implements OnInit {
   constructor(private faultyService: FaultyService) { }
 
   ngOnInit(): void {
-    this.observable$ =this.faultyService.getFaultyAstronauts().pipe(
+    this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
       catchError((e: HttpErrorResponse) => {
         console.error(e.message)
         if(e.status === 0) {
@@ -30,5 +30,4 @@ export class CatchErrorComponent implements OnInit {
       }),
     )
   }
-
 }
