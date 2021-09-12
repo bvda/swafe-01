@@ -23,8 +23,7 @@
 				</section>
 				<section>
 					<section id="network-communication">
-						<h2 class="r-fit-text">Network</h2>
-						<h3 class="r-fit-text">Communication<h3>
+						<h2>Network application</h2>
 					</section>
 					<section>
 						<h2>Overview</h2>
@@ -35,14 +34,17 @@
 					</section>
 					<section>
 						<h2>Client-server model</h2>
+						<figure>
+							<blockquote cite="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client–server model is a <mark>distributed</mark> application structure that <mark>partitions</mark> tasks or workloads between the <mark>providers</mark> of a resource or service, called servers, and service <mark>requesters</mark>, called clients.</blockquote>
+							<figcaption>Client-server model—<cite>Wikipedia</cite></figcaption>
+						</figure>
 					</section>
 				</section>
 				<section>
-					<section>
-						<h2 class="r-fit-text">HTTP</h2>
-						<h3 class="r-fit-text">Hypertext Transfer Protocol</h3>
-					</section>
 					<section id="http-specification">
+						<h2>Hypertext Transfer Protocol</h2>
+					</section>
+					<section >
 						<h2>The HTTP/1.1 specification</h2>
 						<ul>
 							<li>Defined in IETF <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>
@@ -742,7 +744,7 @@
 				</section>
 				<section>
 					<section>
-						<h2 id="interception">Interception</h2>
+						<h2 id="http-interception">Interception</h2>
 					</section>
 					<section>
 						<h2>Overview</h2>
@@ -759,14 +761,42 @@
 									<li>Alternatively implemented explicitly for every method call</li>
 								</ul>
 							</li>
+							<li>Multiple interceptors forms a forward-and-backwards chain of request/response handlers</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#intercepting-requests-and-responses">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2><code>HttpInterceptor</code></h2>
 						<ul>
-							<li>Order is significant (chaining)</li>
-							<li>Create a "barrel" file</li>
-							<li>check context with HttpContext</li>
+							<li>All interceptors is managed by Angular's DI system (just like services)</li>
+							<li>Interceptors are dependencies of <code>HttpClient</code>
+								<ul>
+									<li>Therefore, they must be provided in the same injector (or a parent of the injector) that provides <code>HttpClient</code></li>
+									<li>If added after <code>HttpClient</code> is created, they are ignored</li>
+								</ul>
+							</li>
+							<li>Create a "barrel" file in <code>/app</code> to keep track of injectors
+								<ul>
+									<li>Contains an array of <code>HttpInterceptor</code> objects</li>
+									<li>Use <code>HTTP_INTERCEPTORS</code> multi-provider token when providing interceptors</li>
+								</ul>
+							</li>
+							<li><code>HttpRequest</code> and <code>HttpResponse</code> are immutable
+								<ul>
+									<li>Cannot be modified after it is created</li>
+									<li>Use the <code>clone</code> method</li>
+								</ul>
+							</li>
+							<li>Check context with <code>HttpContext</code>
+								<ul>
+									<li>If only some requests/responses should be handled or passed on without modification</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
