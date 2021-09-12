@@ -776,7 +776,7 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Code example</h2>
+						<h2>Interceptor</h2>
 						<pre><code class='typescript' data-trim data-line-numbers="|20-21|25,38-39|26,37|14,16-18|27-36|"><script type="text/template">
 							import { Injectable } from '@angular/core';
 							import {
@@ -827,6 +827,59 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Service</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|16-20|5,18|"><script type="text/template">
+							import { HttpClient } from '@angular/common/http';
+							import { Injectable } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { auth } from '../http-interceptors/auth-token.interceptor';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SpaceService {
+
+								rootUrl = `http://localhost:3000/auth`  
+							
+								constructor(private http: HttpClient) { }
+
+								astronauts(): Observable<Astronaut[]> {
+									return this.http.get<Astronaut[]>(`${this.rootUrl}/astronauts`, {
+										context: auth()
+									})
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/service/space.service.ts</small>
+					</section>
+					<section>
+						<h2>Call from class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|18|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Observable } from 'rxjs';
+							import { SpaceService } from './service/space.service';
+							import { Astronaut } from 'lib-space';
+
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+								token$: Observable<string> | null = null;
+								astronauts$: Observable<Astronaut[]> | null = null;
+								
+								constructor(private spaceService: SpaceService) { }
+
+								ngOnInit() { 
+									this.astronauts$ = this.spaceService.astronauts()
+								} 
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/app.component.ts</small>
+						</section>
 				</section>
 			</div>
 		</div>
