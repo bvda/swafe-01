@@ -24,11 +24,11 @@ export class AuthTokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(request.context.get(AUTH)) {
-      return this.authService.login().pipe(
-        switchMap(token => {
+      return this.authService.token().pipe(
+        switchMap(response => {
           const req = request.clone({ 
             setHeaders: { 
-              Authorization: `Bearer ${token.token}`
+              Authorization: `Bearer ${response.token}`
             }
           })
           return next.handle(req)

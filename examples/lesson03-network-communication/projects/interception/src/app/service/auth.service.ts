@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login() {
+  token() {
     return this.http.post<LoginResponse>(`${this.rootUrl}/login`, {})
   }
 }

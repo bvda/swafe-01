@@ -777,24 +777,49 @@
 					</section>
 					<section>
 						<h2>Code example</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|9|10|12-15|"><script type="text/template">
-						import { Injectable } from '@angular/core';
-						import {
-							HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
-						} from '@angular/common/http';
+						<pre><code class='typescript' data-trim data-line-numbers="|20-21|25,38-39|26,37|14,16-18|27-36|"><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import {
+								HttpRequest,
+								HttpHandler,
+								HttpEvent,
+								HttpInterceptor,
+								HttpContextToken,
+								HttpContext
+							} from '@angular/common/http';
+							import { Observable } from 'rxjs';
+							import { AuthService } from '../service/auth.service';
+							import { switchMap } from 'rxjs/operators';
 
-						import { Observable } from 'rxjs';
+							const AUTH = new HttpContextToken<boolean>(() => false)
 
-						/** Pass untouched request through to the next request handler. */
-						@Injectable()
-						export class NoopInterceptor implements HttpInterceptor {
-
-							intercept(req: HttpRequest<any>, next: HttpHandler):
-								Observable<HttpEvent<any>> {
-								return next.handle(req);
+							export function auth() {
+								return new HttpContext().set(AUTH, true)
 							}
-						}
+
+							@Injectable()
+							export class AuthTokenInterceptor implements HttpInterceptor {
+
+								constructor(private authService: AuthService) { }
+
+								intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+									if(request.context.get(AUTH)) {
+										return this.authService.token().pipe(
+											switchMap(response => {
+												const req = request.clone({ 
+													setHeaders: { 
+														Authorization: `Bearer ${response.token}`
+													}
+												})
+												return next.handle(req)
+											})
+										)
+									}
+									return next.handle(request)
+								}
+							}
 						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/http-interceptors/auth-token.interceptor.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
