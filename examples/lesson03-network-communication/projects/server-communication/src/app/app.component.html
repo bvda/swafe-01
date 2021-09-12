@@ -1,0 +1,12 @@
+<h2>Astronauts</h2>
+<ul>  
+  <li *ngFor="let astronaut of astronauts$ | async">
+    {{ astronaut }}
+  </li>
+</ul>
+<h2>Launch vehicles</h2>
+<ul>
+  <li *ngFor="let launchVehicle of launchVehicles$ | async">
+    {{ launchVehicle | json }}
+  </li>
+<ul>

@@ -1,0 +1,7 @@
+<h2>Data</h2>
+<p>{{ observable$ | async | json }}</p>
+<h2>Fault log</h2>
+<ul>
+  <li *ngFor="let fault of faults">{{ fault | json }}</li>
+</ul>
+

@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lesson 03</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Network communication</h2>
+					<h3>Lesson 03</h3>
+					<h4>SWAFE-01</h4>
+				</section>
+				<section>
+					<section id="network-communication">
+						<h2>Network application</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Most dynamic web applications gets data from other sources</li>
+							<li>Hypertext Transfer Protocol (HTTP) and WebSocket Protocol is commonly used to serve data</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Client-server model</h2>
+						<figure>
+							<blockquote cite="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client–server model is a <mark>distributed</mark> application structure that <mark>partitions</mark> tasks or workloads between the <mark>providers</mark> of a resource or service, called servers, and service <mark>requesters</mark>, called clients.</blockquote>
+							<figcaption>Client-server model—<cite>Wikipedia</cite></figcaption>
+						</figure>
+					</section>
+				</section>
+				<section>
+					<section id="http-specification">
+						<h2>Hypertext Transfer Protocol</h2>
+					</section>
+					<section >
+						<h2>The HTTP/1.1 specification</h2>
+						<ul>
+							<li>Defined in IETF <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>
+								<ul>
+									<li>IETF – International Engineering Task Force</li>
+									<li>RFC – Request For Comments</li>
+								</ul>
+							</li>
+							<li>IETF is the Internet standards body
+								<ul>
+									<li>Developing open standards through open processes</li>
+									<li>An international community of network designers, operators, vendors, and researchers</li>
+									<li>Concerned with the evolution of the Internet architecture and the smooth operation of the Internet</li>
+								</ul>
+							</li>
+							<li>An RFC is a publication format used by IETF
+								<ul>
+									<li>Protocols, procedures and programs</li>
+									<li>Concepts</li>
+									<li>Meeting notes</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<ul>RFC 2616 is THE document for all your HTTP 1.1 needs</ul>
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616">rfc2616</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">HTTP | MDN</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">An overview of HTTP - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTTP methods</h2>
+						<ul>
+							<li><code>POST</code>—send data to the server</li>
+							<li><code>GET</code>—retrieve a resource from the server</li>
+							<li><code>HEAD</code>–retrieve resource metadata from the server</li>
+							<li><code>PUT</code>—send data to the server and update an existing entity</li>
+							<li><code>DELETE</code>—Remove a resource on the server</li>
+							<li><code>OPTIONS</code>–Get information about the communication options available</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9">rfc2616 – Method definitions</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.2">rfc – OPTIONS</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.3">rfc2616 – GET</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.4"></a>rfc2616 – HEAD</li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.5">rfc2616 – POST</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.6">rfc2616 – PUT</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-9.7">rfc2616 – DELETE</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTTP Response codes</h2>
+						<ul>
+							<li><code>1xx</code> <mark>Informational</mark>–provisional response</li>
+							<li><code>2xx</code> <mark>Successful</mark>—indicates that the client's request was
+								successfully received, understood, and accepted</li>
+							<li><code>3xx</code> <mark>Redirection</mark>—further action needs to be
+								taken by the user agent in order to fulfill the request</li>
+							<li><code>4xx</code> <mark>Client error</mark>–intended for cases in which the
+								client seems to have erred</li>
+							<li><code>5xx</code> <mark>Server error</mark>—indicate cases in
+								which the server is aware that it has erred or is incapable of
+								performing the request</li>
+						</ul>
+					</section>
+					<section>
+						<h2>HTTP specifications</h2>
+						<ul>
+							<li>Initial releases
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc2068">RFC 2068</a> Hypertext Transfer Protocol -- HTTP/1.1 <em>January 1997</em></li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a> Hypertext Transfer Protocol -- HTTP/1.1 <em>June 1999</em></li>
+								</ul>
+							</li>
+							<li>Updated and split up in June 2014
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7230">RFC 7230</a> HTTP/1.1: Message Syntax and Routing</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7231">RFC 7231</a> HTTP/1.1: Sematics and Content</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7232">RFC 7232</a> HTTP/1.1: Conditional Requests</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7233">RFC 7233</a> HTTP/1.1: Range Requests</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7234">RFC 7234</a> HTTP/1.1: Caching</li>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7235">RFC 7235</a> HTTP/1.1: Authentication</li>
+								</ul>
+							</li>
+							<li>Other versions
+								<ul>
+									<li><a href="https://datatracker.ietf.org/doc/html/rfc7540">RFC 7540</a> Hypertext Transfer Protocol Version 2 (HTTP/2) <em>(May 2015)</em></li>
+									<li><a href="https://datatracker.ietf.org/doc/draft-ietf-quic-http/34/">draft-ietf-quic-http-34</a> Hypertext Transfer Protocol Version 3 (HTTP/3) <em>(February 2021)</em></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7230">rfc7230</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7231">rfc7231</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7232">rfc7232</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7233">rfc7233</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7234">rfc7234</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7235">rfc7235</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7540">rfc7540</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/draft-ietf-quic-http/34/">draft-ietf-quic-http-34 - Hypertext Transfer Protocol Version 3 (HTTP/3)</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>HTTP in Angular</h2>
+					</section>
+					<section id="http-communication-in-angular">
+						<h2>Overview</h2>
+						<ul>
+							<li>The ability to request typed response objects</li>
+							<li>Streamlined error handling</li>
+							<li>Request and response interception</li>
+							<li>Testability features</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>HTTPClientModule</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|3,15|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { BrowserModule } from '@angular/platform-browser';
+							import { HttpClientModule } from '@angular/common/http';
+							
+							import { AppRoutingModule } from './app-routing.module';
+							import { AppComponent } from './app.component';
+							
+							@NgModule({
+								declarations: [
+									AppComponent
+								],
+								imports: [
+									BrowserModule,
+									AppRoutingModule,
+									HttpClientModule,
+								],
+								providers: [],
+								bootstrap: [AppComponent]
+							})
+							export class AppModule { }
+						</script></code></pre>	
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.module.ts</small>
+					</section>
+					<section>
+						<h2><code>HttpClient</code></h2>
+						<ul>
+							<li>Wraps HTTP requests in <code>Observable</code> objects</li>
+							<li>Contains methods for some of the most used HTTP requests
+								<ul>
+									<li><code>get()</code> returns a configured <code>GET</code> HTTP request</li>
+									<li><code>post()</code> returns a configured <code>POST</code> HTTP request</li>
+									<li><code>delete()</code> returns a configured <code>DELETE</code> HTTP request</li>
+									<li><code>request()</code> returns a generic HTTP request</li>
+								</ul>
+							</li>
+							<li>Used in combination with RxJS operators to filter values and format to desired output</li>
+							<li>Can be initiated with <code>subscribe()</code> or <code>async</code> pipe</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/api/common/http/HttpClient">Angular - HttpClient</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>SpaceService</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|1,13|15-17|19-21|"><script type="text/template">
+							import { HttpClient } from '@angular/common/http';
+							import { Injectable } from '@angular/core';
+							import { Astronaut, LaunchVehicles } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { environment } from '../environments/environment';
+							
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SpaceService {
+								rootUrl = `http://${environment.api.space.host}:${environment.api.space.port}`
+							
+								constructor(private http: HttpClient) { }
+							
+								getAstronauts(): Observable<Astronaut[]> {
+									return this.http.get<Astronaut[]>(`${this.rootUrl}/astronauts`)
+								}
+							
+								getLaunchVehicles(): Observable<LaunchVehicles[]> {
+									return this.http.get<LaunchVehicles[]>(`${this.rootUrl}/launch_vehicles`)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/space.service.ts</small>
+					</section>
+				</section>
+				<section>
+					<section id="type-response">
+						<h2>Typed response</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Consume output more easily and obvious</li>
+							<li>Response types can act at type assertion at compile time
+								<ul>
+									<li>But is not guranteed that the server will respond with the expected type</li>
+									<li>Be sure to have proper <a href="#/error-handling">error handling</a></li>
+								</ul>
+							</li>
+							<li>RxJS transformation
+								<ul>
+									<li>Use the map operator to transform response data as needed by the UI</li>
+									<li>Read the transformed data with the <code>async</code> pipe in the template</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Response type for <code>Astronaut</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							export interface Astronaut {
+								name: string;
+								nationality: string;
+								organization: string;
+								status?: string;
+								born: number;
+								died?: number;
+								time_in_space?: number;
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/astronaut.type.ts</small>
+					</section>
+					<section>
+						<h2>Response type for <code>LaunchVehicle</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
+							export interface LaunchVehicles {
+								name: string;
+								country: string;
+								height: number;
+								status: string;
+								mass: number;
+								launch_history: {
+									first: number;
+									last?: number;
+									total: number;
+								} 
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/launch-vehicle.type.ts</small>
+					</section>
+					<section>
+						<h2>Requesting data from a server</h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|5,17|14,15|14,20|15,21-23|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { LaunchVehicles } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { map } from 'rxjs/operators';
+							import { SpaceService } from './space.service';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+							
+								launchVehicles$: Observable<LaunchVehicles[]> | null = null;
+								astronauts$: Observable<string[]> | null = null;
+							
+								constructor(private spaceService: SpaceService) { }
+							
+								ngOnInit() {
+									this.launchVehicles$ = this.spaceService.getLaunchVehicles();
+									this.astronauts$ = this.spaceService.getAstronauts().pipe(
+										map(astronauts => astronauts.map(astronaut => astronaut.name))
+									);
+								}
+							}													
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Display data in templates</h2>
+						<pre><code class="html" data-trim data-line-numbers="|3-5|9-11|"><script type="text/template">
+							<h2>Astronauts</h2>
+							<ul>  
+								<li *ngFor="let astronaut of astronauts$ | async">
+									{{ astronaut }}
+								</li>
+							</ul>
+							<h2>Launch vehicles</h2>
+							<ul>
+								<li *ngFor="let launchVehicle of launchVehicles$ | async">
+									{{ launchVehicle | json }}
+								</li>
+							<ul>												
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.component.html</small>	
+					</section>
+				</section>
+				<section>
+					<section id="cors">
+						<h2>Same-Origin security model</h2>
+						<h5>&</h5>
+						<h2>Cross-Origin Resource Sharing</h2>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://www.npmjs.com/package/cors">cors - npm</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same-origin policy - Web security | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+					<h2>Overview</h2>
+						<ul> 
+							<li>The Cross-Origin Resource Sharing (CORS) standard adds new HTTP headers, that let servers describe which origins are premitted to access data from a web browser</li>
+							<li>CORS failures results in errors, but for security reasons, specifics about the error are not available to JavaScript</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Same-origin policy</h2>
+						<ul>
+							<li>The same-origin policy is a critical security mechanism that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
+							<li>Definition of an origin</li>
+							<ul>
+								<li>A origin is a tuple comprised of <code>[protocol, host, port]</code>
+									<ul>
+										<li><code>protocol</code>—The protocol used: <code>http://</code>, <code>https://</code>, etc.</li>
+										<li><code>host</code>—The resource location: swafe-01.dk, ece.au.dk, etc.</li>
+										<li><code>port</code>—The port number, if specified</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>Implemented by all major browsers (Google Chrome, Firefox, Microsoft Edge, etc.)
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same-origin policy - Web security | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Cross-Origin Resource Sharing (CORS)</h2>
+						<ul>
+							<li>The need to relax the same origin policy</li>
+							<li>CORS is a protocol</li>
+							<li>Simple and preflighted requests
+								<ul>
+									<li>Simple requests (<code>GET</code>, <code>POST</code>, and <code>HEAD</code>) does not trigger a CORS preflight</li>
+									<li>Methods like <code>PUT</code>, <code>DELETE</code>, and <code>PATCH</code> trigger a CORS preflight</li>
+								</ul>
+							</li>
+							<li>Preflight requests happens when requests that causes side-effects on server data</li>
+							<li>Set in the header of HTTP requests and responses</li>
+						</ul>
+					</section>
+					<section>
+						<h2>GET</h2>
+						<pre><code class="http" data-trim data-line-numbers="|1-3|8-9|10-11|14|"><script type="text/template">
+							GET /cors/astronauts HTTP/1.1
+							Host: localhost:3000
+							Origin: http://localhost:4200
+							Referer: http://localhost:4200/
+							Accept: application/json, text/plain, */*
+							Accept-Encoding: gzip, deflate, br
+							
+							HTTP/1.1 200 OK
+							Access-Control-Allow-Origin: *
+							Content-Type: application/json; charset=utf-8
+							Content-Length: 742
+							Date: Fri, 10 Sep 2021 07:58:23 GMT
+														
+							[{"name":"Neil Armstrong","nationality":"US","organization":"NASA","born":19300805,"died":20120825,"time_in_space":742350},{"name":"Scott Kelly","nationality":"US","organization":"NASA","status":"retired","born":19640221,"time_in_space":44928000},{"name":"Andreas Mogensen","nationality":"DA","organization":"ESA","status":"active","born":19761102,"time_in_space":850440},{"name":"Chris Hadfield","nationality":"CA","organization":"NASA","status":"retired","born":19590829,"time_in_space":14342400},{"name":"Mark Kelly","nationality":"US","organization":"NASA","status":"retired","born":19640221,"time_in_space":4673040},{"name":"Yang Liwei","nationality":"ZH","organization":"PLAAC","status":"retired","born":19650621,"time_in_space":76965}]
+						</script></code></pre>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP headers - HTTP | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Preflight requests</h2>
+						<ul>
+							<li>A CORS preflight request checks to see if the host supports CORS protocol</li>
+							<li>It is sent as an <code>OPTIONS</code> using three three HTTP request headers:
+								<ul>
+									<li><code>Access-Control-Request-Method</code>—defines what HTTP method(s) will be used for the actual request</li>
+									<li><code>Access-Control-Request-Headers</code>—defines what HTTP headers the client might send with the request</li>
+									<li><code>Origin</code>—indicates where the request originates from</li>	
+								</ul>
+							</li>
+						<li>A preflight response will contain </li>
+						<li>Preflight request are automatically issued by the browser
+							<ul>
+								<li>In normal cases, this means that front-ends developers do not need to craft such requests themselves</li>
+							</ul>
+						</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request">Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Preflight request</h2>
+						<pre><code class="http" data-trim data-line-numbers="|1-2,4-5|10-12|"><script type="text/template">
+							OPTIONS /cors/astronauts HTTP/1.1
+							Host: localhost:3000
+							Accept: */*
+							Access-Control-Request-Method: DELETE
+							Origin: http://localhost:4200
+							Referer: http://localhost:4200/
+							Accept-Encoding: gzip, deflate, br
+							Accept-Language: en-US,en;q=0.9,da-DK;q=0.8,da;q=0.7,fr;q=0.6
+
+							HTTP/1.1 204 No Content
+							Access-Control-Allow-Origin: *
+							Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE
+							Vary: Access-Control-Request-Headers
+							Content-Length: 0
+							Date: Fri, 10 Sep 2021 08:25:35 GMT
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Proxying to a backend server</h2>
+						<ul>
+							<li>Proxying support from <code>webpack</code> development server is available</li>
+							<li>Follow these steps to set up:
+								<ul>
+									<li>Create a file <code>proxy.conf.json</code> in the project <code>src</code> folder</li>
+									<li>Add the <code>proxyConfig</code> option to the <code>serve target</code></li>
+									<li>Check service URLs in the code</li>
+								</ul>
+							</li>
+							<li>Remember to relaunch the application when changing proxy configuration (rerun <code>ng serve</code>)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/build#building-and-serving-angular-apps">Angular - Building and serving Angular apps</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>proxy.conf.json</code></h2>
+						<pre><code class="json" data-trim data-line-numbers="|2|3|"><script type="text/template">
+							{
+								"/api": {
+									"target": "http://localhost:3000",
+									"secure": false
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/proxying/src/proxy.conf.json</small>	
+						<pre><code class="json" data-trim data-line-numbers="|10|"><script type="text/template">
+							... ,
+							"serve": {
+								"builder": "@angular-devkit/build-angular:dev-server",
+								"configurations": {
+									"production": {
+										"browserTarget": "proxying:build:production"
+									},
+									"development": {
+										"browserTarget": "proxying:build:development",
+										"proxyConfig": "examples/lesson03-network-communication/projects/proxying/src/proxy.conf.json"
+									}
+								},
+								"defaultConfiguration": "development"
+							}, ...
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/angular.json</small>	
+					</section>
+				</section>
+				<section>
+					<section id="error-handling">
+						<h2>Error handling</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>If the request fails, HttpClient returns an <code>HttpErrorResponse</code> error object instead of a successfully response</li>
+							<li>Two types of errors can occur:
+								<ul>
+									<li><mark>Error responses</mark> The backend might reject a request and return a response with status code <code>4xx</code> or <code>5xx</code></li>
+									<li><mark>Client-side errors</mark> Network errors or unhandled exceptions thrown in RxJS operators</li>
+								</ul>
+							</li>
+							<li>Client-side error will have <code>status</code> set to <code>0</code>, error responses will have the HTTP status code (such as <code>404</code> Not Found, <code>500</code> Internal Server Error, etc.</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#handling-request-errors">Angular - Communicating with backend services using HTTP</a></li>
+								<li><a href="https://angular.io/api/common/http/HttpErrorResponse">Angular - HttoErrorResponse</a></li>
+							</ul>								
+						</aside>
+					</section>
+					<section>
+						<h2>RxJS operators</h2>
+						<ul>
+							<li><code>catchError</code> catches errors on the <code>Observable</code> to be handled by returning a new observable or throwing an error</li>
+							<li><code>retry</code> retries the <code>Observable</code> a predefined number of times. Defaults to <code>Infinity</code></li>
+							<li><code>retryWhen</code> retries the <code>Observable</code> based on custom criteria</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/catchError">RxJS - catchError</a></li>
+								<li><a href="https://rxjs.dev/api/operators/retry">RxJS - retry</a></li>
+								<li><a href="https://rxjs.dev/api/operators/retryWhen">RxJS - retryWhen</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>catchError</code></h2>
+						<p>Catch errors that happens inside the stream</p>
+						<img src="../../assets/marble-diagrams/catcherror.svg" alt="catcherror" width="60%" />
+					</section>
+					<section>
+						<h2><code>catchError</code></h2>
+						<p>Catch errors that happens inside the stream</p>
+						<pre><code class="typescript" data-trim data-line-numbers="|15|21-31|22,30|24-28|29|"><script type="text/template">
+							import { HttpErrorResponse } from '@angular/common/http';
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, of } from 'rxjs';
+							import { catchError } from 'rxjs/operators';
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
+							
+							@Component({
+								selector: 'app-catch-error',
+								templateUrl: './catch-error.component.html',
+								styleUrls: ['./catch-error.component.scss']
+							})
+							export class CatchErrorComponent implements OnInit {
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								error = ''
+							
+								constructor(private faultyService: FaultyService) { }
+							
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
+										catchError((e: HttpErrorResponse) => {
+											console.error(e.message)
+											if(e.status === 0) {
+												this.error = 'Client-side or network error'
+											} else {
+												this.error = 'Endpoint returned an unsuccessful response code'
+											}
+											return of({ message: e.message, status_code: e.status });
+										}),
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/catch-error/catch-error.component.ts</small>	
+					</section>
+					<section>
+						<h2><code>retry</code></h2>
+						<p>Retry an observable sequence should an error occur</p>
+						<pre><code class="typescript" data-trim data-line-numbers="|22-31|23,29|24-27|28|30|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, throwError } from 'rxjs';
+							import { catchError, retry } from 'rxjs/operators';
+							import { FaultyCall } from '../faulty-call.type';
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
+
+							@Component({
+							selector: 'app-retry',
+							templateUrl: './retry.component.html',
+							styleUrls: ['./retry.component.scss']
+							})
+							export class RetryComponent implements OnInit {
+
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								faults: FaultyCall[] = []
+
+								constructor(private faultyService: FaultyService) { }
+
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
+										catchError(e => {
+											this.faults.push({
+												date: Date.now(), 
+												message: e.message
+											})        
+											return throwError(e)
+										}),
+										retry()
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/retry/retry.component.ts</small>	
+					</section>
+					<section>
+						<h2><code>retryWhen</code></h2>
+						<p>Retry an observable sequence on error based on custom criteria</p>
+						<img src="../../assets/marble-diagrams/retrywhen.svg" alt="retryWhen" />
+						<aside class="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://rxjs.dev/api/operators/retryWhen">RxJS - retryWhen</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>retryWhen</code></h2>
+						<p>Retry an observable sequence on error based on custom criteria</p>
+						<pre><code class="typescript" data-trim data-line-numbers="|22-34|23-29|30-33|31|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable, throwError, timer } from 'rxjs';
+							import { catchError, delayWhen, retryWhen } from 'rxjs/operators';
+							import { FaultyCall } from '../faulty-call.type';
+							import { FaultyService } from '../faulty.service';
+							import { SpaceError } from '../space-error.type';
+
+							@Component({
+								selector: 'app-retry-when',
+								templateUrl: './retry-when.component.html',
+								styleUrls: ['./retry-when.component.scss']
+							})
+							export class RetryWhenComponent implements OnInit {
+
+								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								faults: FaultyCall[] = []
+
+								constructor(private faultyService: FaultyService) { }
+
+								ngOnInit(): void {
+									this.observable$ = this.faultyService.getFaultyAstronauts().pipe(
+										catchError(e => {
+											this.faults.push({
+												date: Date.now(), 
+												message: e.message
+											})
+											return throwError(e)
+										}),
+										retryWhen(e => e.pipe(
+												delayWhen(_ => timer(3000))
+											)
+										)
+									)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/error-handling/src/app/retry-when/retry-when.component.ts</small>	
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>JSON Web Tokens</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>JSON Web Token (JWT) is a compact claims representation format</li>
+							<li>A JWT consists of three partitions
+								<ul>
+									<li><code>Header</code> contains type and signing information</li>
+									<li><code>Payload</code> contains claims and other user information</li>
+									<li><code>Signature</code> contains a hash of <code>header</code> and <code>payload</code></li>
+								</ul>
+							</li>
+							<li>Some relevant IETF standards
+								<ul>
+									<li>RFC7519 JSON Web Token </li>
+									<li>RFC8725 JSON Web Token Best Current Practices</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">rfc7519</a></li>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc8725">rfc8725</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>JWT claims</h2>
+						<ul>
+							<li><code>aud</code> Audience—what resource is this token intended for?</li>
+							<li><code>iss</code> Issuer—who issued the token?</li>
+							<li><code>iat</code> Issued At—identifies the time the claim was issued</li>
+							<li><code>nbf</code> Not Before–identifies the time before which the JWT must not be accepted</li>
+							<li><code>exp</code> Expires—identifies the time on or after which the JWT must not be accepted</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Best practices</h2>
+						<ul>
+							<li>Validate JWTs on the client before using them
+								<ul>
+									<li>Use JSON Set URL (<code>jku</code>) or JSON Web Key (<code>jwk</code>) in the <code>header</code> for verification</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7515">rfc7515</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 id="http-interception">Interception</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Request and response transformation
+								<ul>
+									<li>Before sending a request to the server</li>
+									<li>Before receiving a response in the application</li>
+								</ul>
+							</li>
+							<li>Perform implicit tasks
+								<ul>
+									<li>Such as setting an authentication token for all requests sent to the server</li>
+									<li>Alternatively implemented explicitly for every method call</li>
+								</ul>
+							</li>
+							<li>Multiple interceptors forms a forward-and-backwards chain of request/response handlers</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#intercepting-requests-and-responses">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>HttpInterceptor</code></h2>
+						<ul>
+							<li>All interceptors is managed by Angular's DI system (just like services)</li>
+							<li>Interceptors are dependencies of <code>HttpClient</code>
+								<ul>
+									<li>Therefore, they must be provided in the same injector (or a parent of the injector) that provides <code>HttpClient</code></li>
+									<li>If added after <code>HttpClient</code> is created, they are ignored</li>
+								</ul>
+							</li>
+							<li>Create a "barrel" file in <code>/app</code> to keep track of injectors
+								<ul>
+									<li>Contains an array of <code>HttpInterceptor</code> objects</li>
+									<li>Use <code>HTTP_INTERCEPTORS</code> multi-provider token when providing interceptors</li>
+								</ul>
+							</li>
+							<li><code>HttpRequest</code> and <code>HttpResponse</code> are immutable
+								<ul>
+									<li>Cannot be modified after it is created</li>
+									<li>Use the <code>clone</code> method</li>
+								</ul>
+							</li>
+							<li>Check context with <code>HttpContext</code>
+								<ul>
+									<li>If only some requests/responses should be handled or passed on without modification</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<a href="https://angular.io/api/common/http/HttpContext">Angular - HttpContext</a>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Interceptor</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|20-21|25,38-39|26,37|14,16-18|27-36|"><script type="text/template">
+							import { Injectable } from '@angular/core';
+							import {
+								HttpRequest,
+								HttpHandler,
+								HttpEvent,
+								HttpInterceptor,
+								HttpContextToken,
+								HttpContext
+							} from '@angular/common/http';
+							import { Observable } from 'rxjs';
+							import { AuthService } from '../service/auth.service';
+							import { switchMap } from 'rxjs/operators';
+
+							const AUTH = new HttpContextToken<boolean>(() => false)
+
+							export function auth() {
+								return new HttpContext().set(AUTH, true)
+							}
+
+							@Injectable()
+							export class AuthTokenInterceptor implements HttpInterceptor {
+
+								constructor(private authService: AuthService) { }
+
+								intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+									if(request.context.get(AUTH)) {
+										return this.authService.token().pipe(
+											switchMap(response => {
+												const req = request.clone({ 
+													setHeaders: { 
+														Authorization: `Bearer ${response.token}`
+													}
+												})
+												return next.handle(req)
+											})
+										)
+									}
+									return next.handle(request)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/http-interceptors/auth-token.interceptor.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/http#write-an-interceptor">Angular - Communicating with backend services using HTTP</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Service</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|16-20|5,18|"><script type="text/template">
+							import { HttpClient } from '@angular/common/http';
+							import { Injectable } from '@angular/core';
+							import { Astronaut } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { auth } from '../http-interceptors/auth-token.interceptor';
+
+							@Injectable({
+								providedIn: 'root'
+							})
+							export class SpaceService {
+
+								rootUrl = `http://localhost:3000/auth`  
+							
+								constructor(private http: HttpClient) { }
+
+								astronauts(): Observable<Astronaut[]> {
+									return this.http.get<Astronaut[]>(`${this.rootUrl}/astronauts`, {
+										context: auth()
+									})
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/service/space.service.ts</small>
+					</section>
+					<section>
+						<h2>Call from class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|18|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { Observable } from 'rxjs';
+							import { SpaceService } from './service/space.service';
+							import { Astronaut } from 'lib-space';
+
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+								token$: Observable<string> | null = null;
+								astronauts$: Observable<Astronaut[]> | null = null;
+								
+								constructor(private spaceService: SpaceService) { }
+
+								ngOnInit() { 
+									this.astronauts$ = this.spaceService.astronauts()
+								} 
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/interception/src/app/app.component.ts</small>
+						</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

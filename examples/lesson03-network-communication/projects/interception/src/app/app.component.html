@@ -1,0 +1,6 @@
+<!-- <button (click)="getToken()">Get token</button> -->
+<ul>
+  <li *ngFor="let astronaut of astronauts$ | async">
+    {{ astronaut.name }}
+  </li>
+</ul>

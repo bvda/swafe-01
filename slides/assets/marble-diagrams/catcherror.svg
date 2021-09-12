@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="330">
+  <path d="M0 0h670v330H0z" fill="none"/>
+  <g stroke="#fff" stroke-width="2">
+    <path d="M25 50h290"/>
+    <path fill="none" stroke-linecap="square" d="M305 44.226 315 50l-10 5.774"/>
+  </g>
+  <g stroke="#fff" stroke-width="2">
+    <path d="m250 35 30 30M280 35l-30 30"/>
+  </g>
+  <g transform="translate(155 25)">
+    <circle cx="20" cy="25" fill="hsl(44, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">b</text>
+  </g>
+  <g transform="translate(65 25)">
+    <circle cx="20" cy="25" fill="hsl(321, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+    <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">a</text>
+  </g>
+  <g>
+    <g stroke="#fff" stroke-width="2">
+      <path d="M265 120h380"/>
+      <path fill="none" stroke-linecap="square" d="M635 114.226 645 120l-10 5.774"/>
+    </g>
+    <path stroke="#fff" stroke-width="2" d="M594 95v50"/>
+    <g transform="translate(485 95)">
+      <circle cx="20" cy="25" fill="hsl(147, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">3</text>
+    </g>
+    <g transform="translate(395 95)">
+      <circle cx="20" cy="25" fill="hsl(206, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">2</text>
+    </g>
+    <g transform="translate(305 95)">
+      <circle cx="20" cy="25" fill="hsl(35, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">1</text>
+    </g>
+  </g>
+  <g transform="translate(25 165)" fill="none">
+    <rect y="10" width="620" height="48" stroke="#fff" stroke-width="2" rx="0"/>
+    <text x="310" y="35" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="24" dominant-baseline="middle" text-anchor="middle">catchError</text>
+  </g>
+  <g>
+    <g stroke="#fff" stroke-width="2">
+      <path d="M25 280h620"/>
+      <path fill="none" stroke-linecap="square" d="M635 274.226 645 280l-10 5.774"/>
+    </g>
+    <path stroke="#fff" stroke-width="2" d="M594 255v50"/>
+    <g transform="translate(485 255)">
+      <circle cx="20" cy="25" fill="hsl(147, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">3</text>
+    </g>
+    <g transform="translate(395 255)">
+      <circle cx="20" cy="25" fill="hsl(206, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">2</text>
+    </g>
+    <g transform="translate(305 255)">
+      <circle cx="20" cy="25" fill="hsl(35, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">1</text>
+    </g>
+    <g transform="translate(155 255)">
+      <circle cx="20" cy="25" fill="hsl(44, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">b</text>
+    </g>
+    <g transform="translate(65 255)">
+      <circle cx="20" cy="25" fill="hsl(321, 60%, 20%)" stroke="#fff" stroke-width="2" r="19"/>
+      <text fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" dominant-baseline="middle" text-anchor="middle" transform="translate(20 25)">a</text>
+    </g>
+  </g>
+</svg>
