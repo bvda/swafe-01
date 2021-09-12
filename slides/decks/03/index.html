@@ -730,14 +730,52 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>RFC7519 for standard</li>
-							<li>RFC8725 for current best practices</li>
+							<li>JSON Web Token (JWT) is a compact claims representation format</li>
+							<li>A JWT consists of three partitions
+								<ul>
+									<li><code>Header</code> contains type and signing information</li>
+									<li><code>Payload</code> contains claims and other user information</li>
+									<li><code>Signature</code> contains a hash of <code>header</code> and <code>payload</code></li>
+								</ul>
+							</li>
+							<li>Some relevant IETF standards
+								<ul>
+									<li>RFC7519 JSON Web Token </li>
+									<li>RFC8725 JSON Web Token Best Current Practices</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">rfc7519</a></li>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc8725">rfc8725</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>JWT claims</h2>
+						<ul>
+							<li><code>aud</code> Audience—what resource is this token intended for?</li>
+							<li><code>iss</code> Issuer—who issued the token?</li>
+							<li><code>iat</code> Issued At—identifies the time the claim was issued</li>
+							<li><code>nbf</code> Not Before–identifies the time before which the JWT must not be accepted</li>
+							<li><code>exp</code> Expires—identifies the time on or after which the JWT must not be accepted</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Best practices</h2>
+						<ul>
+							<li>Validate JWTs on the client before using them
+								<ul>
+									<li>Use JSON Set URL (<code>jku</code>) or JSON Web Key (<code>jwk</code>) in the <code>header</code> for verification</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://datatracker.ietf.org/doc/html/rfc7515">rfc7515</a></li>
 							</ul>
 						</aside>
 					</section>
