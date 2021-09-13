@@ -30,7 +30,7 @@
 ## Exercise 03-3
 ### Set up routes
 
-1. Setup routes for `AppModule` in `src/app/client/client-routing.module.ts`
+1. Setup routes for `AppModule` in `src/app/app-routing.module.ts`
 2. Setup routes for `ClientModule` in `src/app/app.module.ts`
 3. Add a `RouterOutlet` to `src/app/app.component.html`
 
@@ -51,7 +51,7 @@ Extra: Make a `CourseListItemComponent` in `ClientModule` and pimp it out with y
 ## Exercise 03-5
 ### Setup error handling
 1. Add a `catchError` operator<sup>(<a href="https://rxjs.dev/api/operators/catchError">docs</a>)</sup> to the call to `GET /clients` call in `src/app/client.service.ts`
-2. Update the url to `/faulty-clients` to test it out. _Hint: It will fail ~50% of the time_
+2. Update the url to `/clients/faulty` to test it out. _Hint: It will fail ~50% of the time_
 
 ## Exercise 03-6
 ### Add logging with `HttpInterceptor`
