@@ -269,7 +269,7 @@
 							</li>
 							<li>RxJS transformation
 								<ul>
-									<li>Use the map operator to transform response data as needed by the UI</li>
+									<li>Use the <code>map</code> operator to transform response data as needed by the UI</li>
 									<li>Read the transformed data with the <code>async</code> pipe in the template</li>
 								</ul>
 							</li>
@@ -672,7 +672,7 @@
 						<h2><code>retryWhen</code></h2>
 						<p>Retry an observable sequence on error based on custom criteria</p>
 						<img src="../../assets/marble-diagrams/retrywhen.svg" alt="retryWhen" />
-						<aside class="notes">
+						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
 							<ul>
 								<li><a href="https://rxjs.dev/api/operators/retryWhen">RxJS - retryWhen</a></li>
@@ -745,7 +745,7 @@
 								</ul>
 							</li>
 						</ul>
-						<aside class="notes">
+						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">rfc7519</a></li>
@@ -771,6 +771,8 @@
 									<li>Use JSON Set URL (<code>jku</code>) or JSON Web Key (<code>jwk</code>) in the <code>header</code> for verification</li>
 								</ul>
 							</li>
+							<li>Always verify the issuer (<code>iss</code>) and audience (<code>sud</code>)</li>
+							<li>Always add an expiration time (<code>exp</code>)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
@@ -963,6 +965,7 @@
 			Reveal.initialize({
 				hash: true,
 				slideNumber: true,
+				pdfSeparateFragments: false,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
