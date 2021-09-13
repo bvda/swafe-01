@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lesson 04</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Forms</h2>
+					<h3>Lecture 04</h3>
+					<h4>SWAFE-01</h3>	
+				</section>
+				<section>
+					<section id="forms-in-angular">
+						<h2>Forms in Angular</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Handling user input with forms is the cornerstone of many web applications</li>
+							<li>Angular provides two different approaches:
+								<ul>
+									<li>Template-driven forms</li>
+									<li>Reactive forms</li>
+								</ul>
+							</li>
+							<li>Reactive and template-driven forms process and manage data differently</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview">Angular - Introduction to forms in Angular</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Choosing an approach</h2>
+						<ul>
+							<li>Reative forms
+								<ul>
+									<li>They provide a direct explicit access to the underlying forms object model</li>
+									<li>More scalable, reuseable and testable</li>
+									<li>Choose reactive forms if forms are a key part of the application</li>
+								</ul>
+							</li>
+							<li>Template-driven forms
+								<ul>
+									<li>Easier to implement</li>
+									<li>Choose if the requirements and logic can be managed solely in the template</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#choosing-an-approach">Angular - Forms overview</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Common form foundation classes</h2>
+						<ul>
+							<li>Both reactive and template-driven forms are built on the following base classes</li>
+							<ul>
+								<li><code>FormControl</code> tracks the value and validation status of an individual form control</li>
+								<li><code>FormGroup</code> tracks the same values and status for a collection of form controls</li>
+								<li><code>FormArray</code> tracks the same values and status for an array of form controls</li>
+								<li><code>ControlValueAccessor</code> creates a bridge between Angular FormControl instances and native DOM elements</li>
+							</ul>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#common-form-foundation-classes">Angular - Forms overview</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="template-driven-forms">
+						<h2>Template-driven forms</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Control elements are bound to data properties</li>
+							<li>Uses <a href="../01/#two-way-binding">Two-way binding</a> to update data model</li>
+						</ul>
+					</section>	
+					<section>
+						<h2>Import</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|2,13|"><script type="text/template">
+							import { NgModule } from '@angular/core';
+							import { FormsModule } from '@angular/forms';
+							import { BrowserModule } from '@angular/platform-browser';
+
+							import { AppComponent } from './app.component';
+
+							@NgModule({
+								declarations: [
+									AppComponent
+								],
+								imports: [
+									BrowserModule,
+									FormsModule
+								],
+								providers: [],
+								bootstrap: [AppComponent]
+							})
+							export class AppModule { }
+						</script></code></pre>
+						<small>TODO</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/FormsModule">Angular - FormsModule</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Directives</h2>
+						<ul>
+							<li><code>NgModel</code> - Creates and manages a form control instance for a given element</li>
+							<li><code>NgForm</code> – Creates a top-level instance and binds it to a form to track aggregate form value and validation status</li>
+							<li><code>NgModelGroup</code> – Creates and bind a <code>FormGroup</code> instance to a DOM element</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#">Angular - Introduction to forms in Angular</a></li>
+								<li><a href="https://angular.io/api/forms/NgForm">Angular - NgForm</a></li>
+								<li><a href="https://angular.io/api/forms/NgModelGroup">Angular - NgModelGroup</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="reactive-forms">
+						<h2>Reactive forms</h2>
+					</section>
+				</section>
+				<section>
+					<section id="form-validation">
+						<h2>Form validation</h2>
+					</section>
+				</section>
+				<section>
+					<h2>Key differences</h2>
+					<ul>
+						<li>Setup of form model
+							<ul>
+								<li>Template-driven—implicit, created by directives</li>
+								<li>Reactive—Explicit, created in components class</li>
+							</ul>
+						</li>
+						<li>Data model
+							<ul>
+								<li>Template-driven—Unstructured and mutable</li>
+								<li>Reactive—Structured and immutable</li>
+							</ul>
+						</li>
+						<li>Data flow
+							<ul>
+								<li>Template-Asynchronous</li>
+								<li>Reactive—driven—Synchronous</li>
+							</ul>
+						</li>
+						<li>Form validation
+							<ul>
+								<li>Template-driven—Directives</li>
+								<li>Reactive—Functions</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://angular.io/guide/forms-overview#key-differences">Angular - Forms overview</a></li>
+						</ul>
+					</aside>
+				</section>
+			</div>
+		</div>
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				pdfSeparateFragments: false,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
