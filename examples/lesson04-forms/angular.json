@@ -208,6 +208,37 @@
           }
         }
       }
+    },
+    "warcraft": {
+      "projectType": "library",
+      "root": "projects/warcraft",
+      "sourceRoot": "projects/warcraft/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/warcraft/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/warcraft/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/warcraft/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/warcraft/src/test.ts",
+            "tsConfig": "projects/warcraft/tsconfig.spec.json",
+            "karmaConfig": "projects/warcraft/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "template-driven"
