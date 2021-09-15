@@ -9,11 +9,9 @@ import { Class, WarcraftService } from 'warcraft';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'template-driven';
-
   classes$: Observable<Class[]>;
 
-  constructor(private warcraftService: WarcraftService) { 
+  constructor(warcraftService: WarcraftService) { 
     this.classes$ = warcraftService.getClasses()
   }
 

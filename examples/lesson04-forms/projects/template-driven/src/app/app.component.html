@@ -3,7 +3,7 @@
   <div class="form-wrapper">
     <label for="first_name">First name</label>
     <input type="text" name="first_name" ngModel>
-    <label for="first_name">Last name</label>
+    <label for="last_name">Last name</label>
     <input type="text" name="last_name" ngModel>
     <hr />
     <label for="phone">Phone</label>
@@ -11,8 +11,8 @@
     <label for="email">E-mail</label>
     <input type="text" name="email" ngModel>    
     <hr />
-    <label for="nationalty">Class</label>
-    <select name="nationalty" ngModel>
+    <label for="class">Class</label>
+    <select name="class" ngModel>
       <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
     </select>
     <hr />
