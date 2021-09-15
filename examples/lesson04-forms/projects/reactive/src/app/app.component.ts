@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Class, WarcraftService } from 'warcraft';
 
@@ -10,18 +10,18 @@ import { Class, WarcraftService } from 'warcraft';
 })
 export class AppComponent {
   
-  profileForm: FormGroup
+  profileForm = this.formBuilder.group({
+    first_name: [''],
+    last_name: [''],
+    phone: [''],
+    email: [''],
+    class:[''],
+  })
+
   classes$: Observable<Class[]>;
   
   constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
     this.classes$ = warcraftService.getClasses()
-    this.profileForm = this.formBuilder.group({
-      first_name: [''],
-      last_name: [''],
-      phone: [''],
-      email: [''],
-      class:[''],
-    })
   }
   
   onSubmit() { 
@@ -32,17 +32,17 @@ export class AppComponent {
     this.profileForm.patchValue({
       first_name: 'Anduin',
       last_name: ' Wrynn',
-      phone: '1-800-HEALS',
+      phone: '1-800-HEALZ',
       email: 'aw@stormwind.az',
+      class:  {
+        name: 'Priest',
+        roles: [{
+          name: 'Healer'
+        }, {
+          name: 'Damage'
+        }]
+      }
     })  
-    this.profileForm.controls['class'].setValue({
-      name: 'Priest',
-      roles: [{
-        name: 'Healer'
-      }, {
-        name: 'Damage'
-      }]
-    })
   }
 
   compareClasses(c1: Class, c2: Class) {

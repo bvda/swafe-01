@@ -149,6 +149,102 @@
 					<section id="reactive-forms">
 						<h2>Reactive forms</h2>
 					</section>
+					<section>
+						<h2>Overview</h2>
+					</section>
+					<section>
+						<h2>ReactiveForm – Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|23-25|13-19|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								
+								profileForm = this.formBuilder.group({
+									first_name: [''],
+									last_name: [''],
+									phone: [''],
+									email: [''],
+									class:[''],
+								})
+							
+								classes$: Observable<Class[]>;
+								
+								constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+								
+								onSubmit() { 
+									console.log(this.profileForm.value)
+								} 
+							
+								onAutofill() {
+									this.profileForm.patchValue({
+										first_name: 'Anduin',
+										last_name: ' Wrynn',
+										phone: '1-800-HEALZ',
+										email: 'aw@stormwind.az',
+										class:  {
+											name: 'Priest',
+											roles: [{
+												name: 'Healer'
+											}, {
+												name: 'Damage'
+											}]
+										}
+									})  
+								}
+							
+								compareClasses(c1: Class, c2: Class) {
+									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Reactive – Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|2|5,7,10,12,15|"><script type="text/template">
+							<h1>Reactive forms</h1>
+							<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+								<div class="form-wrapper">
+									<label for="first_name">First name</label>
+									<input type="text" formControlName="first_name">
+									<label for="last_name">Last name</label>
+									<input type="text"  formControlName="last_name">
+									<hr />
+									<label for="phone">Phone</label>
+									<input type="text" formControlName="phone">
+									<label for="email">E-mail</label>
+									<input type="text"  formControlName="email">    
+									<hr />
+									<label for="class">Class</label>
+									<select formControlName="class" [compareWith]="compareClasses">
+										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+									</select>
+									<hr />
+									<button type="button" (click)="onAutofill()">Autofill</button>
+									<hr />
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ profileForm.value | json }}
+							</pre>
+							<pre>
+							{{ profileForm.status }}
+							</pre>
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.html</small>
+					</section>
 				</section>
 				<section>
 					<section id="form-validation">
