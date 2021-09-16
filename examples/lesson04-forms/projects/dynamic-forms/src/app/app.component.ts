@@ -14,9 +14,7 @@ export class AppComponent {
     loot: this.formBuilder.array([''])
   })
 
-  constructor(private formBuilder: FormBuilder) {
-
-  }
+  constructor(private formBuilder: FormBuilder) { }
 
   onSubmit() {
     console.log(this.profileForm.value)

@@ -127,7 +127,7 @@
 								<li><a href="https://angular.io/api/forms/FormsModule">Angular - FormsModule</a></li>
 							</ul>
 						</aside>
-					</section>2
+					</section>
 					<section>
 						<h2>Directives</h2>
 						<ul>
@@ -235,14 +235,6 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Dynamic forms</h2>
-						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
-					</section>
-					<section>
 						<h2>Reactive – Template</h2>
 						<pre><code class='html' data-trim data-line-numbers="|2|5,7,10,12,15|"><script type="text/template">
 							<h1>Reactive forms</h1>
@@ -277,6 +269,90 @@
 							</pre>
 						</script></code></pre>
 						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.html</small>
+					</section>
+					<section>
+						<h2>Dynamic forms</h2>
+						<ul>
+							<li>Some use cases requires adding/removing controls based on input and/or state</li>
+							<li>Use <code>FormArray</code> to manage any number of unnamed controls</li>
+							<li>A great option when the number of controls is not known in advance
+								<ul>
+									<li>Use <code>push(control: AbstractControl)</code> to add controls</li>
+									<li>Use <code>removeAt(index: number)</code> to remove controls</li>
+								</ul>
+							</li>
+							<li>Bind in template with the <code>formArrayName</code> directive</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Dynamic form – Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|11-15|14|31-33|23-25,27-29|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormArray, FormBuilder } from '@angular/forms';
+	
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+	
+								profileForm = this.formBuilder.group({
+									first_name: [''],
+									last_name: [''],
+									loot: this.formBuilder.array([''])
+								})
+	
+								constructor(private formBuilder: FormBuilder) { }
+	
+								onSubmit() {
+									console.log(this.profileForm.value)
+								}
+	
+								addLoot() {
+									this.loot.push(this.formBuilder.control(''))
+								}
+	
+								removeLoot(index: number) {
+									this.loot.removeAt(index)
+								}
+	
+								get loot() {
+									return this.profileForm.get('loot') as FormArray
+								}
+							}
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Dynamic form – Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|2,19|9,15|9-10,15|9-11,14-15|9-15|"><script type="text/template">
+							<h1>Dynamic forms</h1>
+							<form [formGroup]='profileForm' (ngSubmit)="onSubmit()">
+								<div class="form-wrapper">
+									<label for="first_name">First name</label>
+									<input type="text" formControlName="first_name">
+									<label for="last_name">Last name</label>
+									<input type="text"  formControlName="last_name">
+									<hr />
+									<div formArrayName="loot">
+										<button type="button" (click)="addLoot()">Add more loot</button>
+										<div *ngFor="let loot of loot.controls; let i=index">
+											<input id="loot-{{i}}" type="text" [formControlName]="i" />
+											<button (click)="removeLoot(i)">x</button>
+										</div>
+									</div>
+									<hr />
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ profileForm.value | json }}
+							</pre>
+							<pre>
+							{{ profileForm.status }}
+							</pre>
+						</script></code></pre>
 					</section>
 				</section>
 				<section>
