@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,8 @@ import { FormBuilder } from '@angular/forms';
 export class AppComponent {
 
   profileForm = this.formBuilder.group({
+    first_name: [''],
+    last_name: [''],
     loot: this.formBuilder.array([''])
   })
 
@@ -16,7 +18,19 @@ export class AppComponent {
 
   }
 
+  onSubmit() {
+    console.log(this.profileForm.value)
+  }
+
+  addLoot() {
+    this.loot.push(this.formBuilder.control(''))
+  }
+
+  removeLoot(index: number) {
+    this.loot.removeAt(index)
+  }
+
   get loot() {
-    return this.profileForm.
+    return this.profileForm.get('loot') as FormArray
   }
 }
