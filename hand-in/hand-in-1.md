@@ -65,10 +65,9 @@ Futhermore, the solution must include the following:
 - [ ] The application must be seeded with data from the server found @ `hand-in/credit-card-server`
 
 # Credit card server documentation
-**Installation**
-1. Clone https://github.com/bvda/credit-card-server
-2. Run `npm install`
-3. Run `npm start`
+**Installation** 
+1. Run `npm install` in `hand-in/credit-card-server`
+2. Run `npm start` in `hand-in/credit-card-server`
 
 The server is running @ http://localhost:3000
 
