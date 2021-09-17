@@ -31,7 +31,7 @@ export class AppComponent {
   onAutofill() {
     this.profileForm.patchValue({
       first_name: 'Anduin',
-      last_name: ' Wrynn',
+      last_name: 'Wrynn',
       phone: '1-800-HEALZ',
       email: 'aw@stormwind.az',
       class:  {
