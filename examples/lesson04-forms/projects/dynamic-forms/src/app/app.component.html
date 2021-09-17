@@ -1,0 +1,26 @@
+<h1>Dynamic forms</h1>
+<form [formGroup]='profileForm' (ngSubmit)="onSubmit()">
+  <div class="form-wrapper">
+    <label for="first_name">First name</label>
+    <input type="text" formControlName="first_name">
+    <label for="last_name">Last name</label>
+    <input type="text"  formControlName="last_name">
+    <hr />
+    <div formArrayName="loot">
+      <button type="button" (click)="addLoot()">Add more loot</button>
+      <div *ngFor="let loot of loot.controls; let i=index">
+        <input id="loot-{{i}}" type="text" [formControlName]="i" />
+        <button (click)="removeLoot(i)">x</button>
+      </div>
+    </div>
+    <hr />
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<h2>Model</h2>
+<pre>
+{{ profileForm.value | json }}
+</pre>
+<pre>
+{{ profileForm.status }}
+</pre>
