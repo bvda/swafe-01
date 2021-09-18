@@ -424,11 +424,32 @@
 									<li></li>
 								</ul>
 							</li>
+							<li>The class <code>Validators</code> from Forms API provide built-in validators:</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/form-validation">Angular - Validating form input</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Built-in validators</h2>
+						<ul>
+							<li><code>min</code>/<code>max</code>—value must be greater/less than or equal to the provided number</li>
+							<li><code>required</code>—value must be non-empty</li>
+							<li><code>requiredTrue</code>—value must be true</li>
+							<li><code>email</code>—value must pass an email validation test</li>
+							<li><code>minLength</code>/<code>maxLength</code>—value must be greater/less than or equal to the provided number. Intented for types with numeric <code>length</code> value</code></li>
+							<li><code>pattern</code>—value must match a regex pattern</li>
+							<li><code>null validator</code>—Validator that performs no operation</li>
+							<li><code>compose</code>/<code>composeAsync</code>—compose multiple (async) validators into a single function that returns the union of the individual error maps</li>
+						</ul>						
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/Validators">Angular - Validators</a></li>
+								<li><a href="https://stackoverflow.com/questions/52983257/what-is-the-point-of-validators-nullvalidatorcontrol-abstractcontrol">angular - What is the point of Validators.nullValidator(control: AbstractControl)? - Stack Overflow</a></li>
 							</ul>
 						</aside>
 					</section>
