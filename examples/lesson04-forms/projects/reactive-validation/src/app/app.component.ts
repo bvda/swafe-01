@@ -48,8 +48,7 @@ export class AppComponent {
   }
 
   fullNameRequired(group: AbstractControl): ValidationErrors | null {
-    console.log(group.get('first_name')?.value.length)
-    return group.get('first_name')?.value.length === 0 ||  group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
+    return group.get('first_name')?.value.length === 0 || group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
   }
 
   compareClasses(c1: Class, c2: Class) {

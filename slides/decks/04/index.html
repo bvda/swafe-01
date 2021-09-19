@@ -461,6 +461,60 @@
 						</aside>
 					</section>
 					<section>
+						<h2>Template-driven form</h2>
+						<pre><code class='html5' data-trim data-line-numbers="|2,19|9,15|9-10,15|9-11,14-15|9-15|"><script type="text/template">
+							<h1>Template-driven forms</h1>
+							<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+								<div class="form-wrapper" ngModelGroup="name" appFullName #name="ngModelGroup">
+									<label for="first_name">First name</label>
+									<input type="text" name="first_name" ngModel >
+									<label for="last_name">Last name</label>
+									<input type="text" name="last_name" ngModel>
+									<div *ngIf="name.invalid && (name.dirty || name.touched)">
+										<div *ngIf="name.errors?.must_be_set">
+											{{ name.errors?.must_be_set }}
+										</div>
+									</div>
+								</div >
+									<hr />
+									<label for="phone">Phone</label>
+									<input type="text" name="phone" ngModel>
+									<label for="email">E-mail</label>
+									<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
+									<div *ngIf="email.invalid && (email.dirty || email.touched)">
+										<div *ngIf="email.errors?.required">
+											Email is required.
+										</div>
+										<div *ngIf="email.errors?.email">
+											Invalid email.
+										</div>
+										<div *ngIf="email.errors?.minlength">
+											Must be at least {{ email.errors?.minlength.requiredLength }}.
+										</div>
+									</div>
+									<hr />
+									<label for="class">Class</label>
+									<select name="class" ngModel>
+										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+									</select>
+									<hr />
+									<button type="submit" [disabled]="f.invalid">Submit</button>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ f.value | json }}
+							</pre>
+							<pre>
+								errors: 
+								{{ email.errors | json }}
+								{{ name.errors | json }}
+								status:
+								{{ f.status }}
+							</pre>
+							</script></code></pre>
+							<small>examples/lesson04-forms/projects/template-driven-validation/src/app/app.component.html</small>
+					</section>
+					<section>
 						<h2>Reactive form</h2>
 						<pre><code class='typescript' data-trim data-line-numbers="|2,19|9,15|9-10,15|9-11,14-15|9-15|"><script type="text/template">
 							import { Component } from '@angular/core';
@@ -529,8 +583,23 @@
 									return this.profileForm.get('email') as FormControl
 								}
 							}
-
 						</script></code></pre>	
+						<small>examples/lesson04-forms/projects/reactive-validation/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Custom validators</h2>
+						<ul>
+							<li>Add directive for template driven</li>
+							<li>Cross-field validation</li>
+							<li>Asyncvalidators</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/FormGroup#create-a-form-group-with-a-group-level-validator">Angular - FormGroup</a></li>
+								<li><a href="https://angular.io/guide/form-validation#defining-custom-validators"></a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Angular vs. HTML5 validate</h2>
