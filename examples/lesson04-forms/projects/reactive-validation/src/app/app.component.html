@@ -1,0 +1,52 @@
+<h1>Reactive forms</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="form-wrapper">
+    <div formGroupName="name">
+      <label for="first_name">First name</label>
+      <input type="text" formControlName="first_name">
+      <label for="last_name">Last name</label>
+      <input type="text"  formControlName="last_name">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors?.must_be_set">
+          {{ name.errors?.must_be_set }}
+        </div>
+      </div>
+    </div>
+    <hr />
+    <label for="phone">Phone</label>
+    <input type="text" formControlName="phone">
+    <label for="email">E-mail</label>
+    <input type="text" formControlName="email">    
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.email">
+        Invalid email.
+      </div>
+      <div *ngIf="email.errors?.minlength">
+        Must be at least {{ email.errors?.minlength.requiredLength }}.
+      </div>
+    </div>
+    <hr />
+    <label for="class">Class</label>
+    <select formControlName="class" [compareWith]="compareClasses">
+      <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+    </select>
+    <hr />
+    <button type="button" (click)="onAutofill()">Autofill</button>
+    <hr />
+    <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+  </div>
+</form>
+<h2>Model</h2>
+<pre>
+{{ profileForm.value | json }}
+</pre>
+<pre>
+errors: 
+{{ email.errors | json }}
+{{ name.errors | json }}
+status:
+{{ profileForm.status }}
+</pre>

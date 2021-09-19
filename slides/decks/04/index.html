@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lesson 04</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Forms</h2>
+					<h3>Lecture 04</h3>
+					<h4>SWAFE-01</h3>	
+				</section>
+				<section>
+					<section id="forms-in-angular">
+						<h2>Forms in Angular</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Handling user input with forms is the cornerstone of many web applications</li>
+							<li>Angular provides two different approaches:
+								<ul>
+									<li>Template-driven forms</li>	
+									<li>Reactive forms</li>
+								</ul>
+							</li>
+							<li>Reactive and template-driven forms process and manage data differently</li>	
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview">Angular - Introduction to forms in Angular</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Choosing an approach</h2>
+						<ul>
+							<li>Reactive forms
+								<ul>
+									<li>They provide a direct explicit access to the underlying forms object model</li>
+									<li>More scalable, reuseable and testable</li>
+									<li>Choose reactive forms if forms are a key part of the application</li>
+								</ul>
+							</li>
+							<li>Template-driven forms
+								<ul>
+									<li>Easier to implement</li>
+									<li>Choose if the requirements and logic can be managed solely in the template</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#choosing-an-approach">Angular - Forms overview</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Common form foundation classes</h2>
+						<ul>
+							<li>Both reactive and template-driven forms are built on the following base classes</li>
+							<ul>
+								<li><code>FormControl</code> tracks the value and validation status of an individual form control</li>
+								<li><code>FormGroup</code> tracks the same values and status for a collection of form controls</li>
+								<li><code>FormArray</code> tracks the same values and status for an array of form controls</li>
+								<li><code>ControlValueAccessor</code> creates a bridge between Angular FormControl instances and native DOM elements</li>
+							</ul>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#common-form-foundation-classes">Angular - Forms overview</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="template-driven-forms">
+						<h2>Template-driven forms</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Control elements are bound to data properties</li>
+							<li>Implicitly creates data model</li>
+							<li>Template directives
+								<ul>
+									<li><code>NgForm</code>–Creates a top-level instance and binds it to a form to track aggregate form value and validation status</li>
+									<li><code>NgModel</code>—used to mark HTML elements as part of the data model (different context that <a href="../01/#two-way-binding">two-way data binding</a> from Lesson 01)</li>
+									<li><code>NgModelGroup</code>—represents a part of the form. Used to group elements together</li>
+								</ul>
+							</li>
+							<li>Template-driven forms rely on mutability of the data model</li>
+						</ul>
+						<aside class="notes" aria-label="">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview">Angular - Introduction to forms</a></li>
+								<li><a href="https://angular.io/api/forms/NgForm">Angular - NgForm</a></li>
+								<li><a href="https://angular.io/api/forms/NgModel">Angular - NgModel</a></li>
+								<li><a href="https://angular.io/api/forms/NgModelGroup">Angular - NgModelGroup</a></li>
+							</ul>
+						</aside>
+					</section>	
+					<section>
+						<h2>Template-driven form – class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|18,20|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { NgForm } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								classes$: Observable<Class[]>;
+							
+								constructor(warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+							
+								onSubmit(form: NgForm) {
+									console.log(form.value)
+								}
+							}							
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/template-driven/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Template-driven form – Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|2|5,7,10,12,15-17|16|"><script type="text/template">
+							<h1>Template-driven forms</h1>
+							<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+								<div class="form-wrapper">
+									<label for="first_name">First name</label>
+									<input type="text" name="first_name" ngModel>
+									<label for="last_name">Last name</label>
+									<input type="text" name="last_name" ngModel>
+									<hr />
+									<label for="phone">Phone</label>
+									<input type="text" name="phone" ngModel>
+									<label for="email">E-mail</label>
+									<input type="text" name="email" ngModel>    
+									<hr />
+									<label for="class">Class</label>
+									<select name="class" ngModel>
+										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+									</select>
+									<hr />
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ f.value | json }}
+							</pre>
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/template-driven/src/app/app.component.html</small>	
+					</section>	
+				</section>
+				<section>
+					<section id="reactive-forms">
+						<h2>Reactive forms</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>The reactive directives come with <code>ReactiveFormsModule</code></li>
+							<li>Reactive directives
+								<ul>
+									<li><code>formGroup</code>—binds to an instance of <code>FormGroup</code> that represents the entire form model</li>
+									<li><code>formGroupName</code>—used when binding to nested <code>FormGroup</code> objects</li>
+									<li><code>formControl</code>—used for individual controls without the need to create a model, but want Forms API features</li>
+									<li><code>formControlName</code>—used when binding to nested <code>FormControl</code> objects</li>
+								</ul>
+							</li>
+							<li>Define data model in component class</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>ReactiveForm – Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|23-25|13-19|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								
+								profileForm = this.formBuilder.group({
+									first_name: [''],
+									last_name: [''],
+									phone: [''],
+									email: [''],
+									class:[''],
+								})
+							
+								classes$: Observable<Class[]>;
+								
+								constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+								
+								onSubmit() { 
+									console.log(this.profileForm.value)
+								} 
+							
+								onAutofill() {
+									this.profileForm.patchValue({
+										first_name: 'Anduin',
+										last_name: ' Wrynn',
+										phone: '1-800-HEALZ',
+										email: 'aw@stormwind.az',
+										class:  {
+											name: 'Priest',
+											roles: [{
+												name: 'Healer'
+											}, {
+												name: 'Damage'
+											}]
+										}
+									})  
+								}
+							
+								compareClasses(c1: Class, c2: Class) {
+									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/SelectControlValueAccessor">Angular - SelectControlValueAccessor</a></li>
+								<li><a href="https://angular.io/api/forms/SelectMultipleControlValueAccessor">Angular - SelectMultipleControlValueAccessor</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Reactive – Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|2|5,7,10,12,15|"><script type="text/template">
+							<h1>Reactive forms</h1>
+							<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+								<div class="form-wrapper">
+									<label for="first_name">First name</label>
+									<input type="text" formControlName="first_name">
+									<label for="last_name">Last name</label>
+									<input type="text"  formControlName="last_name">
+									<hr />
+									<label for="phone">Phone</label>
+									<input type="text" formControlName="phone">
+									<label for="email">E-mail</label>
+									<input type="text"  formControlName="email">    
+									<hr />
+									<label for="class">Class</label>
+									<select formControlName="class" [compareWith]="compareClasses">
+										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+									</select>
+									<hr />
+									<button type="button" (click)="onAutofill()">Autofill</button>
+									<hr />
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ profileForm.value | json }}
+							</pre>
+							<pre>
+							{{ profileForm.status }}
+							</pre>
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.html</small>
+					</section>
+					<section>
+						<h2>Dynamic forms</h2>
+						<ul>
+							<li>Some use cases requires adding/removing controls based on input and/or state</li>
+							<li>Use <code>FormArray</code> to manage any number of unnamed controls</li>
+							<li>A great option when the number of controls is not known in advance
+								<ul>
+									<li>Use <code>push(control: AbstractControl)</code> to add controls</li>
+									<li>Use <code>removeAt(index: number)</code> to remove controls</li>
+								</ul>
+							</li>
+							<li>Bind in template with the <code>formArrayName</code> directive</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Dynamic form – Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|11-15|14|31-33|23-25,27-29|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormArray, FormBuilder } from '@angular/forms';
+	
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+	
+								profileForm = this.formBuilder.group({
+									first_name: [''],
+									last_name: [''],
+									loot: this.formBuilder.array([''])
+								})
+	
+								constructor(private formBuilder: FormBuilder) { }
+	
+								onSubmit() {
+									console.log(this.profileForm.value)
+								}
+	
+								addLoot() {
+									this.loot.push(this.formBuilder.control(''))
+								}
+	
+								removeLoot(index: number) {
+									this.loot.removeAt(index)
+								}
+	
+								get loot() {
+									return this.profileForm.get('loot') as FormArray
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/dynamic-forms/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Dynamic form – Template</h2>
+						<pre><code class='html' data-trim data-line-numbers="|2,19|9,15|9-10,15|9-11,14-15|9-15|"><script type="text/template">
+							<h1>Dynamic forms</h1>
+							<form [formGroup]='profileForm' (ngSubmit)="onSubmit()">
+								<div class="form-wrapper">
+									<label for="first_name">First name</label>
+									<input type="text" formControlName="first_name">
+									<label for="last_name">Last name</label>
+									<input type="text"  formControlName="last_name">
+									<hr />
+									<div formArrayName="loot">
+										<button type="button" (click)="addLoot()">Add more loot</button>
+										<div *ngFor="let loot of loot.controls; let i=index">
+											<input id="loot-{{i}}" type="text" [formControlName]="i" />
+											<button (click)="removeLoot(i)">x</button>
+										</div>
+									</div>
+									<hr />
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ profileForm.value | json }}
+							</pre>
+							<pre>
+							{{ profileForm.status }}
+							</pre>
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/dynamic-forms/src/app/app.component.html</small>
+					</section>
+					<section>
+						<h2>Updating form control values</h2>
+						<ul>
+							<li>Reactive forms methods to change a form control's value programmatically</li>
+							<li>There are two methods
+								<ul>
+									<li><code>setValue()</code>—updates the values in the form data model. Must match the complete form date model</li>
+									<li><code>patchValue()</code>—updates selected properties in the form data model. Used when partially updating form data model</li>
+								</ul>
+							</li>
+							<li>Provide developers with the flexibility to change control values without user interaction</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/reactive-forms#replacing-a-form-control-value">Angular - Reactive forms</a></li>
+								<li><a href="https://angular.io/guide/reactive-forms#updating-parts-of-the-data-model">Angular - Reactice forms</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="form-validation">
+						<h2>Form validation</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Improve overall data quality
+								<ul>
+									<li>Accuracy-are users providing a usable value?</li>
+									<li>Completeness-are they providing all values needed?</li>
+								</ul>
+							</li>
+							<li>Display useful messages to users
+								<ul>
+									<li>Guide the user to input valid data</li>
+								</ul>
+							</li>
+							<li>Every time the value of a form control changes
+								<ul>
+									<li>Angular runs validation</li>
+									<li>Generates a list of validation errors</li>
+									<li>Results in <code>VALID</code> or <code>INVALID</code></li>
+								</ul>
+							</li>
+							<li>The class <code>Validators</code> from Forms API provide built-in validators for the most common use cases</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/form-validation">Angular - Validating form input</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Built-in validators</h2>
+						<ul>
+							<li><code>min</code>/<code>max</code>—value must be greater/less than or equal to the provided number</li>
+							<li><code>required</code>—value must be non-empty</li>
+							<li><code>requiredTrue</code>—value must be true</li>
+							<li><code>email</code>—value must pass an email validation test</li>
+							<li><code>minLength</code>/<code>maxLength</code>—value must be greater/less than or equal to the provided number. Intented for types with numeric <code>length</code> value</code></li>
+							<li><code>pattern</code>—value must match a regex pattern</li>
+							<li><code>null validator</code>—Validator that performs no operation</li>
+							<li><code>compose</code>/<code>composeAsync</code>—compose multiple (async) validators into a single function that returns the union of the individual error maps</li>
+						</ul>						
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/Validators">Angular - Validators</a></li>
+								<li><a href="https://stackoverflow.com/questions/52983257/what-is-the-point-of-validators-nullvalidatorcontrol-abstractcontrol">angular - What is the point of Validators.nullValidator(control: AbstractControl)? - Stack Overflow</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Template-driven form</h2>
+						<pre><code class='html5' data-trim data-line-numbers="||"><script type="text/template">
+							<h1>Template-driven forms</h1>
+							<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+								<div class="form-wrapper" ngModelGroup="name" appFullName #name="ngModelGroup">
+									<label for="first_name">First name</label>
+									<input type="text" name="first_name" ngModel >
+									<label for="last_name">Last name</label>
+									<input type="text" name="last_name" ngModel>
+									<div *ngIf="name.invalid && (name.dirty || name.touched)">
+										<div *ngIf="name.errors?.must_be_set">
+											{{ name.errors?.must_be_set }}
+										</div>
+									</div>
+								</div >
+									<hr />
+									<label for="phone">Phone</label>
+									<input type="text" name="phone" ngModel>
+									<label for="email">E-mail</label>
+									<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
+									<div *ngIf="email.invalid && (email.dirty || email.touched)">
+										<div *ngIf="email.errors?.required">
+											Email is required.
+										</div>
+										<div *ngIf="email.errors?.email">
+											Invalid email.
+										</div>
+										<div *ngIf="email.errors?.minlength">
+											Must be at least {{ email.errors?.minlength.requiredLength }}.
+										</div>
+									</div>
+									<hr />
+									<label for="class">Class</label>
+									<select name="class" ngModel>
+										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+									</select>
+									<hr />
+									<button type="submit" [disabled]="f.invalid">Submit</button>
+							</form>
+							<h2>Model</h2>
+							<pre>
+							{{ f.value | json }}
+							</pre>
+							<pre>
+								errors: 
+								{{ email.errors | json }}
+								{{ name.errors | json }}
+								status:
+								{{ f.status }}
+							</pre>
+							</script></code></pre>
+							<small>examples/lesson04-forms/projects/template-driven-validation/src/app/app.component.html</small>
+					</section>
+					<section>
+						<h2>Reactive form</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="||"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								
+								profileForm = this.formBuilder.group({
+									name: this.formBuilder.group({
+										first_name: [''],
+										last_name: [''],
+									}, { validators: this.fullNameRequired, updateOn: 'change' }),
+									phone: ['', Validators.nullValidator],
+									email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
+									class:[''],
+								})
+
+								classes$: Observable<Class[]>;
+								
+								constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+								
+								onSubmit() { 
+									console.log(this.profileForm.value)
+								} 
+
+								onAutofill() {
+									this.profileForm.patchValue({
+										first_name: 'Anduin',
+										last_name: 'Wrynn',
+										phone: '1-800-HEALZ',
+										email: 'aw@stormwind.az',
+										class:  {
+											name: 'Priest',
+											roles: [{
+												name: 'Healer'
+											}, {
+												name: 'Damage'
+											}]
+										}
+									})  
+								}
+
+								fullNameRequired(group: FormGroup): ValidationErrors | null {
+									console.log(group.get('first_name')?.value.length)
+									return group.get('first_name')?.value.length === 0 ||  group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
+								}
+
+								compareClasses(c1: Class, c2: Class) {
+									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+								}
+
+								get name(): FormControl {
+									return this.profileForm.get('name') as FormControl
+								}
+
+								get email(): FormControl {
+									return this.profileForm.get('email') as FormControl
+								}
+							}
+						</script></code></pre>	
+						<small>examples/lesson04-forms/projects/reactive-validation/src/app/app.component.ts</small>
+					</section>
+					<section>
+						<h2>Custom validators</h2>
+						<ul>
+							<li>Add directive for template driven</li>
+							<li>Cross-field validation</li>
+							<li>Asyncvalidators</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/FormGroup#create-a-form-group-with-a-group-level-validator">Angular - FormGroup</a></li>
+								<li><a href="https://angular.io/guide/form-validation#defining-custom-validators"></a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Angular vs. HTML5 validate</h2>
+						<ul>
+							<li>HTML5 offers native contraint validation
+								<ul>
+									<li>Disabled by Angular by default</li>
+								</ul>
+							</li>
+							<li>Add <code>ngNativeValidate</code> to the <code>&lt;form&gt;</code> element to use native validation in combination with the Angular-based validation</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/form-validation#interaction-with-native-html-form-validation">Angular - Validating form input</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation">Constraint validation - Developer guides | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Key differences</h2>
+					<ul>
+						<li>Setup of form model
+							<ul>
+								<li><mark>Template-driven</mark> Implicit, created by directives</li>
+								<li><mark>Reactive</mark> Explicit, created in component class</li>
+							</ul>
+						</li>
+						<li>Data model
+							<ul>
+								<li><mark>Template-driven</mark> Unstructured and mutable</li>
+								<li><mark>Reactive</mark> Structured and immutable</li>
+							</ul>
+						</li>
+						<li>Data flow
+							<ul>
+								<li><mark>Template-driven</mark> Asynchronous</li>
+								<li><mark>Reactive</mark> Synchronous</li>
+							</ul>
+						</li>
+						<li>Form validation
+							<ul>
+								<li><mark>Template-driven</mark> Directives</li>
+								<li><mark>Reactive</mark> Functions</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://angular.io/guide/forms-overview#key-differences">Angular - Forms overview</a></li>
+						</ul>
+					</aside>
+				</section>
+			</div>
+		</div>
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				pdfSeparateFragments: false,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

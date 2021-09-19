@@ -1,0 +1,557 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "template-driven": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/template-driven",
+      "sourceRoot": "projects/template-driven/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/template-driven",
+            "index": "projects/template-driven/src/index.html",
+            "main": "projects/template-driven/src/main.ts",
+            "polyfills": "projects/template-driven/src/polyfills.ts",
+            "tsConfig": "projects/template-driven/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/template-driven/src/favicon.ico",
+              "projects/template-driven/src/assets"
+            ],
+            "styles": [
+              "projects/template-driven/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/template-driven/src/environments/environment.ts",
+                  "with": "projects/template-driven/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "template-driven:build:production"
+            },
+            "development": {
+              "browserTarget": "template-driven:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "template-driven:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/template-driven/src/test.ts",
+            "polyfills": "projects/template-driven/src/polyfills.ts",
+            "tsConfig": "projects/template-driven/tsconfig.spec.json",
+            "karmaConfig": "projects/template-driven/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/template-driven/src/favicon.ico",
+              "projects/template-driven/src/assets"
+            ],
+            "styles": [
+              "projects/template-driven/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "reactive": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/reactive",
+      "sourceRoot": "projects/reactive/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/reactive",
+            "index": "projects/reactive/src/index.html",
+            "main": "projects/reactive/src/main.ts",
+            "polyfills": "projects/reactive/src/polyfills.ts",
+            "tsConfig": "projects/reactive/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/reactive/src/favicon.ico",
+              "projects/reactive/src/assets"
+            ],
+            "styles": [
+              "projects/reactive/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/reactive/src/environments/environment.ts",
+                  "with": "projects/reactive/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "reactive:build:production"
+            },
+            "development": {
+              "browserTarget": "reactive:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reactive:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/reactive/src/test.ts",
+            "polyfills": "projects/reactive/src/polyfills.ts",
+            "tsConfig": "projects/reactive/tsconfig.spec.json",
+            "karmaConfig": "projects/reactive/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/reactive/src/favicon.ico",
+              "projects/reactive/src/assets"
+            ],
+            "styles": [
+              "projects/reactive/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "warcraft": {
+      "projectType": "library",
+      "root": "projects/warcraft",
+      "sourceRoot": "projects/warcraft/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/warcraft/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/warcraft/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/warcraft/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/warcraft/src/test.ts",
+            "tsConfig": "projects/warcraft/tsconfig.spec.json",
+            "karmaConfig": "projects/warcraft/karma.conf.js"
+          }
+        }
+      }
+    },
+    "dynamic-forms": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/dynamic-forms",
+      "sourceRoot": "projects/dynamic-forms/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/dynamic-forms",
+            "index": "projects/dynamic-forms/src/index.html",
+            "main": "projects/dynamic-forms/src/main.ts",
+            "polyfills": "projects/dynamic-forms/src/polyfills.ts",
+            "tsConfig": "projects/dynamic-forms/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/dynamic-forms/src/favicon.ico",
+              "projects/dynamic-forms/src/assets"
+            ],
+            "styles": [
+              "projects/dynamic-forms/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/dynamic-forms/src/environments/environment.ts",
+                  "with": "projects/dynamic-forms/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "dynamic-forms:build:production"
+            },
+            "development": {
+              "browserTarget": "dynamic-forms:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dynamic-forms:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-forms/src/test.ts",
+            "polyfills": "projects/dynamic-forms/src/polyfills.ts",
+            "tsConfig": "projects/dynamic-forms/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-forms/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/dynamic-forms/src/favicon.ico",
+              "projects/dynamic-forms/src/assets"
+            ],
+            "styles": [
+              "projects/dynamic-forms/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "template-driven-validation": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/template-driven-validation",
+      "sourceRoot": "projects/template-driven-validation/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/template-driven-validation",
+            "index": "projects/template-driven-validation/src/index.html",
+            "main": "projects/template-driven-validation/src/main.ts",
+            "polyfills": "projects/template-driven-validation/src/polyfills.ts",
+            "tsConfig": "projects/template-driven-validation/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/template-driven-validation/src/favicon.ico",
+              "projects/template-driven-validation/src/assets"
+            ],
+            "styles": [
+              "projects/template-driven-validation/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/template-driven-validation/src/environments/environment.ts",
+                  "with": "projects/template-driven-validation/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "template-driven-validation:build:production"
+            },
+            "development": {
+              "browserTarget": "template-driven-validation:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "template-driven-validation:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/template-driven-validation/src/test.ts",
+            "polyfills": "projects/template-driven-validation/src/polyfills.ts",
+            "tsConfig": "projects/template-driven-validation/tsconfig.spec.json",
+            "karmaConfig": "projects/template-driven-validation/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/template-driven-validation/src/favicon.ico",
+              "projects/template-driven-validation/src/assets"
+            ],
+            "styles": [
+              "projects/template-driven-validation/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "reactive-validation": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/reactive-validation",
+      "sourceRoot": "projects/reactive-validation/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/reactive-validation",
+            "index": "projects/reactive-validation/src/index.html",
+            "main": "projects/reactive-validation/src/main.ts",
+            "polyfills": "projects/reactive-validation/src/polyfills.ts",
+            "tsConfig": "projects/reactive-validation/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/reactive-validation/src/favicon.ico",
+              "projects/reactive-validation/src/assets"
+            ],
+            "styles": [
+              "projects/reactive-validation/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/reactive-validation/src/environments/environment.ts",
+                  "with": "projects/reactive-validation/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "reactive-validation:build:production"
+            },
+            "development": {
+              "browserTarget": "reactive-validation:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reactive-validation:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/reactive-validation/src/test.ts",
+            "polyfills": "projects/reactive-validation/src/polyfills.ts",
+            "tsConfig": "projects/reactive-validation/tsconfig.spec.json",
+            "karmaConfig": "projects/reactive-validation/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/reactive-validation/src/favicon.ico",
+              "projects/reactive-validation/src/assets"
+            ],
+            "styles": [
+              "projects/reactive-validation/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "template-driven"
+}

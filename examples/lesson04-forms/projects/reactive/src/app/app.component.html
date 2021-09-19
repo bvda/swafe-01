@@ -1,0 +1,30 @@
+<h1>Reactive forms</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="form-wrapper">
+    <label for="first_name">First name</label>
+    <input type="text" formControlName="first_name">
+    <label for="last_name">Last name</label>
+    <input type="text"  formControlName="last_name">
+    <hr />
+    <label for="phone">Phone</label>
+    <input type="text" formControlName="phone">
+    <label for="email">E-mail</label>
+    <input type="text"  formControlName="email">    
+    <hr />
+    <label for="class">Class</label>
+    <select formControlName="class" [compareWith]="compareClasses">
+      <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+    </select>
+    <hr />
+    <button type="button" (click)="onAutofill()">Autofill</button>
+    <hr />
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<h2>Model</h2>
+<pre>
+{{ profileForm.value | json }}
+</pre>
+<pre>
+{{ profileForm.status }}
+</pre>

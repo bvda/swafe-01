@@ -1,0 +1,48 @@
+<h1>Template-driven forms</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="form-wrapper" ngModelGroup="name" appFullName #name="ngModelGroup">
+    <label for="first_name">First name</label>
+    <input type="text" name="first_name" ngModel >
+    <label for="last_name">Last name</label>
+    <input type="text" name="last_name" ngModel>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors?.must_be_set">
+        {{ name.errors?.must_be_set }}
+      </div>
+    </div>
+  </div >
+    <hr />
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" ngModel>
+    <label for="email">E-mail</label>
+    <input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.email">
+        Invalid email.
+      </div>
+      <div *ngIf="email.errors?.minlength">
+        Must be at least {{ email.errors?.minlength.requiredLength }}.
+      </div>
+    </div>
+    <hr />
+    <label for="class">Class</label>
+    <select name="class" ngModel>
+      <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+    </select>
+    <hr />
+    <button type="submit" [disabled]="f.invalid">Submit</button>
+</form>
+<h2>Model</h2>
+<pre>
+{{ f.value | json }}
+</pre>
+<pre>
+  errors: 
+  {{ email.errors | json }}
+  {{ name.errors | json }}
+  status:
+  {{ f.status }}
+</pre>
