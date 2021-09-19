@@ -7,3 +7,4 @@ export * from './lib/warcraft.component';
 export * from './lib/warcraft.module';
 
 export * from './lib/class.type';
+export * from './lib/race.type';
