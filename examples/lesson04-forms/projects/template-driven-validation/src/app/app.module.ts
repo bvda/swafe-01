@@ -3,10 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { FullNameDirective } from './full-name.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FullNameDirective
   ],
   imports: [
     BrowserModule,

@@ -415,16 +415,23 @@
 						<ul>
 							<li>Improve overall data quality
 								<ul>
-									<li>Accuracy-are users providing a usable value</li>
-									<li>Completeness-are they providing all values needed </li>
+									<li>Accuracy-are users providing a usable value?</li>
+									<li>Completeness-are they providing all values needed?</li>
 								</ul>
 							</li>
-							<li>Display useful validation messages to users
+							<li>Display useful messages to users
 								<ul>
-									<li></li>
+									<li>Guide the user to input valid data</li>
 								</ul>
 							</li>
-							<li>The class <code>Validators</code> from Forms API provide built-in validators:</li>
+							<li>Every time the value of a form control changes
+								<ul>
+									<li>Angular runs validation</li>
+									<li>Generates a list of validation errors</li>
+									<li>Results in <code>VALID</code> or <code>INVALID</code></li>
+								</ul>
+							</li>
+							<li>The class <code>Validators</code> from Forms API provide built-in validators for the most common use cases</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -450,6 +457,96 @@
 							<ul>
 								<li><a href="https://angular.io/api/forms/Validators">Angular - Validators</a></li>
 								<li><a href="https://stackoverflow.com/questions/52983257/what-is-the-point-of-validators-nullvalidatorcontrol-abstractcontrol">angular - What is the point of Validators.nullValidator(control: AbstractControl)? - Stack Overflow</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Reactive form</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|2,19|9,15|9-10,15|9-11,14-15|9-15|"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								
+								profileForm = this.formBuilder.group({
+									name: this.formBuilder.group({
+										first_name: [''],
+										last_name: [''],
+									}, { validators: this.fullNameRequired, updateOn: 'change' }),
+									phone: ['', Validators.nullValidator],
+									email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
+									class:[''],
+								})
+
+								classes$: Observable<Class[]>;
+								
+								constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+								
+								onSubmit() { 
+									console.log(this.profileForm.value)
+								} 
+
+								onAutofill() {
+									this.profileForm.patchValue({
+										first_name: 'Anduin',
+										last_name: 'Wrynn',
+										phone: '1-800-HEALZ',
+										email: 'aw@stormwind.az',
+										class:  {
+											name: 'Priest',
+											roles: [{
+												name: 'Healer'
+											}, {
+												name: 'Damage'
+											}]
+										}
+									})  
+								}
+
+								fullNameRequired(group: FormGroup): ValidationErrors | null {
+									console.log(group.get('first_name')?.value.length)
+									return group.get('first_name')?.value.length === 0 ||  group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
+								}
+
+								compareClasses(c1: Class, c2: Class) {
+									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+								}
+
+								get name(): FormControl {
+									return this.profileForm.get('name') as FormControl
+								}
+
+								get email(): FormControl {
+									return this.profileForm.get('email') as FormControl
+								}
+							}
+
+						</script></code></pre>	
+					</section>
+					<section>
+						<h2>Angular vs. HTML5 validate</h2>
+						<ul>
+							<li>HTML5 offers native contraint validation
+								<ul>
+									<li>Disabled by Angular by default</li>
+								</ul>
+							</li>
+							<li>Add <code>ngNativeValidate</code> to the <code>&lt;form&gt;</code> element to use native validation in combination with the Angular-based validation</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/form-validation#interaction-with-native-html-form-validation">Angular - Validating form input</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation">Constraint validation - Developer guides | MDN</a></li>
 							</ul>
 						</aside>
 					</section>

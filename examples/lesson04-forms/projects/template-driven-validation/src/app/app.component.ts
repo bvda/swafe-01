@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Class, WarcraftService } from 'warcraft';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'template-driven-validation';
+  classes$: Observable<Class[]>;
+
+  constructor(warcraftService: WarcraftService) { 
+    this.classes$ = warcraftService.getClasses()
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form.value)
+  }
 }
