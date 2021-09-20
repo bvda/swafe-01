@@ -1,7 +1,7 @@
 // Source: https://support.bluesnap.com/docs/test-credit-card-numbers
 
 export var CREDIT_CARD_DATA = [{
-  card_number: 374245455400126,
+  card_number: 374245456400127,
   csc_code: 432,
   cardholder_name: "Horton Rushby",
   expiration_date_month: 5,
