@@ -23,6 +23,10 @@
   font-size: 0.5em;
 }
 
+.reveal .image-ul {
+  font-size: 0.65em;
+}
+
 /**
  * Solarized colors by Ethan Schoonover
  */
