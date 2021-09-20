@@ -86,6 +86,130 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Data access</h2>
+						<div style="display: flex; justify-items: center;">
+							<div>
+								<img src="../../assets/key-diff-td-forms.png" alt="" />
+							</div>
+							<div>
+								<img src="../../assets/key-diff-reactive-forms.png" alt="" />
+							</div>
+						</div>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#setting-up-the-form-model">Angular - Introduction to forms</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Data flow<h2>
+						<h4>Reactive (View to model)</h4>
+						<div style="display: flex; align-content: flex-start; justify-items: center;">
+							<div>
+								<img src="../../assets/dataflow-reactive-forms-vtm.png" alt="" />
+							</div>
+							<div class="image-ul">
+								<ul>
+									<li>The user types a value into the input element, in this case the favorite color 'Blue'.</li>
+									<li>The form input element emits an "input" event with the latest value.</li>
+									<li>The control value accessor listening for events on the form input element immediately relays the new value to the <code>FormControl</code> instance.</li>
+									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
+									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
+								</ul>
+							</div>
+						</div>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-reactive-forms">Angular - Introduction to forms</a></li>
+							</ul>
+						</aside>	
+					</section>
+					<section>
+						<h2>Data flow</h2>
+						<h4>Reactive (Model to view)</h4>
+						<div style="display: flex; align-content: flex-start; justify-items: center;">
+							<div>
+								<img src="../../assets/dataflow-reactive-forms-mtv.png" alt="" />
+							</div>
+							<div class="image-ul">
+								<ul>
+									<li>The user calls the <code>favoriteColorControl.setValue()</code> method, which updates the <code>FormControl</code> value.</li>
+									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
+									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
+									<li>The control value accessor on the form input element updates the element with the new value.</li>
+								</ul>
+							</div>
+						</div>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-reactive-forms">Angular - Introduction to forms</a></li>
+							</ul>
+						</aside>	
+					</section>
+					<section>
+						<h2>Data flow<h2>
+						<h4>Template-driven (View to model)</h4>
+						<div style="display: flex; align-content: flex-start; justify-items: center;">
+							<div>
+								<img src="../../assets/dataflow-td-forms-vtm.png" alt="" />
+							</div>
+							<div class="image-ul">
+								<ul>
+									<li>The user types a value into the input element, in this case the favorite color 'Blue'</li>
+									<li>The form input element emits an "input" event with the latest value</li>
+									<li>The control value accessor attached to the input triggers the <code>setValue()</code> method on the <code>FormControl</code> instance</li>
+									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable</li>
+									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
+									<li>The control value accessor also calls the <code>NgModel.viewToModelUpdate()</code> method which emits an <code>ngModelChange</code> event</li>
+									<li>Because the component template uses two-way data binding for the <code>favoriteColor</code> property, the <code>favoriteColor</code> property in the component is updated to the value emitted by the <code>ngModelChange</code> event (Blue)</li>
+								</ul>
+							</div>
+						</div>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-template-driven-forms">Angular - Introduction to forms</a></li>
+							</ul>
+						</aside>	
+					</section>
+					<section>
+						<h2>Data flow<h2>
+						<h4>Template-driven (Model to view)</h4>
+						<div style="display: flex; align-content: flex-start; justify-items: center;">
+							<div>
+								<img src="../../assets/dataflow-td-forms-mtv.png" alt="" />
+							</div>
+							<div class="image-ul">
+								<ul>
+									<li>The <code>favoriteColor</code> value is updated in the component</li>
+									<li>Change detection begins
+										<ul>
+											<li>During change detection, the <code>ngOnChanges</code> lifecycle hook is called on the <code>NgModel</code> directive instance because the value of one of its inputs has changed</li>
+											<li>The <code>ngOnChanges()</code> method queues an async task to set the value for the internal <code>FormControl</code> instance</li>
+										</ul>
+									</li>
+									<li>Change detection completes</li>
+									<li>On the next tick, the task to set the <code>FormControl</code> instance value is executed
+										<ul>
+											<li>The <code>FormControl</code> instance emits the latest value through the <code>valueChanges</code> observable</li>			
+											<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
+										</ul>
+									</li>
+									<li>The control value accessor updates the form input element in the view with the latest <code>favoriteColor</code> value</li>
+								</ul>
+							</div>
+						</div>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-template-driven-forms">Angular - Introduction to forms</a></li>
+							</ul>
+						</aside>	
+					</section>
 				</section>
 				<section>
 					<section id="template-driven-forms">
@@ -105,7 +229,7 @@
 							</li>
 							<li>Template-driven forms rely on mutability of the data model</li>
 						</ul>
-						<aside class="notes" aria-label="">
+						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/forms-overview">Angular - Introduction to forms</a></li>
@@ -300,6 +424,70 @@
 						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.html</small>
 					</section>
 					<section>
+						<h2>ReactiveForm – Class</h2>
+						<pre><code class='typescript' data-trim data-line-numbers="48-50"><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder } from '@angular/forms';
+							import { Observable } from 'rxjs';
+							import { Class, WarcraftService } from 'warcraft';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent {
+								
+								profileForm = this.formBuilder.group({
+									first_name: [''],
+									last_name: [''],
+									phone: [''],
+									email: [''],
+									class:[''],
+								})
+							
+								classes$: Observable<Class[]>;
+								
+								constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+									this.classes$ = warcraftService.getClasses()
+								}
+								
+								onSubmit() { 
+									console.log(this.profileForm.value)
+								} 
+							
+								onAutofill() {
+									this.profileForm.patchValue({
+										first_name: 'Anduin',
+										last_name: ' Wrynn',
+										phone: '1-800-HEALZ',
+										email: 'aw@stormwind.az',
+										class:  {
+											name: 'Priest',
+											roles: [{
+												name: 'Healer'
+											}, {
+												name: 'Damage'
+											}]
+										}
+									})  
+								}
+							
+								compareClasses(c1: Class, c2: Class) {
+									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/api/forms/SelectControlValueAccessor">Angular - SelectControlValueAccessor</a></li>
+								<li><a href="https://angular.io/api/forms/SelectMultipleControlValueAccessor">Angular - SelectMultipleControlValueAccessor</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
 						<h2>Dynamic forms</h2>
 						<ul>
 							<li>Some use cases requires adding/removing controls based on input and/or state</li>
@@ -462,7 +650,7 @@
 					</section>
 					<section>
 						<h2>Template-driven form</h2>
-						<pre><code class='html5' data-trim data-line-numbers="||"><script type="text/template">
+						<pre><code class='html5' data-trim data-line-numbers="|18|18-19,29|20-22|23-25|26-28|3,13|8,12|9-11|"><script type="text/template">
 							<h1>Template-driven forms</h1>
 							<form #f="ngForm" (ngSubmit)="onSubmit(f)">
 								<div class="form-wrapper" ngModelGroup="name" appFullName #name="ngModelGroup">
@@ -475,30 +663,30 @@
 											{{ name.errors?.must_be_set }}
 										</div>
 									</div>
-								</div >
-									<hr />
-									<label for="phone">Phone</label>
-									<input type="text" name="phone" ngModel>
-									<label for="email">E-mail</label>
-									<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
-									<div *ngIf="email.invalid && (email.dirty || email.touched)">
-										<div *ngIf="email.errors?.required">
-											Email is required.
-										</div>
-										<div *ngIf="email.errors?.email">
-											Invalid email.
-										</div>
-										<div *ngIf="email.errors?.minlength">
-											Must be at least {{ email.errors?.minlength.requiredLength }}.
-										</div>
+								</div>
+								<hr />
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" ngModel>
+								<label for="email">E-mail</label>
+								<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
+								<div *ngIf="email.invalid && (email.dirty || email.touched)">
+									<div *ngIf="email.errors?.required">
+										Email is required.
 									</div>
-									<hr />
-									<label for="class">Class</label>
-									<select name="class" ngModel>
-										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
-									</select>
-									<hr />
-									<button type="submit" [disabled]="f.invalid">Submit</button>
+									<div *ngIf="email.errors?.email">
+										Invalid email.
+									</div>
+									<div *ngIf="email.errors?.minlength">
+										Must be at least {{ email.errors?.minlength.requiredLength }}.
+									</div>
+								</div>
+								<hr />
+								<label for="class">Class</label>
+								<select name="class" ngModel>
+									<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+								</select>
+								<hr />
+								<button type="submit" [disabled]="f.invalid">Submit</button>
 							</form>
 							<h2>Model</h2>
 							<pre>
@@ -516,7 +704,7 @@
 					</section>
 					<section>
 						<h2>Reactive form</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="||"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|13-21|18,19|14-17|50-54|60-62,64-66|"><script type="text/template">
 							import { Component } from '@angular/core';
 							import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 							import { Observable } from 'rxjs';
@@ -567,8 +755,9 @@
 								}
 
 								fullNameRequired(group: FormGroup): ValidationErrors | null {
-									console.log(group.get('first_name')?.value.length)
-									return group.get('first_name')?.value.length === 0 ||  group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
+									return group.get('first_name')?.value.length === 0 || group.get('last_name')?.value.length === 0 
+										? { must_be_set: 'first_name and last_name must be set' } 
+										: null
 								}
 
 								compareClasses(c1: Class, c2: Class) {
@@ -589,20 +778,52 @@
 					<section>
 						<h2>Custom validators</h2>
 						<ul>
-							<li>Add directive for template driven</li>
-							<li>Cross-field validation</li>
-							<li>Asyncvalidators</li>
+							<li>Apply application-specific validation</li>
+							<li>Cross-field validation
+								<ul>
+									<li>Validate values in two different form controls in a form</li>
+									<li>Mutually incompatible–Select only one of two options</li>
+									<li>Dependencies—Select only an option, if another one is selected</li>
+								</ul>
+							</li>
+							<li>Asynchronous validators
+								<ul>
+									<li>Similar to thier synchronous counterparts</li>
+									<li>They must return a <code>Promise</code> or an <code>Observable</code></li>
+									<li>The observable must be finite (is has to complete at some point in time)</li>
+								</ul>
+							</li>
+							<li>Add directive for template-driven forms
+								<ul>
+									<li>Create a <code>Directive</code> and implement the <code>Validator</code> interface</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/api/forms/FormGroup#create-a-form-group-with-a-group-level-validator">Angular - FormGroup</a></li>
 								<li><a href="https://angular.io/guide/form-validation#defining-custom-validators"></a></li>
+								<li><a href="https://angular.io/api/forms/Validator">Angular - Validator</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section>
-						<h2>Angular vs. HTML5 validate</h2>
+						<h2>Triggering validation</h2>
+						<ul>
+							<li>Angular will trigger validation whenever a form control changes per default</li>
+							<li>This can be overridden with <code>updateOn</code> property
+								<ul>
+									<li><code>change</code>—the value is checked as soon as it changes. Default setting</li>
+									<li><code>blur</code>—the value is checked when the control loses focus</li>
+									<li><code>submit</code>—the value is checked when the form is submitted</li>
+								</ul>
+							</li>
+							<li>Can be applied to individual form controls or complete forms</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular vs. HTML5 validation</h2>
 						<ul>
 							<li>HTML5 offers native contraint validation
 								<ul>

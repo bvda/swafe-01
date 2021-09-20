@@ -5,7 +5,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
   selector: '[appFullName]',
   providers: [{provide: NG_VALIDATORS, useExisting: FullNameDirective, multi: true}]
 })
-export class FullNameDirective implements Validator{
+export class FullNameDirective implements Validator {
 
   constructor() { }
 
