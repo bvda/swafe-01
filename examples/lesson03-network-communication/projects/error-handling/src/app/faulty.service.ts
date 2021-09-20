@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Astronaut } from 'lib-space';
+import { AstronautResponse } from 'projects/lib-space/src/lib/astronaut-response.type';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class FaultyService {
 
   constructor(private http: HttpClient) { }
 
-  getFaultyAstronauts(): Observable<Astronaut[]> {
-    return this.http.get<Astronaut[]>(this.host)
+  getFaultyAstronauts(): Observable<AstronautResponse> {
+    return this.http.get<AstronautResponse>(this.host)
   }
 }

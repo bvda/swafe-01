@@ -1,8 +1,13 @@
 <h2>Data</h2>
-<p>{{ observable$ | async | json }}</p>
+<!-- <p>{{ observable$ | async | json }}</p> -->
 
-<ul>
-  <li *ngFor="let a of observable$ | async">
-    {{ a.first_name }}
-  </li>
-</ul>
+<div *ngIf="observable$ | async as s">
+  <ul *ngIf="s.astronauts; else error">
+    <li *ngFor="let a of s.astronauts">
+      {{ a.name }}
+    </li>
+  </ul>
+  <ng-template #error>
+  {{ s.error?.status_code }} {{ s.error?.message }}
+  </ng-template>
+</div>
