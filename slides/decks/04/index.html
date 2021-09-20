@@ -462,7 +462,7 @@
 					</section>
 					<section>
 						<h2>Template-driven form</h2>
-						<pre><code class='html5' data-trim data-line-numbers="||"><script type="text/template">
+						<pre><code class='html5' data-trim data-line-numbers="|18|18-19,29|20-22|23-25|26-28|3,13|8,12|9-11|"><script type="text/template">
 							<h1>Template-driven forms</h1>
 							<form #f="ngForm" (ngSubmit)="onSubmit(f)">
 								<div class="form-wrapper" ngModelGroup="name" appFullName #name="ngModelGroup">
@@ -475,30 +475,30 @@
 											{{ name.errors?.must_be_set }}
 										</div>
 									</div>
-								</div >
-									<hr />
-									<label for="phone">Phone</label>
-									<input type="text" name="phone" ngModel>
-									<label for="email">E-mail</label>
-									<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
-									<div *ngIf="email.invalid && (email.dirty || email.touched)">
-										<div *ngIf="email.errors?.required">
-											Email is required.
-										</div>
-										<div *ngIf="email.errors?.email">
-											Invalid email.
-										</div>
-										<div *ngIf="email.errors?.minlength">
-											Must be at least {{ email.errors?.minlength.requiredLength }}.
-										</div>
+								</div>
+								<hr />
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" ngModel>
+								<label for="email">E-mail</label>
+								<input type="text" name="email" ngModel #email="ngModel" minlength="5" required email>    
+								<div *ngIf="email.invalid && (email.dirty || email.touched)">
+									<div *ngIf="email.errors?.required">
+										Email is required.
 									</div>
-									<hr />
-									<label for="class">Class</label>
-									<select name="class" ngModel>
-										<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
-									</select>
-									<hr />
-									<button type="submit" [disabled]="f.invalid">Submit</button>
+									<div *ngIf="email.errors?.email">
+										Invalid email.
+									</div>
+									<div *ngIf="email.errors?.minlength">
+										Must be at least {{ email.errors?.minlength.requiredLength }}.
+									</div>
+								</div>
+								<hr />
+								<label for="class">Class</label>
+								<select name="class" ngModel>
+									<option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
+								</select>
+								<hr />
+								<button type="submit" [disabled]="f.invalid">Submit</button>
 							</form>
 							<h2>Model</h2>
 							<pre>
@@ -516,7 +516,7 @@
 					</section>
 					<section>
 						<h2>Reactive form</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="||"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|13-21|18,19|14-17|50-54|60-62,64-66|"><script type="text/template">
 							import { Component } from '@angular/core';
 							import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 							import { Observable } from 'rxjs';
@@ -567,8 +567,9 @@
 								}
 
 								fullNameRequired(group: FormGroup): ValidationErrors | null {
-									console.log(group.get('first_name')?.value.length)
-									return group.get('first_name')?.value.length === 0 ||  group.get('last_name')?.value.length === 0 ? { must_be_set: 'first_name and last_name must be set' } : null
+									return group.get('first_name')?.value.length === 0 || group.get('last_name')?.value.length === 0 
+										? { must_be_set: 'first_name and last_name must be set' } 
+										: null
 								}
 
 								compareClasses(c1: Class, c2: Class) {
@@ -589,20 +590,52 @@
 					<section>
 						<h2>Custom validators</h2>
 						<ul>
-							<li>Add directive for template driven</li>
-							<li>Cross-field validation</li>
-							<li>Asyncvalidators</li>
+							<li>Apply application-specific validation</li>
+							<li>Cross-field validation
+								<ul>
+									<li>Validate values in two different form controls in a form</li>
+									<li>Mutually incompatible–Select only one of two options</li>
+									<li>Dependencies—Select only an option, if another one is selected</li>
+								</ul>
+							</li>
+							<li>Asynchronous validators
+								<ul>
+									<li>Similar to thier synchronous counterparts</li>
+									<li>They must return a <code>Promise</code> or an <code>Observable</code></li>
+									<li>The observable must be finite (is has to complete at some point in time)</li>
+								</ul>
+							</li>
+							<li>Add directive for template-driven forms
+								<ul>
+									<li>Create a <code>Directive</code> and implement the <code>Validator</code> interface</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/api/forms/FormGroup#create-a-form-group-with-a-group-level-validator">Angular - FormGroup</a></li>
 								<li><a href="https://angular.io/guide/form-validation#defining-custom-validators"></a></li>
+								<li><a href="https://angular.io/api/forms/Validator">Angular - Validator</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section>
-						<h2>Angular vs. HTML5 validate</h2>
+						<h2>Triggering validation</h2>
+						<ul>
+							<li>Angular will trigger validation whenever a form control changes per default</li>
+							<li>This can be overridden with <code>updateOn</code> property
+								<ul>
+									<li><code>change</code>—the value is checked as soon as it changes. Default setting</li>
+									<li><code>blur</code>—the value is checked when the control loses focus</li>
+									<li><code>submit</code>—the value is checked when the form is submitted</li>
+								</ul>
+							</li>
+							<li>Can be applied to individual form controls or complete forms</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular vs. HTML5 validation</h2>
 						<ul>
 							<li>HTML5 offers native contraint validation
 								<ul>
