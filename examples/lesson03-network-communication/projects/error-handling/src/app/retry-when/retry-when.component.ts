@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Astronaut } from 'lib-space';
+import { AstronautResponse } from 'projects/lib-space/src/lib/astronaut-response.type';
 import { Observable, throwError, timer } from 'rxjs';
 import { catchError, delayWhen, retryWhen } from 'rxjs/operators';
 import { FaultyCall } from '../faulty-call.type';
@@ -13,7 +14,7 @@ import { SpaceError } from '../space-error.type';
 })
 export class RetryWhenComponent implements OnInit {
 
-  observable$: Observable<Astronaut[] | SpaceError> | null = null
+  observable$: Observable<AstronautResponse> | null = null
   faults: FaultyCall[] = []
 
   constructor(private faultyService: FaultyService) { }

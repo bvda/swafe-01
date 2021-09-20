@@ -1,10 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Astronaut } from 'lib-space';
+import { AstronautResponse } from 'projects/lib-space/src/lib/astronaut-response.type';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FaultyService } from '../faulty.service';
-import { SpaceError } from '../space-error.type';
 
 @Component({
   selector: 'app-catch-error',
@@ -12,7 +11,7 @@ import { SpaceError } from '../space-error.type';
   styleUrls: ['./catch-error.component.scss']
 })
 export class CatchErrorComponent implements OnInit {
-  observable$: Observable<Astronaut[] | SpaceError> | null = null
+  observable$: Observable<AstronautResponse> | null = null
   error = ''
 
   constructor(private faultyService: FaultyService) { }
@@ -26,7 +25,11 @@ export class CatchErrorComponent implements OnInit {
         } else {
           this.error = 'Endpoint returned an unsuccessful response code'
         }
-        return of({ message: e.message, status_code: e.status });
+        return of({
+          error: {
+          message: e.message,
+          status_code: e.status
+        }})
       }),
     )
   }

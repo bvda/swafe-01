@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Astronaut } from 'lib-space';
+import { AstronautResponse } from 'projects/lib-space/src/lib/astronaut-response.type';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { FaultyCall } from '../faulty-call.type';
 import { FaultyService } from '../faulty.service';
-import { SpaceError } from '../space-error.type';
 
 @Component({
   selector: 'app-retry',
@@ -13,7 +12,7 @@ import { SpaceError } from '../space-error.type';
 })
 export class RetryComponent implements OnInit {
 
-  observable$: Observable<Astronaut[] | SpaceError> | null = null
+  observable$: Observable<AstronautResponse> | null = null
   faults: FaultyCall[] = []
 
   constructor(private faultyService: FaultyService) { }
