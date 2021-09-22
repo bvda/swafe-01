@@ -30,3 +30,7 @@ export const generate = function(req, res) {
   }
   res.json(result)
 }
+
+export const remove = function(req, res) {
+  res.json({})  
+}
