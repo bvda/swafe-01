@@ -383,9 +383,56 @@
 					</section>
 					<section>
 						<h2>Nesting</h2>
+						<ul>
+							<li>HTML has a clear nested and visual hierachy, CSS does not</li>
+							<li>Sass enables nesting of CSS selector
+								<ul>
+									<li>Follows the same visual hierachy as HTML</li>
+									<li>A great way to organize CSS code and make it more readable</li>
+								</ul>
+							</li>
+							<li>Beware that overly nested rules will produce over-qualified CSS
+								<ul>
+									<li>Hard to maintain</li>
+									<li>Generally considered bad practice</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Partials & Modules</h2>
+						<ul>
+							<li>Partials
+								<ul>
+									<li>Partial Sass files are snippets of CSS code that is included in other Sass files</li>
+									<li>Partial files are named with aleading underscore, e.g. <code>_base.scss</code>
+										<ul>
+											<li>The underscore tells Sass that it is a partial file and should not compiled</li>
+										</ul>
+									</li>
+									<li>A great way to modularize CSS code, that makes it easier to maintain</li>
+								</ul>
+							</li>
+							<li>Modules
+								<ul>
+									<li>Modules can be loaded into other files with the <code>@use</code> rule</li>
+									<li>Access mixins and functions with a namespace based on filename</li>
+									<li>Using a module will include the generated CSS in the compiled output</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
