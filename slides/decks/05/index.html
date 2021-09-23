@@ -434,6 +434,53 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Mixins</h2>
+						<ul>
+							<li>Some things in CSS are a bit tedious to write</li>
+							<li>Mixins lets you make groups of CSS delarations and reuse them</li>
+							<li>You can pass in values to make it even more flexible</li>
+							<li>Use the <code>@mixin</code> directive to create a mixin, e.g. <code>@mixin theme($theme &lt;value&gt;)</code></li>
+							<li>A good use for mixins is for vendor prefixes
+								<ul>
+									<li>Browser vendors add prefixes to experimental or nonstandard CSS properties to prevent breaking code</li>
+								</ul>
+							</li>
+							<li>Use mixins in CSS declarations with <code>@include</code> followed by the name of the mixin</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - MDN Web Docs Glossary: Definitions of Web-related terms | MDN</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Extend/Inheritance</h2>
+						<ul>
+							<li>Keep Sass code very DRY</li>
+							<li>Use <code>@extend</code> to share CSS properties from one selector to another</li>
+							<li>Placeholder classes optimizes compiled CSS output
+								<ul>
+									<li>Only included if extended</li>
+									<li>This keeps the output neat and clean</li>
+								</ul>
+							</li>
+							<li>Use with care
+								<ul>
+									<li>You can create unintended selectors if extending a nested selectors</li>
+									<li></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 				<section>
 					<section id="css-animations">
