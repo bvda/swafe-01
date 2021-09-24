@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Lecture 05</title>
+		<title>Lesson 05</title>
 
 		<link rel="stylesheet" href="../../dist/reset.css">
 		<link rel="stylesheet" href="../../dist/reveal.css">
@@ -495,6 +495,74 @@
 								<li></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>Base</h2>
+						<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+							$base-color: #2d3142 !default;
+							$accent-color: tomato !default;
+							
+							@font-face {
+								font-family: 'RobotoMono-Bold';
+								src: url('./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf');
+							};
+							
+							@mixin text-shadow($font-family: 'Lobster', $font-size: 2em) {
+								font-family: $font-family;
+								font-size: $font-size;
+								color: $base-color;
+								text-shadow: 3px 3px $accent-color;
+							}
+							
+							h1 {
+								@include text-shadow
+							}
+						</script></code></pre>
+						<small>examples/lesson05-sass/_base.scss</small>	
+					</section>
+					<section>
+						<h2>Header component</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<h4>Input</h4>
+								<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+									@use './base';
+
+									.h1-roboto-mono {
+										@include base.text-shadow(
+											'RobotoMono-Bold', 
+											3em
+										)
+									}
+
+								</script></code></pre>
+								<small>examples/lesson05-sass/header.component.scss</small>
+							</div>
+							<div class="two-columns">
+								<h4>Output</h4>
+								<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+									@font-face {
+										font-family: "RobotoMono-Bold";
+										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
+									}
+									h1 {
+										font-family: "Lobster";
+										font-size: 2em;
+										color: #2d3142;
+										text-shadow: 3px 3px tomato;
+									}
+									
+									.h1-roboto-mono {
+										font-family: "RobotoMono-Bold";
+										font-size: 3em;
+										color: #2d3142;
+										text-shadow: 3px 3px tomato;
+									}
+								</script></code></pre>
+								<small>examples/lesson05-sass/out/header.component.css</small>
+							</div>
+						</div>
+
 					</section>
 				</section>
 				<section>
