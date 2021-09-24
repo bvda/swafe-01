@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "RobotoMono-Bold";
+  src: url("../assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
+}
+@font-face {
+  font-family: "Roboto-Variable";
+  src: url("../assets/fonts/roboto-mono/RobotoMono-VariableFont_wght.ttf");
+}
+h2 {
+  font-family: "Roboto-Variable";
+  font-variation-settings: "wght" 100;
+}
+
+h3 {
+  font-family: "Roboto-Variable";
+  font-variation-settings: "wght" 700;
+}
+
+/*# sourceMappingURL=app.component.css.map */
+/*# sourceMappingURL=app.component.css.map */
+/*# sourceMappingURL=app.component.css.map */
+/*# sourceMappingURL=app.component.css.map */
+
+/*# sourceMappingURL=app.component.css.map */
