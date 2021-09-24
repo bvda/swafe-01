@@ -123,19 +123,20 @@
 				</section>
 				<section>
 					<section id="flexbox">
-						<h2>Flex Box Module</h2>
+						<h2>Flexbox</h2>
 					</section>
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>One-dimensional layout model: Concerned with one dimension at a time: Rows or columns</li>
+							<li>Flexbos is a one-dimensional layout model concerned with one dimension at a time</li>
+							<li>An element with the <code>display</code> property set to <code>flex</code> is a <mark>flex container</mark></li>
+							<li>An child element in a flex container is called a <mark>flex item</mark></li>
 							<li>The two axes of flexbox
 								<ul>
 									<li>Main axis – defined by the <code>flex-direction</code> property</li>
 									<li>Cross axis – runs perpendicular to the main axis</li>
 								</ul>
 							</li>
-							<li></li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -145,6 +146,37 @@
 								<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>The two axes of Flexbox</h2>
+						<ul>
+							<li>The main axis is defined by <code>flex-direction</code></li>
+							<li>It has four possible values:
+								<ul>
+									<li><code>row</code>–orientation matches the inline axis of the current writing mode</li>
+									<li><code>row-reverse</code>–same as <code>row</code>, but main-start and main-end are switched around</li>
+									<li><code>column</code>–orientation matches the block axis of the current writing mode</li>
+									<li><code>column-reverse</code>–same as <code>column</code>, but main-start and main-end are switched around</li></li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://www.w3.org/TR/css-flexbox/#flex-direction-property">CSS Flexible Box Layout Module Level 1</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>The flex container</h2>
+						<img src="../../assets/flex-direction-terms.svg" alt="" />
+						<small>https://www.w3.org/TR/css-flexbox/images/flex-direction-terms.svg</small>
+					</section>
+					<section>
+						<h2>The flex container</h2>
+						<ul>
+							<li></li>
+						</ul>
 					</section>
 					<section>
 						<h2>A basic example</h2>
