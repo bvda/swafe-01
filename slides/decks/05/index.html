@@ -534,7 +534,6 @@
 											3em
 										)
 									}
-
 								</script></code></pre>
 								<small>examples/lesson05-sass/header.component.scss</small>
 							</div>
@@ -562,7 +561,53 @@
 								<small>examples/lesson05-sass/out/header.component.css</small>
 							</div>
 						</div>
-
+					</section>
+					<section>
+						<h2>Navigation bar component</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<h4>Input</h4>
+								<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+									@use './base' with (
+										$base-color: #cccccc,
+										$accent-color: #6699ff
+									);
+									
+									.wrapper {
+										background-color: #333333;
+										padding: 10px 20px;
+										h1 {
+											margin: 0;
+										}
+									}									
+								</script></code></pre>
+								<small>examples/lesson05-sass/navigation-bar.component.scss</small>
+							</div>
+							<div class="two-columns">
+								<h4>Output</h4>
+								<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+									@font-face {
+										font-family: "RobotoMono-Bold";
+										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
+									}
+									h1 {
+										font-family: "Lobster";
+										font-size: 2em;
+										color: #cccccc;
+										text-shadow: 3px 3px #6699ff;
+									}
+									
+									.wrapper {
+										background-color: #333333;
+										padding: 10px 20px;
+									}
+									.wrapper h1 {
+										margin: 0;
+									}
+								</script></code></pre>
+								<small>examples/lesson05-sass/out/navigation-bar.component.css</small>
+							</div>
+						</div>
 					</section>
 				</section>
 				<section>
