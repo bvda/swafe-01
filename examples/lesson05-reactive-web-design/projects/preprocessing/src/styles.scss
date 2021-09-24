@@ -17,6 +17,7 @@
 }
 
 * {
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -26,4 +27,14 @@ html, body {
 
 h1, h2 { 
   font-family: 'Lobster';
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  padding:10px 20px;
+  width: 75%;
 }
