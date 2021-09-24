@@ -1,0 +1,13 @@
+$base-color: #4a4a48;
+$base-accent: tomato;
+
+@mixin text-shadow($font-size: 1em, $font-family: 'Lobster') {
+  text-shadow: 2px 2px 0px $base-accent;
+  font-size: $font-size;
+  font-family: $font-family;
+  color: $base-color;
+}
+
+h1 { 
+  @include text-shadow(2em)
+}

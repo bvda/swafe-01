@@ -4,7 +4,17 @@
 @font-face {
   font-family: 'Lobster';
   src: url('./assets/fonts/lobster/Lobster-Regular.ttf');
-}; 
+}
+
+@font-face {
+  font-family: 'RobotoMono-Bold';
+  src: url('./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf');
+}
+
+@font-face { 
+  font-family: 'Roboto-Variable';
+  src: url('./assets/fonts/roboto-mono/RobotoMono-VariableFont_wght.ttf');
+}
 
 * {
   font-family: 'Open Sans', sans-serif;

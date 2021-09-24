@@ -1,0 +1,5 @@
+@use '../base';
+
+.h1-roboto-mono {
+  @include base.text-shadow(3em, 'RobotoMono-Bold');
+}
