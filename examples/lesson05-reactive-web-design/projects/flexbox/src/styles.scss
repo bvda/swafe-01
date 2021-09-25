@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  display: flex;
+  padding: 2px;
+  background-color: tomato;
+  border: 2px solid crimson;
+}
+.flex-child {
+  margin: 2px;
+  padding: 2px;
+  background-color: cornflowerblue;
+  border: 2px solid royalblue;
+}
