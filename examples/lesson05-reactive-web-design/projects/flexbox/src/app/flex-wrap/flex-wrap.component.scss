@@ -1,0 +1,15 @@
+.no-shrink {
+  flex: 1 0 50%;  
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.wrap-item {
+  flex: 1 1 250px;
+}

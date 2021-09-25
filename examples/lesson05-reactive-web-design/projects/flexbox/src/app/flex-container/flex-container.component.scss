@@ -1,18 +1,12 @@
-@import '../../styles';
-
-.container-row {
-  @extend .container;
+.row {
   flex-direction: row;
 }
-.container-row-reverse {
-  @extend .container;
+.row-reverse {
   flex-direction: row-reverse;
 }
-.container-column {
-  @extend .container;
+.column {
   flex-direction: column;
 }
-.container-column-reverse {
-  @extend .container;
+.column-reverse {
   flex-direction: column-reverse;
 }
