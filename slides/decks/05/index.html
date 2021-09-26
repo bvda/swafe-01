@@ -789,7 +789,7 @@
 									.wrapper h1 {
 										margin: 0;
 									}
-								</script></code></pre>
+							</script></code></pre>
 							<small>examples/lesson05-sass/out/navigation-bar.component.css</small>
 						</div>
 					</div>
@@ -815,13 +815,149 @@
 				<section>
 					<h2>Animation properties</h2>
 					<ul>
-						<li><code>animation-name</code></li>
-						<li><code>animation-duration</code></li>
-						<li><code>animation-timing-function</code></li>
-						<li><code>animation-delay</code></li>
-						<li><code>animation-iteration-count</code></li>
-						<li><code>animation-fill-mode</code></li>
-						<li><code>animation-play-state</code></li>
+						<li>Animation has the following sub-properties:
+							<ul>
+								<li><code>animation-name</code>–name of the <code>@keyframes</code> at-rule</li>
+								<li><code>animation-duration</code>–time the animation should take to complete one cycle</li>
+								<li><code>animation-timing-function</code>–the timing of the animation defined by a keyframes acceleration curve</li>
+								<li><code>animation-delay</code>–time between the load and the beginning of animation sequence</li>
+								<li><code>animation-iteration-count</code>–how many times should animation sequence repeat</li>
+								<li><code>animation-fill-mode</code>–how are styles applied before and after animation sequence</li>
+								<li><code>animation-play-state</code>–pause and resume animation sequence</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Animation</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+								.block-animation {
+									animation-name: round;
+									animation-duration: 5s;
+									animation-fill-mode: forwards;
+								
+									@keyframes round {
+										from {
+											border-radius: 0;
+										}
+										to {
+											border-radius: 50%;
+										}
+									}
+								}
+								
+								.radius {
+									border-radius: 50px;
+								}
+								
+								.pulse-animation {
+									animation-name: color-and-margin;
+									animation-duration: 1.5s;
+									animation-iteration-count: infinite;
+								
+									@keyframes color-and-margin {
+										from {
+											margin-left: 0;
+											background-color: midnightblue;
+										}
+										50% {
+											background-color: tomato;
+											margin-left: 100px;
+											border-radius: 5px;
+										}
+										to {
+											background-color: midnightblue;
+											margin-left: 0px;
+										}    
+									}
+								}
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200"></iframe>	
+					</div>
+					</div>
+				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/animations/animations.component.scss</small>
+				</section>
+				<section>
+					<h2>Transitions</h2>
+					<ul>
+						<li>CSS transitions provide a way to control animation speed when changing CSS properties</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">Using CSS transitions - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Transition properties</h2>
+					<ul>
+						<li>Transitions has the following sub-properties:
+							<ul>
+								<li><code>transition-property</code>–specifies the name of the CSS properties to which transistions should be applied</li>
+								<li><code>transition-duration</code>–specifies over which duration the transistion should occur</li>
+								<li><code>transition-timing-function</code>–specifies how intermediate property values are computed</li>
+								<li><code>transition-delay</code>–specifies the time from when property is changed to when transistion begins</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">Using CSS transitions - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Transitions</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+								.container {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									width: 500px;
+									height: 500px;
+									border: 1px solid lightgray;
+									div {
+										background-color: tomato;
+										width: 100px;
+										height: 100px;
+										transition-property: transform, background-color, border-radius;
+										transition-duration: 2s, 2s, 2s;
+									}
+									div:hover { 
+										transform: rotate(360deg);
+										background-color: lightgreen;
+										border-radius: 50px;
+									}
+								}
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200/transitions"></iframe>	
+					</div>
+					</div>
+				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/transitions/transitions.component.scss</small>
+				</section>
+				<section>
+					<h2>Animations vs. transitions</h2>
+					<ul>
+						<li>Animations
+							<ul>
+								<li><mark>Explicit</mark></li>
+							</ul>
+						</li>
+						<li>Transitions
+							<ul>
+								<li><mark>Implicit</mark></li>
+							</ul>
+						</li>
 					</ul>
 				</section>
 			</section>
