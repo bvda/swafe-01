@@ -23,9 +23,9 @@ If you want to go fast, check out https://sass-lang.com/install for alternatives
 - Add a new component `Login` to the project<sup>(<a href="https://angular.io/cli/generate#component-command">docs</a>)</sup>
 - Add a new component `LoginForm` to the project<sup>(<a href="https://angular.io/cli/generate#component-command">docs</a>)</sup>
 - Add a new component `Navigation` to the project<sup>(<a href="https://angular.io/cli/generate#component-command">docs</a>)</sup>
-- Make `Navigation` component fill the whole screen horizontally, and set a `background-color` (I like `cornflowerblue`)
+- Make `Navigation` component fill the whole screen horizontally<sup>(<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox#the_flex_container">docs</a>)</sup>, and set a `background-color` (I like `cornflowerblue`)
   - Place `Navigation` at the top of `Login` component _Hint: Having trouble with some `margins`? Check the styles of `body` and/or `html` in the Developer Tools_
-- Add a CSS grid to `LoginForm` with four vertical tracks and three horizontal tracks
+- Add a CSS grid<sup>(<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout#the_grid_container">docs</a>)</sup> to `LoginForm` with four vertical tracks and three horizontal tracks
   - Insert an user `input` element with type `text` and make it fill out second row across all columns
   - Insert a password `input` field with type `password` and make it fill out the third row across all columns
   - Insert a button and place in the bottom right grid cell
