@@ -150,7 +150,7 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a href=""></a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">Using media queries - CSS: Cascading Style Sheets | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -414,82 +414,7 @@
 						</ul>
 					</aside>
 				</section>
-				<section>
-					<h2></h2>
-				</section>
-				<section>
-					<h4>Basic example</h4>
-					<div class="two-columns-container">
-						<div class="two-columns">
-							<h4>Markup</h4>
-							<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
-									<div class="wrapper">
-										<div class="one">One</div>
-										<div class="two">Two</div>
-										<div class="three">Three</div>
-										<div class="four">Four</div>
-										<div class="five">Five</div>
-										<div class="six">Six</div>
-									</div>
-								</script></code></pre>
-						</div>
-						<div class="two-columns">
-							<h4>Styles</h4>
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
-									.wrapper {
-										display: grid;
-										grid-template-columns: repeat(3, 1fr);
-										gap: 10px;
-										grid-auto-rows: minmax(100px, auto);
-									}
-									.one {
-										grid-column: 1 / 3;
-										grid-row: 1;
-									}
-									.two {
-										grid-column: 2 / 4;
-										grid-row: 1 / 3;
-									}
-									.three {
-										grid-column: 1;
-										grid-row: 2 / 5;
-									}
-									.four {
-										grid-column: 3;
-										grid-row: 3;
-									}
-									.five {
-										grid-column: 2;
-										grid-row: 4;
-									}
-									.six {
-										grid-column: 3;
-										grid-row: 4;
-									}
-								</script></code></pre>
-						</div>
-					</div>
-					<small>examples/05/css-grid/</small>
-				</section>
-				<section>
-					<h4>Basic example – explained</h4>
-					<ul>
-						<li><code>grid-template-columns: repeat(3, 1fr)</code>
-							<ul>
-								<li>Create a grid with three flexible tracks of equal width</li>
-								<li>The <code>fr</code> unit represents a fraction of leftover space</li>
-							</ul>
-						</li>
-						<li>2</li>
-						<li>3</li>
-					</ul>
-					<aside class="notes" aria-label="notes">
-						<h4>References</h4>
-						<ul>
-							<li><a href="https://www.w3.org/TR/css3-grid-layout/#fr-unit">CSS Grid Layout Module Level 1</a></li>
-						</ul>
-					</aside>
-				</section>
+
 			</section>
 			<section>
 				<h2>Relationship of layout methods</h2>
@@ -514,9 +439,7 @@
 				<aside class="notes" aria-label="notes">
 					<h4>References</h4>
 					<ul>
-						<li><a
-								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout">Relationship
-								of grid layout to other layout methods - CSS: Cascading Style Sheets | MDN</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout">Relationship of grid layout to other layout methods - CSS: Cascading Style Sheets | MDN</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -538,10 +461,10 @@
 												<li>SCSS — Sassy Cascading Style Sheets</li>
 											</ul>
 										</li>
+										<li>Biggest difference between Sass and SCSS is curly brackets and semicolon</li>
 									</ul>
-								<li>Biggest difference between Sass and SCSS is curly brackets and semicolon</li>
-						</li>
-						<li>Less</li>
+							</li>
+						<li>Less – Leaner Style Sheets</li>
 					</ul>
 					</li>
 					<li>Compiles into CSS</li>
