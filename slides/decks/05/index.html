@@ -110,20 +110,21 @@
 				<section>
 					<h2>The viewport meta tag</h2>
 					<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|7|"><script type="text/template">
-							<!doctype html>
-							<html lang="en">
-							<head>
-								<meta charset="utf-8">
-								<title>MyFirstApplication</title>
-								<base href="/">
-								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<link rel="icon" type="image/x-icon" href="favicon.ico">
-							</head>
-							<body>
-								<app-root></app-root>
-							</body>
-							</html>
-						</script></code></pre>
+						<!doctype html>
+						<html lang="en">
+						<head>
+							<meta charset="utf-8">
+							<title>MediaBreakpoints</title>
+							<base href="/">
+							<meta name="viewport" content="width=device-width, initial-scale=1">
+							<link rel="icon" type="image/x-icon" href="favicon.ico">
+						</head>
+						<body>
+							<app-root></app-root>
+						</body>
+						</html>						
+					</script></code></pre>
+					<small>examples/lesson05-reactive-web-design/projects/media-breakpoints/src/index.html</small>
 				</section>
 				<section>
 					<h2>Media queries</h2>
@@ -132,17 +133,17 @@
 						<li>In CSS, use <code>@media</code> rule to conditionally apply styles</li>
 						<li>Media types
 							<ul>
-								<li><code>all</code></li>
-								<li><code>screen</code></li>
-								<li><code>print</code></li>
-								<li><code>speech</code></li>
+								<li><code>all</code>–suitable for all devices</li>
+								<li><code>screen</code>–intended for screens</li>
+								<li><code>print</code>–intended for print</li>
+								<li><code>speech</code>-intended for speech synthesizers</li>
 							</ul>
 						</li>
 						<li>Logical operators
 							<ul>
-								<li><code>not</code></li>
-								<li><code>and</code></li>
-								<li><code>only</code></li>
+								<li><code>not</code>–negates the query. Must be used with media type</li>
+								<li><code>and</code>–combines multiple queries into one. Also used to combine media types with media features</li>
+								<li><code>only</code>–apply only styles if entire query matches. Useful when writing backwards compatible queries</li>
 							</ul>
 						</li>
 					</ul>
@@ -203,11 +204,8 @@
 						<h4>References</h4>
 						<ul>
 							<li><a href="https://www.w3.org/TR/css-flexbox/">CSS Flexible Box Layout Module Level 1</a></li>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">CSS Flexible Box
-									Layout - CSS: Cascading Style Sheets | MDN</a></li>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic
-									concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">CSS Flexible Box Layout - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,11 +216,9 @@
 						<li>It has four possible values:
 							<ul>
 								<li><code>row</code>–orientation matches the inline axis of the current writing mode</li>
-								<li><code>row-reverse</code>–same as <code>row</code>, but main-start and main-end are switched around
-								</li>
+								<li><code>row-reverse</code>–same as <code>row</code>, but main-start and main-end are switched around</li>
 								<li><code>column</code>–orientation matches the block axis of the current writing mode</li>
-								<li><code>column-reverse</code>–same as <code>column</code>, but main-start and main-end are switched
-									around</li>
+								<li><code>column-reverse</code>–same as <code>column</code>, but main-start and main-end are switched around</li>
 						</li>
 					</ul>
 					</li>
@@ -230,8 +226,7 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a href="https://www.w3.org/TR/css-flexbox/#flex-direction-property">CSS Flexible Box Layout Module
-									Level 1</a></li>
+							<li><a href="https://www.w3.org/TR/css-flexbox/#flex-direction-property">CSS Flexible Box Layout Module Level 1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -252,8 +247,7 @@
 									available space</li>
 							</ul>
 						</li>
-						<li>Often expressed with the shorthand notation:
-							<code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code></li>
+						<li>Often expressed with the shorthand notation: <code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code></li>
 					</ul>
 					<aside class="notes">
 						<h4>References</h4>
@@ -372,34 +366,6 @@
 				</section>
 			</section>
 			<section>
-				<h2>A basic example</h2>
-				<div class="two-columns-container">
-					<div class="two-columns">
-						<h4>Markup</h4>
-						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
-								<div class="box">
-									<div>One</div>
-									<div>Two</div>
-									<div>Three
-											<br>has
-											<br>extra
-											<br>text
-									</div>
-								</div>
-							</script></code></pre>
-					</div>
-					<div class="two-columns">
-						<h4>Styles</h4>
-						<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
-								.box {
-									display: flex;
-									justify-content: space-between;
-								}
-							</script></code></pre>
-					</div>
-				</div>
-			</section>
-			<section>
 				<h2>Typical use cases</h2>
 				<ul>
 					<li>Navigation</li>
@@ -423,6 +389,16 @@
 				<section>
 					<h2>Overview</h2>
 					<ul>
+						<li>CSS Grid layout introduces a two-dimentional grid system to CSS</li>
+						<li>Terminology
+							<ul>
+								<li>Grid line–are the horizontal and vertical dividing lines</li>
+								<li>Grid track–the space between two grid lines</li>
+								<li>Grid cell–the intersection a grid row and a grid column</li>
+								<li>Grid area–consists of one or more adjacent grid cells</li>
+							</ul>
+						</li>
+						<li>Tracks is a generic term for a grid row or grid column</li>
 						<li>Fixed and flexible track sizes</li>
 						<li>Item placement</li>
 						<li>Creation of additional tracks to hold content</li>
@@ -433,13 +409,13 @@
 						<h4>References</h4>
 						<ul>
 							<li><a href="https://www.w3.org/TR/css3-grid-layout/">CSS Grid Layout Module Level 1</a></li>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout">Basic
-									Concepts of grid layout - CSS: Cascading Style Sheets | MDN</a></li>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">CSS Grid Layout - CSS:
-									Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout">Basic Concepts of grid layout - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">CSS Grid Layout - CSS: Cascading Style Sheets | MDN</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section>
+					<h2></h2>
 				</section>
 				<section>
 					<h4>Basic example</h4>
