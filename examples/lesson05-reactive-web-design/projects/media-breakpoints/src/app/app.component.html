@@ -1,0 +1,5 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <h1>Home component</h1>
+  <app-profile-list-item *ngFor="let profile of profiles$ | async" [profile]="profile"></app-profile-list-item>
+</div>

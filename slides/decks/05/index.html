@@ -36,14 +36,12 @@
 						</li>
 						<li>As more diverse screen sizes became available, the concept of <em>responsive web design</em> appeared
 						</li>
-						<li>Responsive web design allow web pages to alter layout and appearance to suits different screen widths
-							and resolutions</li>
+						<li>Responsive web design allow web pages to alter layout and appearance to suits different screen widths and resolutions</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">Responsive
-									design - Learn web development | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">Responsive design - Learn web development | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -73,17 +71,16 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a href="https://css-tricks.com/how-to-develop-and-test-a-mobile-first-design-in-2021/">How to Develop
-									and Test a Mobile-First Design in 2021 | CSS-Tricks</a></li>
-							<li><a href="https://www.invisionapp.com/inside-design/mobile-first-design/">Mobile-first design: An easy
-									guide to everything you need to know</a></li>
+							<li><a href="https://css-tricks.com/how-to-develop-and-test-a-mobile-first-design-in-2021/">How to Develop and Test a Mobile-First Design in 2021 | CSS-Tricks</a></li>
+							<li><a href="https://www.invisionapp.com/inside-design/mobile-first-design/">Mobile-first design: An easy guide to everything you need to know</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Mobile">Mobile Web Development - Developer guides | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h2>Viewport</h2>
+					<h2>Viewport & Media queries</h2>
 				</section>
 				<section>
 					<h2>Overview</h2>
@@ -105,9 +102,8 @@
 						</ul>
 						<h4>References</h4>
 						<ul>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design#the_viewport_meta_tag">The
-									viewport meta tag – Responsive design - learn web development | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design#the_viewport_meta_tag">The viewport meta tag – Responsive design - learn web development | MDN</a></li>
+							<li><a href="https://responsivedesign.is/guidelines/flexible-grid-based-layouts/">Flexible Grid Based Layouts - Responsive Web Design</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -129,10 +125,65 @@
 							</html>
 						</script></code></pre>
 				</section>
+				<section>
+					<h2>Media queries</h2>
+					<ul>
+						<li>Media queries adapt web applications depending on the various device characteristics and parameters</li>
+						<li>In CSS, use <code>@media</code> rule to conditionally apply styles</li>
+						<li>Media types
+							<ul>
+								<li><code>all</code></li>
+								<li><code>screen</code></li>
+								<li><code>print</code></li>
+								<li><code>speech</code></li>
+							</ul>
+						</li>
+						<li>Logical operators
+							<ul>
+								<li><code>not</code></li>
+								<li><code>and</code></li>
+								<li><code>only</code></li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href=""></a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Media features</h2>
+					<ul>
+						<li>Media features describe specific characteristics of the user agent:
+							<ul>
+								<li><code>orientation</code>–specifies the viewport orientation, can be the following values:
+									<ul>
+										<li><code>portrait</code>The viewport is in a portrait orientation, i.e.,  the height is greater than or equal to the width</li>
+										<li><code>landscape</code>The viewport is in a landscape orientation, i.e., the width is greater than the height</li>
+									</ul>
+								</li>
+								<li><code>width</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
+								<li><code>height</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
+							</ul>
+						</li>
+						<li>Check out the documentation for complete list of available media features</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation">orientation - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width">width - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/height">height - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside> 
+				</section>
 			</section>
 			<section>
 				<section id="flexbox">
 					<h2>Flexbox</h2>
+					<small>Run <code>ng serve flexbox</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
@@ -798,6 +849,7 @@
 			<section>
 				<section id="css-animations">
 					<h2>Animations</h2>
+					<small>Run <code>ng serve animations</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
