@@ -1,0 +1,44 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  background-color: darkkhaki;
+}
+
+.one {
+  background-color: aqua;
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.two {
+  background-color: cornflowerblue;
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  opacity: 0.75;
+}
+
+.three {
+  background-color: blanchedalmond;
+  grid-column: 1;
+  grid-row: 2 / 5;
+}
+
+.four {
+  background-color: burlywood;
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.five {
+  background-color: cadetblue;
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.six {
+  grid-column: 3;
+  grid-row: 4;
+  background-color: aquamarine;
+} 

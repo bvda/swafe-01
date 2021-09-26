@@ -7,6 +7,7 @@ router.use(cors())
 
 router.get('/', controller.list)
 router.post('/', controller.create)
+router.delete('', controller.remove)
 router.get('/generate', controller.generate)
 
 export { router }

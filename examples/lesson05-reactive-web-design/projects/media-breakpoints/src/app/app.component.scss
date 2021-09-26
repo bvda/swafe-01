@@ -1,0 +1,20 @@
+@media screen and (max-width: 425px) {
+  html, body {
+    background-color: lime;
+  }
+  p {
+    background-color: tomato;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  p {
+    background-color: steelblue;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  p {
+    background-color: skyblue;
+  }
+}

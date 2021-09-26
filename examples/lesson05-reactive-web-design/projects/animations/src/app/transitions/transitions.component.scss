@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border: 1px solid lightgray;
+  div {
+    background-color: tomato;
+    width: 100px;
+    height: 100px;
+    transition-property: transform, background-color, border-radius;
+    transition-duration: 2s, 2s, 2s;
+  }
+  div:hover { 
+    transform: rotate(360deg);
+    background-color: lightgreen;
+    border-radius: 50px;
+  }
+}

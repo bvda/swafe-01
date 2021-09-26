@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Lesson 05</title>
+
+	<link rel="stylesheet" href="../../dist/reset.css">
+	<link rel="stylesheet" href="../../dist/reveal.css">
+	<link rel="stylesheet" href="../../dist/theme/black.css">
+
+	<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Responsive web design</h2>
+				<h3>Lesson 05</h3>
+				<h4>SWAFE-01</h3>
+			</section>
+			<section>
+				<section id="responsive-web-design">
+					<h2>Overview</h2>
+					<ul>
+						<li>In the early days of web design, pages where built to target a particular screen size
+						<li>If users had different screen sizes than expected
+							<ul>
+								<li>Unwanted scrollbars</li>
+								<li>Overly long line lengths</li>
+								<li>Poor use of space</li>
+							</ul>
+						</li>
+						<li>As more diverse screen sizes became available, the concept of <em>responsive web design</em> appeared
+						</li>
+						<li>Responsive web design allow web pages to alter layout and appearance to suits different screen widths and resolutions</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">Responsive design - Learn web development | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<p>It is important to understand that</p>
+					<h1 class="r-fit-text">responsive web design</h1>
+					<h1 class="r-fit-text">is not a separate technology</h1>
+					<p>It is a term used to describe an approach to web design</p>
+				</section>
+				<section>
+					<h2>What needs to be responsive?</h2>
+					<ul>
+						<li>Containers – Document divisions, sections, articles</li>
+						<li>Text – Headings</li>
+						<li>Media – Images, Video players</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Mobile-first design</h2>
+					<ul>
+						<li>Design with mobile users in focus</li>
+						<li>Identify most the important content to present</li>
+						<li>Make it easy to navigate</li>
+						<li>There is a difference between a mobile-first design and a mobile-reponsive design</li>
+						<li>Start with a very basic design and gradually add more complexity</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://css-tricks.com/how-to-develop-and-test-a-mobile-first-design-in-2021/">How to Develop and Test a Mobile-First Design in 2021 | CSS-Tricks</a></li>
+							<li><a href="https://www.invisionapp.com/inside-design/mobile-first-design/">Mobile-first design: An easy guide to everything you need to know</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Mobile">Mobile Web Development - Developer guides | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Viewport & Media queries</h2>
+				</section>
+				<section>
+					<h2>Overview</h2>
+					<ul>
+						<li>The user's visible area of a web page</li>
+						<li>The <code>viewport</code> meta tag instructs the device to set the width to the device width
+							<ul>
+								<li>Why is this needed? Devices lie about their width!</li>
+							</ul>
+						</li>
+						<li><code>width=device-width</code> tells the browser to set the viewport to the actual device width</li>
+						<li><code>initial-scale=1</code> tells the browser scale the document to 100% of it's intended size</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<ul>
+							<li>iPhone set viewport to 960px</li>
+							<li>Layout that kicks in at 480px will never kick in</li>
+							<li>Override with <code>width</code> property to set device width</li>
+						</ul>
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design#the_viewport_meta_tag">The viewport meta tag – Responsive design - learn web development | MDN</a></li>
+							<li><a href="https://responsivedesign.is/guidelines/flexible-grid-based-layouts/">Flexible Grid Based Layouts - Responsive Web Design</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>The viewport meta tag</h2>
+					<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|7|"><script type="text/template">
+						<!doctype html>
+						<html lang="en">
+						<head>
+							<meta charset="utf-8">
+							<title>MediaBreakpoints</title>
+							<base href="/">
+							<meta name="viewport" content="width=device-width, initial-scale=1">
+							<link rel="icon" type="image/x-icon" href="favicon.ico">
+						</head>
+						<body>
+							<app-root></app-root>
+						</body>
+						</html>						
+					</script></code></pre>
+					<small>examples/lesson05-reactive-web-design/projects/media-breakpoints/src/index.html</small>
+				</section>
+				<section>
+					<h2>Media queries</h2>
+					<ul>
+						<li>Media queries adapt web applications depending on the various device characteristics and parameters</li>
+						<li>In CSS, use <code>@media</code> rule to conditionally apply styles</li>
+						<li>Media types
+							<ul>
+								<li><code>all</code>–suitable for all devices</li>
+								<li><code>screen</code>–intended for screens</li>
+								<li><code>print</code>–intended for print</li>
+								<li><code>speech</code>-intended for speech synthesizers</li>
+							</ul>
+						</li>
+						<li>Logical operators
+							<ul>
+								<li><code>not</code>–negates the query. Must be used with media type</li>
+								<li><code>and</code>–combines multiple queries into one. Also used to combine media types with media features</li>
+								<li><code>only</code>–apply only styles if entire query matches. Useful when writing backwards compatible queries</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">Using media queries - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Media features</h2>
+					<ul>
+						<li>Media features describe specific characteristics of the user agent:
+							<ul>
+								<li><code>orientation</code>–specifies the viewport orientation, can be the following values:
+									<ul>
+										<li><code>portrait</code>The viewport is in a portrait orientation, i.e.,  the height is greater than or equal to the width</li>
+										<li><code>landscape</code>The viewport is in a landscape orientation, i.e., the width is greater than the height</li>
+									</ul>
+								</li>
+								<li><code>width</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
+								<li><code>height</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
+							</ul>
+						</li>
+						<li>Check out the documentation for complete list of available media features</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation">orientation - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width">width - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/height">height - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside> 
+				</section>
+			</section>
+			<section>
+				<section id="flexbox">
+					<h2>Flexbox</h2>
+					<small>Run <code>ng serve flexbox</code> in <code>examples/lesson05-reactive-web-design</code></small>
+				</section>
+				<section>
+					<h2>Overview</h2>
+					<ul>
+						<li>Flexbos is a one-dimensional layout model concerned with one dimension at a time</li>
+						<li>An element with the <code>display</code> property set to <code>flex</code> is a <mark>flex
+								container</mark></li>
+						<li>An child element in a flex container is called a <mark>flex item</mark></li>
+						<li>The two axes of flexbox
+							<ul>
+								<li>Main axis – defined by the <code>flex-direction</code> property</li>
+								<li>Cross axis – runs perpendicular to the main axis</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://www.w3.org/TR/css-flexbox/">CSS Flexible Box Layout Module Level 1</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">CSS Flexible Box Layout - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>The two axes of Flexbox</h2>
+					<ul>
+						<li>The main axis is defined by <code>flex-direction</code></li>
+						<li>It has four possible values:
+							<ul>
+								<li><code>row</code>–orientation matches the inline axis of the current writing mode</li>
+								<li><code>row-reverse</code>–same as <code>row</code>, but main-start and main-end are switched around</li>
+								<li><code>column</code>–orientation matches the block axis of the current writing mode</li>
+								<li><code>column-reverse</code>–same as <code>column</code>, but main-start and main-end are switched around</li>
+						</li>
+					</ul>
+					</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://www.w3.org/TR/css-flexbox/#flex-direction-property">CSS Flexible Box Layout Module Level 1</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Flex container</h2>
+					<img src="../../assets/flex-direction-terms.svg" alt="" />
+					<small>https://www.w3.org/TR/css-flexbox/images/flex-direction-terms.svg</small>
+				</section>
+				<section>
+					<h2>Flex Items</h2>
+					<ul>
+						<li>All direct children of a flex container becomes a flex item</li>
+						<li>Flex items have three properties:
+							<ul>
+								<li><code>flex-grow</code>–Positive free space. Causes items to take up more space</li>
+								<li><code>flex-shrink</code>—Negative free space. Causes items to take up less space</li>
+								<li><code>flex-basis</code>—Size before shrink and grow. Defines the size space items leaves as
+									available space</li>
+							</ul>
+						</li>
+						<li>Often expressed with the shorthand notation: <code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code></li>
+					</ul>
+					<aside class="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a
+									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax">Controlling
+									Ratios of Flex Items Along the Main Axis - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background-iframe="http://localhost:4200/item" data-background-interactive>
+				</section>
+				<section>
+					<h2>Wrapping</h2>
+					<ul>
+						<li>Flexbox is designed as a single dimensional layout
+							<ul>
+								<li>Layout items as rows</li>
+								<li>Layout items as columns</li>
+							</ul>
+						</li>
+						<li>Flexbox can also wrap items, creating a multi-line container</li>
+						<li>Line wrapping is controlled by the <code>flex-wrap</code> property, which can have the following values
+							<ul>
+								<li><code>nowrap</code>It items are too wide to fit the container, they will overflow it</li>
+								<li><code>wrap</code>An item wraps to a new line if they there is not enough available space to place it
+									on the current line</li>
+								<li><code>wrap-reverse</code>Same as <code>wrap</code> but will start at main-end</li>
+							</ul>
+						</li>
+						<li>Can be combined with <code>flex-direction</code></li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a
+									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items">Mastering
+									Wrapping of Flex Items - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background-iframe="http://localhost:4200/wrap" data-background-interactive>
+				</section>
+				<section>
+					<h2>Alignment</h2>
+					<ul>
+						<li>A key feature of Flexbox is the ability to align and justify items to the main- and cross-axes</li>
+						<li>It enabled propper vertical alignment</li>
+						<li>Offers the following properties
+							<ul>
+								<li><code>justify-content</code>–aligns items on the main-axis</li>
+								<li><code>align-items</code>–aligns items on the cross-axis
+								<li><code>align-self</code>–aligns individual items on the cross-axis</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a
+									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic
+									concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a
+									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">Aligning
+									Items in a Flex Container - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://www.w3.org/TR/css-flexbox/#justify-content-property">CSS Flexible Box Layout Module
+									Level 1</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2><code>justify-content</code></h2>
+					<ul>
+						<li>Align items across the main-axis</li>
+						<li>Available values for <code>justify-content</code>
+							<ul>
+								<li><code>flex-start</code>–items aligns to main-start</li>
+								<li><code>flex-end</code>–items aligns to main-end</li>
+								<li><code>center</code>–items are horizontally centered in the container</li>
+								<li><code>space-between</code>–items are placed with even space between each other. First item is
+									aligned with main-start and last item is aligned with main-end </li>
+								<li><code>space-around</code>––items are placed with even space between each other. First and last item
+									will have half-size space between main-start/end</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2><code>align-items</code> and <code>align-self</code></h2>
+					<ul>
+						<li>Align items across the cross-axis</li>
+						<li>Available values for <code>align-items</code>
+							<ul>
+								<li><code>stretch</code>–streches a flex children vertically</li>
+								<li><code>flex-start</code>–items aligns to cross-start</li>
+								<li><code>flex-end</code>–items aligns to cross-end</li>
+								<li><code>center</code>–items are vertically centered in the container</li>
+								<li><code>baseline</code>–items are placed after largest distance between its baseline and its
+									cross-start</li>
+							</ul>
+							<li>Use <code>align-self</code> to override values set with <code>align-items</code>
+							<ul>
+								<li>Additional possible value <code>auto</code>—defers cross-axis alignment control to the value of <code>align-items</code> (initial value)</li>
+							</ul>
+							</li>
+						</li>
+					</ul>
+					<aside class="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">Aligning Items in a Flex Container - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://www.w3.org/TR/css-flexbox/#align-items-property">CSS Flexible Box Layout Module Level 1</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section>
+				<h2>Typical use cases</h2>
+				<ul>
+					<li>Navigation</li>
+					<li>Split navigation</li>
+					<li>Center item</li>
+					<li>Card layout pushing footer down</li>
+					<li>Form controls</li>
+				</ul>
+				<aside class="notes" aria-label="notes">
+					<h4>References</h4>
+					<ul>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Typical_Use_Cases_of_Flexbox">Typical use cases of Flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+					</ul>
+				</aside>
+			</section>
+			</section>
+			<section>
+				<section id="grid">
+					<h2>CSS Grid Layout</h2>
+				</section>
+				<section>
+					<h2>Overview</h2>
+					<ul>
+						<li>CSS Grid layout introduces a two-dimentional grid system to CSS</li>
+						<li>Terminology
+							<ul>
+								<li>Grid line–are the horizontal and vertical dividing lines</li>
+								<li>Grid track–the space between two grid lines</li>
+								<li>Grid cell–the intersection a grid row and a grid column</li>
+								<li>Grid area–consists of one or more adjacent grid cells</li>
+							</ul>
+						</li>
+						<li>Tracks is a generic term for a grid row or grid column</li>
+						<li>Fixed and flexible track sizes</li>
+						<li>Item placement</li>
+						<li>Creation of additional tracks to hold content</li>
+						<li>Alignment control</li>
+						<li>Control of overlapping content</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://www.w3.org/TR/css3-grid-layout/">CSS Grid Layout Module Level 1</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout">Basic Concepts of grid layout - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">CSS Grid Layout - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+
+			</section>
+			<section>
+				<h2>Relationship of layout methods</h2>
+				<ul>
+					<li>Grid and flexbox
+						<ul>
+							<li>One-dimensional vs. two-dimentional layout
+								<ul>
+									<li>Control the layout by row or column? Use flexbox</li>
+									<li>Control the layout by row and column? Use grid</li>
+								</ul>
+							</li>
+							<li>Content out or layout in?
+								<ul>
+									<li>Flexbox is content out</li>
+									<li>Grid is layout in</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<aside class="notes" aria-label="notes">
+					<h4>References</h4>
+					<ul>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout">Relationship of grid layout to other layout methods - CSS: Cascading Style Sheets | MDN</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section>
+				<section id="css-preprocessing">
+					<h2>CSS preprocessing</h2>
+				</section>
+				<section>
+					<h2>Overview</h2>
+					<ul>
+						<li>Extends CSS by providing paradigms known from conventional programming languages</li>
+						<li>Preprocessors
+							<ul>
+								<li>Sass
+									<ul>
+										<li>Two syntaxes
+											<ul>
+												<li>Sass</li>
+												<li>SCSS — Sassy Cascading Style Sheets</li>
+											</ul>
+										</li>
+										<li>Biggest difference between Sass and SCSS is curly brackets and semicolon</li>
+									</ul>
+							</li>
+						<li>Less – Leaner Style Sheets</li>
+					</ul>
+					</li>
+					<li>Compiles into CSS</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://lesscss.org/">Getting started | Less.js</a></li>
+							<li><a href="https://sass-lang.com/">Sass: Syntactically Awesome Style Sheets</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>SCSS</h2>
+					<ul>
+						<li>Variables</li>
+						<li>Nesting</li>
+						<li>Partials</li>
+						<li>Modules</li>
+						<li>Mixins</li>
+						<li>Extend/Inheritance</li>
+						<li>Operators</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Variables</h2>
+					<ul>
+						<li>Assign a value to a name that begins with '<code>$</code>'</li>
+						<li>Refer to that value instead of the value itself</li>
+						<li>A variable declaration is written <code>&lt;variable&gt;: expression;</code></li>
+						<li>Default values
+							<ul>
+								<li>Allows configuration of variables in modules</li>
+								<li>Use the <code>!default</code> to set default values</li>
+								<li>Load module with
+									<code> @use &lt;url&gt; with (&lt;variable&gt;: &lt;value&gt;, &lt;variable&gt;: &lt;value&gt;, ...</code>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="class">
+						<h4>Reference</h4>
+						<ul>
+							<li><a href="https://sass-lang.com/documentation/variables">Sass: variables</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Nesting</h2>
+					<ul>
+						<li>HTML has a clear nested and visual hierachy, CSS does not</li>
+						<li>Sass enables nesting of CSS selector
+							<ul>
+								<li>Follows the same visual hierachy as HTML</li>
+								<li>A great way to organize CSS code and make it more readable</li>
+							</ul>
+						</li>
+						<li>Beware that overly nested rules will produce over-qualified CSS
+							<ul>
+								<li>Hard to maintain</li>
+								<li>Generally considered bad practice</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Partials & Modules</h2>
+					<ul>
+						<li>Partials
+							<ul>
+								<li>Partial Sass files are snippets of CSS code that is included in other Sass files</li>
+								<li>Partial files are named with aleading underscore, e.g. <code>_base.scss</code>
+									<ul>
+										<li>The underscore tells Sass that it is a partial file and should not compiled</li>
+									</ul>
+								</li>
+								<li>A great way to modularize CSS code, that makes it easier to maintain</li>
+							</ul>
+						</li>
+						<li>Modules
+							<ul>
+								<li>Modules can be loaded into other files with the <code>@use</code> rule</li>
+								<li>Access mixins and functions with a namespace based on filename</li>
+								<li>Using a module will include the generated CSS in the compiled output</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Mixins</h2>
+					<ul>
+						<li>Some things in CSS are a bit tedious to write</li>
+						<li>Mixins lets you make groups of CSS delarations and reuse them</li>
+						<li>You can pass in values to make it even more flexible</li>
+						<li>Use the <code>@mixin</code> directive to create a mixin, e.g.
+							<code>@mixin theme($theme &lt;value&gt;)</code></li>
+						<li>A good use for mixins is for vendor prefixes
+							<ul>
+								<li>Browser vendors add prefixes to experimental or nonstandard CSS properties to prevent breaking code
+								</li>
+							</ul>
+						</li>
+						<li>Use mixins in CSS declarations with <code>@include</code> followed by the name of the mixin</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - MDN Web Docs
+									Glossary: Definitions of Web-related terms | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Extend/Inheritance</h2>
+					<ul>
+						<li>Keep Sass code very DRY</li>
+						<li>Use <code>@extend</code> to share CSS properties from one selector to another</li>
+						<li>Placeholder classes optimizes compiled CSS output
+							<ul>
+								<li>Only included if extended</li>
+								<li>This keeps the output neat and clean</li>
+							</ul>
+						</li>
+						<li>Use with care
+							<ul>
+								<li>You can create unintended selectors if extending a nested selectors</li>
+								<li>Watch out for combining unrelated selectors in compiled CSS output</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Operators</h2>
+					<ul>
+						<li>Doing math in CSS can be very helpful</li>
+						<li>Sass has a handful of standard math operators: <code>+</code>, <code>-</code>, <code>*</code>,
+							<code>/</code>, and <code>%</code></li>
+						<li>Operations take pixel values and easily convert them to percentages</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Base</h2>
+					<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+							$base-color: #2d3142 !default;
+							$accent-color: tomato !default;
+							
+							@font-face {
+								font-family: 'RobotoMono-Bold';
+								src: url('./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf');
+							};
+							
+							@mixin text-shadow($font-family: 'Lobster', $font-size: 2em) {
+								font-family: $font-family;
+								font-size: $font-size;
+								color: $base-color;
+								text-shadow: 3px 3px $accent-color;
+							}
+							
+							h1 {
+								@include text-shadow
+							}
+						</script></code></pre>
+					<small>examples/lesson05-sass/_base.scss</small>
+				</section>
+				<section>
+					<h2>Header component</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<h4>Input</h4>
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+									@use './base';
+
+									.h1-roboto-mono {
+										@include base.text-shadow(
+											'RobotoMono-Bold', 
+											3em
+										)
+									}
+								</script></code></pre>
+							<small>examples/lesson05-sass/header.component.scss</small>
+						</div>
+						<div class="two-columns">
+							<h4>Output</h4>
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+									@font-face {
+										font-family: "RobotoMono-Bold";
+										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
+									}
+									h1 {
+										font-family: "Lobster";
+										font-size: 2em;
+										color: #2d3142;
+										text-shadow: 3px 3px tomato;
+									}
+									
+									.h1-roboto-mono {
+										font-family: "RobotoMono-Bold";
+										font-size: 3em;
+										color: #2d3142;
+										text-shadow: 3px 3px tomato;
+									}
+								</script></code></pre>
+							<small>examples/lesson05-sass/out/header.component.css</small>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h2>Navigation bar component</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<h4>Input</h4>
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+									@use './base' with (
+										$base-color: #cccccc,
+										$accent-color: #6699ff
+									);
+									
+									.wrapper {
+										background-color: #333333;
+										padding: 10px 20px;
+										h1 {
+											margin: 0;
+										}
+									}									
+								</script></code></pre>
+							<small>examples/lesson05-sass/navigation-bar.component.scss</small>
+						</div>
+						<div class="two-columns">
+							<h4>Output</h4>
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+									@font-face {
+										font-family: "RobotoMono-Bold";
+										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
+									}
+									h1 {
+										font-family: "Lobster";
+										font-size: 2em;
+										color: #cccccc;
+										text-shadow: 3px 3px #6699ff;
+									}
+									
+									.wrapper {
+										background-color: #333333;
+										padding: 10px 20px;
+									}
+									.wrapper h1 {
+										margin: 0;
+									}
+							</script></code></pre>
+							<small>examples/lesson05-sass/out/navigation-bar.component.css</small>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section>
+				<section id="css-animations">
+					<h2>Animations</h2>
+					<small>Run <code>ng serve animations</code> in <code>examples/lesson05-reactive-web-design</code></small>
+				</section>
+				<section>
+					<h2>Overview</h2>
+					<ul>
+						<li>CSS animations makes it possible to animate transtions from one style to another</li>
+						<li>Three key advantages to CSS animations
+							<ul>
+								<li>Easy and simple to implement</li>
+								<li>The animations runs well under moderate system load. Simple animations often perform poorly when written in JavaScript</li>
+								<li>Browser optimizes performance and efficiency</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Animation properties</h2>
+					<ul>
+						<li>Animation has the following sub-properties:
+							<ul>
+								<li><code>animation-name</code>–name of the <code>@keyframes</code> at-rule</li>
+								<li><code>animation-duration</code>–time the animation should take to complete one cycle</li>
+								<li><code>animation-timing-function</code>–the timing of the animation defined by a keyframes acceleration curve</li>
+								<li><code>animation-delay</code>–time between the load and the beginning of animation sequence</li>
+								<li><code>animation-iteration-count</code>–how many times should animation sequence repeat</li>
+								<li><code>animation-fill-mode</code>–how are styles applied before and after animation sequence</li>
+								<li><code>animation-play-state</code>–pause and resume animation sequence</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Animation</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+								.block-animation {
+									animation-name: round;
+									animation-duration: 5s;
+									animation-fill-mode: forwards;
+								
+									@keyframes round {
+										from {
+											border-radius: 0;
+										}
+										to {
+											border-radius: 50%;
+										}
+									}
+								}
+								
+								.radius {
+									border-radius: 50px;
+								}
+								
+								.container {
+									width:250px;
+									height: 250px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+								}
+								.radius-animation {
+									animation-name: color-and-margin;
+									animation-duration: 1.5s;
+									animation-iteration-count: infinite;
+								
+									@keyframes color-and-margin {
+										from {
+											margin-left: 0;
+											background-color: midnightblue;
+										}
+										50% {
+											background-color: tomato;
+											margin-left: 100px;
+											border-radius: 5px;
+										}
+										to {
+											background-color: midnightblue;
+											margin-left: 0px;
+										}    
+									}
+								}
+								
+								.scale-animation {
+									animation: 0.5s pulse infinite alternate;
+								
+									@keyframes pulse {
+										from {
+											transform: scale(1.0);
+										}
+										25% {
+											background-color: tomato;
+											transform: scale(2.0);
+										}
+										to {
+											transform: scale(1.5);
+										}
+									}
+								}
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200"></iframe>	
+					</div>
+					</div>
+				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/animations/animations.component.scss</small>
+				</section>
+				<section>
+					<h2>Transitions</h2>
+					<ul>
+						<li>CSS transitions provide a way to control animation speed when changing CSS properties</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">Using CSS transitions - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Transition properties</h2>
+					<ul>
+						<li>Transitions has the following sub-properties:
+							<ul>
+								<li><code>transition-property</code>–specifies the name of the CSS properties to which transistions should be applied</li>
+								<li><code>transition-duration</code>–specifies over which duration the transistion should occur</li>
+								<li><code>transition-timing-function</code>–specifies how intermediate property values are computed</li>
+								<li><code>transition-delay</code>–specifies the time from when property is changed to when transistion begins</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">Using CSS transitions - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Transitions</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+								.container {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									width: 500px;
+									height: 500px;
+									border: 1px solid lightgray;
+									div {
+										background-color: tomato;
+										width: 100px;
+										height: 100px;
+										transition-property: transform, background-color, border-radius;
+										transition-duration: 2s, 2s, 2s;
+									}
+									div:hover { 
+										transform: rotate(360deg);
+										background-color: lightgreen;
+										border-radius: 50px;
+									}
+								}
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200/transitions"></iframe>	
+					</div>
+					</div>
+				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/transitions/transitions.component.scss</small>
+				</section>
+				<section>
+					<h2>Animations vs. transitions</h2>
+					<ul>
+						<li>Animations
+							<ul>
+								<li><mark>Explicit</mark>–property changes are defined with keyframes</li>
+								<li>Use <code>animation</code> for complex animation sequences</li>
+							</ul>
+						</li>
+						<li>Transitions
+							<ul>
+								<li><mark>Implicit</mark>–the browser handles the property changes</li>
+								<li>Use <code>transition</code> for simple animation sequences</li>
+							</ul>
+						</li>
+						<li>Check out the shorthand notation in the documentation and the examples</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://www.w3.org/TR/css-animations-1/#animation">CSS Animations Level 1</a></li>
+							<li><a href="https://www.w3.org/TR/css-transitions-1/#transition-shorthand-property"></a>CSS Transitions</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="../../dist/reveal.js"></script>
+	<script src="../../plugin/notes/notes.js"></script>
+	<script src="../../plugin/markdown/markdown.js"></script>
+	<script src="../../plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			pdfSeparateFragments: false,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+@use '../../base' with (
+  $base-color: #cccccc,
+  $accent-color: #6699ff
+);
+
+.wrapper {
+  background-color: #333333;
+  h1 {
+    margin: 0;
+  }
+}

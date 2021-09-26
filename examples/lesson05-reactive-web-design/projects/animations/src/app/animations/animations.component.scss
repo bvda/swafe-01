@@ -1,0 +1,65 @@
+.block-animation {
+  animation-name: round;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+
+  @keyframes round {
+    from {
+      border-radius: 0;
+    }
+    to {
+      background-color: tomato;
+      border-radius: 50%;
+    }
+  }
+}
+
+.radius {
+  border-radius: 50px;
+}
+
+.container {
+  width:250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radius-animation {
+  animation-name: color-and-margin;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+
+  @keyframes color-and-margin {
+    from {
+      margin-left: 0;
+      background-color: midnightblue;
+    }
+    50% {
+      background-color: tomato;
+      margin-left: 100px;
+      border-radius: 5px;
+    }
+    to {
+      background-color: midnightblue;
+      margin-left: 0px;
+    }    
+  }
+}
+
+.scale-animation {
+  animation: 0.5s pulse infinite alternate;
+
+  @keyframes pulse {
+    from {
+      transform: scale(1.0);
+    }
+    25% {
+      background-color: tomato;
+      transform: scale(2.0);
+    }
+    to {
+      transform: scale(1.5);
+    }
+  }
+}
