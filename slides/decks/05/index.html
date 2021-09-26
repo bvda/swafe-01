@@ -852,7 +852,14 @@
 									border-radius: 50px;
 								}
 								
-								.pulse-animation {
+								.container {
+									width:250px;
+									height: 250px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+								}
+								.radius-animation {
 									animation-name: color-and-margin;
 									animation-duration: 1.5s;
 									animation-iteration-count: infinite;
@@ -871,6 +878,23 @@
 											background-color: midnightblue;
 											margin-left: 0px;
 										}    
+									}
+								}
+								
+								.scale-animation {
+									animation: 0.5s pulse infinite alternate;
+								
+									@keyframes pulse {
+										from {
+											transform: scale(1.0);
+										}
+										25% {
+											background-color: tomato;
+											transform: scale(2.0);
+										}
+										to {
+											transform: scale(1.5);
+										}
 									}
 								}
 						</script></code></pre>
@@ -950,15 +974,25 @@
 					<ul>
 						<li>Animations
 							<ul>
-								<li><mark>Explicit</mark></li>
+								<li><mark>Explicit</mark>–property changes are defined with keyframes</li>
+								<li>Use <code>animation</code> for complex animation sequences</li>
 							</ul>
 						</li>
 						<li>Transitions
 							<ul>
-								<li><mark>Implicit</mark></li>
+								<li><mark>Implicit</mark>–the browser handles the property changes</li>
+								<li>Use <code>transition</code> for simple animation sequences</li>
 							</ul>
 						</li>
+						<li>Check out the shorthand notation in the documentation and the examples</li>
 					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://www.w3.org/TR/css-animations-1/#animation">CSS Animations Level 1</a></li>
+							<li><a href="https://www.w3.org/TR/css-transitions-1/#transition-shorthand-property"></a>CSS Transitions</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section>

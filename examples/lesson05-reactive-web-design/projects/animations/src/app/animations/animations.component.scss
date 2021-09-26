@@ -8,6 +8,7 @@
       border-radius: 0;
     }
     to {
+      background-color: tomato;
       border-radius: 50%;
     }
   }
@@ -17,7 +18,14 @@
   border-radius: 50px;
 }
 
-.pulse-animation {
+.container {
+  width:250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radius-animation {
   animation-name: color-and-margin;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
@@ -36,5 +44,22 @@
       background-color: midnightblue;
       margin-left: 0px;
     }    
+  }
+}
+
+.scale-animation {
+  animation: 0.5s pulse infinite alternate;
+
+  @keyframes pulse {
+    from {
+      transform: scale(1.0);
+    }
+    25% {
+      background-color: tomato;
+      transform: scale(2.0);
+    }
+    to {
+      transform: scale(1.5);
+    }
   }
 }
