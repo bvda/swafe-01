@@ -249,7 +249,7 @@
 						</li>
 						<li>Often expressed with the shorthand notation: <code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code></li>
 					</ul>
-					<aside class="notes">
+					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
 							<li><a
@@ -304,7 +304,7 @@
 							</ul>
 						</li>
 					</ul>
-					<aside class="notes">
+					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
 							<li><a
@@ -355,7 +355,7 @@
 							</li>
 						</li>
 					</ul>
-					<aside class="notes">
+					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
 							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
@@ -385,6 +385,7 @@
 			<section>
 				<section id="grid">
 					<h2>CSS Grid Layout</h2>
+					<small>Run <code>ng serve grid</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
@@ -392,10 +393,10 @@
 						<li>CSS Grid layout introduces a two-dimentional grid system to CSS</li>
 						<li>Terminology
 							<ul>
-								<li>Grid line–are the horizontal and vertical dividing lines</li>
-								<li>Grid track–the space between two grid lines</li>
-								<li>Grid cell–the intersection a grid row and a grid column</li>
-								<li>Grid area–consists of one or more adjacent grid cells</li>
+								<li><mark>Grid line</mark>–are the horizontal and vertical dividing lines</li>
+								<li><mark>Grid track</mark>–the space between two grid lines</li>
+								<li><mark>Grid cell</mark>–the intersection a grid row and a grid column</li>
+								<li><mark>Grid area</mark>–consists of one or more adjacent grid cells</li>
 							</ul>
 						</li>
 						<li>Tracks is a generic term for a grid row or grid column</li>
@@ -414,7 +415,125 @@
 						</ul>
 					</aside>
 				</section>
-
+				<section>
+					<h2>Properties</h2>
+					<ul>
+						<li>Template properties are used to define tracks
+							<ul>
+								<li><code>grid-template-columns</code>–defines line names and track sizing functions of grid columns</li>
+								<li><code>grid-template-rows</code>–defines line names and track sizing functions of grid rows</li>
+							</ul>
+						</li>
+						<li>Functions
+							<ul>
+								<li><code>repeat()</code>–represent a repeated fragment of tracks</li>
+								<li><code>minmax(min, max)</code>–defines a size range greater than or equal to <em>min</em> and less than or equal to <em>max</em></li>
+							</ul>
+						</li>
+						<li>Unit <code>fr</code> defines flexible space in terms of a fraction of the available leftover space</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns">grid-template-columns - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Grid</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|1-7|9-13|15-20|22-26|28-32|34-38|40-44|"><script type="text/template">
+								.wrapper {
+									display: grid;
+									grid-template-columns: repeat(3, 1fr);
+									gap: 10px;
+									grid-auto-rows: minmax(100px, auto);
+									background-color: darkkhaki;
+								}
+								
+								.one {
+									background-color: aqua;
+									grid-column: 1 / 3;
+									grid-row: 1;
+								}
+								
+								.two {
+									background-color: cornflowerblue;
+									grid-column: 2 / 4;
+									grid-row: 1 / 3;
+									opacity: 0.75;
+								}
+								
+								.three {
+									background-color: blanchedalmond;
+									grid-column: 1;
+									grid-row: 2 / 5;
+								}
+								
+								.four {
+									background-color: burlywood;
+									grid-column: 3;
+									grid-row: 3;
+								}
+								
+								.five {
+									background-color: cadetblue;
+									grid-column: 2;
+									grid-row: 4;
+								}
+								
+								.six {
+									grid-column: 3;
+									grid-row: 4;
+									background-color: aquamarine;
+								} 
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200/grid" title="/grid"></iframe>	
+					</div>
+					</div>
+					<small>examples/lesson05-reactive-web-design/projects/grid/src/app/grid/grid.component.scss</small>
+				</section>
+				<section>
+					<h2>Named areas</h2>
+					<div class="two-columns-container">
+						<div class="two-columns">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|1-9|10-13|14-17|18-21|22-25|"><script type="text/template">
+								#grid {
+									display: grid;
+									grid-template-areas: "head head"
+																			 "nav  main"
+																			 "foot foot";
+									grid-template-columns: 1.5fr 4fr;
+									grid-template-rows: 60px calc(100vh - 120px) 60px;
+								
+								}
+								#grid > header { 
+									grid-area: head; 
+									background-color: tomato;
+								}
+								#grid > nav { 
+									grid-area: nav; 
+									background-color: crimson;
+								}
+								#grid > main   { 
+									grid-area: main; 
+									background-color: red;
+								}
+								#grid > footer { 
+									grid-area: foot; 
+									background-color: tomato;
+								} 
+						</script></code></pre>
+					</div>
+					<div class="two-columns">
+						<iframe height="100%" width="100%" data-src="http://localhost:4200/named-areas" title="/named-areas"></iframe>	
+					</div>
+					</div>
+					<small>examples/lesson05-reactive-web-design/projects/grid/src/app/named-areas/named-areas.component.scss</small>
+				</section>
 			</section>
 			<section>
 				<h2>Relationship of layout methods</h2>
@@ -851,10 +970,10 @@
 						</script></code></pre>
 					</div>
 					<div class="two-columns">
-						<iframe height="100%" width="100%" data-src="http://localhost:4200"></iframe>	
+						<iframe height="100%" width="100%" data-src="http://localhost:4200" title="/"></iframe>	
 					</div>
 					</div>
-				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/animations/animations.component.scss</small>
+					<small>examples/lesson05-reactive-web-design/projects/animations/src/app/animations/animations.component.scss</small>
 				</section>
 				<section>
 					<h2>Transitions</h2>
@@ -915,7 +1034,7 @@
 						</script></code></pre>
 					</div>
 					<div class="two-columns">
-						<iframe height="100%" width="100%" data-src="http://localhost:4200/transitions"></iframe>	
+						<iframe height="100%" width="100%" data-src="http://localhost:4200/transitions" title="/transitions"></iframe>	
 					</div>
 					</div>
 				<small>examples/lesson05-reactive-web-design/projects/animations/src/app/transitions/transitions.component.scss</small>
@@ -931,11 +1050,11 @@
 						</li>
 						<li>Transitions
 							<ul>
-								<li><mark>Implicit</mark>–the browser handles the property changes</li>
+								<li><	mark>Implicit</mark>–the browser handles the property changes</li>
 								<li>Use <code>transition</code> for simple animation sequences</li>
 							</ul>
 						</li>
-						<li>Check out the shorthand notation in the documentation and the examples</li>
+						<li>Check out the shorthand notation in the documentation and the example code	</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
