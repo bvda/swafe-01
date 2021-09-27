@@ -1,0 +1,25 @@
+#grid {
+  display: grid;
+  grid-template-areas: "head head"
+                       "nav  main"
+                       "foot foot";
+  grid-template-columns: 1.5fr 4fr;
+  grid-template-rows: 60px calc(100vh - 120px) 60px;
+
+}
+#grid > header { 
+  grid-area: head; 
+  background-color: tomato;
+}
+#grid > nav { 
+  grid-area: nav; 
+  background-color: crimson;
+}
+#grid > main   { 
+  grid-area: main; 
+  background-color: red;
+}
+#grid > footer { 
+  grid-area: foot; 
+  background-color: tomato;
+}
