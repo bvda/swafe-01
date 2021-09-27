@@ -6,6 +6,7 @@ export interface Transaction {
   comment: string;
   date: number;
   currency: string;
+  uid: string;
 }
 
 export const CURRENCIES = [
