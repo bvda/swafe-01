@@ -8,13 +8,13 @@ export const list = function(_, res) {
 }
 
 export const create = function(req, res) {
-  const transaction = req.body as Transaction
-  console.log(transaction)
+  console.log(req.body as Transaction)
+  const transaction = {...req.body as Transaction, uid: v4()}
   TRANSACTION_DATA.push(transaction)
   res.status(201)
   res.json({
     date: Date.now(),
-    message: 'Created credit card'
+    message: `Transaction ${transaction.uid} created`
   })
 }
 

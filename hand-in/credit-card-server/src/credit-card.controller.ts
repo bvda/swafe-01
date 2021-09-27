@@ -7,6 +7,7 @@ export const list = function(_, res) {
 }
 
 export const create = function(req, res) {
+  console.log(req.body as CreditCard)
   const credit_card = {...req.body as CreditCard, uid: v4()}
   CREDIT_CARD_DATA.push(credit_card)
   res.status(201)
