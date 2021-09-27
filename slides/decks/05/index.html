@@ -180,6 +180,32 @@
 						</ul>
 					</aside> 
 				</section>
+				<section>
+					<h2>Media queries</h2>
+					<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|1-8|10-14|16-20|"><script type="text/template">
+						@media screen and (max-width: 425px) {
+							html, body {
+								background-color: lime;
+							}
+							p {
+								background-color: tomato;
+							}
+						}
+						
+						@media screen and (min-width: 426px) and (max-width: 768px) {
+							p {
+								background-color: steelblue;
+							}
+						}
+						
+						@media screen and (min-width: 769px) {
+							p {
+								background-color: skyblue;
+							}
+						}
+					</script></code></pre>
+					<small>examples/lesson05-reactive-web-design/projects/media-breakpoints/src/app/app.component.scss</small>
+				</section>
 			</section>
 			<section>
 				<section id="flexbox">
@@ -252,9 +278,7 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax">Controlling
-									Ratios of Flex Items Along the Main Axis - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax">Controlling Ratios of Flex Items Along the Main Axis - CSS: Cascading Style Sheets | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -283,9 +307,7 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items">Mastering
-									Wrapping of Flex Items - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items">Mastering Wrapping of Flex Items - CSS: Cascading Style Sheets | MDN</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -307,14 +329,9 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic
-									concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
-							<li><a
-									href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">Aligning
-									Items in a Flex Container - CSS: Cascading Style Sheets | MDN</a></li>
-							<li><a href="https://www.w3.org/TR/css-flexbox/#justify-content-property">CSS Flexible Box Layout Module
-									Level 1</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic concepts of flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">Aligning Items in a Flex Container - CSS: Cascading Style Sheets | MDN</a></li>
+							<li><a href="https://www.w3.org/TR/css-flexbox/#justify-content-property">CSS Flexible Box Layout Module Level 1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -370,7 +387,7 @@
 				<ul>
 					<li>Navigation</li>
 					<li>Split navigation</li>
-					<li>Center item</li>
+					<li>Centering items</li>
 					<li>Card layout pushing footer down</li>
 					<li>Form controls</li>
 				</ul>
@@ -752,7 +769,7 @@
 				</section>
 				<section>
 					<h2>Base</h2>
-					<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+					<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers="|1-2|9,14|9-14|16-18|"><script type="text/template">
 							$base-color: #2d3142 !default;
 							$accent-color: tomato !default;
 							
@@ -779,7 +796,7 @@
 					<div class="two-columns-container">
 						<div class="two-columns">
 							<h4>Input</h4>
-							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers=|1|3-8|><script type="text/template">
 									@use './base';
 
 									.h1-roboto-mono {
@@ -793,7 +810,7 @@
 						</div>
 						<div class="two-columns">
 							<h4>Output</h4>
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers=|1-4|5-10|12-17|><script type="text/template">
 									@font-face {
 										font-family: "RobotoMono-Bold";
 										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
@@ -821,7 +838,7 @@
 					<div class="two-columns-container">
 						<div class="two-columns">
 							<h4>Input</h4>
-							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers="|1-4|6,12|9-11|"><script type="text/template">
 									@use './base' with (
 										$base-color: #cccccc,
 										$accent-color: #6699ff
@@ -839,7 +856,7 @@
 						</div>
 						<div class="two-columns">
 							<h4>Output</h4>
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|5-10|8-9|16-18|"><script type="text/template">
 									@font-face {
 										font-family: "RobotoMono-Bold";
 										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
