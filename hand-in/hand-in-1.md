@@ -38,7 +38,8 @@ The solution will provide the accounting department with an overview of use for 
 - `F4.3.1` Field `cardholder_name` is required
 - `F4.4.1` Field `expiration_date_month` must be in range `1-12`
 - `F4.4.2` Field `expiration_date_month` is required
-- `F4.5.1` Field `expiration_date_year` must be in range `1-31` 
+- `F4.5.1` Field `expiration_date_year` must be in range `1-31`
+<!-- What is the maximum  validity period for at credit card--> 
 - `F4.5.2` Field `expiration_date_year` is required
 
 `F5` Transactions screen
