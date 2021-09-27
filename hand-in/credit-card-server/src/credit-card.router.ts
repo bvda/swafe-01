@@ -11,4 +11,6 @@ router.get('/', controller.list)
 
 router.post('/', controller.create)
 
+router.delete('/:card_number', controller.remove)
+
 export { router }
