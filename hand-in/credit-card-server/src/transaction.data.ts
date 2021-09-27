@@ -1,4 +1,4 @@
-export const TRANSACTION_DATA = [
+export var TRANSACTION_DATA = [
   {
       "credit_card": {
           "card_number": 601100099130000,
