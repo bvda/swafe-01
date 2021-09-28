@@ -1,0 +1,5 @@
+<p>device-list works!</p>
+<button (click)="addDevice()">Add device</button>
+<ul>
+  <li *ngFor="let device of devices$ | async">{{ device | json }} <button (click)="removeDevice(device.name)">x</button></li>
+</ul>
