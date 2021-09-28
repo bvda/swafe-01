@@ -11,6 +11,10 @@ export const removeDevice = createAction(
   props<{ deviceId: string}>()
 )
 
+export const loadDevices = createAction(
+  `[Device/API] Load Devices`
+)
+
 export const retrievedList = createAction(
   `[Device/API] Retrieved List`,
   props<{ devices: ReadonlyArray<Device>}>()
