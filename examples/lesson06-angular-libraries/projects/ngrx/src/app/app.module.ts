@@ -9,6 +9,7 @@ import { DeviceListComponent } from './device-list/device-list.component';
 import { collectionReducer } from './state/collection.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { DeviceEffects } from './state/device.effects';
+import { CollectionEffects } from './state/collection.effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { DeviceEffects } from './state/device.effects';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({ devices: devicesReducer, collection: collectionReducer }),
-    EffectsModule.forRoot([DeviceEffects])
+    EffectsModule.forRoot([DeviceEffects, CollectionEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
