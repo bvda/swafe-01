@@ -1,16 +1,14 @@
 <h2>List</h2>
-<mat-list>
-  <mat-list-item *ngFor="let m of mockData$ | async">
-    <div class="grid">
-      <img matListAvatar [src]="m.avatar" alt="...">
-      <h3 matLine>{{m.first_name}} {{m.last_name}}</h3>
-      <p matLine>
-        <span> {{m.email}} </span>
-      </p>
-      <p matLine>
-        <span>{{ m.job_title }}</span>
-        <span class="demo-2"> -- {{m.company}} </span>
-      </p>
-    </div>
-  </mat-list-item>
-</mat-list>
+<mat-card>
+  <mat-list>
+    <mat-list-item *ngFor="let m of mockData$ | async">
+        <img matListAvatar [src]="m.avatar" alt="...">
+          <h3 matLine>{{m.first_name}} {{m.last_name}}</h3>
+          <p matLine>{{m.email}}</p>
+        <p matLine>
+          <span>{{ m.job_title }}</span>
+          <span class="demo-2"> -- {{m.company}} </span>
+        </p>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
