@@ -10,201 +10,267 @@
 		<link rel="stylesheet" href="../../dist/reveal.css">
 		<link rel="stylesheet" href="../../dist/theme/black.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">	
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h2>Angular libraries</h2>
-					<h3>Lesson 06</h3>
-					<h4>SWAFE-01</h3>
-				</section>
-				<section id="dependencies">
+			<!-- Theme used for syntax highlighted code -->
+			<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">	
+		</head>
+		<body>
+			<div class="reveal">
+				<div class="slides">
 					<section>
-						<h2>Dependencies</h2>
+						<h2>Angular libraries</h2>
+						<h3>Lesson 06</h3>
+						<h4>SWAFE-01</h3>
 					</section>
-					<section>
-						<h2>Overview</h2>
-						<ul>
-							<li>Technical questions to consider:
+					<section id="dependencies">
+						<section>
+							<h2>Dependencies</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<ul>
+								<li>Technical questions to consider:
+									<ul>
+										<li><mark>Code quality</mark>–good functionality can be implemented badly</li>
+										<li><mark>Maintainence</mark>–is the codebase actively maintained, and who is maintaining it?</li>
+										<li><mark>Documentation</mark>–are there proper documentation for the library?</li>
+										<li><mark>Bloated bundle size</mark>–are the bundling process optimized?</li>
+										<li>Compatibility</li>
+									</ul>
+								</li>
+								<li>Business questions to consider:
+									<ul>
+										<li><mark>Vendor lock-in</mark>–what are the cost of switching to another vendor</li>
+										<li><mark>Control over changes</mark>–what level of influence does the users have on the feature requests and bug fixing</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
 								<ul>
-									<li><mark>Code quality</mark>–good functionality can be implemented badly</li>
-									<li><mark>Maintainence</mark>–is the codebase actively maintained, and who is maintaining it?</li>
-									<li><mark>Documentation</mark>–are there proper documentation for the library?</li>
-									<li><mark>Bloated bundle size</mark>–are the bundling process optimized?</li>
-									<li>Compatibility</li>
+									<li><a href="https://xkcd.com/2347/">xkcd: Dependency</a></li>
+									<li><a href="https://www.browserlondon.com/blog/2020/09/02/dependency-hell-how-to-avoid-it/">What dependency hell looks like, and how to avoid it - Browser London</a></li>
+									<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking">Reduce JavaScript Payloads with Tree Shaking | Web Fundamentals</a></li>
 								</ul>
-							</li>
-							<li>Business questions to consider:
+							</aside>
+						</section>
+					</section>
+					<section id="ngrx">
+						<section>
+							<h2>NgRx</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
 								<ul>
-									<li><mark>Vendor lock-in</mark>–what are the cost of switching to another vendor</li>
-									<li><mark>Control over changes</mark>–what level of influence does the users have on the feature requests and bug fixing</li>
+									<li><a href="https://ngrx.io/">NgRx</a></li>
 								</ul>
-							</li>
-						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://xkcd.com/2347/">xkcd: Dependency</a></li>
-								<li><a href="https://www.browserlondon.com/blog/2020/09/02/dependency-hell-how-to-avoid-it/">What dependency hell looks like, and how to avoid it - Browser London</a></li>
-								<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking">Reduce JavaScript Payloads with Tree Shaking | Web Fundamentals</a></li>
-							</ul>
-						</aside>
-					</section>
-				</section>
-				<section id="ngrx">
-					<section>
-						<h2>NgRx</h2>
-					</section>
-					<section>
-						<h2>Overview</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://ngrx.io/">NgRx</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Store</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href=""></a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Actions</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href=""></a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Reducers</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href=""></a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Selectors</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href=""></a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Effects</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href=""></a></li>
-							</ul>
-						</aside>
-					</section>
-				</section>
-				<section id="material">
-					<section>
-						<h2>Angular Material</h2>
-					</section>
-					<section>
-						<h2>Overview</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://material.angular.io/">Angular Material UI component library</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Design systems</h2>
-					</section>
-					<section>
-						<h2>Themes</h2>
-					</section>
-					<section>
-						<h2>Components</h2>
-					</section>
-				</section>
-				<section id="flex">
-					<section>
-						<h2>Angular Flex</h2>
-					</section>
-					<section>
-						<h2>Overview</h2>
-						<ul>
-							<li>Angular Flex Layout combines Flexbox CSS and media queries</li>
-							<li>Automates the process of applying appropiate Flexboxx CSS to browser view hierarchies</li>
-							<li>Addresses many of the complexities and workarounds with traditional, manual application of Flexbox CSS</li>
-							<li>The Responsive API enables developers to easily specify different layout, sizing for different viewports sizes and display devices</li>
-							<li>It provides an Angular-friendly API for dealing with media queries</li>
-						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
-								<li><a href="https://www.w3.org/TR/css-flexbox-1/">CSS Flexible Box Layout Module Level 1</a></li>
-								<li><a href="https://www.w3.org/TR/mediaqueries-5/">Media Queries Level 5</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Declarative API Overview</h2>
-						<ul>
-							<li>Contains two APIs
+							</aside>
+						</section>
+						<section>
+							<h2>Store</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
 								<ul>
-									<li><mark>Static API</mark>–provides directives to create responsive and adaptive layouts</li>
-									<li><mark>Responsive API</mark>–provides responsive features to change layouts configuration for different display devices</li>
+									<li><a href=""></a></li>
 								</ul>
-							</li>
-						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">Declarative API Overview · angular/flex-layout Wiki</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>API for DOM containers</h2>
-						<p>These directives affects the flow and layout of chilren elements in the container</p>
-						<ul>
-							<li><code>fxLayout</code>–Used on DOM container whose children should layout
+							</aside>
+						</section>
+						<section>
+							<h2>Actions</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
 								<ul>
-									<li>a combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
+									<li><a href=""></a></li>
 								</ul>
-							</li>
-							<li><code>fxLayoutAlign</code></li>
-							<li><code>fxLayoutGap</code></li>
-							<li><code>gdAuto</code></li>
-							<li><code>gdColumns</code></li>
-							<li><code>gdRows</code></li>
-						</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Reducers</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href=""></a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Selectors</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href=""></a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href=""></a></li>
+								</ul>
+							</aside>
+						</section>
 					</section>
-					<section>
-						<h2>API for DOM elements</h2>
-						<p>These directives affects the layout and size of the host element (expected to be in a container)
+					<section id="material">
+						<section>
+							<h2>Angular Material</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.angular.io/">Angular Material UI component library</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Design systems</h2>
+						</section>
+						<section>
+							<h2>Themes</h2>
+						</section>
+						<section>
+							<h2>Components</h2>
+						</section>
+					</section>
+					<section id="flex">
+						<section>
+							<h2>Angular Flex</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
 							<ul>
-								<li><code>fxFlex</code></li>
-								<li><code>fxFlex</code></li>
-								<li><code>gdRow</code></li>
-								<li><code>gdColumn</code></li>
+								<li>Angular Flex Layout combines Flexbox CSS and media queries</li>
+								<li>Automates the process of applying appropiate Flexboxx CSS to browser view hierarchies</li>
+								<li>Addresses many of the complexities and workarounds with traditional, manual application of Flexbox CSS</li>
+								<li>The Responsive API enables developers to easily specify different layout, sizing for different viewports sizes and display devices</li>
+								<li>It provides an Angular-friendly API for dealing with media queries</li>
 							</ul>
-						</li>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
+									<li><a href="https://www.w3.org/TR/css-flexbox-1/">CSS Flexible Box Layout Module Level 1</a></li>
+									<li><a href="https://www.w3.org/TR/mediaqueries-5/">Media Queries Level 5</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Declarative API Overview</h2>
+							<ul>
+								<li>Contains two APIs
+									<ul>
+										<li><mark>Static API</mark>–provides directives to create responsive and adaptive layouts</li>
+										<li><mark>Responsive API</mark>–provides responsive features to change layouts configuration for different display devices</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">Declarative API Overview · angular/flex-layout Wiki</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>API for DOM containers — <code>flex</code></h2>
+							<p>These directives affects the flow and layout of children elements in the container</p>
+							<ul>
+								<li><code>fxLayout</code>–Used on DOM container whose children should layout
+									<ul>
+										<li>A combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
+									</ul>
+								</li>
+								<li><code>fxLayoutAlign</code>
+									<ul>
+										<li>A combination of <code>justify-content</code> and <code>align-items</code></li>
+									</ul>
+								</li>
+							</ul>
+							</section>
+						<section>
+							<h2>API for DOM containers — <code>grid</code></h2>
+							<p>These directives affects the flow and layout of children elements in the container</p>
+							<ul>
+								<li><code>gdColumns</code>–equivalent to <code>grid-template-columns</code></li>
+								<li><code>gdRows</code>–equivalent to <code>grid-template-rows</code></li>
+								<li><code>gdAlignRows</code>–aligns items row-wise
+									<ul>
+										<li><code>justify-content</code>(container) and <code>justify-items</code>(items)</li>
+									</ul>
+								</li>
+								<li><code>gdAlignColumns</code>–aligns items column-wise
+									<ul>
+										<li><code>align-content</code>(container) and <code>align-items</code>(items)</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<h2>API for DOM elements</h2>
+							<p>These directives affects the layout and size of the host element (expected to be in a container)</p>
+							<ul>
+								<li><code>fxFlex</code>–sets properties for grow, shrink and basis for an item</li>
+								<li><code>fxFlexAlign</code>–equivalent to <code>align-self</code></li>
+								<li><code>gdRow</code>-determines start and end row for an item</li>
+								<li><code>gdColumn</code>—determines start and end column for an item</li>
+							</ul>
+						</ul>
+							<p>These are directives for any element</p>
+							<ul>
+								<li><code>fxShow</code>–specifies if its host element should be displayed</li>
+								<li><code>fxHide</code>–specifies if its host element should NOT be displayed</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Responsive API</h2>
+							<ul>
+								<li>Enhances the Static API by adding responsive suffixes</li>
+								<li>Angular Layout will automatically handle all the details
+									<ul>
+										<li>Monitoring media queries activations</li>
+										<li>Applying responsive values to the host DOM elements</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Breakpoints and aliases</h2>
+							<ul>
+								<ul><li>Breakpoints
+									<ul>
+										<li><code>xs</code>–Extra small <code>screen and (max-width: 599px)</code></li>
+										<li><code>sm</code>–Small <code>screen and (min-width: 600px) and (max-width: 959px)</code></li>
+										<li><code>md</code>–Medium<code>screen and (min-width: 960px) and (max-width: 1279px)</code></li>
+										<li><code>lg</code>–Large<code>screen and (min-width: 1280px) and (max-width: 1919px)</code></li>
+										<li><code>xl</code>–Extra large<code>screen and (min-width: 1920px) and (max-width: 5000px)</code></li>
+									</ul>
+								</li>
+								<li>Less than
+									<ul>
+										<li><code>lt-sm</code>–Less than small <code>screen and (max-width: 599px)</code></li>
+										<li><code>lt-md</code>–Less than medium <code>screen and (max-width: 959px)</code></li>
+										<li><code>lt-lg</code>–Less than large <code>screen and (max-width: 1279px)</code></li>
+										<li><code>lt-xl</code>–Less than extra large <code>screen and (max-width: 1919px)</code></li>
+									</ul>
+								</li>
+								<li>Greater than
+									<ul>
+										<li><code>gt-xs</code>–Greater than extra small <code>screen and (min-width: 600px)</code></li>
+										<li><code>gt-sm</code>–Greater than small <code>screen and (min-width: 960px)</code></li>
+										<li><code>gt-md</code>–Greater than medium<code>screen and (min-width: 1280px)</code></li>
+										<li><code>gt-lg</code>–Greater than large<code>screen and (min-width: 1920px</code></li>
+									</ul>
+								</li>
+								</ul>
+							</ul>
+							</section>
 					</section>
-				</section>
+				</div>
 			</div>
-		</div>
 
 		<script src="../../dist/reveal.js"></script>
 		<script src="../../plugin/notes/notes.js"></script>
