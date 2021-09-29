@@ -1,14 +1,20 @@
-<h2>Flex Row</h2>
-<div class="container" fxLayout="row wrap">
-  <div fxLayout fxLayoutAlign="center center" fxFlex="1 1 auto" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
-</div>
-
-<h2>Flex Column</h2>
-<div class="container" fxLayout="column wrap-reverse">
-  <div fxLayout fxFlex="0 0 auto" fxLayoutAlign="center center" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
-</div>
-
-<h2>Grid</h2>
-<div class="container" gdAuto gdColumns="1fr 1fr 1fr 1fr" gdGap="5px" gdRows="1fr 1fr 1fr 1fr">
-  <div fxLayout fxLayoutAlign="center center" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
+<div fxLayout="row wrap" fxLayoutGap="10px">
+  <div>
+    <h2>Flex Row</h2>
+    <div class="container" fxLayout="row wrap">
+      <div fxLayout fxLayoutAlign="center center" fxFlex="1 1 auto" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
+    </div>
+  </div>
+  <div>
+    <h2>Flex Column</h2>
+    <div class="container" fxLayout="column wrap-reverse">
+      <div fxLayout fxFlex="0 0 auto" fxLayoutAlign="center center" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
+    </div>
+  </div>
+  <div>
+    <h2>Grid</h2>
+    <div class="container" gdAuto gdColumns="1fr 1fr 1fr 1fr" gdRows="1fr 1fr 1fr 1fr" gdAlignColumns="center center" gdAlignRows="center center">
+      <div fxLayout fxLayoutAlign="center center" *ngFor="let c of children; let i = index" class="child">Child {{ i }}</div>
+    </div>
+  </div>
 </div>
