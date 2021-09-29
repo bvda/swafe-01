@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { DeviceService } from '../device.service';
 import { AppState } from '../state/app.state';
-import { addDevice, loadDevices, removeDevice, retrievedList } from '../state/device.actions';
+import { addDevice, loadDevices, removeDevice } from '../state/device.actions';
 import { selectDeviceCollection, selectDevices } from '../state/device.selector';
 
 @Component({
