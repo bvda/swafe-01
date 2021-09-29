@@ -1,0 +1,31 @@
+.container { 
+  display: flex;
+  height: calc(100vh - (64px + 80px));
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  min-width: 40%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap:16px;
+}
+.email {
+  grid-row: 1;
+  grid-column: 1 / 5;
+}
+
+.password {
+  grid-row: 2;
+  grid-column: 1 / 5;
+}
+.submit {
+  grid-row: 3;
+  grid-column: 4 / 5;
+}
+.remember {
+ grid-row: 3;
+ grid-column: 1 / 2;
+}
