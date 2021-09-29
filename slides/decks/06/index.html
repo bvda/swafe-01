@@ -142,12 +142,61 @@
 					</section>
 					<section>
 						<h2>Overview</h2>
+						<ul>
+							<li>Angular Flex Layout combines Flexbox CSS and media queries</li>
+							<li>Automates the process of applying appropiate Flexboxx CSS to browser view hierarchies</li>
+							<li>Addresses many of the complexities and workarounds with traditional, manual application of Flexbox CSS</li>
+							<li>The Responsive API enables developers to easily specify different layout, sizing for different viewports sizes and display devices</li>
+							<li>It provides an Angular-friendly API for dealing with media queries</li>
+						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
+								<li><a href="https://www.w3.org/TR/css-flexbox-1/">CSS Flexible Box Layout Module Level 1</a></li>
+								<li><a href="https://www.w3.org/TR/mediaqueries-5/">Media Queries Level 5</a></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>Declarative API Overview</h2>
+						<ul>
+							<li>Contains two APIs
+								<ul>
+									<li><mark>Static API</mark>–provides directives to create responsive and adaptive layouts</li>
+									<li><mark>Responsive API</mark>–provides responsive features to change layouts configuration for different display devices</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">Declarative API Overview · angular/flex-layout Wiki</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>API for DOM containers</h2>
+						<p>These directives affects the flow and layout of chilren elements in the container</p>
+						<ul>
+							<li><code>fxLayout</code></li>
+							<li><code>fxLayoutAlign</code></li>
+							<li><code>fxLayoutGap</code></li>
+							<li><code>gdAuto</code></li>
+							<li><code>gdColumns</code></li>
+							<li><code>gdRows</code></li>
+						</ul>
+					</section>
+					<section>
+						<h2>API for DOM elements</h2>
+						<p>These directives affects the layout and size of the host element (expected to be in a container)
+							<ul>
+								<li><code>fxFlex</code></li>
+								<li><code>fxFlex</code></li>
+								<li><code>gdRow</code></li>
+								<li><code>gdColumn</code></li>
+							</ul>
+						</li>
 					</section>
 				</section>
 			</div>

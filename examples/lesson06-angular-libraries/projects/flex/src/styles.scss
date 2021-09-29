@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+.child {
+  background-color: burlywood;
+  height: 100px;
+  flex: 1 1 auto;
+  margin: 5px;  
+  width: 100px;
+}
+
+.container { 
+  padding: 5px;  
+  width: 500px;
+  height: 500px;
+  border: 2px solid darkcyan;
+}
