@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockService } from '../mock.service';
 
 @Component({
   selector: 'app-list',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  mockData$
+  
+  constructor(private mockService: MockService) {
+    this.mockData$ = this.mockService.getMockData()
+   }
 
   ngOnInit(): void {
   }
