@@ -175,21 +175,26 @@
 							<div class="two-columns-container">
 								<div class="two-columns">
 									<ul>
-										<li>Content container for text, photos, and actions the context of a single subject</li>
-										<li>A <code>mat-card</code> has sections
+										<ul>
 											<ul>
-												<li>header
+												<li>Content container for text, photos, and actions the context of a single subject</li>
+												<li>A <code>mat-card</code> has sections
 													<ul>
-														<li>title</li>
-														<li>subtitle</li>
-														<li>avatar</li>
+														<li>Header
+																<ul>
+																	<li>Title</li>
+																	<li>Subtitle</li>
+																	<li>Avatar</li>
+																</ul>
+														</li>
+														<li>Content</li>
+														<li>Actions</li>
+														<li>Footer</li>
+														</ul>											
 													</ul>
 												</li>
-												<li>content</li>
-												<li>actions</li>
-												<li>footer</li>
-											</ul>											
-										</li>
+											</ul>
+										</ul>
 									</ul>
 								</div>
 								<div class="two-columns">
@@ -202,21 +207,55 @@
 							<div class="two-columns-container">
 								<div class="two-columns">
 									<ul>
-										<li><code>mat-table</code> features
+										<ul>
 											<ul>
-												<li>Pagination</li>
-												<li>Sorting</li>
-												<li>Filtering</li>
-												<li>Selection</li>
+												<li><code>mat-table</code> is focused on rendering rows of table data</li>
+												<li>Table features
+													<li>Define column and row templates with <code>matColumnDef</code> and <code>matRowDef</code></li>
+													<ul>
+														<li>Pagination</li>
+														<li>Sorting</li>
+														<li>Filtering</li>
+														<li>Selection</li>
+													</ul>
+												</li>
+												<li>Bind array or a <code>DataSource</code> instance</li>
+												<li>Provide <code>Observable</code> streams where the table will render when new data is emitted</li>
 											</ul>
-										</li>
-										<li>content</li>
-										<li>actions</li>
-										<li>footer</li>
+										</ul>
 									</ul>
 								</div>
 								<div class="two-columns">
 									<iframe height="100%" width="100%" data-src="http://localhost:4200/table" title="/card"></iframe>	
+								</div>
+							</div>
+						</section>
+						<section>
+							<h2><code>mat-button</code></h2>
+							<div class="two-columns-container">
+								<div class="two-columns">
+									<ul>
+										<ul>
+											<ul>
+												<li>Allow users to enter a date through text input, or by choosing a date from the calendar
+													<ul>
+														<li>Made up of several components, directives and modules</li>
+													</ul>
+												</li>
+												<li>Can be used with <code>FormGroup</code> directive from <code>@angular/forms</code></li>
+												<li>Can be used with various date libraries (date implementation agnostic)
+													<ul>
+														<li><code>MatNativeDateModule</code></li>
+														<li><code>MatLuxonDateModule</code></li>
+														<li><code>MatLuxonDateModule</code></li>
+													</ul>
+														</li>
+													</ul>											
+													</ul>
+											</ul>
+								</div>
+								<div class="two-columns">
+									<iframe height="100%" width="100%" data-src="http://localhost:4200/date-picker" title="/button"></iframe>	
 								</div>
 							</div>
 						</section>

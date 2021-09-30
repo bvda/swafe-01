@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardComponent } from './card/card.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 import { TableComponent } from './table/table.component';
 
 const routes: Routes = [{
@@ -8,7 +9,10 @@ const routes: Routes = [{
   component: CardComponent,
 }, {
   path: 'table',
-  component: TableComponent
+  component: TableComponent,
+}, {
+  path: 'date-picker',
+  component: DatePickerComponent,
 }];
 
 @NgModule({
