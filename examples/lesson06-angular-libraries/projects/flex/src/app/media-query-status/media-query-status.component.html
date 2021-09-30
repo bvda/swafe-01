@@ -1,0 +1,8 @@
+<div class="mqInfo">
+  Active MediaQuery(s):
+  <ul>
+    <li *ngFor="let change of (media$ | async) as changes">
+      {{change.mqAlias}} = {{change.mediaQuery}}
+    </li>
+  </ul>
+</div>

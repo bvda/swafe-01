@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreakpointComponent } from './breakpoint/breakpoint.component';
 import { FlexComponent } from './flex/flex.component';
+import { MediaQueryStatusComponent } from './media-query-status/media-query-status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BreakpointComponent,
-    FlexComponent
+    FlexComponent,
+    MediaQueryStatusComponent
   ],
   imports: [
     BrowserModule,
