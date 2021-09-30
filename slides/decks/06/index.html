@@ -187,52 +187,61 @@
 						</section>
 						<section>
 							<h2>API for DOM containers — <code>flex</code></h2>
-							<p>These directives affects the flow and layout of children elements in the container</p>
 							<ul>
-								<li><code>fxLayout</code>–Used on DOM container whose children should layout
+								<li>These directives affects the flow and layout of children elements in the container
 									<ul>
-										<li>A combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
-									</ul>
-								</li>
-								<li><code>fxLayoutAlign</code>
-									<ul>
-										<li>A combination of <code>justify-content</code> and <code>align-items</code></li>
+										<li><code>fxLayout</code>–Used on DOM container whose children should layout
+											<ul>
+												<li>A combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
+											</ul>
+										</li>
+										<li><code>fxLayoutAlign</code>
+											<ul>
+												<li>A combination of <code>justify-content</code> and <code>align-items</code></li>
+											</ul>
+										</li>
 									</ul>
 								</li>
 							</ul>
-							</section>
+						</section>
 						<section>
 							<h2>API for DOM containers — <code>grid</code></h2>
-							<p>These directives affects the flow and layout of children elements in the container</p>
 							<ul>
-								<li><code>gdColumns</code>–equivalent to <code>grid-template-columns</code></li>
-								<li><code>gdRows</code>–equivalent to <code>grid-template-rows</code></li>
-								<li><code>gdAlignRows</code>–aligns items row-wise
+								<li>These directives affects the flow and layout of children elements in the container
 									<ul>
-										<li><code>justify-content</code>(container) and <code>justify-items</code>(items)</li>
-									</ul>
-								</li>
-								<li><code>gdAlignColumns</code>–aligns items column-wise
-									<ul>
-										<li><code>align-content</code>(container) and <code>align-items</code>(items)</li>
+										<li><code>gdColumns</code>–equivalent to <code>grid-template-columns</code></li>
+										<li><code>gdRows</code>–equivalent to <code>grid-template-rows</code></li>
+										<li><code>gdAlignRows</code>–aligns items row-wise
+											<ul>
+												<li><code>justify-content</code>(container) and <code>justify-items</code>(items)</li>
+											</ul>
+										</li>
+										<li><code>gdAlignColumns</code>–aligns items column-wise
+											<ul>
+												<li><code>align-content</code>(container) and <code>align-items</code>(items)</li>
+											</ul>
+										</li>
 									</ul>
 								</li>
 							</ul>
 						</section>
 						<section>
 							<h2>API for DOM elements</h2>
-							<p>These directives affects the layout and size of the host element (expected to be in a container)</p>
 							<ul>
-								<li><code>fxFlex</code>–sets properties for grow, shrink and basis for an item</li>
-								<li><code>fxFlexAlign</code>–equivalent to <code>align-self</code></li>
-								<li><code>gdRow</code>-determines start and end row for an item</li>
-								<li><code>gdColumn</code>—determines start and end column for an item</li>
-							</ul>
-						</ul>
-							<p>These are directives for any element</p>
-							<ul>
-								<li><code>fxShow</code>–specifies if its host element should be displayed</li>
-								<li><code>fxHide</code>–specifies if its host element should NOT be displayed</li>
+								<li>These directives affects the layout and size of the host element (expected to be in a container)
+									<ul>
+										<li><code>fxFlex</code>–sets properties for grow, shrink and basis for an item</li>
+										<li><code>fxFlexAlign</code>–equivalent to <code>align-self</code></li>
+										<li><code>gdRow</code>-determines start and end row for an item</li>
+										<li><code>gdColumn</code>—determines start and end column for an item</li>
+									</ul>
+								</li>
+								<li>These are directives for any element
+									<ul>
+										<li><code>fxShow</code>–specifies if its host element should be displayed</li>
+										<li><code>fxHide</code>–specifies if its host element should NOT be displayed</li>
+									</ul>
+								</li>
 							</ul>
 						</section>
 						<section>
@@ -283,7 +292,7 @@
 					<section>
 						<h2>Combine Static API and <code>alias</code></h2>
 						<p>Support resposive breakpoints by combining an <code>alias</code> with a directive</p>
-						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|7|"><script type="text/template">
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
 							<api>.<breakpoint alias>="<value>"
 							[<api>.<breakpoint alias>]="<expression>"
 						</script></code></pre>
