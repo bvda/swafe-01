@@ -240,34 +240,43 @@
 						<section>
 							<h2>Breakpoints and aliases</h2>
 							<ul>
-								<ul><li>Breakpoints
-									<ul>
-										<li><code>xs</code>–Extra small <code>screen and (max-width: 599px)</code></li>
-										<li><code>sm</code>–Small <code>screen and (min-width: 600px) and (max-width: 959px)</code></li>
-										<li><code>md</code>–Medium<code>screen and (min-width: 960px) and (max-width: 1279px)</code></li>
-										<li><code>lg</code>–Large<code>screen and (min-width: 1280px) and (max-width: 1919px)</code></li>
-										<li><code>xl</code>–Extra large<code>screen and (min-width: 1920px) and (max-width: 5000px)</code></li>
-									</ul>
-								</li>
-								<li>Less than
-									<ul>
-										<li><code>lt-sm</code>–Less than small <code>screen and (max-width: 599px)</code></li>
-										<li><code>lt-md</code>–Less than medium <code>screen and (max-width: 959px)</code></li>
-										<li><code>lt-lg</code>–Less than large <code>screen and (max-width: 1279px)</code></li>
-										<li><code>lt-xl</code>–Less than extra large <code>screen and (max-width: 1919px)</code></li>
-									</ul>
-								</li>
-								<li>Greater than
-									<ul>
-										<li><code>gt-xs</code>–Greater than extra small <code>screen and (min-width: 600px)</code></li>
-										<li><code>gt-sm</code>–Greater than small <code>screen and (min-width: 960px)</code></li>
-										<li><code>gt-md</code>–Greater than medium<code>screen and (min-width: 1280px)</code></li>
-										<li><code>gt-lg</code>–Greater than large<code>screen and (min-width: 1920px</code></li>
-									</ul>
-								</li>
+								<ul>
+									<li>Breakpoints
+										<ul>
+											<li><code>xs</code>–Extra small <code>screen and (max-width: 599px)</code></li>
+											<li><code>sm</code>–Small <code>screen and (min-width: 600px) and (max-width: 959px)</code></li>
+											<li><code>md</code>–Medium<code>screen and (min-width: 960px) and (max-width: 1279px)</code></li>
+											<li><code>lg</code>–Large<code>screen and (min-width: 1280px) and (max-width: 1919px)</code></li>
+											<li><code>xl</code>–Extra large<code>screen and (min-width: 1920px) and (max-width: 5000px)</code></li>
+										</ul>
+									</li>
+									<li>Less than
+										<ul>
+											<li><code>lt-sm</code>–Less than small <code>screen and (max-width: 599px)</code></li>
+											<li><code>lt-md</code>–Less than medium <code>screen and (max-width: 959px)</code></li>
+											<li><code>lt-lg</code>–Less than large <code>screen and (max-width: 1279px)</code></li>
+											<li><code>lt-xl</code>–Less than extra large <code>screen and (max-width: 1919px)</code></li>
+										</ul>
+									</li>
+									<li>Greater than
+										<ul>
+											<li><code>gt-xs</code>–Greater than extra small <code>screen and (min-width: 600px)</code></li>
+											<li><code>gt-sm</code>–Greater than small <code>screen and (min-width: 960px)</code></li>
+											<li><code>gt-md</code>–Greater than medium<code>screen and (min-width: 1280px)</code></li>
+											<li><code>gt-lg</code>–Greater than large<code>screen and (min-width: 1920px</code></li>
+										</ul>
+									</li>
 								</ul>
 							</ul>
-							</section>
+						</section>
+						<section>
+							<h2>Combine Static API and <code>alias</code></h2>
+							<p>Support resposive breakpoints by combining an <code>alias</code> with a directive</p>
+							<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|7|"><script type="text/template">
+								<api>.<breakpoint alias>="<value>"
+								[<api>.<breakpoint alias>]="<expression>"
+							</script></code></pre>
+						</section>
 					</section>
 				</div>
 			</div>
