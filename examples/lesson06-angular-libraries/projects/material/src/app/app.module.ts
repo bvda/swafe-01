@@ -18,13 +18,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     FormsComponent,
     CardsComponent,
-    ListComponent
+    ListComponent,
   ],
   imports: [
     BrowserModule,
