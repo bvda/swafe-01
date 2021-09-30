@@ -7,18 +7,22 @@ import { CardComponent } from './card/card.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    CardComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
     MatCardModule,
+    MatTableModule,
     BrowserAnimationsModule,
   ],
   providers: [],
