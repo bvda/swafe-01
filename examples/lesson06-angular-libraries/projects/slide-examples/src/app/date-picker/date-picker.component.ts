@@ -9,7 +9,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 export class DatePickerComponent {
   range = this.fb.group({
     start: [''],
-    end: ['new FormControl()']
+    end: ['']
 
   })
 
