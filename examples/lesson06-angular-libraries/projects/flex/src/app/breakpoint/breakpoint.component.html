@@ -1,7 +1,13 @@
-<div fxLayout.gt-xs="row" fxLayout.xs="column" [ngStyle.lt-sm]="{'background-color': 'cornflowerblue'}">
+<div 
+  fxLayout.gt-xs="row" 
+  fxLayout.xs="column" 
+  [ngStyle.lt-sm]="{'background-color': 'cornflowerblue'}">
   <div fxFlex.xs="1 0 auto" fxFlexAlign.lt-sm="end" class="child"></div>
-  <div class="child"></div>
-  <div class="child" [ngClass.xs]="{'small-border small': hasStyle }" [ngClass.gt-xs]="{'small': hasStyle }"></div>
+  <div class="child"></div>  
+  <div class="child" 
+    [ngClass.xs]="{'small-border small': hasStyle }" 
+    [ngClass.gt-xs]="{'small': hasStyle }">
+  </div>
 </div>
 <p fxShow.xs fxHide.gt-xs>Hidden element</p>
 <div fxHide.xs class="child"></div>
