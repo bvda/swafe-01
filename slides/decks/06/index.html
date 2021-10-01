@@ -300,7 +300,18 @@
 						<section>
 							<h2>Effects</h2>
 							<ul>
-								<li>https://ngrx.io/guide/effects</li>
+								<li>RxJS powered side effect model for <code>Store</code></li>
+								<li>Effect uses streams to provide new sources of actions to reduce state based on external actions
+									<ul>
+										<li>Network requests</li>
+										<li>Web socket message</li>
+										<li>Time-based events</li>
+									</ul>
+								</li>
+								<li>Effects isolate side effects from components, allowing for more pure components</li>
+								<li>Long-running services that listens to an <code>Observable</code> of every <code>Action</code> dispatched from the <code>Store</code></li>
+								<li>Effects filter <code>Action</code> objects based on interest</li>
+								<li>Effects perform tasks that produces new <code>Action</code> objects which is handled by the <code>Store</code></li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -308,6 +319,37 @@
 									<li><a href="https://ngrx.io/guide/effects">NgRx - @ngrx/effects</a></li>
 								</ul>
 							</aside>
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|8|10|11,23|6,12|13-19,24|"><script type="text/template">
+								import { Injectable } from '@angular/core';
+								import { Actions, createEffect, ofType } from '@ngrx/effects'
+								import { EMPTY } from 'rxjs';
+								import { map, mergeMap, catchError } from 'rxjs/operators';
+								import { DeviceService } from '../device.service';
+								import { loadDevices, retrievedList } from './device.actions';
+								
+								@Injectable()
+								export class DeviceEffects {
+									loadDevices$ = createEffect(() => 
+									this.actions$.pipe(
+										ofType(loadDevices),
+										mergeMap(() => this.deviceService$.getDevices()
+											.pipe(
+												map(devices => (retrievedList({ devices }))),
+												catchError(() => {
+													return EMPTY
+												})
+										))
+									))
+								
+									constructor(
+										private actions$: Actions, 
+										private deviceService$: DeviceService) {}
+								}								
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/collection.reducer.ts</small>	
 						</section>
 						<section>
 							<h2>The SHARI principles</h2>

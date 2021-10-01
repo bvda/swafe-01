@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { EMPTY, of } from 'rxjs';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { DeviceService } from '../device.service';
 import { loadDevices, retrievedList } from './device.actions';
 
@@ -10,7 +10,6 @@ export class DeviceEffects {
   loadDevices$ = createEffect(() => 
   this.actions$.pipe(
     ofType(loadDevices),
-    tap(console.log),
     mergeMap(() => this.deviceService$.getDevices()
       .pipe(
         map(devices => (retrievedList({ devices }))),
