@@ -294,6 +294,30 @@
 							</aside>
 						</section>
 						<section>
+							<h2>Selectors</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|5-8|10|12-18|13-14|15-17|"><script type="text/template">
+								import { createFeatureSelector, createSelector } from "@ngrx/store";
+								import { AppState } from "../state/app.state";
+								import { Device } from "./device.model";
+
+								export const selectDevices = createSelector(
+									(state: AppState) => state.devices,
+									(devices: ReadonlyArray<Device>) => devices
+								)
+
+								export const selectCollectionState = createFeatureSelector<AppState, ReadonlyArray<string>>('collection');
+
+								export const selectDeviceCollection = createSelector(
+									selectDevices,
+									selectCollectionState,
+									(devices: ReadonlyArray<Device>, collection: ReadonlyArray<string>) => {
+										return collection.map((id) => devices.find((device) => device.name === id));
+									}
+								);
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.selector.ts</small>
+						</section>
+						<section>
 							<h2>NgRx</h2>
 							<img src="../../assets/ngrx.svg" width="60%" alt="ngrx"/>
 						</section>
@@ -390,7 +414,7 @@
 						<section>
 							<h2>The SHARI principles</h2>
 							<ul>
-								<li>You should consider using a state management system if you have the challenges:
+								<li>You should consider using a state management system if you have these challenges:
 									<ul>
 										<li><mark>S—Shared</mark> State is accessed by many components and services</li>
 										<li><mark>H–Hydrated</mark> State that is persisted and hydrated from storage</li>
@@ -411,9 +435,31 @@
 								</ul>
 								<h4>References</h4>	
 								<ul>
-									<li><a href=""></a></li>
+									<li><a href="https://ngrx.io/guide/store/why">NgRx - Why use NgRx Store for State Management?</a></li>
 								</ul>
 							</aside>
+						</section>
+						<section>
+							<h2>Wrap-up</h2>
+							<ul>
+								<li>NgRx is a global state management system for Angular
+									<ul>
+										<li>Extends Redux with effects to accommodate Angular patterns</li>
+									</ul>
+								</li>
+								<li>Encapsulates side-effects in injectable effects
+									<ul>
+										<li>Allows implementation of pure and simple components</li>
+										<li>Promotes the single responsibility principle</li>
+									</ul>
+								</li>
+								<li>Immutability and performance
+									<ul>
+										<li>Immutable data structures makes change detection easy</li>
+										<li>Memoized selectors optimizes retrieval of data from state</li>
+									</ul>
+								</li>
+							</ul>
 						</section>
 					</section>
 					<section id="material">

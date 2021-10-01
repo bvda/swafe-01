@@ -12,7 +12,7 @@ export const selectCollectionState = createFeatureSelector<AppState, ReadonlyArr
 export const selectDeviceCollection = createSelector(
   selectDevices,
   selectCollectionState,
-  (devices: ReadonlyArray<Device>, collection: ReadonlyArray<string>) => {
+  (devices: ReadonlyArray<Device>, collection: ReadonlyArray<String>) => {
     return collection.map((id) => devices.find((device) => device.name === id));
   }
 );
