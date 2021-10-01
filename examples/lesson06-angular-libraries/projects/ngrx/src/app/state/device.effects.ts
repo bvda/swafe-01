@@ -9,11 +9,11 @@ import { loadDevices, retrievedList } from './device.actions';
 export class DeviceEffects {
   loadDevices$ = createEffect(() => 
   this.actions$.pipe(
-    ofType(loadDevices.type),
+    ofType(loadDevices),
     tap(console.log),
     mergeMap(() => this.deviceService$.getDevices()
       .pipe(
-        map(devices => ({ type: retrievedList.type, devices })),
+        map(devices => (retrievedList({ devices }))),
         catchError(() => {
           return EMPTY
         })

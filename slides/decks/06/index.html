@@ -229,12 +229,50 @@
 						</section>
 						<section>
 							<h2>Reducers</h2>
+							<ul>
+								<li>Reducers are responsible for handling state transitions in applications</li>
+								<li>Reducers are pure functions that produce the same output for a given input</li>
+								<li>A reducer function consists of:
+									<ul>
+										<li>An <code>interface</code> or type that defines the shape of the state</li>
+										<li>Arguments for current state and the current action</li>
+										<li>A function that handles state change</li>
+									</ul>
+								</li>
+								<li>Reducers are registered with the <code>Store</code> in module files
+									<ul>
+										<li>Use feature states to separate state handling for individual features modules</li>
+										<li>Can be loaded eagerly or lazily depending on the application needs</li>
+									<ul>
+								</li>
+							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
-									<li><a href=""></a></li>
+									<li><a href="https://ngrx.io/guide/store/reducers">NgRx - Reducers</a></li>
 								</ul>
 							</aside>
+						</section>
+						<section>
+							<h2>Reducers</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|4|6,15|7|8|9-14|"><script type="text/template">
+								import { createReducer, on } from '@ngrx/store';
+								import { addDevice, removeDevice } from './device.actions';
+								
+								export const initialState: ReadonlyArray<string> = [];
+								
+								export const collectionReducer = createReducer(
+									initialState,
+									on(removeDevice, (state, { deviceId }) => state.filter((id) => id !== deviceId)),
+									on(addDevice, (state, { deviceId }) => {
+										if (state.indexOf(deviceId) > -1) {
+											return state;
+										}
+										return [...state, deviceId];
+									})
+								);
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/collection.reducer.ts</small>
 						</section>
 						<section>
 							<h2>Selectors</h2>

@@ -8,20 +8,18 @@ import { selectDeviceCollection } from './device.selector';
  
 @Injectable()
 export class CollectionEffects {
-  addDeviceToCollectionSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(addDevice),
-        concatLatestFrom(action => this.store.select(selectDeviceCollection)),
-        tap(([action, devices]) => {
-          if (devices.length === 1) {
-            window.alert('Congrats on adding your first device!');
-          } else {
-            window.alert('You have added device number ' + devices.length);
-          }
-        })
-      ),
-    { dispatch: false }
+  addDeviceToCollectionSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(addDevice),
+    concatLatestFrom(action => this.store.select(selectDeviceCollection)),
+    tap(([action, devices]) => {
+      if (devices.length === 1) {
+        window.alert('Congrats on adding your first device!');
+      } else {
+        window.alert(`You have added device number ${devices.length}`);
+      }
+    })
+  ), 
+  { dispatch: false }
   );
  
   constructor(
