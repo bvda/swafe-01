@@ -349,7 +349,43 @@
 										private deviceService$: DeviceService) {}
 								}								
 							</script></code></pre>
-							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/collection.reducer.ts</small>	
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.effects.ts</small>	
+						</section>
+						<section>
+							<h2>Component</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|14-15,17|19-21|23-25,27-29|"><script type="text/template">
+								import { Component, OnInit } from '@angular/core';
+								import { select, Store } from '@ngrx/store';
+								import { AppState } from '../state/app.state';
+								import { addDevice, loadDevices, removeDevice } from '../state/device.actions';
+								import { selectDeviceCollection, selectDevices } from '../state/device.selector';
+								
+								@Component({
+									selector: 'app-device-list',
+									templateUrl: './device-list.component.html',
+									styleUrls: ['./device-list.component.scss']
+								})
+								export class DeviceListComponent implements OnInit {
+								
+									devices$ = this.store.pipe(select(selectDevices))
+									deviceCollection$ = this.store.pipe(select(selectDeviceCollection));
+								
+									constructor(private store: Store<AppState>) { }
+								
+									ngOnInit(): void {
+										this.store.dispatch(loadDevices())
+									}
+								
+									addDevice(deviceId: string) {
+										this.store.dispatch(addDevice({ deviceId}))
+									}
+								
+									removeDevice(deviceId: string) {
+										this.store.dispatch(removeDevice({ deviceId }))
+									}
+								}								
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.effects.ts</small>		
 						</section>
 						<section>
 							<h2>The SHARI principles</h2>

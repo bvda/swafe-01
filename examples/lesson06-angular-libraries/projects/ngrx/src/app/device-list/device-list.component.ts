@@ -14,8 +14,7 @@ export class DeviceListComponent implements OnInit {
   devices$ = this.store.pipe(select(selectDevices))
   deviceCollection$ = this.store.pipe(select(selectDeviceCollection));
 
-  constructor(private store: Store<AppState>) { 
-}
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadDevices())
