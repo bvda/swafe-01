@@ -7,10 +7,7 @@ export const selectDevices = createSelector(
   (devices: ReadonlyArray<Device>) => devices
 )
 
-export const selectCollectionState = createFeatureSelector<
-  AppState,
-  ReadonlyArray<string>
->('collection');
+export const selectCollectionState = createFeatureSelector<AppState, ReadonlyArray<string>>('collection');
 
 export const selectDeviceCollection = createSelector(
   selectDevices,

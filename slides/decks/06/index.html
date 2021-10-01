@@ -277,21 +277,35 @@
 						<section>
 							<h2>Selectors</h2>
 							<ul>
-								<li></li>
+								<li>Selectors are pure functions used for obtaining slices of store state</li>
+								<li>Selectors implements memoization
+									<ul>
+										<li>The store keeps track of latest selector argument values, and since they are pure functions, it can return the current state without invoking the function</li>
+										<li>This can provide performance benefits, if selectors perform expensive computation or I/O operations</li>
+									</ul>
+								</li>
+								<li><code>createSelector</code> can be used to select data from several slices (up to 8) of the same state</li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
-									<li><a href=""></a></li>
+									<li><a href="https://ngrx.io/guide/store/selectors">NgRx - Selectors</a></li>
 								</ul>
 							</aside>
 						</section>
 						<section>
+							<h2>NgRx</h2>
+							<img src="../../assets/ngrx.svg" width="60%" alt="ngrx"/>
+						</section>
+						<section>
 							<h2>Effects</h2>
+							<ul>
+								<li>https://ngrx.io/guide/effects</li>
+							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
-									<li><a href=""></a></li>
+									<li><a href="https://ngrx.io/guide/effects">NgRx - @ngrx/effects</a></li>
 								</ul>
 							</aside>
 						</section>
