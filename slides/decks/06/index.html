@@ -89,7 +89,8 @@
 					</section>
 					<section id="ngrx">
 						<section>
-							<h2>NgRx</h2>
+							<h2>State management</h2>
+							<h4>Redux | NgRx</h4>
 						</section>
 						<section>
 							<h2>Overview</h2>
@@ -100,7 +101,15 @@
 										<li>Inspired by Redux</li>
 									</ul>
 								</li>
+								<li>Based on Redux architecture
+									<ul>
+										<li>Single source of thruth</li>
+										<li>Immutable state</li>
+										<li>State changes is triggered by pure functions</li>
+									</ul>
+								</li>
 								<li>Use when building applications with a lot of user interaction and multiple data sources</li>
+								<li>A solid understanding of RxJS and Redux is beneficial before starting using NgRx</li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -111,22 +120,112 @@
 							</aside>
 						</section>
 						<section>
+							<h2>One-way data flow</h2>
+							<img src="../../assets/one-way-data-flow.svg" width="60%" alt="one-way-data-flow"/>
+						</section>
+						<section>
+							<h2>Redux</h2>
+							<img src="../../assets/redux.svg" width="60%" alt="redux" />
+						</section>
+						<section>
 							<h2>Store</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers><script type="text/template">
+								class Store<T = object> extends Observable<T> implements Observer<Action> 
+							</script></code></pre>
+							<small>https://github.com/ngrx/platform/blob/master/modules/store/src/store.ts</small>
+							<ul>
+								<li>Manages global application state</li>
+								<li>Two different store are available:
+									<ul>
+										<li><code>Store</code>—used for global application-wide state managemeent</li>
+										<li><code>ComponentStore</code>—used for local state management, e.g. in a component</li>
+									</ul>
+								</li>
+								<li>Use <code>Actions</code> to express state change</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Store</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="14,19,22,24,27-28"><script type="text/template">
+								import { NgModule } from '@angular/core';
+								import { BrowserModule } from '@angular/platform-browser';
+								
+								import { AppRoutingModule } from './app-routing.module';
+								import { AppComponent } from './app.component';
+								import { CollectionEffects } from './state/collection.effects';
+								import { collectionReducer } from './state/collection.reducer';
+								import { DeviceEffects } from './state/device.effects';
+								import { DeviceListComponent } from './device-list/device-list.component';
+								import { devicesReducer } from './state/device.reducer';
+								import { StoreModule } from '@ngrx/store';
+								import { EffectsModule } from '@ngrx/effects';
+								
+								@NgModule({
+									declarations: [
+										AppComponent,	
+										DeviceListComponent
+									],
+									imports: [
+										BrowserModule,
+										AppRoutingModule,
+										StoreModule.forRoot({ devices: devicesReducer, collection: collectionReducer }),
+										EffectsModule.forRoot([DeviceEffects, CollectionEffects])
+									],
+									providers: [],
+									bootstrap: [AppComponent]
+								})
+								export class AppModule { }
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/app.module.ts</small>
+						</section>
+						<section>
+							<h2>Actions</h2>
+							<ul>
+								<li>Actions are the main building blocks of NgRx</li>
+								<li>They define <em>unique</em> events that happens in applications</li>
+								<li>Writing actions
+									<ul>
+										<li>Define action upfront to understand and gain knowledge about the feature being implemented</li>
+										<li>Categorize actions based on event sources</li>
+										<li>Capture events not commands, separate description and handling of events</li>
+										<li>Provide unique context for events to aid debugging</li>
+									</ul>
+								</li>
+								<li>They serve as both <em>inputs</em> and <em>outputs</em></li>
+							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
-									<li><a href=""></a></li>
+									<li><a href="https://ngrx.io/guide/store/actions">NgRx - Actions</a></li>
 								</ul>
 							</aside>
 						</section>
 						<section>
 							<h2>Actions</h2>
-							<aside class="notes" aria-label="notes">
-								<h4>References</h4>
-								<ul>
-									<li><a href=""></a></li>
-								</ul>
-							</aside>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|4-7|14-16|18-21|"><script type="text/template">
+								import { createAction, props } from "@ngrx/store";
+								import { Device } from "./device.model";
+								
+								export const addDevice = createAction(
+									`[Device] Add Device`,
+									props<{ deviceId: string}>()
+								)
+								
+								export const removeDevice = createAction(
+									`[Device] Remove Device`,
+									props<{ deviceId: string}>()
+								)
+								
+								export const loadDevices = createAction(
+									`[Device/API] Load Devices`
+								)
+								
+								export const retrievedList = createAction(
+									`[Device/API] Retrieved List`,
+									props<{ devices: ReadonlyArray<Device>}>()
+								)
+							</script></code></pre>	
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.actions.ts</small>
 						</section>
 						<section>
 							<h2>Reducers</h2>
@@ -139,6 +238,9 @@
 						</section>
 						<section>
 							<h2>Selectors</h2>
+							<ul>
+								<li></li>
+							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
@@ -150,6 +252,34 @@
 							<h2>Effects</h2>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
+								<ul>
+									<li><a href=""></a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>The SHARI principles</h2>
+							<ul>
+								<li>You should consider using a state management system if you have the challenges:
+									<ul>
+										<li><mark>S—Shared</mark> State is accessed by many components and services</li>
+										<li><mark>H–Hydrated</mark> State that is persisted and hydrated from storage</li>
+										<li><mark>A–Available</mark> State that needs to be available when re-entering routes</li>
+										<li><mark>R–Retrieved</mark> State that needs to be retrieved with a side effect</li>
+										<li><mark>I–Impacted</mark> State that is impacted by actions from other sources</li>
+									</ul>
+								</li>
+								<li>Using NgRx comes with the price of code complexity, indirection and high code cost</li>
+							</ul> 
+							<aside class="notes" aria-label="notes">
+								<ul>
+									<li>Shared: Authentication</li>
+									<li>Hydrated: Local storage and Anuglar universal</li>
+									<li>Available: Keep state available across routes</li>
+									<li>Retrieved: HTTP request, save response</li>
+									<li>Impacted: Pagination, data source impact data in table</li>
+								</ul>
+								<h4>References</h4>	
 								<ul>
 									<li><a href=""></a></li>
 								</ul>
