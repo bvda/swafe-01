@@ -559,6 +559,7 @@
 										<li>Additional colors for specific uses, e.g. backgrounds, errors, typography, etc.</li>
 									</ul>
 								</li>
+								<li>It is possible to define custom themes based on custom palettes</li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -567,6 +568,51 @@
 									<li><a href="https://material.io/design/color/the-color-system.html">The color system - Material Design</a></li>
 								</ul>
 							</aside>
+						</section>
+						<section>
+							<h2>Custom theme</h2>
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers="|4-5|12|17-18|25-31|36|"><script type="text/template">
+								// Custom Theming for Angular Material
+								// For more information: https://material.angular.io/guide/theming
+								@use '~@angular/material' as mat;
+								@use './orbit-palette-primary' as olp;
+								@use './orbit-palette-secondary' as ols;
+								
+								// Plus imports for other components in your app.
+								
+								// Include the common styles for Angular Material. We include this here so that you only
+								// have to load a single css file for Angular Material in your app.
+								// Be sure that you only ever include this mixin once!
+								@include mat.core(); 
+								
+								// Define the palettes for your theme using the Material Design palettes available in palette.scss
+								// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+								// hue. Available color palettes: https://material.io/design/color/
+								$material-primary: mat.define-palette(olp.$orbit-palette-primary);
+								$material-accent: mat.define-palette(ols.$orbit-palette-secondary);
+								
+								// The warn palette is optional (defaults to red).
+								$material-warn: mat.define-palette(mat.$red-palette);
+								
+								// Create the theme object. A theme consists of configurations for individual
+								// theming systems such as "color" or "typography".
+								$material-theme: mat.define-light-theme((
+									color: (
+										primary: $material-primary,
+										accent: $material-accent,
+										warn: $material-warn,
+									)
+								));
+								
+								// Include theme styles for core and each component used in your app.
+								// Alternatively, you can import and @include the theme mixins for each component
+								// that you are using.
+								@include mat.all-component-themes($material-theme);
+								
+								html, body { height: 100%; }
+								body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/material/src/styles.scss</small>
 						</section>
 						<section>
 							<h2>Components</h2>
