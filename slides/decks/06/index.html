@@ -481,10 +481,24 @@
 						</section>
 						<section>
 							<h2>Overview</h2>
+							<ul>
+								<li>The Angular Material library provides common UI components and tools to build custom components</li>
+								<li>The library is maintained by the Angular team</li>
+								<li>Other interesting libraries:
+									<ul>
+										<li><code>@angular/cdk</code>—write custom UI components with common interaction patterns</li>
+										<li><code>@angular/material</code>—Material Design components for Angular applications</li>
+										<li><code>@angular/google-maps</code>—Angular components built on top of the Google Maps JavaScript API</li>
+										<li><code>@angular/youtube-player</code>—Angular components built on top of the YouTube Player API</li>
+									</ul>
+								</li>
+								<li>Customizable within the bounds of the Material Design specification</li>
+							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
 								<ul>
 									<li><a href="https://material.angular.io/">Angular Material UI component library</a></li>
+									<li><a href="https://github.com/angular/components">angular/components: Component infrastructure and Material Design components for Angular</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -493,8 +507,20 @@
 							<ul>
 								<li>A design systems is a system of patterns and styles that is used when creating applications
 									<ul>
-										<li>Patterns describes flows, behaviors and how to combine elements</li>
-										<li>Styles describes visual elements (fonts, colors, etc.)</li>
+										<li>Patterns describes flows, behaviors and how to combine elements
+											<ul>
+												<li>Animation</li>
+												<li>Layout</li>
+												<li>Sounds</li>
+											</ul>
+										</li>
+										<li>Styles describes visual elements
+											<ul>
+												<li>Typography</li>
+												<li>Colors</li>
+												<li>Iconography</li>
+											</ul>
+										</li>
 									</ul>
 								</li>
 								<li>There are several design systems available
@@ -517,9 +543,55 @@
 						</section>
 						<section>
 							<h2>Themes</h2>
+							<ul>
+								<li>A theme is used to define colors and typography for an application</li>
+								<li>It is what makes up "the look and feel" of applications</li>
+								<li>The framework exposes a theming API
+									<ul>
+										<li>Built with <a href="../05/#css-preprocessing">Sass</a></li>
+									</ul>
+								</li>
+								<li>Material Design comes with built-in themes, that can be used as-is</li>
+								<li>Palettes apply color to UI in a meaningful way
+									<ul>
+										<li>Primary and secondary colors</li>
+										<li>Variants of primary and secondary colors</li>
+										<li>Additional colors for specific uses, e.g. backgrounds, errors, typography, etc.</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.angular.io/guide/theming">Theming Angular Material | Angular Material</a></li>
+									<li><a href="https://material.io/design/color/the-color-system.html">The color system</a></li>
+								</ul>
+							</aside>
 						</section>
 						<section>
 							<h2>Components</h2>
+							<ul>
+								<li>Angular Material provides a wide range(36) of UI components based on Material Design</li>
+								<li>Some examples
+									<ul>
+										<li><mark>App bars</mark>–the top app bar displays information and actions related to the current screen</li>
+										<li><mark>Buttons</mark>–allows users to take actions, and make choices, with a single tap</li>
+										<li><mark>Cards</mark>–contains content and actions about a single subject</li>
+										<li><mark>Date picker</mark>–allows users to select a date, or a range of dates</li>
+									</ul>
+								</li>
+								<li>Check out <a href="https://material.io/components?platform=web">Components – Material Design</a> for an in-depth description of use of each component</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.io/components">Components - Material Design</a></li>
+									<li><a href="https://material.io/components/app-bars-top">App bars: top - Material Design</a></li>
+									<li><a href="https://material.io/components/buttons">Buttons - Material Design</a></li>
+									<li><a href="https://material.io/components/cards">Cards – Material Design</a></li>
+									<li><a href="https://material.io/components/date-pickers">Date pickers - Material Design</a></li>
+								</ul>
+							</aside>
 						</section>
 						<section>
 							<h2><code>mat-card</code></h2>
