@@ -137,7 +137,6 @@
               "projects/material/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "projects/material/src/styles.scss"
             ],
             "scripts": []
