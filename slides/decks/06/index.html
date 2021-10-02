@@ -376,6 +376,17 @@
 							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.effects.ts</small>	
 						</section>
 						<section>
+							<h2>Effects</h2>
+							<ul><li>NgRx and Redux differences:
+								<ul>
+									<li>Effect lives outside <code>Store</code> objects</li>
+									<li>Effets communicate with services (which can produce side-effects</li>
+									<li>Redux actions are only handled in reducers, but in NgRx, some actions are handled in reducers, some in effects, and some in both</li>
+								</ul>
+							</li>
+							</ul>
+						</section>
+						<section>
 							<h2>Component</h2>
 							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|14-15,17|19-21|23-25,27-29|"><script type="text/template">
 								import { Component, OnInit } from '@angular/core';
@@ -459,6 +470,7 @@
 										<li>Memoized selectors optimizes retrieval of data from state</li>
 									</ul>
 								</li>
+								<li>Consider the SHARI principles to determine if you really need NgRx</li>
 							</ul>
 						</section>
 					</section>
