@@ -1,0 +1,28 @@
+$dark-primary-text: rgba(white, 0.87);
+$light-primary-text: white;
+
+$orbit-palette-primary: (
+  50: #e2eef4,
+  100: #b7d5e6,
+  200: #8cbbd6,
+  300: #65a0c5,
+  400: #4a8ebb,
+  500: #317db1,
+  600: #2871a6,
+  700: #1d6195,
+  800: #145284,
+  900: #053765,
+  
+  contrast: (
+    50: $dark-primary-text,
+    100:$dark-primary-text,
+    200:$dark-primary-text,
+    300:$dark-primary-text,
+    400:$light-primary-text,
+    500:$light-primary-text,
+    600:$light-primary-text,
+    700:$light-primary-text,
+    800:$light-primary-text,
+    900:$light-primary-text,
+  )
+);

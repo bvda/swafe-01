@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>SWAFE-01</mat-card-title>
+      <mat-card-subtitle>Authentication</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <div class="grid">
+        <mat-form-field class="email" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" autocomplete="email" placeholder="Ex. pat@example.com">
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="password" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" autocomplete="current-password" placeholder="Ex. correct horse stable battery">
+          <mat-error *ngIf="password.hasError('email') && !password.hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-checkbox class="remember" formControlName="remember">Remember me</mat-checkbox>
+        <button class="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

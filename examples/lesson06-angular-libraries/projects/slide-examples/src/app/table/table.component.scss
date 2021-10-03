@@ -1,0 +1,21 @@
+.example-container {
+  position: relative;
+}
+
+.example-table-container {
+  position: relative;
+  max-height: 350px;
+  overflow: auto;
+
+  table {
+    width: 100%;
+  }
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
+}

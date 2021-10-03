@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lesson 06</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+			<!-- Theme used for syntax highlighted code -->
+			<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">	
+		</head>
+		<body>
+			<div class="reveal">
+				<div class="slides">
+					<section>
+						<h2>Angular libraries</h2>
+						<h3>Lesson 06</h3>
+						<h4>SWAFE-01</h3>
+					</section>
+					<section id="dependencies">
+						<section>
+							<h2>Dependencies</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<ul>
+								<li>Technical questions to consider:
+									<ul>
+										<li><mark>Code quality</mark>–good functionality can be implemented badly</li>
+										<li><mark>Maintainence</mark>–is the codebase actively maintained, and who is maintaining it?</li>
+										<li><mark>Documentation</mark>–are there proper documentation for the library?</li>
+										<li><mark>Bloated bundle size</mark>–are the bundling process optimized?</li>
+										<li>Compatibility</li>
+									</ul>
+								</li>
+								<li>Business questions to consider:
+									<ul>
+										<li><mark>Vendor lock-in</mark>–what are the cost of switching to another vendor</li>
+										<li><mark>Control over changes</mark>–what level of influence does the users have on the feature requests and bug fixing</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://xkcd.com/2347/">xkcd: Dependency</a></li>
+									<li><a href="https://www.browserlondon.com/blog/2020/09/02/dependency-hell-how-to-avoid-it/">What dependency hell looks like, and how to avoid it - Browser London</a></li>
+									<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking">Reduce JavaScript Payloads with Tree Shaking | Web Fundamentals</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Popular libraries</h2>
+							<ul>
+								<li>Angular
+									<ul>
+										<li><mark>AngularFire</mark>–brings the framework-agnostic Firebase JavaScript SDK to Angular</li>
+										<li><mark>Angular Material</mark>–material design components<code></code></li>
+										<li><mark>Angular Flex</mark>–provides a sophisticated layout API using Flexbox CSS + mediaQuery</li>
+										<li><mark>Angular Universal</mark>–expands Core Angular APIs to enable server-side rendering</li>
+										<li><mark>NgRx</mark>–Reactive Redux-inspired state management for Angular</li>
+									</ul>
+								</li>
+								<li>Other
+									<ul>
+										<li><mark>Axios</mark>–promise based HTTP client for the browser and node.js</li>
+										<li><mark>Lodash</mark>–a modern JavaScript utility library delivering modularity, performance & extras</li>
+										<li><mark>jQuery</mark>–a JavaScript library, that makes document traversal and manipulation, event handling, animation, and Ajax simpler</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://github.com/axios/axios">axios/axios: Promise based HTTP client for the browser and node.js</a></li>
+									<li><a href="https://lodash.com/">Lodash</a></li>
+									<li><a href="https://ngrx.io/">NgRx</a></li>
+									<li><a href="https://github.com/angular/universal">angular/universal: Server-side rendering and Prerendering for Angular</a></li>
+									<li><a href="https://github.com/angular/components">angular/components: Component infrastructure and Material Design components for Angular</a></li>
+									<li><a href="https://github.com/angular/angularfire">angular/angularfire: The official Angular library for Firebase</a></li>
+									<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+					<section id="ngrx">
+						<section>
+							<h2>State management</h2>
+							<h4>NgRx</h4>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<ul>
+								<li>NgRX is global state management for Angular applications
+									<ul>
+										<li>Powered by RxJS</li>
+										<li>Inspired by Redux</li>
+									</ul>
+								</li>
+								<li>Based on Redux architecture
+									<ul>
+										<li>Single source of thruth</li>
+										<li>Immutable state</li>
+										<li>State changes is triggered by pure functions</li>
+									</ul>
+								</li>
+								<li>Use when building applications with a lot of user interaction and multiple data sources</li>
+								<li>A solid understanding of RxJS and Redux is beneficial before starting using NgRx</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://ngrx.io/">NgRx</a></li>
+									<li><a href="https://ngrx.io/guide/store/why">NgRx - Why use NgRx Store for State Management?</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>One-way data flow</h2>
+							<img src="../../assets/one-way-data-flow.svg" width="60%" alt="one-way-data-flow"/>
+						</section>
+						<section>
+							<h2>Redux</h2>
+							<img src="../../assets/redux.svg" width="60%" alt="redux" />
+						</section>
+						<section>
+							<h2>Store</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers><script type="text/template">
+								class Store<T = object> extends Observable<T> implements Observer<Action> 
+							</script></code></pre>
+							<small>https://github.com/ngrx/platform/blob/master/modules/store/src/store.ts</small>
+							<ul>
+								<li>Manages global application state</li>
+								<li>Two different store are available:
+									<ul>
+										<li><code>Store</code>—used for global application-wide state managemeent</li>
+										<li><code>ComponentStore</code>—used for local state management, e.g. in a component</li>
+									</ul>
+								</li>
+								<li>Use <code>Actions</code> to express state change</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Store</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="14,19,22,24,27-28"><script type="text/template">
+								import { NgModule } from '@angular/core';
+								import { BrowserModule } from '@angular/platform-browser';
+								
+								import { AppRoutingModule } from './app-routing.module';
+								import { AppComponent } from './app.component';
+								import { CollectionEffects } from './state/collection.effects';
+								import { collectionReducer } from './state/collection.reducer';
+								import { DeviceEffects } from './state/device.effects';
+								import { DeviceListComponent } from './device-list/device-list.component';
+								import { devicesReducer } from './state/device.reducer';
+								import { StoreModule } from '@ngrx/store';
+								import { EffectsModule } from '@ngrx/effects';
+								
+								@NgModule({
+									declarations: [
+										AppComponent,	
+										DeviceListComponent
+									],
+									imports: [
+										BrowserModule,
+										AppRoutingModule,
+										StoreModule.forRoot({ devices: devicesReducer, collection: collectionReducer }),
+										EffectsModule.forRoot([DeviceEffects, CollectionEffects])
+									],
+									providers: [],
+									bootstrap: [AppComponent]
+								})
+								export class AppModule { }
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/app.module.ts</small>
+						</section>
+						<section>
+							<h2>Actions</h2>
+							<ul>
+								<li>Actions are the main building blocks of NgRx</li>
+								<li>They define <em>unique</em> events that happens in applications</li>
+								<li>Writing actions
+									<ul>
+										<li>Define action upfront to understand and gain knowledge about the feature being implemented</li>
+										<li>Categorize actions based on event sources</li>
+										<li>Capture events not commands, separate description and handling of events</li>
+										<li>Provide unique context for events to aid debugging</li>
+									</ul>
+								</li>
+								<li>They serve as both <em>inputs</em> and <em>outputs</em></li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://ngrx.io/guide/store/actions">NgRx - Actions</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Actions</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|4-7|14-16|18-21|"><script type="text/template">
+								import { createAction, props } from "@ngrx/store";
+								import { Device } from "./device.model";
+								
+								export const addDevice = createAction(
+									`[Device] Add Device`,
+									props<{ deviceId: string}>()
+								)
+								
+								export const removeDevice = createAction(
+									`[Device] Remove Device`,
+									props<{ deviceId: string}>()
+								)
+								
+								export const loadDevices = createAction(
+									`[Device/API] Load Devices`
+								)
+								
+								export const retrievedList = createAction(
+									`[Device/API] Retrieved List`,
+									props<{ devices: ReadonlyArray<Device>}>()
+								)
+							</script></code></pre>	
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.actions.ts</small>
+						</section>
+						<section>
+							<h2>Reducers</h2>
+							<ul>
+								<li>Reducers are responsible for handling state transitions in applications</li>
+								<li>Reducers are pure functions that produce the same output for a given input</li>
+								<li>A reducer function consists of:
+									<ul>
+										<li>An <code>interface</code> or type that defines the shape of the state</li>
+										<li>Arguments for current state and the current action</li>
+										<li>A function that handles state change</li>
+									</ul>
+								</li>
+								<li>Reducers are registered with the <code>Store</code> in module files
+									<ul>
+										<li>Use feature states to separate state handling for individual features modules</li>
+										<li>Can be loaded eagerly or lazily depending on the application needs</li>
+									<ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://ngrx.io/guide/store/reducers">NgRx - Reducers</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Reducers</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|4|6,15|7|8|9-14|"><script type="text/template">
+								import { createReducer, on } from '@ngrx/store';
+								import { addDevice, removeDevice } from './device.actions';
+								
+								export const initialState: ReadonlyArray<string> = [];
+								
+								export const collectionReducer = createReducer(
+									initialState,
+									on(removeDevice, (state, { deviceId }) => state.filter((id) => id !== deviceId)),
+									on(addDevice, (state, { deviceId }) => {
+										if (state.indexOf(deviceId) > -1) {
+											return state;
+										}
+										return [...state, deviceId];
+									})
+								);
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/collection.reducer.ts</small>
+						</section>
+						<section>
+							<h2>Selectors</h2>
+							<ul>
+								<li>Selectors are pure functions used for obtaining slices of store state</li>
+								<li>Selectors implements memoization
+									<ul>
+										<li>The store keeps track of latest selector argument values, and since they are pure functions, it can return the current state without invoking the function</li>
+										<li>This can provide performance benefits, if selectors perform expensive computation or I/O operations</li>
+									</ul>
+								</li>
+								<li><code>createSelector</code> can be used to select data from several slices (up to 8) of the same state</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://ngrx.io/guide/store/selectors">NgRx - Selectors</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Selectors</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|5-8|10|12-18|13-14|15-17|"><script type="text/template">
+								import { createFeatureSelector, createSelector } from "@ngrx/store";
+								import { AppState } from "../state/app.state";
+								import { Device } from "./device.model";
+
+								export const selectDevices = createSelector(
+									(state: AppState) => state.devices,
+									(devices: ReadonlyArray<Device>) => devices
+								)
+
+								export const selectCollectionState = createFeatureSelector<AppState, ReadonlyArray<string>>('collection');
+
+								export const selectDeviceCollection = createSelector(
+									selectDevices,
+									selectCollectionState,
+									(devices: ReadonlyArray<Device>, collection: ReadonlyArray<string>) => {
+										return collection.map((id) => devices.find((device) => device.name === id));
+									}
+								);
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.selector.ts</small>
+						</section>
+						<section>
+							<h2>NgRx</h2>
+							<img src="../../assets/ngrx.svg" width="60%" alt="ngrx"/>
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<ul>
+								<li>RxJS powered side effect model for <code>Store</code></li>
+								<li>Effect uses streams to provide new sources of actions to reduce state based on external actions
+									<ul>
+										<li>Network requests</li>
+										<li>Web socket message</li>
+										<li>Time-based events</li>
+									</ul>
+								</li>
+								<li>Effects isolate side effects from components, allowing for more pure components</li>
+								<li>Long-running services that listens to an <code>Observable</code> of every <code>Action</code> dispatched from the <code>Store</code></li>
+								<li>Effects filter <code>Action</code> objects based on interest</li>
+								<li>Effects perform tasks that produces new <code>Action</code> objects which is handled by the <code>Store</code></li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://ngrx.io/guide/effects">NgRx - @ngrx/effects</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|8|10|11,23|6,12|13-19,24|"><script type="text/template">
+								import { Injectable } from '@angular/core';
+								import { Actions, createEffect, ofType } from '@ngrx/effects'
+								import { EMPTY } from 'rxjs';
+								import { map, mergeMap, catchError } from 'rxjs/operators';
+								import { DeviceService } from '../device.service';
+								import { loadDevices, retrievedList } from './device.actions';
+								
+								@Injectable()
+								export class DeviceEffects {
+									loadDevices$ = createEffect(() => 
+									this.actions$.pipe(
+										ofType(loadDevices),
+										mergeMap(() => this.deviceService$.getDevices()
+											.pipe(
+												map(devices => (retrievedList({ devices }))),
+												catchError(() => {
+													return EMPTY
+												})
+										))
+									))
+								
+									constructor(
+										private actions$: Actions, 
+										private deviceService$: DeviceService) {}
+								}								
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.effects.ts</small>	
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<ul><li>NgRx and Redux differences:
+								<ul>
+									<li>Effect lives outside <code>Store</code> objects</li>
+									<li>Effets communicate with services (which can produce side-effects</li>
+									<li>Redux actions are only handled in reducers, but in NgRx, some actions are handled in reducers, some in effects, and some in both</li>
+								</ul>
+							</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Component</h2>
+							<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|14-15,17|19-21|23-25,27-29|"><script type="text/template">
+								import { Component, OnInit } from '@angular/core';
+								import { select, Store } from '@ngrx/store';
+								import { AppState } from '../state/app.state';
+								import { addDevice, loadDevices, removeDevice } from '../state/device.actions';
+								import { selectDeviceCollection, selectDevices } from '../state/device.selector';
+								
+								@Component({
+									selector: 'app-device-list',
+									templateUrl: './device-list.component.html',
+									styleUrls: ['./device-list.component.scss']
+								})
+								export class DeviceListComponent implements OnInit {
+								
+									devices$ = this.store.pipe(select(selectDevices))
+									deviceCollection$ = this.store.pipe(select(selectDeviceCollection));
+								
+									constructor(private store: Store<AppState>) { }
+								
+									ngOnInit(): void {
+										this.store.dispatch(loadDevices())
+									}
+								
+									addDevice(deviceId: string) {
+										this.store.dispatch(addDevice({ deviceId}))
+									}
+								
+									removeDevice(deviceId: string) {
+										this.store.dispatch(removeDevice({ deviceId }))
+									}
+								}								
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/ngrx/src/app/state/device.effects.ts</small>		
+						</section>
+						<section>
+							<h2>The SHARI principles</h2>
+							<ul>
+								<li>You should consider using a state management system if you have these challenges:
+									<ul>
+										<li><mark>S—Shared</mark> State is accessed by many components and services</li>
+										<li><mark>H–Hydrated</mark> State that is persisted and hydrated from storage</li>
+										<li><mark>A–Available</mark> State that needs to be available when re-entering routes</li>
+										<li><mark>R–Retrieved</mark> State that needs to be retrieved with a side effect</li>
+										<li><mark>I–Impacted</mark> State that is impacted by actions from other sources</li>
+									</ul>
+								</li>
+								<li>Using NgRx comes with the price of code complexity, indirection and high code cost</li>
+							</ul> 
+							<aside class="notes" aria-label="notes">
+								<ul>
+									<li>Shared: Authentication</li>
+									<li>Hydrated: Local storage and Anuglar universal</li>
+									<li>Available: Keep state available across routes</li>
+									<li>Retrieved: HTTP request, save response</li>
+									<li>Impacted: Pagination, data source impact data in table</li>
+								</ul>
+								<h4>References</h4>	
+								<ul>
+									<li><a href="https://ngrx.io/guide/store/why">NgRx - Why use NgRx Store for State Management?</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Wrap-up</h2>
+							<ul>
+								<li>NgRx is a global state management system for Angular
+									<ul>
+										<li>Extends Redux with effects to accommodate Angular patterns</li>
+									</ul>
+								</li>
+								<li>Encapsulates side-effects in injectable effects
+									<ul>
+										<li>Allows implementation of pure and simple components</li>
+										<li>Promotes the single responsibility principle</li>
+									</ul>
+								</li>
+								<li>Immutability and performance
+									<ul>
+										<li>Immutable data structures makes change detection easy</li>
+										<li>Memoized selectors optimizes retrieval of data from state</li>
+									</ul>
+								</li>
+								<li>Consider the SHARI principles to determine if you really need NgRx</li>
+							</ul>
+						</section>
+					</section>
+					<section id="material">
+						<section>
+							<h2>Angular Material</h2>
+							<small>Run <code>ng serve --port 4200 slide-examples</code> in <code>examples/lesson06-angular-libraries</code></small>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<ul>
+								<li>The Angular Material library provides common UI components and tools to build custom components</li>
+								<li>The library is maintained by the Angular team</li>
+								<li>Other interesting libraries:
+									<ul>
+										<li><code>@angular/cdk</code>—write custom UI components with common interaction patterns</li>
+										<li><code>@angular/material</code>—Material Design components for Angular applications</li>
+										<li><code>@angular/google-maps</code>—Angular components built on top of the Google Maps JavaScript API</li>
+										<li><code>@angular/youtube-player</code>—Angular components built on top of the YouTube Player API</li>
+									</ul>
+								</li>
+								<li>Customizable within the bounds of the Material Design specification</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.angular.io/">Angular Material UI component library</a></li>
+									<li><a href="https://github.com/angular/components">angular/components: Component infrastructure and Material Design components for Angular</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Design systems</h2>
+							<ul>
+								<li>A design systems is a system of patterns and styles that is used when creating applications
+									<ul>
+										<li>Patterns describes flows, behaviors and how to combine elements
+											<ul>
+												<li>Animation</li>
+												<li>Layout</li>
+												<li>Sounds</li>
+											</ul>
+										</li>
+										<li>Styles describes visual elements
+											<ul>
+												<li>Typography</li>
+												<li>Colors</li>
+												<li>Iconography</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>There are several design systems available
+									<ul>
+										<li>Material Design (Google)</li>
+										<li>Fluent Design System (Microsoft)</li>
+										<li>Carbon Design System (IBM)</li>
+										<li>Lightning Design System (Salesforce)</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<ul>
+									<li><a href="https://www.microsoft.com/design/fluent/">Microsoft Design</a></li>
+									<li><a href="https://material.io/">Homepage - Material Design</a></li>
+									<li><a href="https://www.carbondesignsystem.com/">Carbon Design System</a></li>
+									<li><a href="https://www.lightningdesignsystem.com/">Lightning Design System</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Themes</h2>
+							<ul>
+								<li>A theme is used to define colors and typography for an application</li>
+								<li>It is what makes up "the look and feel" of applications</li>
+								<li>The framework exposes a theming API
+									<ul>
+										<li>Built with <a href="../05/#css-preprocessing">Sass</a></li>
+									</ul>
+								</li>
+								<li>Material Design comes with built-in themes, that can be used as-is</li>
+								<li>Palettes apply color to UI in a meaningful way
+									<ul>
+										<li>Primary and secondary colors</li>
+										<li>Variants of primary and secondary colors</li>
+										<li>Additional colors for specific uses, e.g. backgrounds, errors, typography, etc.</li>
+									</ul>
+								</li>
+								<li>It is possible to define custom themes based on custom palettes</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.angular.io/guide/theming">Theming Angular Material | Angular Material</a></li>
+									<li><a href="https://material.io/design/color/the-color-system.html">The color system - Material Design</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Custom theme</h2>
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers="|4-5|12|17-18|25-31|36|"><script type="text/template">
+								// Custom Theming for Angular Material
+								// For more information: https://material.angular.io/guide/theming
+								@use '~@angular/material' as mat;
+								@use './orbit-palette-primary' as olp;
+								@use './orbit-palette-secondary' as ols;
+								
+								// Plus imports for other components in your app.
+								
+								// Include the common styles for Angular Material. We include this here so that you only
+								// have to load a single css file for Angular Material in your app.
+								// Be sure that you only ever include this mixin once!
+								@include mat.core(); 
+								
+								// Define the palettes for your theme using the Material Design palettes available in palette.scss
+								// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+								// hue. Available color palettes: https://material.io/design/color/
+								$material-primary: mat.define-palette(olp.$orbit-palette-primary);
+								$material-accent: mat.define-palette(ols.$orbit-palette-secondary);
+								
+								// The warn palette is optional (defaults to red).
+								$material-warn: mat.define-palette(mat.$red-palette);
+								
+								// Create the theme object. A theme consists of configurations for individual
+								// theming systems such as "color" or "typography".
+								$material-theme: mat.define-light-theme((
+									color: (
+										primary: $material-primary,
+										accent: $material-accent,
+										warn: $material-warn,
+									)
+								));
+								
+								// Include theme styles for core and each component used in your app.
+								// Alternatively, you can import and @include the theme mixins for each component
+								// that you are using.
+								@include mat.all-component-themes($material-theme);
+								
+								html, body { height: 100%; }
+								body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/material/src/styles.scss</small>
+						</section>
+						<section>
+							<h2>Components</h2>
+							<ul>
+								<li>Angular Material provides a wide range(36) of UI components based on Material Design</li>
+								<li>Some examples
+									<ul>
+										<li><mark>App bars</mark>–the top app bar displays information and actions related to the current screen</li>
+										<li><mark>Buttons</mark>–allows users to take actions, and make choices, with a single tap</li>
+										<li><mark>Cards</mark>–contains content and actions about a single subject</li>
+										<li><mark>Date picker</mark>–allows users to select a date, or a range of dates</li>
+									</ul>
+								</li>
+								<li>Check out <a href="https://material.io/components?platform=web">Components – Material Design</a> for an in-depth description of use of each component</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://material.io/components">Components - Material Design</a></li>
+									<li><a href="https://material.io/components/app-bars-top">App bars: top - Material Design</a></li>
+									<li><a href="https://material.io/components/buttons">Buttons - Material Design</a></li>
+									<li><a href="https://material.io/components/cards">Cards – Material Design</a></li>
+									<li><a href="https://material.io/components/date-pickers">Date pickers - Material Design</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2><code>mat-card</code></h2>
+							<div class="two-columns-container">
+								<div class="two-columns">
+									<ul>
+										<ul>
+											<ul>
+												<li>Content container for text, photos, and actions the context of a single subject</li>
+												<li>A <code>mat-card</code> has sections
+													<ul>
+														<li>Header
+																<ul>
+																	<li>Title</li>
+																	<li>Subtitle</li>
+																	<li>Avatar</li>
+																</ul>
+														</li>
+														<li>Content</li>
+														<li>Actions</li>
+														<li>Footer</li>
+														</ul>											
+													</ul>
+												</li>
+											</ul>
+										</ul>
+									</ul>
+								</div>
+								<div class="two-columns">
+									<iframe height="100%" width="100%" data-src="http://localhost:4200/card" title="/card"></iframe>	
+								</div>
+							</div>
+						</section>
+						<section>
+							<h2><code>mat-table</code></h2>
+							<div class="two-columns-container">
+								<div class="two-columns">
+									<ul>
+										<ul>
+											<ul>
+												<li><code>mat-table</code> is focused on rendering rows of table data</li>
+												<li>Table features
+													<li>Define column and row templates with <code>matColumnDef</code> and <code>matRowDef</code></li>
+													<ul>
+														<li>Pagination</li>
+														<li>Sorting</li>
+														<li>Filtering</li>
+														<li>Selection</li>
+													</ul>
+												</li>
+												<li>Bind array or a <code>DataSource</code> instance</li>
+												<li>Provide <code>Observable</code> streams where the table will render when new data is emitted</li>
+											</ul>
+										</ul>
+									</ul>
+								</div>
+								<div class="two-columns">
+									<iframe height="100%" width="100%" data-src="http://localhost:4200/table" title="/card"></iframe>	
+								</div>
+							</div>
+						</section>
+						<section>
+							<h2><code>mat-date-range-input</code></h2>
+							<div class="two-columns-container">
+								<div class="two-columns">
+									<ul>
+										<ul>
+											<ul>
+												<li>Allow users to enter a date through text input, or by choosing a date from the calendar
+													<ul>
+														<li>Made up of several components, directives and modules</li>
+													</ul>
+												</li>
+												<li>Can be used with <code>FormGroup</code> directive from <code>@angular/forms</code></li>
+												<li>Can be used with various date libraries (date implementation agnostic)
+													<ul>
+														<li><code>MatNativeDateModule</code></li>
+														<li><code>MatLuxonDateModule</code></li>
+														<li><code>MatLuxonDateModule</code></li>
+													</ul>
+												</li>
+												<li>A datepicker is composed of a text input and a calendar pop-up, connected via the <code>matDatepicker</code> property on the text input.</li>
+											</ul>											
+										</ul>
+									</ul>
+								</div>
+								<div class="two-columns">
+									<iframe height="100%" width="100%" data-src="http://localhost:4200/date-picker" title="/button"></iframe>	
+								</div>
+							</div>
+						</section>
+					</section>
+					<section id="flex">
+						<section>
+							<h2>Angular Flex</h2>
+						</section>
+						<section>
+							<h2>Overview</h2>
+							<ul>
+								<li>Angular Flex Layout combines Flexbox CSS and media queries</li>
+								<li>Automates the process of applying appropiate Flexboxx CSS to browser view hierarchies</li>
+								<li>Addresses many of the complexities and workarounds with traditional, manual application of Flexbox CSS</li>
+								<li>The Responsive API enables developers to easily specify different layout, sizing for different viewports sizes and display devices</li>
+								<li>It provides an Angular-friendly API for dealing with media queries</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
+									<li><a href="https://www.w3.org/TR/css-flexbox-1/">CSS Flexible Box Layout Module Level 1</a></li>
+									<li><a href="https://www.w3.org/TR/mediaqueries-5/">Media Queries Level 5</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>Declarative API Overview</h2>
+							<ul>
+								<li>Contains two APIs
+									<ul>
+										<li><mark>Static API</mark>–provides directives to create responsive and adaptive layouts</li>
+										<li><mark>Responsive API</mark>–provides responsive features to change layouts configuration for different display devices</li>
+									</ul>
+								</li>
+							</ul>
+							<aside class="notes" aria-label="notes">
+								<h4>References</h4>
+								<ul>
+									<li><a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">Declarative API Overview · angular/flex-layout Wiki</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section>
+							<h2>API for DOM containers — <code>flex</code></h2>
+							<ul>
+								<li>These directives affects the flow and layout of children elements in the container
+									<ul>
+										<li><code>fxLayout</code>–Used on DOM container whose children should layout
+											<ul>
+												<li>A combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
+											</ul>
+										</li>
+										<li><code>fxLayoutAlign</code>
+											<ul>
+												<li>A combination of <code>justify-content</code> and <code>align-items</code></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<h2>API for DOM containers — <code>grid</code></h2>
+							<ul>
+								<li>These directives affects the flow and layout of children elements in the container
+									<ul>
+										<li><code>gdColumns</code>–equivalent to <code>grid-template-columns</code></li>
+										<li><code>gdRows</code>–equivalent to <code>grid-template-rows</code></li>
+										<li><code>gdAlignRows</code>–aligns items row-wise
+											<ul>
+												<li><code>justify-content</code>(container) and <code>justify-items</code>(items)</li>
+											</ul>
+										</li>
+										<li><code>gdAlignColumns</code>–aligns items column-wise
+											<ul>
+												<li><code>align-content</code>(container) and <code>align-items</code>(items)</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<h2>API for DOM elements</h2>
+							<ul>
+								<li>These directives affects the layout and size of the host element (expected to be in a container)
+									<ul>
+										<li><code>fxFlex</code>–sets properties for grow, shrink and basis for an item</li>
+										<li><code>fxFlexAlign</code>–equivalent to <code>align-self</code></li>
+										<li><code>gdRow</code>-determines start and end row for an item</li>
+										<li><code>gdColumn</code>—determines start and end column for an item</li>
+									</ul>
+								</li>
+								<li>These are directives for any element
+									<ul>
+										<li><code>fxShow</code>–specifies if its host element should be displayed</li>
+										<li><code>fxHide</code>–specifies if its host element should NOT be displayed</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Responsive API</h2>
+							<ul>
+								<li>Enhances the Static API by adding responsive suffixes</li>
+								<li>Angular Layout will automatically handle all the details
+									<ul>
+										<li>Monitoring media queries activations</li>
+										<li>Applying responsive values to the host DOM elements</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Breakpoints and aliases</h2>
+						<ul>
+							<ul>
+								<li>Breakpoints
+									<ul>
+										<li><code>xs</code>–Extra small <code>screen and (max-width: 599px)</code></li>
+										<li><code>sm</code>–Small <code>screen and (min-width: 600px) and (max-width: 959px)</code></li>
+										<li><code>md</code>–Medium<code>screen and (min-width: 960px) and (max-width: 1279px)</code></li>
+										<li><code>lg</code>–Large<code>screen and (min-width: 1280px) and (max-width: 1919px)</code></li>
+										<li><code>xl</code>–Extra large<code>screen and (min-width: 1920px) and (max-width: 5000px)</code></li>
+									</ul>
+								</li>
+								<li>Less than
+									<ul>
+										<li><code>lt-sm</code>–Less than small <code>screen and (max-width: 599px)</code></li>
+										<li><code>lt-md</code>–Less than medium <code>screen and (max-width: 959px)</code></li>
+										<li><code>lt-lg</code>–Less than large <code>screen and (max-width: 1279px)</code></li>
+										<li><code>lt-xl</code>–Less than extra large <code>screen and (max-width: 1919px)</code></li>
+									</ul>
+								</li>
+								<li>Greater than
+									<ul>
+										<li><code>gt-xs</code>–Greater than extra small <code>screen and (min-width: 600px)</code></li>
+										<li><code>gt-sm</code>–Greater than small <code>screen and (min-width: 960px)</code></li>
+										<li><code>gt-md</code>–Greater than medium<code>screen and (min-width: 1280px)</code></li>
+										<li><code>gt-lg</code>–Greater than large<code>screen and (min-width: 1920px</code></li>
+									</ul>
+								</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>Combine Static API and <code>alias</code></h2>
+						<p>Support resposive breakpoints by combining an <code>alias</code> with a directive</p>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
+							<api>.<breakpoint alias>="<value>"
+							[<api>.<breakpoint alias>]="<expression>"
+						</script></code></pre>
+					</section>
+					<section>
+						<h2>Breakpoint</h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|2|3|4|5|8-9|12-13|"><script type="text/template">
+							<div 
+								fxLayout.gt-xs="row" 
+								fxLayout.xs="column" 
+								[ngStyle.lt-sm]="{'background-color': 'cornflowerblue'}">
+								<div fxFlex.xs="1 0 auto" fxFlexAlign.lt-sm="end" class="child"></div>
+								<div class="child"></div>  
+								<div class="child" 
+									[ngClass.xs]="{'small-border small': hasStyle }" 
+									[ngClass.gt-xs]="{'small': hasStyle }">
+								</div>
+							</div>
+							<p fxShow.xs fxHide.gt-xs>Hidden element</p>
+							<div fxHide.xs class="child"></div>
+						</script></code></pre>
+						<small>examples/lesson06-angular-libraries/projects/flex/src/app/breakpoint/breakpoint.component.html</small>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				pdfSeparateFragments: false,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
