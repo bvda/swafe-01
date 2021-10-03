@@ -1,0 +1,4 @@
+<h1>Access Log</h1>
+<ul>
+  <li *ngFor="let log of logs$ | async">{{ log | json }}</li>
+</ul>
