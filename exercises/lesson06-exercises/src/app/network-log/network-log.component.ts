@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NetworkLogService } from '../network-log.service';
+import { AccessLogService } from '../access-log.service';
 
 @Component({
   selector: 'app-network-log',
@@ -11,11 +11,10 @@ export class NetworkLogComponent implements OnInit {
 
   logs$: Observable<ReadonlyArray<any>>
 
-  constructor(private networkLogService: NetworkLogService) {
+  constructor(private networkLogService: AccessLogService) {
     this.logs$ = this.networkLogService.getLog()
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
