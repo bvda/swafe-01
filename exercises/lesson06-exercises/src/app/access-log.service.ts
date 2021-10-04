@@ -9,8 +9,8 @@ export class AccessLogService {
 
   constructor(private http: HttpClient) { }
 
-  getLog(): Observable<ReadonlyArray<any>>  {
-    return this.http.get<ReadonlyArray<any>>('./assets/MOCK_ACCESS.json')
+  getLog(): Observable<ReadonlyArray<AccessLogEntry>>  {
+    return this.http.get<ReadonlyArray<AccessLogEntry>>('./assets/MOCK_ACCESS.json')
   }
 
 }

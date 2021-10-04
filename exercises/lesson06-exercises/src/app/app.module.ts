@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { NetworkLogComponent } from './network-log/network-log.component';
+import { AccessLogComponent } from './access-log/access-log.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HostsComponent } from './hosts/hosts.component';
 
@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
-    NetworkLogComponent,
+    AccessLogComponent,
     NavigationComponent,
     HomeComponent,
     HostsComponent

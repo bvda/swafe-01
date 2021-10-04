@@ -615,9 +615,43 @@
 							<small>examples/lesson06-angular-libraries/projects/material/src/styles.scss</small>
 						</section>
 						<section>
+							<h2>Custom palette</h2>
+							<pre data-id="code-animation"><code class='scss' data-trim data-line-numbers="|5-14|17-26|"><script type="text/template">
+								$dark-primary-text: rgba(white, 0.87);
+								$light-primary-text: white;
+								
+								$orbit-palette-primary: (
+									50: #e2eef4,
+									100: #b7d5e6,
+									200: #8cbbd6,
+									300: #65a0c5,
+									400: #4a8ebb,
+									500: #317db1,
+									600: #2871a6,
+									700: #1d6195,
+									800: #145284,
+									900: #053765,
+									
+									contrast: (
+										50: $dark-primary-text,
+										100:$dark-primary-text,
+										200:$dark-primary-text,
+										300:$dark-primary-text,
+										400:$light-primary-text,
+										500:$light-primary-text,
+										600:$light-primary-text,
+										700:$light-primary-text,
+										800:$light-primary-text,
+										900:$light-primary-text,
+									)
+								);
+							</script></code></pre>
+							<small>examples/lesson06-angular-libraries/projects/material/src/_orbit-palette-primary.scss</small>
+						</section>
+						<section>
 							<h2>Components</h2>
 							<ul>
-								<li>Angular Material provides a wide range(36) of UI components based on Material Design</li>
+								<li>Angular Material provides a wide range (36) of UI components based on Material Design</li>
 								<li>Some examples
 									<ul>
 										<li><mark>App bars</mark>–the top app bar displays information and actions related to the current screen</li>
