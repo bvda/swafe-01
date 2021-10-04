@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NetworkLogComponent } from './network-log.component';
+import { AccessLogComponent } from './access-log.component';
 
-describe('NetworkLogComponent', () => {
-  let component: NetworkLogComponent;
-  let fixture: ComponentFixture<NetworkLogComponent>;
+describe('AccessLogComponent', () => {
+  let component: AccessLogComponent;
+  let fixture: ComponentFixture<AccessLogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NetworkLogComponent ]
+      declarations: [ AccessLogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NetworkLogComponent);
+    fixture = TestBed.createComponent(AccessLogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
