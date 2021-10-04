@@ -15,7 +15,7 @@ export var CREDIT_CARD_DATA = [{
   expiration_date_year: 2023,
   issuer: "Amex",
 }, {
-  card_number: 6250941006528599,
+  card_number: 625094100652859,
   csc_code: 874,
   cardholder_name: "Levy Romeuf",
   expiration_date_month: 6,
@@ -43,14 +43,14 @@ export var CREDIT_CARD_DATA = [{
   expiration_date_year: 2023,
   issuer: "JCB",
 }, {
-  card_number: 3566000020000410,
+  card_number: 3566000027000410,
   csc_code: 589,
   cardholder_name: "Kattie Caraher",
   expiration_date_month: 3,
   expiration_date_year: 2023,
   issuer: "JCB",
 }, {
-  card_number: 5425233430109903,
+  card_number: 5425233430159903,
   csc_code: 355,
   cardholder_name: "Cobb Bruna",
   expiration_date_month: 4,
@@ -85,8 +85,8 @@ export var CREDIT_CARD_DATA = [{
   expiration_date_year: 2023,
   issuer: "Visa",
 }, {
-  card_number: 4263982640269299,
-  csc_code: 76,
+  card_number: 4263981640269699,
+  csc_code: 762,
   cardholder_name: "Simone McPartling",
   expiration_date_month: 4,
   expiration_date_year: 2023,

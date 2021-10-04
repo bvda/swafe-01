@@ -77,6 +77,8 @@ The server is running @ http://localhost:3000
 - `POST /credit_cards`—creates a credit card
 - `GET /transactions`—returns an array of transactions
 - `POST /transactions`—creates a transaction
+- `DELETE /credit_cards/:card_number`–deletes a credit card
+- `DELETE /transactions/:transaction_uid`–deletes a transaction
 
 # Internal notes
 Our Principal Software Architect has chosen Angular to be used as the Front-end Framework. They have defined a proposal for an initial architecture. _Note: that some details is left out for the developer teams to decide. The list is not complete_
