@@ -6,6 +6,8 @@ Do the following steps to run the provided Angular project:
 - Run `npm install` in the project root folder
 - Run `ng serve -o`
 
+When everything is up and running, you are ready to continue with the exercises.
+
 ## Exercise 06-2
 ### Add `@angular/flex` to the project
 Install Angular Flex Layout in the project:
@@ -22,12 +24,14 @@ Install Angular Flex Layout in the project:
 
 ## Exercise 06-4
 ### Add actions and a reducer
+Before we can start to dispatch actions<sup>(<a href="https://ngrx.io/guide/store/actions">docs</a>)</sup>, we will have to define them.
 
 - Add the approiate actions to `exercises/lesson06-exercises/src/app/state/hosts.actions.ts`
 - Setup the reducer in `exercises/lesson06-exercises/src/app/state/hosts.reducer.ts`
 
 ## Exercise 06-5
 ### Add an effect
+We want to isolate `HostsService` from `HostsCompoent`, and for that, we are introducing an effect, that listens for a fetch event and dispatches a retrieved event when the service has fetched data. 
 
 - Set up effects<sup>(<a href="https://ngrx.io/guide/effects">docs</a>)</sup> for `Host` data in the store
 - Configure the effect in `exercises/lesson06-exercises/src/app/state/hosts.effects.ts` to fetch all hosts and dispatch an action for the `Host` reducer
