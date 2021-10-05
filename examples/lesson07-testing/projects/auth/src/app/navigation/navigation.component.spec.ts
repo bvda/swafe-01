@@ -25,7 +25,6 @@ describe('NavigationComponent', () => {
 
   it('should not have a message after construction', () => {
     component.ngOnInit()
-    expect(component.)
   })
 
 });
