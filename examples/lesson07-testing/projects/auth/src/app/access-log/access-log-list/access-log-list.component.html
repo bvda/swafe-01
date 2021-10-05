@@ -1,0 +1,4 @@
+<h2>Access log entries</h2>
+<div *ngFor="let entry of accessLogEntries$ | async">
+  <app-access-log-list-item [entry]="entry" (removeEntry)="removeEntry(entry?.id)"></app-access-log-list-item>
+</div>

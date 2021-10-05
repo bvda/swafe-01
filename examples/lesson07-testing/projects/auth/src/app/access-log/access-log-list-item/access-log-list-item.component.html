@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <a routerLink='{{ entry?.id }}'>
+    <span>{{ entry?.mac_address }}</span>
+    <div class="ip">
+      <span>{{ entry?.ip_address?.v4 }}</span>
+      <span>{{ entry?.ip_address?.v6 }}</span>
+    </div>
+    <span class="user-agent">{{ entry?.user_agent }}</span>
+  </a>
+  <div>
+    <button (click)="remove(entry?.id)">remove</button>
+  </div>
+</div>
