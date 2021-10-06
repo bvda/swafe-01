@@ -11,7 +11,7 @@ describe('AccessLogListItemComponent', () => {
   let component: AccessLogListItemComponent;
   let fixture: ComponentFixture<AccessLogListItemComponent>;
 
-  let expectedAccessLogEntry: AccessLogEntry = { 
+  const expectedAccessLogEntry: AccessLogEntry = { 
     "id":"3527a51c-f207-4ff6-96bc-143ab2b27d0a",
     "mac_address":"8C-81-3F-23-59-C8",
     "ip_address": {
