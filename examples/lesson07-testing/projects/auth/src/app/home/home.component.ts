@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor() { }
+  authForm = this.formBuilder.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  })
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) { }
+
+  onSubmit() {
+    console.log(this.authForm.value)
   }
 
 }
