@@ -1,5 +1,7 @@
 import { identifierModuleUrl } from '@angular/compiler';
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { AccessLogEntry, AccessLogService, AppDescription } from '../../access-log.service';
 
@@ -25,8 +27,12 @@ describe('AccessLogListComponent', () => {
     })
     
     await TestBed.configureTestingModule({
+      // imports: [
+      //   RouterTestingModule
+      // ],
       declarations: [ 
-        AccessLogListComponent 
+        AccessLogListComponent,
+        AccessLogListItemComponentStub,
       ],
       providers: [
         { provide: AccessLogService, useValue: spy }
@@ -45,8 +51,7 @@ describe('AccessLogListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should stuff', () => {
-    console.error(page.accessLogEntryRows.length)
+  it(`should render ${expectedEntries.length} rows`, () => {
     expect(page.accessLogEntryRows.length).toBe(expectedEntries.length)
   }) 
   
@@ -82,7 +87,12 @@ function createComponent() {
 class AccessLogEntryListPage {
   accessLogEntryRows: HTMLElement[]
   constructor() {
-    const rows = fixture.nativeElement.querySelectorAll('div')
+    const rows = fixture.nativeElement.querySelectorAll('app-access-log-list-item')
     this.accessLogEntryRows = Array.from(rows)
   }
 }
+
+@Component({ selector: 'app-access-log-list-item', template: ''})
+class AccessLogListItemComponentStub {
+  @Input() entry = null
+ }

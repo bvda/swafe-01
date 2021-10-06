@@ -23,8 +23,8 @@ describe('NavigationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not have a message after construction', () => {
-    component.ngOnInit()
-  })
+  // it('should not have a message after construction', () => {
+  //   component.ngOnInit()
+  // })
 
 });

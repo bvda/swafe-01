@@ -19,7 +19,6 @@ export class AccessLogListItemComponent implements OnInit {
   }
 
   remove(id: string | undefined) {
-
     this.removeEntry.emit(id)
   }
 
