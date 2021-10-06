@@ -6,7 +6,7 @@ import { AccessLogEntry } from '../../access-log.service';
   templateUrl: './access-log-list-item.component.html',
   styleUrls: ['./access-log-list-item.component.scss']
 })
-export class AccessLogListItemComponent implements OnInit {
+export class AccessLogListItemComponent {
 
   @Input() entry: AccessLogEntry | null;
   @Output() removeEntry = new EventEmitter<string>()
@@ -15,11 +15,7 @@ export class AccessLogListItemComponent implements OnInit {
     this.entry = null
   }
 
-  ngOnInit(): void {
-  }
-
   remove(id: string | undefined) {
     this.removeEntry.emit(id)
   }
-
 }

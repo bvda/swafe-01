@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RouterLinkDirectiveStub } from '../../../testing/router-link-directive-stub';
 import { first } from 'rxjs/operators';
 import { AccessLogEntry } from '../../access-log.service';
 
@@ -10,7 +11,7 @@ describe('AccessLogListItemComponent', () => {
   let component: AccessLogListItemComponent;
   let fixture: ComponentFixture<AccessLogListItemComponent>;
 
-  let expectedAccessLogEntry = { 
+  let expectedAccessLogEntry: AccessLogEntry = { 
     "id":"3527a51c-f207-4ff6-96bc-143ab2b27d0a",
     "mac_address":"8C-81-3F-23-59-C8",
     "ip_address": {
@@ -23,10 +24,11 @@ describe('AccessLogListItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [ 
-        AccessLogListItemComponent 
+        RouterLinkDirectiveStub,
+        AccessLogListItemComponent,
       ]
     })
     .compileComponents();
@@ -73,6 +75,23 @@ describe('AccessLogListItemComponent', () => {
       let de = fixture.debugElement.query(By.css('.remove'))
       de.triggerEventHandler('click', expectedAccessLogEntry.id)
       expect(clickedAccessLogEntry).toBe(expectedAccessLogEntry.id)
+    })
+  })
+
+  describe('Routing', () => {
+    let routerLinks: RouterLinkDirectiveStub[] = []
+    let linkDes
+
+    beforeEach(() => {
+      fixture.detectChanges();
+      linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
+      routerLinks = linkDes.map(de => de.injector.get(RouterLinkDirectiveStub))
+    })
+    it('should navigate to selected AccessLogEntry details', () => {
+      expect(routerLinks.length).toBe(1)      
+    })
+    it('should navigate to expectedAccessLogEntry', () => {
+      expect(routerLinks[0].params).toBe(expectedAccessLogEntry.id)
     })
   })
 });
