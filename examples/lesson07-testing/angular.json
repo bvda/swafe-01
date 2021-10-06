@@ -96,6 +96,7 @@
             "polyfills": "projects/auth/src/polyfills.ts",
             "tsConfig": "projects/auth/tsconfig.spec.json",
             "karmaConfig": "projects/auth/karma.conf.js",
+            "codeCoverage": true,
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/auth/src/favicon.ico",
