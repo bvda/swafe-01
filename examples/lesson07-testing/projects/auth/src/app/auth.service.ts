@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { RealFakeApiService } from './real-fake-api.service';
 
 @Injectable({
@@ -22,8 +22,11 @@ export class AuthService {
     return this.api.logout()
   }
 
-  signIn(): Observable<LoginResponse | string[]> {
-    return this.api.login()
+  signIn(username: string = '', password: string = ''): Observable<LoginResponse | Error> {
+    if(!username || !password) {
+      return of(Error('Invalid credentials'))
+    }
+    return this.api.login(username, password)
   }
 
   getCredentials(): Credentials | null {

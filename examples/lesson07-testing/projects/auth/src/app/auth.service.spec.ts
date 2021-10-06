@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 
 import { AuthService, LoginResponse } from './auth.service';
 import { RealFakeApiService } from './real-fake-api.service';
@@ -15,7 +15,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     const spy = jasmine.createSpyObj('RealFakeApiService', {
-      login: loginResponse,
+      login: of(loginResponse),
       logout: EMPTY,
     })
 
@@ -24,7 +24,7 @@ describe('AuthService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        AuthService,
+        // AuthService,
         { provide: RealFakeApiService, useValue: spy }]
     });
     service = TestBed.inject(AuthService);
@@ -34,9 +34,21 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should sign in', () => {
-    expect(true).toBe(true)
+  it('should sign in with valid credentials', (done: DoneFn) => {
+    const username = 'user@example.com'
+    const password = 'correct-horse-stable-battery'
+    service.signIn(username, password).subscribe(value => {
+      expect(value).toBe(loginResponse)
+      done()
+    })
   });
+
+  it('should fail with invalid credentials', (done: DoneFn) => {
+    service.signIn().subscribe(value => {
+      expect(value).toBeInstanceOf(Error)
+      done()
+    })
+  })
 
   it('should sign out', () => {
     expect(service.signOut()).toBe(EMPTY)
