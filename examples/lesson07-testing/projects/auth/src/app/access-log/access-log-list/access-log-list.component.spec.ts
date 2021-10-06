@@ -27,9 +27,6 @@ describe('AccessLogListComponent', () => {
     })
     
     await TestBed.configureTestingModule({
-      // imports: [
-      //   RouterTestingModule
-      // ],
       declarations: [ 
         AccessLogListComponent,
         AccessLogListItemComponentStub,

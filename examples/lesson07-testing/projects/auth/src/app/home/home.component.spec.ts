@@ -1,4 +1,3 @@
-import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -33,26 +32,24 @@ describe('HomeComponent', () => {
     const expectedPassword = 'correct-horse-stable-battery'
     let inputUsername: HTMLInputElement
     let inputPassword: HTMLInputElement
+    const event = new Event('input')
 
     beforeEach(() => {
       inputUsername = fixture.nativeElement.querySelector('#username');
       inputPassword = fixture.nativeElement.querySelector('#password');
     })
 
-    it('should update the value of username input field', () => {
-      const event = new Event('input')
+    it('should update the value in username input field', () => {
       inputUsername.value = expectedUsername
       inputUsername.dispatchEvent(event)
   
       expect(fixture.componentInstance.authForm.value.username).toEqual(expectedUsername)
     })
   
-    it('should update the value of password input field', () => {
-  
-      const event = new Event('input')
+    it('should update the value in password input field', () => {
       inputPassword.value = expectedPassword
       inputPassword.dispatchEvent(event)
-  
+
       expect(fixture.componentInstance.authForm.value.password).toEqual(expectedPassword)
     })
   
@@ -66,5 +63,4 @@ describe('HomeComponent', () => {
       expect(inputPassword.value).toBe(expectedPassword)
     })
   })
-
 });
