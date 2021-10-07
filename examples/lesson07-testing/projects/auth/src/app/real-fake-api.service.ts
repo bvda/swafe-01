@@ -24,7 +24,7 @@ export class RealFakeApiService {
     return EMPTY
   }
 
-  signUp(): Observable<[]> {
+  signUp(username: string = '', password: string = ''): Observable<[]> {
     return of([])
   }
 }

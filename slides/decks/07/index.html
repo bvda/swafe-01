@@ -108,6 +108,12 @@
 								</ul>
 							</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/testing-services">Angular - Testing services</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Angular <code>TestBed</code></h2>
@@ -119,22 +125,112 @@
 					</section>
 					<section>
 						<h2>Angular <code>TestBed</code></h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
-							beforeEach(() => {
-								const spy = jasmine.createSpyObj('RealFakeApiService', {
-									login: of(loginResponse),
-									logout: EMPTY,
-								})
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|15-22|10-13,20|"><script type="text/template">
+							describe('AuthService', () => {
+								let service: AuthService;
+								
+								const loginResponse: LoginResponse = {
+									access_token: 'access_token',
+									refresh_token: 'refresh_token'
+								}
+							
+								beforeEach(() => {
+									const spy = jasmine.createSpyObj('RealFakeApiService', {
+										login: of(loginResponse),
+										logout: EMPTY,
+									})
+							
+									TestBed.configureTestingModule({
+										providers: [
+											{ provide: RealFakeApiService, useValue: spy }
+										]
+									});
+									service = TestBed.inject(AuthService);
+								});
+							});
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/auth.service.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing <code>auth.service.ts</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1,17|2-3|5-10|12-16|"><script type="text/template">
+							describe('#signUp', () => {
+								let expectedPassword = 'correct-horse-stable-battery'
+								let anotherPassword = 'another_password'
 
-								TestBed.configureTestingModule({
-									imports: [
-										HttpClientTestingModule
+								it('should return an Observable<Error> when passwords do not match', (done: DoneFn) => {
+									service.signUp('user@example.com', expectedPassword, anotherPassword).subscribe(value => {
+										expect(value).toBeInstanceOf(Error)
+										done()
+									})
+								})
+							
+								it('should Observable<[]> when successful', (done: DoneFn) => {
+									service.signUp('user@example.com', expectedPassword, expectedPassword).subscribe(value => {
+										expect(value).toBeInstanceOf(Array)
+										done()
+									})
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/auth.service.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing components</h2>
+						<ul>
+							<li>A component combines an HTML template and a TypeScript class
+								<ul>
+									<li>In most cases, the component can be validated by testing only the TypeScript class</li>
+									<li>To adequately test a component, you should test that they work together as intended</li>
+								</ul>
+							</li>
+							<li>The Angular <code>TestBed</code> facilitates testing the template and the class
+								<ul>
+									<li>Component with <code>@Input()</code> and <code>@Output()</code></li>
+									<li>Components with dependencies</li>
+									<li>Components with nested components</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Testing a component with dependencies</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4|7-10|24-25|11-13|14-21|18-20|27-33|"><script type="text/template">
+							beforeEach(async () => {
+								const spy = jasmine.createSpyObj('AccessLogService', {
+									getAccessLogEntries: of(expectedEntries)
+								})
+								
+								await TestBed.configureTestingModule({
+									declarations: [ 
+										AccessLogListComponent,
+										AccessLogListItemComponentStub,
 									],
 									providers: [
-										{ provide: RealFakeApiService, useValue: spy }
+										{ provide: AccessLogService, useValue: spy }
 									]
+								}).compileComponents().then(() => {
+									fixture = TestBed.createComponent(AccessLogListComponent);
+									fixture.detectChanges();
+									component = fixture.componentInstance;
+									return fixture.whenStable().then(() => {
+										page = new AccessLogEntryListPage();
+									});
 								});
+							});
+							...
+							@Component({ selector: 'app-access-log-list-item', template: ''})
+							class AccessLogListItemComponentStub { }
+
+							class AccessLogEntryListPage {
+								accessLogEntryRows: HTMLElement[]
+								constructor() {
+									const rows = fixture.nativeElement.querySelectorAll('app-access-log-list-item')
+									this.accessLogEntryRows = Array.from(rows)
+								}
+							}
 						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/access-log/access-log-list/access-log-list.component.spec.ts</small>
 					</section>
 					<section>
 						<h2>Nested components tests</h2>

@@ -33,14 +33,14 @@ describe('AccessLogListComponent', () => {
       providers: [
         { provide: AccessLogService, useValue: spy }
       ]
-    })
-    .compileComponents().then(createComponent);
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AccessLogListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    }).compileComponents().then(() => {
+      fixture = TestBed.createComponent(AccessLogListComponent);
+      fixture.detectChanges();
+      component = fixture.componentInstance;
+      return fixture.whenStable().then(() => {
+        page = new AccessLogEntryListPage();
+      });
+    });
   });
 
   it('should create', () => {
@@ -50,35 +50,7 @@ describe('AccessLogListComponent', () => {
   it(`should render ${expectedEntries.length} rows`, () => {
     expect(page.accessLogEntryRows.length).toBe(expectedEntries.length)
   }) 
-  
-  // describe('#bindings', () => {
-  
-  //   it('should return a list of AccessLogEntry objects', (done: DoneFn) => {
-  //     fixture.detectChanges()
-  //     accessLogService.calls.mostRecent().returnValue.subscribe(() => {
-  //       console.log()
-  //       done()
-  //     })
-  //     // accessLogService.and.returnValue(asyncData(expectedEntries))
-  //     // expect(accessLogService).toEqual(of(expectedEntries))
-  //   })
-  // });
 });
-
-function createComponent() {
-  fixture = TestBed.createComponent(AccessLogListComponent);
-  component = fixture.componentInstance;
-
-  // change detection triggers ngOnInit which gets a hero
-  fixture.detectChanges();
-
-  return fixture.whenStable().then(() => {
-    // got the heroes and updated component
-    // change detection updates the view
-    fixture.detectChanges();
-    page = new AccessLogEntryListPage();
-  });
-}
 
 class AccessLogEntryListPage {
   accessLogEntryRows: HTMLElement[]
@@ -89,6 +61,4 @@ class AccessLogEntryListPage {
 }
 
 @Component({ selector: 'app-access-log-list-item', template: ''})
-class AccessLogListItemComponentStub {
-  @Input() entry = null
- }
+class AccessLogListItemComponentStub { }

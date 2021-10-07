@@ -66,7 +66,7 @@ describe('HomeComponent', () => {
   })
 
   describe('Submit', () => {
-    it('should called onSubmit when form is submitted',() => {
+    it('should called onSubmit when form is submitted', () => {
       let de = fixture.debugElement.query(By.css('#authForm'))
       spyOn(component, 'onSubmit'); 
       de.triggerEventHandler('submit', {})

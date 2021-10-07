@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { AccessLogEntry } from '../../access-log.service';
 
 import { AccessLogListItemComponent } from './access-log-list-item.component';
+import { DebugElement } from '@angular/core';
 
 describe('AccessLogListItemComponent', () => {
   let component: AccessLogListItemComponent;
@@ -68,7 +69,7 @@ describe('AccessLogListItemComponent', () => {
     })
   })
 
-  describe('Interaction', () => {
+  describe('#removeEntry', () => {
     it('should raise removeEntry event when clicked', () => {
       let clickedAccessLogEntry: string | undefined
       component.removeEntry.pipe(first()).subscribe((clicked: string) => clickedAccessLogEntry = clicked)
@@ -79,19 +80,28 @@ describe('AccessLogListItemComponent', () => {
   })
 
   describe('Routing', () => {
-    let routerLinks: RouterLinkDirectiveStub[] = []
-    let linkDes
+    let routerLinkStubs: RouterLinkDirectiveStub[] = []
+    let linkDebugElements: DebugElement[]
 
     beforeEach(() => {
-      fixture.detectChanges();
-      linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
-      routerLinks = linkDes.map(de => de.injector.get(RouterLinkDirectiveStub))
+      linkDebugElements = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
+      routerLinkStubs = linkDebugElements.map(de => de.injector.get(RouterLinkDirectiveStub))
     })
+
     it('should navigate to selected AccessLogEntry details', () => {
-      expect(routerLinks.length).toBe(1)      
+      expect(routerLinkStubs.length).toBe(1)      
     })
-    it('should navigate to expectedAccessLogEntry', () => {
-      expect(routerLinks[0].params).toBe(expectedAccessLogEntry.id)
+
+    it('should have set route to expectedAccessLogEntry.id', () => {
+      expect(routerLinkStubs[0].params).toBe(expectedAccessLogEntry.id)
+    })
+    
+    it('can click component in template', () => {
+      const debugElement = linkDebugElements[0]
+      const routerLinkStub = routerLinkStubs[0]
+      expect(routerLinkStub.navigatedTo).toBe(null)
+      debugElement.triggerEventHandler('click', expectedAccessLogEntry.id)
+      expect(routerLinkStub.navigatedTo).toBe(expectedAccessLogEntry.id)  
     })
   })
 });
