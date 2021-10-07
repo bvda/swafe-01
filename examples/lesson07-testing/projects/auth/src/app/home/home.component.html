@@ -1,6 +1,7 @@
 <h2>Home</h2>
-<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+<form id='authForm' [formGroup]="authForm" (ngSubmit)="onSubmit()">
   <input type="text" id="username" formControlName="username">
   <input type="password" id="password" formControlName="password">
   <button type="submit">Submit</button>
 </form>
+{{authForm.valid}}

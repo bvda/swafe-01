@@ -24,8 +24,8 @@ describe('AuthService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        // AuthService,
-        { provide: RealFakeApiService, useValue: spy }]
+        { provide: RealFakeApiService, useValue: spy }
+      ]
     });
     service = TestBed.inject(AuthService);
   });
