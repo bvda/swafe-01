@@ -12,7 +12,6 @@ let page: AccessLogEntryListPage;
 let component: AccessLogListComponent;
 
 describe('AccessLogListComponent', () => {
-  let accessLogService: jasmine.Spy;
 
   const expectedEntries = [
     {"id":"c2d14fbe-c2c3-44ec-9786-547230d01a4e","mac_address":"6A-1F-6F-EA-DB-73","ip_address":{"v4":"62.149.251.46","v6":"9361:3412:d0da:4922:a5eb:223e:35c8:fb71"},"user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0"},

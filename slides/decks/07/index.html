@@ -59,6 +59,30 @@
 						</ul>
 					</section>
 					<section>
+						<h2>Testing in Angular</h2>
+						<ul>
+							<li>Testing an Angular application helps to check that it is working as expected</li>
+							<li>Testing is set up by default when generating new workspaces/applications with Angular CLI
+								<ul>
+									<li>Run <code>ng new|g application --skip-tests|-S</code> to create a workspace/application without preconfigured testing</li>
+								</ul>
+							</li>
+							<li>The Angular CLI uses Jasmine and Karma
+								<ul>
+									<li><mark>Jasmine</mark> is a behavior-driven development framework for testing JavaScript code</li>
+									<li><mark>Karma</mark> is a test runner that spawns a web server that executes source code against test code for each of the browsers connected</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/cli/generate#application-command">Angular - ng generate</a></li>
+								<li><a href="https://angular.io/cli/new">Angular - ng new</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
 						<h2>Nested components tests</h2>
 						<ul>
 							<li>Components often have nested components</li>
@@ -89,6 +113,13 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Code coverage</h2>
+						<ul>
+							<li>Code coverage pecentages estimate how much of a codebase is tested</li>
+							<li>Angular projects (generated with the CLI) </li>
+						</ul>
+					</section>
 				</section>
 				<section id="server-side-rendering">
 					<section>
@@ -96,6 +127,56 @@
 					</section>
 					<section>
 						<h2>Overview</h2>
+						<ul>
+							<li>A normal Angular application executes in the browser</li>
+							<li>Angular Universal executes on the server
+								<ul>
+									<li>Generates static pages</li>
+									<li>Pages render more quickly, making them visible earlier to the client</li>
+								</ul>
+							</li>
+							<li>Server-side </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Terminology</h2>
+						<ul>
+							<ul>
+								<li>Rendering
+									<ul>
+										<li><mark>SSR</mark>—Server-side rendering. Rendering a client-side application or universal app to HTML on the server</li>
+										<li><mark>CSR</mark>—Client-side rendering. Rendering an app in a browser, generally using the DOM</li>
+										<li><mark>Rehydration</mark>—“Booting up” JavaScript views on the client such that they reuse the server-rendered HTML's DOM tree and data</li>
+										<li><mark>Prerendering</mark>—Running a client-side application at build time to capture its initial state as static HTML</li>
+									</ul>
+								</li>
+								<li>Performance
+									<ul>
+										<li><mark>TTFB</mark>—Time to First Byte. Seen as the time between clicking a link and the first bit of content coming in</li>
+										<li><mark>FP</mark>—First Paint. The first time any pixel gets becomes visible to the user</li>
+										<li><mark>FCP</mark>—First Contentful Paint. The time when requested content (article body, etc) becomes visible</li>
+										<li><mark>TTI</mark>—Time To Interactive. The time at which a page becomes interactive (events wired up, etc)</li>
+									</ul>
+								</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>Server rendering vs. Client-side rendering</h2>
+						<ul>
+							<li>Server rendering
+								<ul>
+									<li>Fast FP, FCP, and TTI</li>
+									<li>Slow TTFP</li>
+								</ul>
+							</li>
+							<li>Static rendering
+								<ul>
+									<li>Fast FP, FCP, TTI, and TTFB</li>
+									<li>All HTML must be rendered, infeasable if unable to predict</li>
+								</ul>
+							</li>
+						</ul>
 					</section>
 				</section>
 			</div>
