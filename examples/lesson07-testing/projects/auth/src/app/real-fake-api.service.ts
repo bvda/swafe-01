@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, throwError } from 'rxjs';
+import { EMPTY, Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -22,5 +22,9 @@ export class RealFakeApiService {
   
   logout(): Observable<never> { 
     return EMPTY
+  }
+
+  signUp(): Observable<[]> {
+    return of([])
   }
 }

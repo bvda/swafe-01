@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class HomeComponent {
 
   authForm = this.formBuilder.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    username: [''],
+    password: [''],
   })
 
   constructor(private formBuilder: FormBuilder) { }

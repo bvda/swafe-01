@@ -13,8 +13,11 @@ export class AuthService {
     this.credentials = null
   }
 
-  signUp() { 
-    // this.api.
+  signUp(username: string, password: string, confirmPassword: string) {
+    if(password !== confirmPassword) {
+      return of(Error('Passwords do not match'))
+    } 
+    return this.api.signUp()
   }
 
   signOut(): Observable<never> { 

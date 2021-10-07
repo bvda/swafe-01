@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
 
@@ -61,6 +62,15 @@ describe('HomeComponent', () => {
     it('should update the value in password control', () => {
       (component.authForm.get('password') as FormControl)?.setValue(expectedPassword)
       expect(inputPassword.value).toBe(expectedPassword)
+    })
+  })
+
+  describe('Submit', () => {
+    it('should called onSubmit when form is submitted',() => {
+      let de = fixture.debugElement.query(By.css('#authForm'))
+      spyOn(component, 'onSubmit'); 
+      de.triggerEventHandler('submit', {})
+      expect(component.onSubmit).toHaveBeenCalled()
     })
   })
 });
