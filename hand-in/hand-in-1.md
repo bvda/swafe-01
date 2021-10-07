@@ -20,7 +20,7 @@ The solution will provide the accounting department with an overview of use for 
 - `F2.1`: List shall contain an element for each credit card
 - `F2.1.1`: List item shall contain properties `card_number`, `cardholder_name`, `issuer`
 - `F2.1.2`: List shall be responsive
-- `F2.2.1`: Navigate to a credit card details screen is clicked/pressed
+- `F2.2.1`: Navigate to a credit card details screen when an entry is clicked/pressed
 
 `F3` Credit card details screen
 - `F3.1` Screen shall contain elements displaying the following credit card properties: `card_number`, `cardholder_name`, `csc_code`, `expiration_date_month`, `expiration_date_year`, `issuer`
@@ -46,16 +46,16 @@ The solution will provide the accounting department with an overview of use for 
 - `F5.1` Screen shall show a list of all transactions registered in the system
 - `F5.1.2` Screen shall present the option to add a transaction to the transaction list
 - `F5.1.3` Screen shall present the option to filter transactions
-- `F6.1.4` Transactions must be filtered based on `credit_card` 
+- `F5.1.4` Transactions must be filtered based on `credit_card` 
 
 `F6` Transactions list
-- `F6.1.1` Each transaction shall have properties `credit_card`, `amount`, `currency`, `comment`, `date`
+- `F6.1.1` Each transaction shall display properties `credit_card`, `amount`, `currency`, `comment`, `date`
 - `F6.1.2` Field `credit_card` shall be selected from a list of credit cards
 - `F6.1.3` Field `amount` must be a `number`
 - `F6.1.4` Field `amount` is required
 - `F6.1.5` Field `currency` is required
 - `F6.1.6` Field `date` is required
-- `F6.1.7` Screen shall present the option to remove a transaction
+- `F6.1.7` Each transaction shall present the option to remove itself
 
 ## Design requirements 
 Futhermore, the solution must include the following:
