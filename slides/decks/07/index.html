@@ -59,6 +59,60 @@
 						</ul>
 					</section>
 					<section>
+						<h2>Testing services</h2>
+						<ul>
+							<li>Services are (for the most part) straightforward to test
+								<ul>
+									<li>Services with out dependencies can be tested without Angular testing utilities</li>
+								</ul>
+							</li>
+							<li>Services with dependencies
+								<ul>
+									<li>Services often depend on other services
+										<ul>
+											<li>They can be injected by hand while calling the service's constructor</li>
+											<li>Injecting real services rarely works well as most dependant services are difficult to create and control</li>
+											<li>Instead, mock the dependency
+												<ul>
+													<li>Use dummy values</li>
+													<li>Create a spies for relevant methods</li>
+												</ul>
+											</li>
+										</ul>
+										<li>However, you almost always inject services into application classes using Angular dependency injection and you should have tests that reflect that usage pattern</li>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular <code>TestBed</code></h2>
+						<ul>
+							<li>The most important Angular testing utility</li>
+							<li>Creates a dynamically-constructed Angular module that emulates an <code>@NgModule</code></li>
+							<li></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular <code>TestBed</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+							beforeEach(() => {
+								const spy = jasmine.createSpyObj('RealFakeApiService', {
+									login: of(loginResponse),
+									logout: EMPTY,
+								})
+
+								TestBed.configureTestingModule({
+									imports: [
+										HttpClientTestingModule
+									],
+									providers: [
+										{ provide: RealFakeApiService, useValue: spy }
+									]
+								});
+						</script></code></pre>
+					</section>
+					<section>
 						<h2>Nested components tests</h2>
 						<ul>
 							<li>Components often have nested components</li>
