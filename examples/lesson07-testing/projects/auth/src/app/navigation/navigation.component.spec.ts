@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterLinkDirectiveStub } from '../../testing/router-link-directive-stub';
@@ -24,32 +25,62 @@ describe('NavigationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  describe('#constructor', () => {
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  })
 
-  describe('Routing', () => {
-    let routerLinks: RouterLinkDirectiveStub[] = []
-    let linkDes
-
-    beforeEach(() => {
-      fixture.detectChanges();
-      linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
-      routerLinks = linkDes.map(de => de.injector.get(RouterLinkDirectiveStub))
+  describe('#template', () => {
+    it('should have title "Home"', () => {
+      const expectedTitle = 'Home'
+      expect(fixture.nativeElement.querySelector('#home').textContent).toBe(expectedTitle)
     })
-    it('should navigate to selected AccessLogEntry details', () => {
-      expect(routerLinks.length).toBe(2)      
-    })
-    it('should navigate to ""', () => {
-      expect(routerLinks[0].params).toBe('')
-    })
-    it('should navigate to "access-log"', () => {
-      expect(routerLinks[1].params).toBe('access-log')
+    
+    it('should have title "Access Log"', () => {
+      const expectedTitle = 'Access Log'
+      expect(fixture.nativeElement.querySelector('#access-log').textContent).toBe(expectedTitle)
     })
   })
 
-  // it('should not have a message after construction', () => {
-  //   component.ngOnInit()
-  // })
+  describe('#routing', () => {
+    let stubs: RouterLinkDirectiveStub[] = []
+    let debugElements: DebugElement[] = []
 
+    beforeEach(() => {
+      fixture.detectChanges();
+      debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
+      stubs = debugElements.map(element => element.injector.get(RouterLinkDirectiveStub))
+    })
+
+    it('should have links to all pages', () => {
+      expect(stubs.length).toBe(2)      
+    })
+
+    it('should have "" for home' , () => {
+      expect(stubs[0].params).toBe('')
+    })
+
+    it('should have "access-log" for access-log', () => {
+      expect(stubs[1].params).toBe('access-log')
+    })
+
+    it('can click home in template', () => {
+      const expectedPath = ''
+      const debugElement = debugElements[0]
+      const routerLinkStub = stubs[0]
+      expect(routerLinkStub.navigatedTo).toBe(null)
+      debugElement.triggerEventHandler('click', expectedPath)
+      expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+    })
+
+    it('can click home in template', () => {
+      const expectedPath = 'access-log'
+      const debugElement = debugElements[1]
+      const routerLinkStub = stubs[1]
+      expect(routerLinkStub.navigatedTo).toBe(null)
+      debugElement.triggerEventHandler('click', expectedPath)
+      expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+    })
+  })
 });

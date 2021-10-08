@@ -1,9 +1,7 @@
-import { identifierModuleUrl } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Observable, of } from 'rxjs';
-import { AccessLogEntry, AccessLogService, AppDescription } from '../../access-log.service';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { AccessLogService } from '../../access-log.service';
 
 import { AccessLogListComponent } from './access-log-list.component';
 

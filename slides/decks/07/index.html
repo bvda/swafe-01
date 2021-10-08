@@ -194,8 +194,8 @@
 						</ul>
 					</section>
 					<section>
-						<h2>Testing a component with dependencies</h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4|7-10|24-25|11-13|14-21|18-20|27-33|"><script type="text/template">
+						<h2>Testing dependencies</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4,11-13|7-10|24-25|14-21|18-20|27-33|"><script type="text/template">
 							beforeEach(async () => {
 								const spy = jasmine.createSpyObj('AccessLogService', {
 									getAccessLogEntries: of(expectedEntries)
@@ -233,29 +233,96 @@
 						<small>examples/lesson07-testing/projects/auth/src/app/access-log/access-log-list/access-log-list.component.spec.ts</small>
 					</section>
 					<section>
-						<h2>Nested components tests</h2>
-						<ul>
-							<li>Components often have nested components</li>
-							<li></li>
-						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li><a href="https://angular.io/guide/testing-components-scenarios">Angular - Component testing scenarios</a></li>
-							</ul>
-						</aside>
+						<h2>Testing <code>@Input</code> and <code>@Output</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-9|11-17|25-28|32,38|33-34|35-36|37|38|"><script type="text/template">
+							beforeEach(async () => {
+								await TestBed.configureTestingModule({
+									declarations: [ 
+										RouterLinkDirectiveStub,
+										AccessLogListItemComponent,
+									]
+								})
+								.compileComponents();
+							});
+						
+							beforeEach(() => {
+								fixture = TestBed.createComponent(AccessLogListItemComponent);
+								component = fixture.componentInstance;
+								component.entry = expectedAccessLogEntry
+						
+								fixture.detectChanges();
+							});
+							
+							...
+
+							describe('#template', () => {
+								
+								...				
+
+								it('should display user_agent', () => {
+									const element = fixture.nativeElement.querySelector('.user-agent');
+									expect(element.textContent).toContain(expectedAccessLogEntry.user_agent)    
+								})
+							})
+						
+							describe('#removeEntry', () => {
+								it('should raise removeEntry event when clicked', () => {
+									let clickedAccessLogEntry: string | undefined
+									let de = fixture.debugElement.query(By.css('.remove'))
+									component.removeEntry.pipe(first()).subscribe(
+										(clicked: string) => clickedAccessLogEntry = clicked)
+									de.triggerEventHandler('click', expectedAccessLogEntry.id)
+									expect(clickedAccessLogEntry).toBe(expectedAccessLogEntry.id)
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/access-log/access-log-list-item/access-log-list-item.component.spec.ts</small>
 					</section>
 					<section>
-						<h2>Components with inputs and outputs</h2>
-						<ul>
-							<li>Test events with `triggerEventHandler`</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Routing components</h2>
-						<ul>
-							<li>A routing component is a component that tells the <code>Router</code> to navigate to another component</li>
-						</ul>
+						<h2>Testing routing</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-2,7-8|11-13|15-17|19-21|32-39|33|34-35|36|37|38|"><script type="text/template">
+							describe('#routing', () => {
+								let stubs: RouterLinkDirectiveStub[] = []
+								let debugElements: DebugElement[] = []
+						
+								beforeEach(() => {
+									fixture.detectChanges();
+									debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
+									stubs = debugElements.map(element => element.injector.get(RouterLinkDirectiveStub))
+								})
+						
+								it('should have links to all pages', () => {
+									expect(stubs.length).toBe(2)      
+								})
+						
+								it('should have "" for home' , () => {
+									expect(stubs[0].params).toBe('')
+								})
+						
+								it('should have "access-log" for access-log', () => {
+									expect(stubs[1].params).toBe('access-log')
+								})
+						
+								it('can click home in template', () => {
+									const expectedPath = ''
+									const debugElement = debugElements[0]
+									const routerLinkStub = stubs[0]
+									expect(routerLinkStub.navigatedTo).toBe(null)
+									debugElement.triggerEventHandler('click', expectedPath)
+									expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+								})
+						
+								it('can click home in template', () => {
+									const expectedPath = 'access-log'
+									const debugElement = debugElements[1]
+									const routerLinkStub = stubs[1]
+									expect(routerLinkStub.navigatedTo).toBe(null)
+									debugElement.triggerEventHandler('click', expectedPath)
+									expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/navigation/navigation.component.spec.ts</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkDirectiveStub } from '../../../testing/router-link-directive-stub';
 import { first } from 'rxjs/operators';
 import { AccessLogEntry } from '../../access-log.service';
@@ -24,9 +23,6 @@ describe('AccessLogListItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-      ],
       declarations: [ 
         RouterLinkDirectiveStub,
         AccessLogListItemComponent,
@@ -43,11 +39,13 @@ describe('AccessLogListItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  describe('#constructor', () => {
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  })
 
-  describe('Display', () => {
+  describe('#template', () => {
     it('should display mac_address', () => {
       const element = fixture.nativeElement.querySelector('#mac_address')
       expect(element.textContent).toBe(expectedAccessLogEntry.mac_address)
@@ -72,14 +70,14 @@ describe('AccessLogListItemComponent', () => {
   describe('#removeEntry', () => {
     it('should raise removeEntry event when clicked', () => {
       let clickedAccessLogEntry: string | undefined
-      component.removeEntry.pipe(first()).subscribe((clicked: string) => clickedAccessLogEntry = clicked)
       let de = fixture.debugElement.query(By.css('.remove'))
+      component.removeEntry.pipe(first()).subscribe((clicked: string) => clickedAccessLogEntry = clicked)
       de.triggerEventHandler('click', expectedAccessLogEntry.id)
       expect(clickedAccessLogEntry).toBe(expectedAccessLogEntry.id)
     })
   })
 
-  describe('Routing', () => {
+  describe('#routing', () => {
     let routerLinkStubs: RouterLinkDirectiveStub[] = []
     let linkDebugElements: DebugElement[]
 
