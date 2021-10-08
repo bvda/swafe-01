@@ -1,1 +1,4 @@
-<p>list works!</p>
+<h2>ListComponent</h2>
+<ul>
+  <li *ngFor="let c of coins$ | async"><a routerLink="/details/{{c.id}}">{{ c | json }}</a></li>
+</ul>

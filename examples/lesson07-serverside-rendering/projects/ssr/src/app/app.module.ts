@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

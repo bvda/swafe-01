@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NetworkService } from '../network.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 
-  constructor() { }
+  coins$: Observable<any>
 
-  ngOnInit(): void {
+  constructor(private networkService: NetworkService, private router: Router) { 
+    this.coins$ = this.networkService.getCoins()
   }
 
+  navigate(id: string) {
+    this.router.navigate(['details', id])
+  }
 }

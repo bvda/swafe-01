@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'; 
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { RealFakeApiService } from './real-fake-api.service';
-import { LoginRequest, LoginResponse } from './auth.service';
+import { LoginResponse } from './auth.service';
 
 describe('RealFakeApiService', () => {
   let service: RealFakeApiService;
@@ -17,20 +17,21 @@ describe('RealFakeApiService', () => {
     service = TestBed.inject(RealFakeApiService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
+  
   afterEach(() => {
     httpTestingController.verify();
   });
+  
+  describe('#constructor', () => {
+    it('should be created', () => {
+      expect(service).toBeTruthy();
+    });
+  })
 
   describe('#login', () => {
     it('should POST to backend', () => {
       service.login().subscribe();
-
       const req = httpTestingController.expectOne(service.rootUrl);
-      
       expect(req.request.method).toEqual('POST')
     });
 

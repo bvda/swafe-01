@@ -41,13 +41,17 @@ describe('AccessLogListComponent', () => {
     });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  describe('#constructor', () => {
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  })
 
-  it(`should render ${expectedEntries.length} rows`, () => {
-    expect(page.accessLogEntryRows.length).toBe(expectedEntries.length)
-  }) 
+  describe('#template', () => {
+    it(`should render ${expectedEntries.length} rows`, () => {
+      expect(page.accessLogEntryRows.length).toBe(expectedEntries.length)
+    }) 
+  })
 });
 
 class AccessLogEntryListPage {

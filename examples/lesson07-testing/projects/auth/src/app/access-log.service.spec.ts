@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -25,15 +24,19 @@ describe('AccessLogService', () => {
     service = TestBed.inject(AccessLogService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  describe('#constructor', () => {
+    it('should be created', () => {
+      expect(service).toBeTruthy();
+    });
+  })
 
-  it('should remove item with id', (done: DoneFn) => {
-    service.removeAccessLogEntry(expectedEntries[0].id)
-    service.data$.subscribe(value => {
-      expect(value).not.toContain(expectedEntries[0])
-      done()
+  describe("#removeAccessLogEntry", () => {
+    it('should remove item with id', (done: DoneFn) => {
+      service.removeAccessLogEntry(expectedEntries[0].id)
+      service.data$.subscribe(value => {
+        expect(value).not.toContain(expectedEntries[0])
+        done()
+      })
     })
   })
 });
