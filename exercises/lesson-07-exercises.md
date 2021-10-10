@@ -20,5 +20,14 @@ Let's setup auto generation of code coverage reports<sup>(<a href="https://angul
 - Can you get a 100% coverage?
 
 ## Exercise 07-3
-### Deploy `lesson07-exercises` to GitHub pages
+### Test `lesson07-exercises`
+We are now ready write some tests. Here are some ideas of what we might want to test:
+
+- Does the list items render the expected values?<sup>(<a href="https://angular.io/guide/testing-components-scenarios#component-with-inputs-and-outputs">docs</a>)</sup>
+- Are we sure that the list of cars renders correctly?<sup>(<a href="https://angular.io/guide/testing-components-scenarios#use-a-page-object">docs</a>)</sup>
+- How can we tell if the navigation to the `list` path works as expected?<sup>(<a href="https://angular.io/guide/testing-components-scenarios#components-with-routerlink">docs</a>)</sup>
+- Are we sure that `CarService` behaves as expected?<sup>(<a href="https://angular.io/guide/testing-services">docs</a>)</sup>
+
+## Exercise 07-4
+### Deploy `lesson07-exercises` to GitHub Pages
 Now that we have our fully tested and server-side rendered application up and running, it is time to deploy on a web server, so our users (and search engines) are able to find it. We will be using GitHub Pages<sup>(<a href="https://angular.io/guide/deployment#deploy-to-github-pages">docs</a>)</sup> for this.

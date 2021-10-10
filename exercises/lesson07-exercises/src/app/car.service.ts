@@ -31,6 +31,11 @@ export class CarService {
       distinct(v => v.make)
     )
   }
+
+  remove(uid: string) {
+    this.data = this.data.filter(car => car.id !== uid)
+    return this.data$.next(this.data)
+  }
 }
 
 export interface Car {

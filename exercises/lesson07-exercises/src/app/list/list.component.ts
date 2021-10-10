@@ -18,4 +18,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  remove(id: string) {
+    this.carService.remove(id)
+  }
 }
