@@ -33,10 +33,15 @@
 						<li>Testing Angular applications
 							<ul>
 								<li>Jasmine</li>
-								<li>TestBed</li>
+								<li>Angular TestBed</li>
+								<li>Karma test runner</li>
 							</ul>
 						</li>
-						<li>Deploying Angular applications</li>
+						<li>Deploying Angular applications
+							<ul>
+								<li>Building production code</li>
+							</ul>
+						</li>
 					</ul>
 				</section>
 				<section id="testing">
@@ -577,6 +582,81 @@
 						&lt;/html&gt;
 					</code></pre>
 					<small>http://localhost:4200/about (<code>npm run dev:ssr</code>)</small>
+					</section>
+				</section>
+				<section id="distribution">
+					<section>
+						<h2>Deployment</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Optimized build for production</li>
+							<li>Environment files</li>
+							<li>Browser support</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Production builds</h2>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href=""></a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Application environments</h2>
+						<ul>
+							<li>It is possible to define different named build configurations
+								<ul>
+									<li>Often, there will be different configurations for <em>staging</em>, <em>development</em>, and <em>productions</em></li>
+								</ul>
+							</li>
+							<li>A project's <code>src/environment</code>folder contains the base configuration file, <code>environment.ts</code>
+								<ul>
+									<li>Can be override by adding target-specific configuration files, eg. <code>environment.prod.ts</code>, <code>environment.staging.ts</code></li>
+								</ul>
+							</li>
+							<li>To use a environment configation, you must import the base configuration file (<code>environment.ts</code>)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/build">Angular - Building and serving Angular apps</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Environment files</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+									export const environment = {
+										production: true,
+										app_title: 'Auth Production'
+									};									
+								</script></code></pre>
+							</div>
+							<div class="two-columns">
+								<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+									export const environment = {
+										production: false,
+										app_title: 'Auth Debug'
+									};									
+								</script></code></pre>
+							</div>
+						</div>
+						<small>examples/lesson07-testing/projects/auth/src/environments</small>
+					</section>
+					<section>
+						<h2>Browser support</h2>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/browser-support">Angular - Browser support</a></li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 			</div>

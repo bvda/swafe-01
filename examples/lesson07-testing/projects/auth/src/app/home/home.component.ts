@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  
+  environmentTitle: string = environment.app_title;
 
   authForm = this.formBuilder.group({
     username: [''],

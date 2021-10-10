@@ -1,4 +1,5 @@
 <h2>Home</h2>
+{{ environmentTitle }}
 <form id='authForm' [formGroup]="authForm" (ngSubmit)="onSubmit()">
   <input type="text" id="username" formControlName="username">
   <input type="password" id="password" formControlName="password">
