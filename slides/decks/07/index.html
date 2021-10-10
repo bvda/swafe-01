@@ -648,6 +648,24 @@
 							</div>
 						</div>
 						<small>examples/lesson07-testing/projects/auth/src/environments</small>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder } from '@angular/forms';
+							import { environment } from '../../environments/environment';
+
+							@Component({
+								selector: 'app-home',
+								templateUrl: './home.component.html',
+								styleUrls: ['./home.component.scss']
+							})
+							export class HomeComponent {
+								environmentTitle: string = environment.app_title;
+								...
+								constructor(private formBuilder: FormBuilder) { }
+								...
+							}
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/home/home.component.ts</small>
 					</section>
 					<section>
 						<h2>Browser support</h2>
