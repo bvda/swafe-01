@@ -1,0 +1,9 @@
+<h2>ListComponent</h2>
+<ul>
+  <li *ngFor="let c of coins$ | async">
+    <a routerLink="/details/{{c.id}}" [state]="{ data: { coin: c }}">
+      <h4>{{ c.name }}</h4>
+      <span>{{ c.symbol }}</span> | <span>{{ c.rank }}</span> | <span>{{c.type}}</span>
+    </a>
+  </li>
+</ul>

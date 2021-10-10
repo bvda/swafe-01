@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <a [routerLink]="entry?.id">
+    <span id="mac_address">{{ entry?.mac_address }}</span>
+    <div class="ip">
+      <span id="v4">{{ entry?.ip_address?.v4 }}</span>
+      <span id="v6">{{ entry?.ip_address?.v6 }}</span>
+    </div>
+    <span class="user-agent">{{ entry?.user_agent }}</span>
+  </a>
+  <div>
+    <button class="remove" (click)="remove(entry?.id)">remove</button>
+  </div>
+</div>

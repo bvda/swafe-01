@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  .make-and-model {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    .make {
+      font-weight: bold;
+    }
+    .model {
+      opacity: 0.75;
+    }
+  }
+  .vin {
+    flex: 1 2 0;
+  }
+  .year {
+    flex: 1 2 0;
+  }
+}

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lecture 07</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/github-dark.css">		
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Server-side rendering</h2>
+					<h3>Lesson 07</h3>
+					<h4>SWAFE-01</h3>
+				</section>
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>Server-side rendering
+							<ul>
+								<li>Rendering on the web</li>
+								<li>Angular Universal</li>
+							</ul>
+						</li>
+						<li>Testing Angular applications
+							<ul>
+								<li>Jasmine</li>
+								<li>Angular TestBed</li>
+								<li>Karma test runner</li>
+							</ul>
+						</li>
+						<li>Deploying Angular applications
+							<ul>
+								<li>Building production code</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="testing">
+					<section>
+						<h2>Testing</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Testing an Angular application helps to check that it is working as expected</li>
+							<li>Testing is set up by default when generating new workspaces/applications with Angular CLI
+								<ul>
+									<li>Run <code>ng new|g application --skip-tests|-S</code> to create a workspace/application without preconfigured testing</li>
+								</ul>
+							</li>
+							<li>The Angular CLI uses Jasmine and Karma
+								<ul>
+									<li><mark>Jasmine</mark> is a behavior-driven development framework for testing JavaScript code</li>
+									<li><mark>Karma</mark> is a test runner that spawns a web server that executes source code against test code for each of the browsers connected</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/cli/generate#application-command">Angular - ng generate</a></li>
+								<li><a href="https://angular.io/cli/new">Angular - ng new</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Testing services</h2>
+						<ul>
+							<li>Services are (for the most part) straightforward to test
+								<ul>
+									<li>Services with out dependencies can be tested without Angular testing utilities</li>
+								</ul>
+							</li>
+							<li>Services with dependencies
+								<ul>
+									<li>Services often depend on other services
+										<ul>
+											<li>They can be injected by hand while calling the service's constructor</li>
+											<li>Injecting real services rarely works well as most dependant services are difficult to create and control</li>
+										</ul>
+										<li>Instead, mock the dependency
+											<ul>
+												<li>Use dummy values</li>
+												<li>Create a spies for relevant methods</li>
+											</ul>
+										</li>
+										<li>However, you almost always inject services into application classes using Angular dependency injection and you should have tests that reflect that usage pattern</li>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/testing-services">Angular - Testing services</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Angular <code>TestBed</code></h2>
+						<ul>
+							<li>The most important Angular testing utility</li>
+							<li>Creates a dynamically-constructed Angular module that emulates an <code>@NgModule</code></li>
+							<li>Inject components and services into the <code>TestBed</code> with <code>TestBed.inject()</code></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular <code>TestBed</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|15-22|10-13,20|"><script type="text/template">
+							describe('AuthService', () => {
+								let service: AuthService;
+								
+								const loginResponse: LoginResponse = {
+									access_token: 'access_token',
+									refresh_token: 'refresh_token'
+								}
+							
+								beforeEach(() => {
+									const spy = jasmine.createSpyObj('RealFakeApiService', {
+										login: of(loginResponse),
+										logout: EMPTY,
+									})
+							
+									TestBed.configureTestingModule({
+										providers: [
+											{ provide: RealFakeApiService, useValue: spy }
+										]
+									});
+									service = TestBed.inject(AuthService);
+								});
+							});
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/auth.service.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing <code>auth.service.ts</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1,17|2-3|5-10|12-16|"><script type="text/template">
+							describe('#signUp', () => {
+								let expectedPassword = 'correct-horse-stable-battery'
+								let anotherPassword = 'another_password'
+
+								it('should return an Observable<Error> when passwords do not match', (done: DoneFn) => {
+									service.signUp('user@example.com', expectedPassword, anotherPassword).subscribe(value => {
+										expect(value).toBeInstanceOf(Error)
+										done()
+									})
+								})
+							
+								it('should Observable<[]> when successful', (done: DoneFn) => {
+									service.signUp('user@example.com', expectedPassword, expectedPassword).subscribe(value => {
+										expect(value).toBeInstanceOf(Array)
+										done()
+									})
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/auth.service.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing components</h2>
+						<ul>
+							<li>A component combines an HTML template and a TypeScript class
+								<ul>
+									<li>In most cases, the component can be validated by testing only the TypeScript class</li>
+									<li>To adequately test a component, you should test that they work together as intended</li>
+								</ul>
+							</li>
+							<li>The Angular <code>TestBed</code> facilitates testing the template and the class
+								<ul>
+									<li>Component with <code>@Input()</code> and <code>@Output()</code></li>
+									<li>Components with dependencies</li>
+									<li>Components with nested components</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Testing dependencies</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4,11-13|7-10|24-25|14-21|18-20|27-33|"><script type="text/template">
+							beforeEach(async () => {
+								const spy = jasmine.createSpyObj('AccessLogService', {
+									getAccessLogEntries: of(expectedEntries)
+								})
+								
+								await TestBed.configureTestingModule({
+									declarations: [ 
+										AccessLogListComponent,
+										AccessLogListItemComponentStub,
+									],
+									providers: [
+										{ provide: AccessLogService, useValue: spy }
+									]
+								}).compileComponents().then(() => {
+									fixture = TestBed.createComponent(AccessLogListComponent);
+									fixture.detectChanges();
+									component = fixture.componentInstance;
+									return fixture.whenStable().then(() => {
+										page = new AccessLogEntryListPage();
+									});
+								});
+							});
+							...
+							@Component({ selector: 'app-access-log-list-item', template: ''})
+							class AccessLogListItemComponentStub { }
+
+							class AccessLogEntryListPage {
+								accessLogEntryRows: HTMLElement[]
+								constructor() {
+									const rows = fixture.nativeElement.querySelectorAll('app-access-log-list-item')
+									this.accessLogEntryRows = Array.from(rows)
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/access-log/access-log-list/access-log-list.component.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing <code>@Input</code> and <code>@Output</code></h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-9|11-17|25-28|32,38|33-34|35-36|37|38|"><script type="text/template">
+							beforeEach(async () => {
+								await TestBed.configureTestingModule({
+									declarations: [ 
+										RouterLinkDirectiveStub,
+										AccessLogListItemComponent,
+									]
+								})
+								.compileComponents();
+							});
+						
+							beforeEach(() => {
+								fixture = TestBed.createComponent(AccessLogListItemComponent);
+								component = fixture.componentInstance;
+								component.entry = expectedAccessLogEntry
+						
+								fixture.detectChanges();
+							});
+							
+							...
+
+							describe('#template', () => {
+								
+								...				
+
+								it('should display user_agent', () => {
+									const element = fixture.nativeElement.querySelector('.user-agent');
+									expect(element.textContent).toContain(expectedAccessLogEntry.user_agent)    
+								})
+							})
+						
+							describe('#removeEntry', () => {
+								it('should raise removeEntry event when clicked', () => {
+									let clickedAccessLogEntry: string | undefined
+									let de = fixture.debugElement.query(By.css('.remove'))
+									component.removeEntry.pipe(first()).subscribe(
+										(clicked: string) => clickedAccessLogEntry = clicked)
+									de.triggerEventHandler('click', expectedAccessLogEntry.id)
+									expect(clickedAccessLogEntry).toBe(expectedAccessLogEntry.id)
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/access-log/access-log-list-item/access-log-list-item.component.spec.ts</small>
+					</section>
+					<section>
+						<h2>Testing routing</h2>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-2,7-8|11-13|15-17|19-21|32-39|33|34-35|36|37|38|"><script type="text/template">
+							describe('#routing', () => {
+								let stubs: RouterLinkDirectiveStub[] = []
+								let debugElements: DebugElement[] = []
+						
+								beforeEach(() => {
+									fixture.detectChanges();
+									debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkDirectiveStub));
+									stubs = debugElements.map(element => element.injector.get(RouterLinkDirectiveStub))
+								})
+						
+								it('should have links to all pages', () => {
+									expect(stubs.length).toBe(2)      
+								})
+						
+								it('should have "" for home' , () => {
+									expect(stubs[0].params).toBe('')
+								})
+						
+								it('should have "access-log" for access-log', () => {
+									expect(stubs[1].params).toBe('access-log')
+								})
+						
+								it('can click home in template', () => {
+									const expectedPath = ''
+									const debugElement = debugElements[0]
+									const routerLinkStub = stubs[0]
+									expect(routerLinkStub.navigatedTo).toBe(null)
+									debugElement.triggerEventHandler('click', expectedPath)
+									expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+								})
+						
+								it('can click home in template', () => {
+									const expectedPath = 'access-log'
+									const debugElement = debugElements[1]
+									const routerLinkStub = stubs[1]
+									expect(routerLinkStub.navigatedTo).toBe(null)
+									debugElement.triggerEventHandler('click', expectedPath)
+									expect(routerLinkStub.navigatedTo).toBe(expectedPath)  
+								})
+							})
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/navigation/navigation.component.spec.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/testing-components-scenarios#routing-component">Angular - Component testing scenarios</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Code coverage</h2>
+						<ul>
+							<li>Code coverage pecentages estimate how much of a codebase is tested</li>
+							<li>Angular projects (generated with the CLI) can generate coverage reports with <code>ng test --no-watch --code-coverage</code></li>
+							<li>Can be generated automatically every time tests run if configured in <code>angular.js</code></li>
+						</ul>
+					</section>
+				</section>
+				<section id="server-side-rendering">
+					<section>
+						<h2>Server-side rendering</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>A normal Angular application executes in the browser</li>
+							<li>Angular Universal executes on the server
+								<ul>
+									<li>Generates static pages</li>
+									<li>Pages render more quickly, making them visible earlier to the client</li>
+								</ul>
+							</li>
+							<li>Angular Universal applications are compiled with Ahead-of-Time (AOT)
+								<ul>
+									<li>Default for all applications since Angular 9</li>
+									<li>Faster rendering–the browser downloads a pre-compiled version of the application</li>
+									<li>Fewer asynchronous requests—the compiler <em>inlines</em> external HTML and CSS within the application JavaScript</li>
+									<li>Smaller Angular framework download size—No need to download the Angular compiler</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/aot-compiler">Angular - Ahead-of-time (AOT) compilation</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Why use server-side rendering</h2>
+						<ul>
+							<li>Facilitate web crawlers through search engine optimization (SEO)
+								<ul>
+									<li>Search engines rely on web crawlers to index pages and their content searchable on the web</li>
+									<li>Web crawlers do not load JavaScript. They only read static content</li>
+									<li>Server-side rendering returns a static version of pages that makes them readable for web crawlers</li>
+								</ul>
+							</li>
+							<li>Improve performance on mobile and low-powered devices
+								<ul>
+									<li>Some devices might not support JavaScript</li>
+									<li>Even if the no-JavaScript version has limited functionality, it is still better than nothing</li>
+								</ul>
+							</li>
+							<li>Show the first page quickly
+								<ul>
+									<li>Displaying the first page quickly can be critical for user engagement</li>
+									<li>Serve a static version of the landing page to hold the user's attention, while loading the full application in the background</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/universal#why-use-server-side-rendering">Angular - Server-side rendering (SSR) with Angular Universal</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Terminology</h2>
+						<ul>
+							<ul>
+								<li>Rendering
+									<ul>
+										<li><mark>SSR</mark>—Server-side rendering. Rendering a client-side application or universal app to HTML on the server</li>
+										<li><mark>CSR</mark>—Client-side rendering. Rendering an app in a browser, generally using the DOM</li>
+										<li><mark>Rehydration</mark>—“Booting up” JavaScript views on the client such that they reuse the server-rendered HTML's DOM tree and data</li>
+										<li><mark>Prerendering</mark>—Running a client-side application at build time to capture its initial state as static HTML</li>
+									</ul>
+								</li>
+								<li>Performance
+									<ul>
+										<li><mark>TTFB</mark>—Time to First Byte. Seen as the time between clicking a link and the first bit of content coming in</li>
+										<li><mark>FP</mark>—First Paint. The first time any pixel gets becomes visible to the user</li>
+										<li><mark>FCP</mark>—First Contentful Paint. The time when requested content (article body, etc) becomes visible</li>
+										<li><mark>TTI</mark>—Time To Interactive. The time at which a page becomes interactive (events wired up, etc)</li>
+									</ul>
+								</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>Server rendering vs. Client-side rendering</h2>
+						<ul>
+							<li>Server rendering
+								<ul>
+									<li>👍—Fast FP, FCP, and TTI</li>
+									<li>👎—Slow TTFB</li>
+								</ul>
+							</li>
+							<li>Static rendering
+								<ul>
+									<li>👍—Fast FP, FCP, TTI, and TTFB</li>
+									<li>👎—All HTML must be rendered, infeasable if unable to predict</li>
+								</ul>
+							</li>
+							<li>Client-side rendering
+								<ul>
+									<li>👍—Flexible, fast TTFB</li>
+									<li>👎—Slow TTI and FCP</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developers.google.com/web/updates/2019/02/rendering-on-the-web">Rendering on the Web | Google Developers</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Universal web servers</h2>
+						<ul>
+							<li>A Universal web server responds with static HTML
+								<ul>
+									<li>Rendered with the Universal template engine</li>
+									<li>The server receives and responds to HTTP requests and serve static HTML, JavaScript and CSS</li>
+								</ul>
+							</li>
+							<li>There are different rendering engines:
+								<ul>
+									<li><code>@nguniversal/express-engine</code>–the application is using the Express.js engine</li>
+									<li><code>@nguniversal/aspnetcore-engine</code>—the application is using the ASP.NET Core engine</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/universal">Angular - Server-side rendering (SSR) with Angular Universal</a></li>
+								<li><a href="http://expressjs.com/">Express - Node,js web application framework</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Working around browser APIs</h2>
+						<ul>
+							<li>Since the application is not running in the browser, some browser APIs and capabilities might not be available
+								<ul>
+									<li>Server-side application cannot reference global browser-only global objects, such as: <code>window</code>, <code>document</code>, <code>navigator</code>, or <code>location</code></li>
+								</ul>
+							</li>
+							<li>Angular offers injectable abstrations for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
+							<li>If Angular does not provide it, it it possible to write new abstractions that delegate to the browser APIs while in the browser and to an alternative implementation while on the server (also known as shimming)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Scripts</h2>
+						<ul>
+							<li><code>npm run dev:ssr</code>—similar to <code>ng serve</code>, but uses server-side rendering</li>
+							<li><code>ng build && ng run &lt;APP_NAME&gt;:server</code>—builds the application and server code in production mode</li>
+							<li><code>npm run serve:ssr</code>—starts the server script serving the application locally. Remember to run <code>ng run build:ssr</code></li>
+							<li><code>npm run prerender</code>—used to prerender application pages</li>
+						</ul>
+						<ul></ul>
+					</section>
+					<section>
+						<h2><code>index.html</code></h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|11|">
+							&lt;!doctype html&gt;
+							&lt;html lang="en"&gt;
+							&lt;head&gt;
+								&lt;meta charset="utf-8"&gt;
+								&lt;title&gt;Server-side rendering&lt;/title&gt;
+								&lt;base href="/"&gt;
+								&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+								&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+							&lt;link rel="stylesheet" href="styles.css"&gt;&lt;/head&gt;
+							&lt;body&gt;
+								&lt;app-root&gt;&lt;/app-root&gt;
+								&lt;script src="runtime.js" defer&gt;&lt;/script&gt;
+								&lt;script src="polyfills.js" defer&gt;&lt;/script&gt;
+								&lt;script src="vendor.js" defer&gt;&lt;/script&gt;
+								&lt;script src="main.js" defer&gt;&lt;/script&gt;
+							&lt;/body&gt;
+							&lt;/html&gt;							
+						</code></pre>
+						<small>http://localhost:4200/about (<code>ng serve</code>)</small>
+					</section>
+					<section>
+						<h2><code>index.html</code></h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|26-61|27|28-37|40-58|">
+						&lt;!DOCTYPE html&gt;
+						&lt;html lang="en"&gt;
+
+						&lt;head&gt;
+							&lt;meta charset="utf-8"&gt;
+							&lt;title&gt;Server-side rendering&lt;/title&gt;
+							&lt;base href="/"&gt;
+							&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+							&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+							&lt;link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'"&gt;&lt;noscript&gt;
+							&lt;link rel="stylesheet" href="styles.css"&gt;
+							&lt;/noscript&gt;
+							&lt;style ng-transition="serverApp"&gt;
+								/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */
+							&lt;/style&gt;
+							&lt;style ng-transition="serverApp"&gt;
+								/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhYm91dC5jb21wb25lbnQuc2NzcyJ9 */
+							&lt;/style&gt;
+						&lt;/head&gt;
+
+						&lt;body&gt;
+							&lt;script id="__bs_script__"&gt;//&lt;![CDATA[
+								document.write("&lt;script async src='/browser-sync/browser-sync-client.js?v=2.27.5'&gt;&lt;\/script&gt;".replace("HOST", location.hostname));
+						//]]&gt;&lt;/script&gt;
+
+							&lt;app-root _nghost-sc20="" ng-version="12.2.8"&gt;
+								&lt;h1 _ngcontent-sc20=""&gt;AppComponent&lt;/h1&gt;
+								&lt;nav _ngcontent-sc20=""&gt;
+									&lt;ul _ngcontent-sc20=""&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="" ng-reflect-router-link="" href="/"&gt;HomeComponent&lt;/a&gt;
+										&lt;/li&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="list" ng-reflect-router-link="list"
+												href="/list"&gt;ListComponent&lt;/a&gt;&lt;/li&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="about" ng-reflect-router-link="about"
+												href="/about"&gt;AboutComponent&lt;/a&gt;&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/nav&gt;
+								&lt;main _ngcontent-sc20=""&gt;
+									&lt;router-outlet _ngcontent-sc20=""&gt;&lt;/router-outlet&gt;
+									&lt;app-about _nghost-sc16=""&gt;
+										&lt;h2 _ngcontent-sc16=""&gt;About&lt;/h2&gt;
+										&lt;p _ngcontent-sc16=""&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id sagittis lorem, eget
+											sagittis nisi. Nullam mi augue, tincidunt sit amet neque malesuada, cursus hendrerit ex. Etiam ultrices sapien
+											purus, et congue elit eleifend non. Pellentesque lacinia, magna id dapibus dignissim, mi sem lacinia libero,
+											at dictum ipsum nibh a massa. Ut pellentesque consequat tristique. Morbi congue felis sed sapien pulvinar
+											consectetur. Integer ultricies accumsan eros sed imperdiet. Nulla risus orci, convallis sed diam ac, aliquet
+											euismod velit. Aenean laoreet dui et porta interdum. Vivamus tincidunt cursus eros, et accumsan ligula
+											consequat at. Proin auctor viverra mi ac commodo. Nullam consectetur mi non fringilla laoreet. Nullam aliquet
+											posuere augue, sed varius nisi pharetra non.&lt;/p&gt;
+										&lt;p _ngcontent-sc16=""&gt;In pellentesque sagittis tincidunt. Pellentesque sollicitudin hendrerit sapien eu
+											malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam
+											elementum velit lectus, vitae sodales magna ultrices vel. Vestibulum eleifend justo nec dictum cursus. Ut
+											sollicitudin eros et dolor fermentum, quis rutrum augue suscipit. Cras a risus a elit convallis ullamcorper
+											non quis turpis. Proin sed rhoncus ipsum. Donec non ante mi. Donec fringilla leo sed purus vulputate maximus
+											sed eget ex. Donec posuere purus at aliquam consequat. Vestibulum varius eleifend pretium. Vestibulum cursus,
+											tellus porttitor ullamcorper finibus, risus neque tincidunt quam, et semper nulla nibh et purus. Nullam
+											feugiat augue tincidunt, elementum tortor sit amet, consequat tortor.&lt;/p&gt;
+									&lt;/app-about&gt;
+									&lt;!--container--&gt;
+								&lt;/main&gt;
+							&lt;/app-root&gt;
+							&lt;script src="runtime.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="polyfills.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="vendor.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="main.js" defer=""&gt;&lt;/script&gt;
+						&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+					<small>http://localhost:4200/about (<code>npm run dev:ssr</code>)</small>
+					</section>
+				</section>
+				<section id="distribution">
+					<section>
+						<h2>Deployment</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Optimized build for production</li>
+							<li>Environment files</li>
+							<li>Browser support</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Production builds</h2>
+						<ul>
+							<li>When building <code>production</code> configurations, the following build optimization features are used
+								<ul>
+									<li>AOT compilation</li>	
+									<li>Bundling</li>
+									<li>Minification</li>
+									<li>Uglification</li>
+									<li>Dead code elimination</li>
+								</ul>
+							</li>
+							<li>Angular has a runtime production mode, that improves performance
+								<ul>
+									<li>Disables development-only safety checks</li>
+									<li>Disables debugging utilties</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/workspace-config#build-target">Angular - Angular workspace configuration</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Bundle sizes</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<p><small><code>ng build --configuration=production</code></small></p>
+								<table style="font-size: 0.5em;">
+									<tr>
+										<td><strong>Initial Chunk Files</strong></td>
+										<td><strong>Names</strong></td>
+										<td width="80px"><strong>Size</strong></td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">main.7fed410212f761978c28.js </td>
+										<td>main</td>
+										<td style="color: #29B8DB;">269.60 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">polyfills.53fa429e6c79f04ad0e8.js </td>
+										<td>polyfills</td>
+										<td style="color: #29B8DB;">36.21 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">runtime.7f2a8ad29c32b55fb45e.js</td>
+										<td>runtime</td>
+										<td style="color: #29B8DB;">2.72 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">styles.31d6cfe0d16ae931b73c.css</td>
+										<td>styles</td>
+										<td style="color: #29B8DB;">0 bytes</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align: end;"><strong>Initial Total</strong></td>
+										<td><strong>308.53 kB</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Lazy Chunk Files</strong></td>
+										<td><strong>Names</strong></td>
+										<td><strong>Size</strong></td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">308.77dc008d3591ddc9da63.js</td>
+										<td>—</td>
+										<td style="color: #29B8DB;">270.60 kB</td>
+									</tr>
+								</table>
+							</div>
+							<div class="two-columns">
+								<p><small><code>ng build --configuration=development</code></small></p>
+								<table style="font-size: 0.5em;">
+									<table style="font-size: 0.5em;">
+										<tr>
+											<td><strong>Initial Chunk Files</strong></td>
+											<td><strong>Names</strong></td>
+											<td width="80px"><strong>Size</strong></td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">vendor.js</td>
+											<td>vendor</td>
+											<td style="color: #29B8DB;">2.42 MB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">polyfills.js</td>
+											<td>polyfills</td>
+											<td style="color: #29B8DB;">128.55 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">main.js</td>
+											<td>main</td>
+											<td style="color: #29B8DB;">16.12 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">runtime.js</td>
+											<td>runtime</td>
+											<td style="color: #29B8DB;">12.21 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">styles.css</td>
+											<td>styles</td>
+											<td style="color: #29B8DB;">1.22 kB</td>
+										</tr>
+										<tr>
+
+											<td colspan="2" style="text-align: end;"><strong>Initial Total</strong></td>
+											<td><strong>2.58 MB</strong></td>
+										</tr>
+										<tr>
+											<td><strong>Lazy Chunk Files</strong></td>
+											<td><strong>Names</strong></td>
+											<td><strong>Size</strong></td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;word-wrap: break-all;">projects_auth_src_app_access-log_access-log_module_ts.js</td>
+											<td>—</td>
+											<td style="color: #29B8DB;">317.01 kB</td>
+										</tr>
+								</table>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Application environments</h2>
+						<ul>
+							<li>It is possible to define different named build configurations
+								<ul>
+									<li>Often, there will be different configurations for <em>staging</em>, <em>development</em>, and <em>productions</em></li>
+								</ul>
+							</li>
+							<li>A project's <code>src/environment</code>folder contains the base configuration file, <code>environment.ts</code>
+								<ul>
+									<li>Can be override by adding target-specific configuration files, eg. <code>environment.prod.ts</code>, <code>environment.staging.ts</code></li>
+								</ul>
+							</li>
+							<li>To use a environment configation, you must import the base configuration file (<code>environment.ts</code>)</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/build">Angular - Building and serving Angular apps</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Environment files</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+									export const environment = {
+										production: true,
+										app_title: 'Auth Production'
+									};									
+								</script></code></pre>
+							</div>
+							<div class="two-columns">
+								<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+									export const environment = {
+										production: false,
+										app_title: 'Auth Debug'
+									};									
+								</script></code></pre>
+							</div>
+						</div>
+						<small>examples/lesson07-testing/projects/auth/src/environments</small>
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers=""><script type="text/template">
+							import { Component } from '@angular/core';
+							import { FormBuilder } from '@angular/forms';
+							import { environment } from '../../environments/environment';
+
+							@Component({
+								selector: 'app-home',
+								templateUrl: './home.component.html',
+								styleUrls: ['./home.component.scss']
+							})
+							export class HomeComponent {
+								environmentTitle: string = environment.app_title;
+								...
+								constructor(private formBuilder: FormBuilder) { }
+								...
+							}
+						</script></code></pre>
+						<small>examples/lesson07-testing/projects/auth/src/app/home/home.component.ts</small>
+					</section>
+					<section>
+						<h2>File replacement</h2>
+						<ul>
+							<ul>
+								<li>The main CLI configuration file, angular.json, contains a <code>fileReplacements</code> section in the configuration for each build target
+									<ul>
+										<li>Replace any file in the TypeScript program with a target-specific version of that file</li>
+									</ul>
+								</li>
+								<li>Select configuation with <code>--configuration</code> when serving/building the application</li>
+							</ul>
+						</ul>
+						<pre data-id="code-animation"><code class='json' data-trim data-line-numbers="|3,5-10,12|13-20|"><script type="text/template">
+							...
+							"configurations": {
+								"production": {
+									...,
+									"fileReplacements": [
+										{
+											"replace": "projects/auth/src/environments/environment.ts",
+											"with": "projects/auth/src/environments/environment.prod.ts"
+										}
+									],
+									"outputHashing": "all"
+								},
+								"development": {
+									"buildOptimizer": false,
+									"optimization": false,
+									"vendorChunk": true,
+									"extractLicenses": false,
+									"sourceMap": true,
+									"namedChunks": true
+								}
+							},
+							"defaultConfiguration": "production"
+							...
+						</script></code></pre>
+						<small>examples/lesson07-testing/angular.json</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/build#configure-target-specific-file-replacements">Angular - Building and serving Angular apps</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Browser support</h2>
+						<ul>
+							<li>Angular supports most browsers
+								<ul>
+									<li>Chrome (latest)</li>
+									<li>Firefox (latest and extended support release (ESR))</li>
+									<li>iOS, Edge, Safari (2 most recent major versions)</li>
+									<li>Android (Q (10.0), Pie (9.0), Oreo (8.0), Nougat (7.0))</li>
+								</ul>
+							</li>
+							<li>Angular is built on the lastest standards of the web platform
+								<ul>
+									<li>Targeting such a wide range of browsers is challenging, because they do not support all features of modern browsers</li>
+									<li>This is compensated by loading <mark>polyfills</mark></li>
+									<li>A polyfill is a piece of code used to provide functionality in a browser do not support it natively</li>
+								</ul>
+							</li>
+							<li><mark>Differential loading</mark> is a strategy that allows your web application to support multiple browsers, but only load the necessary code that the browser needs.</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/browser-support">Angular - Browser support</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Polyfill">Polyfill - MDN Web Docs Glossary: Definitions of Web-related terms | MDN</a></li>
+								<li><a href="https://angular.io/guide/deployment#differential-loading">Angular - Deployment</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				pdfSeparateFragments: false,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  .ip {
+    display: flex;
+    font-family: monospace;
+  }
+  .user-agent {
+    font-size: 0.75em;
+  }
+  a {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 5px;
+  }
+  &:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+  }
+}

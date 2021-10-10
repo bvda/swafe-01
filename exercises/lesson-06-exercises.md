@@ -47,4 +47,4 @@ Build a table that displays all log entries. There are a lot of data, so you mig
 
 ## Exercise 06-7
 ### Optional stuff
-If you feel like it, set up effects for the access log.
+If you feel for it, set up effects for the access log.
