@@ -388,7 +388,7 @@
 									<li>The server receives and responds to HTTP requests and serve static HTML, JavaScript and CSS</li>
 								</ul>
 							</li>
-							<li>There a different rendering engines:
+							<li>There are different rendering engines:
 								<ul>
 									<li><code>@nguniversal/express-engine</code>–the application is using the Express.js engine</li>
 									<li><code>@nguniversal/aspnetcore-engine</code>—the application is using the ASP.NET Core engine</li>
@@ -402,6 +402,124 @@
 								<li><a href="http://expressjs.com/">Express - Node,js web application framework</a></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>Working around browser APIs</h2>
+						<ul>
+							<li>Since the application is not running in the browser, some browser APIs and capabilities might not be available
+								<ul>
+									<li>Server-side application cannot reference global browser-only global objects, such as: <code>window</code>, <code>document</code>, <code>navigator</code>, or <code>location</code></li>
+								</ul>
+							</li>
+							<li>Angular offers injectable abstrations for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
+							<li>If Angular does not provide it, it it possible to write new abstractions that delegate to the browser APIs while in the browser and to an alternative implementation while on the server (also known as shimming)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Scripts</h2>
+						<ul>
+							<li><code>npm run dev:ssr</code></li>
+							<li><code>ng build && ng run app-name:server</code></li>
+							<li><code>npm run serve:ssr</code></li>
+							<li><code>npm run prerender</code></li>
+						</ul>
+						<ul></ul>
+					</section>
+					<section>
+						<h2><code>index.html</code></h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|1-2,7-8|11-13|15-17|19-21|32-39|33|34-35|36|37|38|">
+							&lt;!doctype html&gt;
+							&lt;html lang="en"&gt;
+							&lt;head&gt;
+								&lt;meta charset="utf-8"&gt;
+								&lt;title&gt;Server-side rendering&lt;/title&gt;
+								&lt;base href="/"&gt;
+								&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+								&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+							&lt;link rel="stylesheet" href="styles.css"&gt;&lt;/head&gt;
+							&lt;body&gt;
+								&lt;app-root&gt;&lt;/app-root&gt;
+								&lt;script src="runtime.js" defer&gt;&lt;/script&gt;
+								&lt;script src="polyfills.js" defer&gt;&lt;/script&gt;
+								&lt;script src="vendor.js" defer&gt;&lt;/script&gt;
+								&lt;script src="main.js" defer&gt;&lt;/script&gt;
+							&lt;/body&gt;
+							&lt;/html&gt;							
+						</code></pre>
+						<small>http://localhost:4200/about (<code>ng serve</code>)</small>
+					</section>
+					<section>
+						<h2><code>index.html</code></h2>
+						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|1-2,7-8|11-13|15-17|19-21|32-39|33|34-35|36|37|38|">
+						&lt;!DOCTYPE html&gt;
+						&lt;html lang="en"&gt;
+
+						&lt;head&gt;
+							&lt;meta charset="utf-8"&gt;
+							&lt;title&gt;Server-side rendering&lt;/title&gt;
+							&lt;base href="/"&gt;
+							&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+							&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+							&lt;link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'"&gt;&lt;noscript&gt;
+								&lt;link rel="stylesheet" href="styles.css"&gt;
+							&lt;/noscript&gt;
+							&lt;style ng-transition="serverApp"&gt;
+								/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */
+							&lt;/style&gt;
+							&lt;style ng-transition="serverApp"&gt;
+								/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhYm91dC5jb21wb25lbnQuc2NzcyJ9 */
+							&lt;/style&gt;
+						&lt;/head&gt;
+
+						&lt;body&gt;
+							&lt;script id="__bs_script__"&gt;//&lt;![CDATA[
+								document.write("&lt;script async src='/browser-sync/browser-sync-client.js?v=2.27.5'&gt;&lt;\/script&gt;".replace("HOST", location.hostname));
+						//]]&gt;&lt;/script&gt;
+
+							&lt;app-root _nghost-sc20="" ng-version="12.2.8"&gt;
+								&lt;h1 _ngcontent-sc20=""&gt;AppComponent&lt;/h1&gt;
+								&lt;nav _ngcontent-sc20=""&gt;
+									&lt;ul _ngcontent-sc20=""&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="" ng-reflect-router-link="" href="/"&gt;HomeComponent&lt;/a&gt;
+										&lt;/li&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="list" ng-reflect-router-link="list"
+												href="/list"&gt;ListComponent&lt;/a&gt;&lt;/li&gt;
+										&lt;li _ngcontent-sc20=""&gt;&lt;a _ngcontent-sc20="" routerlink="about" ng-reflect-router-link="about"
+												href="/about"&gt;AboutComponent&lt;/a&gt;&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/nav&gt;
+								&lt;main _ngcontent-sc20=""&gt;
+									&lt;router-outlet _ngcontent-sc20=""&gt;&lt;/router-outlet&gt;
+									&lt;app-about _nghost-sc16=""&gt;
+										&lt;h2 _ngcontent-sc16=""&gt;About&lt;/h2&gt;
+										&lt;p _ngcontent-sc16=""&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id sagittis lorem, eget
+											sagittis nisi. Nullam mi augue, tincidunt sit amet neque malesuada, cursus hendrerit ex. Etiam ultrices sapien
+											purus, et congue elit eleifend non. Pellentesque lacinia, magna id dapibus dignissim, mi sem lacinia libero,
+											at dictum ipsum nibh a massa. Ut pellentesque consequat tristique. Morbi congue felis sed sapien pulvinar
+											consectetur. Integer ultricies accumsan eros sed imperdiet. Nulla risus orci, convallis sed diam ac, aliquet
+											euismod velit. Aenean laoreet dui et porta interdum. Vivamus tincidunt cursus eros, et accumsan ligula
+											consequat at. Proin auctor viverra mi ac commodo. Nullam consectetur mi non fringilla laoreet. Nullam aliquet
+											posuere augue, sed varius nisi pharetra non.&lt;/p&gt;
+										&lt;p _ngcontent-sc16=""&gt;In pellentesque sagittis tincidunt. Pellentesque sollicitudin hendrerit sapien eu
+											malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam
+											elementum velit lectus, vitae sodales magna ultrices vel. Vestibulum eleifend justo nec dictum cursus. Ut
+											sollicitudin eros et dolor fermentum, quis rutrum augue suscipit. Cras a risus a elit convallis ullamcorper
+											non quis turpis. Proin sed rhoncus ipsum. Donec non ante mi. Donec fringilla leo sed purus vulputate maximus
+											sed eget ex. Donec posuere purus at aliquam consequat. Vestibulum varius eleifend pretium. Vestibulum cursus,
+											tellus porttitor ullamcorper finibus, risus neque tincidunt quam, et semper nulla nibh et purus. Nullam
+											feugiat augue tincidunt, elementum tortor sit amet, consequat tortor.&lt;/p&gt;
+									&lt;/app-about&gt;
+									&lt;!--container--&gt;
+								&lt;/main&gt;
+							&lt;/app-root&gt;
+							&lt;script src="runtime.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="polyfills.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="vendor.js" defer=""&gt;&lt;/script&gt;
+							&lt;script src="main.js" defer=""&gt;&lt;/script&gt;
+						&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+					<small>http://localhost:4200/about (<code>npm run dev:ssr</code>)</small>
 					</section>
 				</section>
 			</div>

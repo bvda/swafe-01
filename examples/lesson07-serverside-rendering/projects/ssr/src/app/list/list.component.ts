@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NetworkService } from '../network.service';
+import { Coin, NetworkService } from '../network.service';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +10,7 @@ import { NetworkService } from '../network.service';
 })
 export class ListComponent {
 
-  coins$: Observable<any>
+  coins$: Observable<ReadonlyArray<Coin>>
 
   constructor(private networkService: NetworkService, private router: Router) { 
     this.coins$ = this.networkService.getCoins()
