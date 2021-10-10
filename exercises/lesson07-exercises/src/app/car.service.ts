@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, of } from 'rxjs';
-import { distinct, switchMap, tap } from 'rxjs/operators'
+import { BehaviorSubject, from } from 'rxjs';
+import { distinct, switchMap } from 'rxjs/operators'
 import { DATA } from './MOCK_DATA'
 
 @Injectable({

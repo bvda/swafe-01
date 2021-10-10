@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MOCK_DATA_ACCESS_LOG } from './MOCK_DATA_ACCESS_LOG';
 
 @Injectable({

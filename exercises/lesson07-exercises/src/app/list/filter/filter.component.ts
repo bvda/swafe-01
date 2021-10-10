@@ -16,7 +16,6 @@ export class FilterComponent implements OnInit {
 
   makeSelected(a: any) {
     this.carService.getCarsByMake(a.target.value)
-    // console.log(a.target.value)
   }
 
   clear() {
