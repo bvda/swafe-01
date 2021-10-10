@@ -668,6 +668,51 @@
 						<small>examples/lesson07-testing/projects/auth/src/app/home/home.component.ts</small>
 					</section>
 					<section>
+						<h2>File replacement</h2>
+						<ul>
+							<ul>
+								<li>The main CLI configuration file, angular.json, contains a <code>fileReplacements</code> section in the configuration for each build target
+									<ul>
+										<li>Replace any file in the TypeScript program with a target-specific version of that file</li>
+									</ul>
+								</li>
+								<li>Select configuation with <code>--configuration</code> when serving/building the application</li>
+							</ul>
+						</ul>
+						<pre data-id="code-animation"><code class='json' data-trim data-line-numbers="|3,5-10,12|13-20|"><script type="text/template">
+							...
+							"configurations": {
+								"production": {
+									...,
+									"fileReplacements": [
+										{
+											"replace": "projects/auth/src/environments/environment.ts",
+											"with": "projects/auth/src/environments/environment.prod.ts"
+										}
+									],
+									"outputHashing": "all"
+								},
+								"development": {
+									"buildOptimizer": false,
+									"optimization": false,
+									"vendorChunk": true,
+									"extractLicenses": false,
+									"sourceMap": true,
+									"namedChunks": true
+								}
+							},
+							"defaultConfiguration": "production"
+							...
+						</script></code></pre>
+						<small>examples/lesson07-testing/angular.json</small>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/build#configure-target-specific-file-replacements">Angular - Building and serving Angular apps</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
 						<h2>Browser support</h2>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
