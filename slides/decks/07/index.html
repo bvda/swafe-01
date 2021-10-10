@@ -36,6 +36,7 @@
 								<li>TestBed</li>
 							</ul>
 						</li>
+						<li>Deploying Angular applications</li>
 					</ul>
 				</section>
 				<section id="testing">
@@ -318,7 +319,8 @@
 						<h2>Code coverage</h2>
 						<ul>
 							<li>Code coverage pecentages estimate how much of a codebase is tested</li>
-							<li>Angular projects (generated with the CLI) </li>
+							<li>Angular projects (generated with the CLI) can generate coverage reports with <code>ng test --no-watch --code-coverage</code></li>
+							<li>Can be generated automatically every time tests run if configured in <code>angular.js</code></li>
 						</ul>
 					</section>
 				</section>
@@ -336,8 +338,51 @@
 									<li>Pages render more quickly, making them visible earlier to the client</li>
 								</ul>
 							</li>
-							<li>Angular Universal applications are compiled with Ahead </li>
+							<li>Angular Universal applications are compiled with Ahead-of-Time (AOT)
+								<ul>
+									<li>Default for all applications since Angular 9</li>
+									<li>Faster rendering–the browser downloads a pre-compiled version of the application</li>
+									<li>Fewer asynchronous requests—the compiler <em>inlines</em> external HTML and CSS within the application JavaScript</li>
+									<li>Smaller Angular framework download size—No need to download the Angular compiler</li>
+								</ul>
+							</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/aot-compiler">Angular - Ahead-of-time (AOT) compilation</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Why use server-side rendering</h2>
+						<ul>
+							<li>Facilitate web crawlers through search engine optimization (SEO)
+								<ul>
+									<li>Search engines rely on web crawlers to index pages and their content searchable on the web</li>
+									<li>Web crawlers do not load JavaScript. They only read static content</li>
+									<li>Server-side rendering returns a static version of pages that makes them readable for web crawlers</li>
+								</ul>
+							</li>
+							<li>Improve performance on mobile and low-powered devices
+								<ul>
+									<li>Some devices might not support JavaScript</li>
+									<li>Even if the no-JavaScript version has limited functionality, it is still better than nothing</li>
+								</ul>
+							</li>
+							<li>Show the first page quickly
+								<ul>
+									<li>Displaying the first page quickly can be critical for user engagement</li>
+									<li>Serve a static version of the landing page to hold the user's attention, while loading the full application in the background</li>
+								</ul>
+							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/universal#why-use-server-side-rendering">Angular - Server-side rendering (SSR) with Angular Universal</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Terminology</h2>
@@ -367,17 +412,29 @@
 						<ul>
 							<li>Server rendering
 								<ul>
-									<li>Fast FP, FCP, and TTI</li>
-									<li>Slow TTFP</li>
+									<li>👍—Fast FP, FCP, and TTI</li>
+									<li>👎—Slow TTFB</li>
 								</ul>
 							</li>
 							<li>Static rendering
 								<ul>
-									<li>Fast FP, FCP, TTI, and TTFB</li>
-									<li>All HTML must be rendered, infeasable if unable to predict</li>
+									<li>👍—Fast FP, FCP, TTI, and TTFB</li>
+									<li>👎—All HTML must be rendered, infeasable if unable to predict</li>
+								</ul>
+							</li>
+							<li>Client-side rendering
+								<ul>
+									<li>👍—Flexible, fast TTFB</li>
+									<li>👎—Slow TTI and FCP</li>
 								</ul>
 							</li>
 						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://developers.google.com/web/updates/2019/02/rendering-on-the-web">Rendering on the Web | Google Developers</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Universal web servers</h2>
@@ -418,10 +475,10 @@
 					<section>
 						<h2>Scripts</h2>
 						<ul>
-							<li><code>npm run dev:ssr</code></li>
-							<li><code>ng build && ng run app-name:server</code></li>
-							<li><code>npm run serve:ssr</code></li>
-							<li><code>npm run prerender</code></li>
+							<li><code>npm run dev:ssr</code>—similar to <code>ng serve</code>, but uses server-side rendering</li>
+							<li><code>ng build && ng run &lt;APP_NAME&gt;:server</code>—builds the application and server code in production mode</li>
+							<li><code>npm run serve:ssr</code>—starts the server script serving the application locally. Remember to run <code>ng run build:ssr</code></li>
+							<li><code>npm run prerender</code>—used to prerender application pages</li>
 						</ul>
 						<ul></ul>
 					</section>
