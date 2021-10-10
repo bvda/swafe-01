@@ -598,12 +598,129 @@
 					</section>
 					<section>
 						<h2>Production builds</h2>
+						<ul>
+							<li>When building <code>production</code> configurations, the following build optimization features are used
+								<ul>
+									<li>AOT compilation</li>	
+									<li>Bundling</li>
+									<li>Minification</li>
+									<li>Uglification</li>
+									<li>Dead code elimination</li>
+								</ul>
+							</li>
+							<li>Angular has a runtime production mode, that improves performance
+								<ul>
+									<li>Disables development-only safety checks</li>
+									<li>Disables debugging utilties</li>
+								</ul>
+							</li>
+						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
-								<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Polyfill">Polyfill - MDN Web Docs Glossary: Definitions of Web-related terms | MDN</a></li>
+								<li><a href="https://angular.io/guide/workspace-config#build-target">Angular - Angular workspace configuration</a></li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>Bundle sizes</h2>
+						<div class="two-columns-container">
+							<div class="two-columns">
+								<p><small><code>ng build --configuration=production</code></small></p>
+								<table style="font-size: 0.5em;">
+									<tr>
+										<td><strong>Initial Chunk Files</strong></td>
+										<td><strong>Names</strong></td>
+										<td width="80px"><strong>Size</strong></td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">main.7fed410212f761978c28.js </td>
+										<td>main</td>
+										<td style="color: #29B8DB;">269.60 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">polyfills.53fa429e6c79f04ad0e8.js </td>
+										<td>polyfills</td>
+										<td style="color: #29B8DB;">36.21 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">runtime.7f2a8ad29c32b55fb45e.js</td>
+										<td>runtime</td>
+										<td style="color: #29B8DB;">2.72 kB</td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">styles.31d6cfe0d16ae931b73c.css</td>
+										<td>styles</td>
+										<td style="color: #29B8DB;">0 bytes</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align: end;"><strong>Initial Total</strong></td>
+										<td><strong>308.53 kB</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Lazy Chunk Files</strong></td>
+										<td><strong>Names</strong></td>
+										<td><strong>Size</strong></td>
+									</tr>
+									<tr>
+										<td style="color: #23D08A;">308.77dc008d3591ddc9da63.js</td>
+										<td>—</td>
+										<td style="color: #29B8DB;">270.60 kB</td>
+									</tr>
+								</table>
+							</div>
+							<div class="two-columns">
+								<p><small><code>ng build --configuration=development</code></small></p>
+								<table style="font-size: 0.5em;">
+									<table style="font-size: 0.5em;">
+										<tr>
+											<td><strong>Initial Chunk Files</strong></td>
+											<td><strong>Names</strong></td>
+											<td width="80px"><strong>Size</strong></td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">vendor.js</td>
+											<td>vendor</td>
+											<td style="color: #29B8DB;">2.42 MB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">polyfills.js</td>
+											<td>polyfills</td>
+											<td style="color: #29B8DB;">128.55 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">main.js</td>
+											<td>main</td>
+											<td style="color: #29B8DB;">16.12 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">runtime.js</td>
+											<td>runtime</td>
+											<td style="color: #29B8DB;">12.21 kB</td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;">styles.css</td>
+											<td>styles</td>
+											<td style="color: #29B8DB;">1.22 kB</td>
+										</tr>
+										<tr>
+
+											<td colspan="2" style="text-align: end;"><strong>Initial Total</strong></td>
+											<td><strong>2.58 MB</strong></td>
+										</tr>
+										<tr>
+											<td><strong>Lazy Chunk Files</strong></td>
+											<td><strong>Names</strong></td>
+											<td><strong>Size</strong></td>
+										</tr>
+										<tr>
+											<td style="color: #23D08A;word-wrap: break-all;">projects_auth_src_app_access-log_access-log_module_ts.js</td>
+											<td>—</td>
+											<td style="color: #29B8DB;">317.01 kB</td>
+										</tr>
+								</table>
+							</div>
+						</div>
 					</section>
 					<section>
 						<h2>Application environments</h2>
