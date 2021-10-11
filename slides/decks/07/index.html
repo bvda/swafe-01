@@ -143,24 +143,32 @@
 					</section>
 					<section>
 						<h2>Testing <code>auth.service.ts</code></h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1,17|2-3|5-10|12-16|"><script type="text/template">
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1,17|2-3|5-14|16-25|"><script type="text/template">
 							describe('#signUp', () => {
 								let expectedPassword = 'correct-horse-stable-battery'
 								let anotherPassword = 'another_password'
 
-								it('should return an Observable<Error> when passwords do not match', (done: DoneFn) => {
-									service.signUp('user@example.com', expectedPassword, anotherPassword).subscribe(value => {
-										expect(value).toBeInstanceOf(Error)
-										done()
-									})
-								})
+								it('should return an Observable<Error> when passwords do not match', 
+									(done: DoneFn) => {
+										service.signUp('user@example.com', expectedPassword, anotherPassword)
+											.subscribe(value => {
+												expect(value).toBeInstanceOf(Error)
+												done()
+											}
+										)
+									}
+								)
 							
-								it('should Observable<[]> when successful', (done: DoneFn) => {
-									service.signUp('user@example.com', expectedPassword, expectedPassword).subscribe(value => {
-										expect(value).toBeInstanceOf(Array)
-										done()
-									})
-								})
+								it('should Observable<[]> when successful', 
+									(done: DoneFn) => {
+										service.signUp('user@example.com', expectedPassword, expectedPassword)
+											.subscribe(value => {
+												expect(value).toBeInstanceOf(Array)
+												done()
+											}
+										)
+									}
+								)
 							})
 						</script></code></pre>
 						<small>examples/lesson07-testing/projects/auth/src/app/auth.service.spec.ts</small>
@@ -224,7 +232,7 @@
 					</section>
 					<section>
 						<h2>Testing <code>@Input</code> and <code>@Output</code></h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-9|11-17|25-28|32,38|33-34|35-36|37|38|"><script type="text/template">
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|1-9|11-17|25-28|32,39|33-34|35-36|37|38|"><script type="text/template">
 							beforeEach(async () => {
 								await TestBed.configureTestingModule({
 									declarations: [ 
@@ -325,7 +333,7 @@
 						<ul>
 							<li>Code coverage pecentages estimate how much of a codebase is tested</li>
 							<li>Angular projects (generated with the CLI) can generate coverage reports with <code>ng test --no-watch --code-coverage</code></li>
-							<li>Can be generated automatically every time tests run if configured in <code>angular.js</code></li>
+							<li>Can be generated automatically every time tests run if configured in <code>angular.json</code></li>
 						</ul>
 					</section>
 				</section>
@@ -343,10 +351,10 @@
 									<li>Pages render more quickly, making them visible earlier to the client</li>
 								</ul>
 							</li>
-							<li>Angular Universal applications are compiled with Ahead-of-Time (AOT)
+							<li>Angular Universal applications are compiled with Ahead-of-Time (AOT) compilation
 								<ul>
 									<li>Default for all applications since Angular 9</li>
-									<li>Faster rendering–the browser downloads a pre-compiled version of the application</li>
+									<li>Faster rendering—the browser downloads a pre-compiled version of the application</li>
 									<li>Fewer asynchronous requests—the compiler <em>inlines</em> external HTML and CSS within the application JavaScript</li>
 									<li>Smaller Angular framework download size—No need to download the Angular compiler</li>
 								</ul>
@@ -471,9 +479,9 @@
 							<li>Since the application is not running in the browser, some browser APIs and capabilities might not be available
 								<ul>
 									<li>Server-side application cannot reference global browser-only global objects, such as: <code>window</code>, <code>document</code>, <code>navigator</code>, or <code>location</code></li>
+									<li>Angular offers injectable abstrations for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
 								</ul>
 							</li>
-							<li>Angular offers injectable abstrations for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
 							<li>If Angular does not provide it, it it possible to write new abstractions that delegate to the browser APIs while in the browser and to an alternative implementation while on the server (also known as shimming)</li>
 						</ul>
 					</section>
@@ -482,7 +490,7 @@
 						<ul>
 							<li><code>npm run dev:ssr</code>—similar to <code>ng serve</code>, but uses server-side rendering</li>
 							<li><code>ng build && ng run &lt;APP_NAME&gt;:server</code>—builds the application and server code in production mode</li>
-							<li><code>npm run serve:ssr</code>—starts the server script serving the application locally. Remember to run <code>ng run build:ssr</code></li>
+							<li><code>npm run serve:ssr</code>—starts the server script serving the application locally. Remember to run <code>ng run build:ssr</code> to build the application before running it</li>
 							<li><code>npm run prerender</code>—used to prerender application pages</li>
 						</ul>
 						<ul></ul>
@@ -601,11 +609,11 @@
 						<ul>
 							<li>When building <code>production</code> configurations, the following build optimization features are used
 								<ul>
-									<li>AOT compilation</li>	
-									<li>Bundling</li>
-									<li>Minification</li>
-									<li>Uglification</li>
-									<li>Dead code elimination</li>
+									<li>AOT compilation—precompiles Angular templates</li>	
+									<li>Bundling—Concatenates application and library files into large chunks</li>
+									<li>Minification—removes excess whitespace, optional tokens and comments</li>
+									<li>Uglification—rewrites code to use short, cryptic variables nad function names</li>
+									<li>Dead code elimination—removes unreferences modules and musch unused code</li>
 								</ul>
 							</li>
 							<li>Angular has a runtime production mode, that improves performance
@@ -619,6 +627,7 @@
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/workspace-config#build-target">Angular - Angular workspace configuration</a></li>
+								<li><a href="https://angular.io/guide/deployment">Angular - Deployment</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -788,12 +797,14 @@
 						<h2>File replacement</h2>
 						<ul>
 							<ul>
-								<li>The main CLI configuration file, angular.json, contains a <code>fileReplacements</code> section in the configuration for each build target
-									<ul>
-										<li>Replace any file in the TypeScript program with a target-specific version of that file</li>
-									</ul>
-								</li>
-								<li>Select configuation with <code>--configuration</code> when serving/building the application</li>
+								<ul>
+									<li>The main CLI configuration file, <code>angular.json</code>, contains a <code>fileReplacements</code> section in the configuration for each build target
+										<ul>
+											<li>Replace any file in the TypeScript program with a target-specific version of that file</li>
+										</ul>
+									</li>
+									<li>Select configuation with <code>--configuration</code> when serving/building the application</li>
+								</ul>
 							</ul>
 						</ul>
 						<pre data-id="code-animation"><code class='json' data-trim data-line-numbers="|3,5-10,12|13-20|"><script type="text/template">
