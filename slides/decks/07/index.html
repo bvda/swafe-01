@@ -17,7 +17,7 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h2>Server-side rendering</h2>
+					<h2>Server-side rendering, testing and distribution</h2>
 					<h3>Lesson 07</h3>
 					<h4>SWAFE-01</h3>
 				</section>
@@ -479,10 +479,10 @@
 							<li>Since the application is not running in the browser, some browser APIs and capabilities might not be available
 								<ul>
 									<li>Server-side application cannot reference global browser-only global objects, such as: <code>window</code>, <code>document</code>, <code>navigator</code>, or <code>location</code></li>
-									<li>Angular offers injectable abstrations for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
+									<li>Angular offers injectable abstractions for some of these objects: <code>Location</code>, <code>DOCUMENT</code></li>
 								</ul>
 							</li>
-							<li>If Angular does not provide it, it it possible to write new abstractions that delegate to the browser APIs while in the browser and to an alternative implementation while on the server (also known as shimming)</li>
+							<li>If Angular does not provide it, it is possible to write new abstractions that delegate to the browser APIs while in the browser, and to an alternative implementation while on the server (also known as shimming)</li>
 						</ul>
 					</section>
 					<section>
@@ -736,7 +736,7 @@
 						<ul>
 							<li>It is possible to define different named build configurations
 								<ul>
-									<li>Often, there will be different configurations for <em>staging</em>, <em>development</em>, and <em>productions</em></li>
+									<li>Often, there will be different configurations for <em>staging</em>, <em>development</em>, and <em>production</em></li>
 								</ul>
 							</li>
 							<li>A project's <code>src/environment</code>folder contains the base configuration file, <code>environment.ts</code>
@@ -744,7 +744,7 @@
 									<li>Can be override by adding target-specific configuration files, eg. <code>environment.prod.ts</code>, <code>environment.staging.ts</code></li>
 								</ul>
 							</li>
-							<li>To use a environment configation, you must import the base configuration file (<code>environment.ts</code>)</li>
+							<li>To use a environment configuration, you must import the base configuration file (<code>environment.ts</code>)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -803,7 +803,7 @@
 											<li>Replace any file in the TypeScript program with a target-specific version of that file</li>
 										</ul>
 									</li>
-									<li>Select configuation with <code>--configuration</code> when serving/building the application</li>
+									<li>Select configuration with <code>--configuration</code> when serving/building the application</li>
 								</ul>
 							</ul>
 						</ul>
@@ -851,14 +851,14 @@
 									<li>Android (Q (10.0), Pie (9.0), Oreo (8.0), Nougat (7.0))</li>
 								</ul>
 							</li>
-							<li>Angular is built on the lastest standards of the web platform
+							<li>Angular is built on the latest standards of the web platform
 								<ul>
 									<li>Targeting such a wide range of browsers is challenging, because they do not support all features of modern browsers</li>
 									<li>This is compensated by loading <mark>polyfills</mark></li>
-									<li>A polyfill is a piece of code used to provide functionality in a browser do not support it natively</li>
+									<li>A polyfill is a piece of code used to provide functionality in a browser that it do not support natively</li>
 								</ul>
 							</li>
-							<li><mark>Differential loading</mark> is a strategy that allows your web application to support multiple browsers, but only load the necessary code that the browser needs.</li>
+							<li><mark>Differential loading</mark> is a strategy that allows your web application to support multiple browsers, but only load the necessary code that the browser needs</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
