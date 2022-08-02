@@ -1,0 +1,12 @@
+<h2>UserModule/ListComponent</h2>
+<ul>
+  <li *ngFor="let user of users$ | async">
+    <div style="display:flex; align-items: center">
+      <img src="https://robohash.org/{{user.email}}.png?set=set1&size=75x75" alt="robohash={{user.email}}">
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+        <span>{{user.first_name}} {{user.last_name}}</span>
+        <span>{{user.email}}</span>
+      </div>
+    </div>
+  </li>
+</ul>
