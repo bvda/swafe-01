@@ -249,16 +249,20 @@
 					<section>
 						<h2>Strict mode</h2>
 							<ul>	
-								<li>Improves maintainability</li>
+								<li>Improves <mark>maintainability</mark>
+									<ul>
+										<li>Easier to run <code>ng update</code> when updating to future versions of Angular</li>
+									</ul>
+								</li>
 								<li>Helps you catch bugs ahead of time:
 									<ul>
 										<li>Enable <code>strict</code> mode in TypeScript</li>
 										<li>Turns on strict Angular compiler flags</li>
 									</ul>
 								</li>
-								<li>Reduces bundle size budgets by 75%</li>
+								<li>Reduces <mark>bundle</mark> size budgets by 75%</li>
 								<li>Can be applied at workspace and project level</li>
-								<li>Enabled by default for projects/workspaces created with <a href="#/angular-cli">Angular CLI</a></li>
+								<li>Enabled by <mark>default</mark> for projects/workspaces created with <a href="#/angular-cli">Angular CLI</a></li>
 							</ul>
 						<aside class="notes" aria-label="notes">
 							<ul>
@@ -292,10 +296,10 @@
 							<li>The main building block for Angular applications</li>
 							<li>Each component consists of:
 								<ul>
-									<li>HTML template</li>
-									<li>A TypeScript class that defines behavior</li>
-									<li>A CSS selector that defines how the component is used a template
-									<li>CSS styles applied to the template (optional)</li>
+									<li>HTML <mark>template</mark></li>
+									<li>A TypeScript <mark>class</mark> that defines behavior</li>
+									<li>A CSS <mark>selector</mark> that defines how the component is used a template
+									<li>CSS <mark>styles</mark> applied to the template (optional)</li>
 									</ul>
 							</li>
 							<li>Runtime behavior can be controlled by <a href="#/lifecycle-hooks">lifecycle hooks</a></li>
@@ -401,7 +405,6 @@
 						<h2>Lifecycle hooks</h2>
 						<ul>
 							<li>You only need to implement the hooks you need, if any</li>
-							<li>You will most likely never implement all hooks</li>
 							<li>The most commonly used are:
 								<ul>
 									<li><code>ngOnInit()</code>
@@ -419,6 +422,17 @@
 									</li>
 								</ul>
 							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Lifecycle hooks</h2>
+						<ul>
 							<li>Write lean hook methods to avoid performance issues
 								<ul>
 									<li>Be very careful about how much logic or computation you put into lifecycle methods</li>
@@ -432,6 +446,7 @@
 								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
 							</ul>
 						</aside>
+						</section>
 					</section>
 				</section>
 				<section>
