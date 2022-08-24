@@ -7,6 +7,44 @@
  */
 @import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+.two-columns-container {
+  display: flex;
+}
+
+.two-columns {
+  width: 50%;
+}
+
+.reveal li code {
+  background-color: #0d1117;
+  color: #d2a8ff;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.reveal li sup {
+  font-size: 0.5em;
+}
+
+.reveal .image-ul {
+  font-size: 0.65em;
+}
+
+code {
+  font-family: monospace;
+  background-color: black;
+  color: lightgray;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+mark {
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: khaki;
+}
+
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
   color: #fff;
 }

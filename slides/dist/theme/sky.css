@@ -5,6 +5,44 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+.two-columns-container {
+  display: flex;
+}
+
+.two-columns {
+  width: 50%;
+}
+
+.reveal li code {
+  background-color: #0d1117;
+  color: #d2a8ff;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.reveal li sup {
+  font-size: 0.5em;
+}
+
+.reveal .image-ul {
+  font-size: 0.65em;
+}
+
+code {
+  font-family: monospace;
+  background-color: black;
+  color: lightgray;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+mark {
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: khaki;
+}
+
 .reveal a {
   line-height: 1.3em;
 }
