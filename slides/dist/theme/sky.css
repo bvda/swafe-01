@@ -5,29 +5,6 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
-.two-columns-container {
-  display: flex;
-}
-
-.two-columns {
-  width: 50%;
-}
-
-.reveal li code {
-  background-color: #0d1117;
-  color: #d2a8ff;
-  padding: 3px 8px;
-  border-radius: 8px;
-}
-
-.reveal li sup {
-  font-size: 0.5em;
-}
-
-.reveal .image-ul {
-  font-size: 0.65em;
-}
-
 .reveal a {
   line-height: 1.3em;
 }
@@ -181,7 +158,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal dl,
 .reveal ul {
   display: inline-block;
-  line-height: 1.4em;
   text-align: left;
   margin: 0 0 0 1em;
 }
@@ -196,8 +172,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal ul ul {
   list-style-type: square;
-  font-size: 0.8em;
-  margin-bottom: 0.5em;
 }
 
 .reveal ul ul ul {
@@ -319,7 +293,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal small {
   display: inline-block;
-  font-size: 0.5em;
+  font-size: 0.6em;
   line-height: 1.2em;
   vertical-align: top;
 }

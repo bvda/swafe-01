@@ -109,7 +109,7 @@
 .reveal dl,
 .reveal ul {
 	display: inline-block;
-	line-height: 1.4em;
+
 	text-align: left;
 	margin: 0 0 0 1em;
 }
@@ -124,9 +124,6 @@
 
 .reveal ul ul {
 	list-style-type: square;
-	font-size: 0.8em;
-	margin-bottom: 0.5em;
-	// background-color: lime;
 }
 
 .reveal ul ul ul {
@@ -250,7 +247,7 @@
 
 .reveal small {
 	display: inline-block;
-	font-size: 0.5em;
+	font-size: 0.6em;
 	line-height: 1.2em;
 	vertical-align: top;
 }

@@ -4,29 +4,6 @@
  * By Hakim El Hattab, http://hakim.se
  */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
-.two-columns-container {
-  display: flex;
-}
-
-.two-columns {
-  width: 50%;
-}
-
-.reveal li code {
-  background-color: #0d1117;
-  color: #d2a8ff;
-  padding: 3px 8px;
-  border-radius: 8px;
-}
-
-.reveal li sup {
-  font-size: 0.5em;
-}
-
-.reveal .image-ul {
-  font-size: 0.65em;
-}
-
 section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
   color: #222;
 }
@@ -37,7 +14,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 :root {
   --r-background-color: #191919;
   --r-main-font: Source Sans Pro, Helvetica, sans-serif;
-  --r-main-font-size: 32px;
+  --r-main-font-size: 42px;
   --r-main-color: #fff;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
@@ -170,7 +147,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal dl,
 .reveal ul {
   display: inline-block;
-  line-height: 1.4em;
   text-align: left;
   margin: 0 0 0 1em;
 }
@@ -185,8 +161,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal ul ul {
   list-style-type: square;
-  font-size: 0.8em;
-  margin-bottom: 0.5em;
 }
 
 .reveal ul ul ul {
@@ -308,7 +282,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal small {
   display: inline-block;
-  font-size: 0.5em;
+  font-size: 0.6em;
   line-height: 1.2em;
   vertical-align: top;
 }
