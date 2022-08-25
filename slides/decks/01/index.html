@@ -303,6 +303,7 @@
 									</ul>
 							</li>
 							<li>Runtime behavior can be controlled by <a href="#/lifecycle-hooks">lifecycle hooks</a></li>
+							<li>A component can either be <mark>standalone</mark> or part of a <mark>module</mark></li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -433,10 +434,10 @@
 					<section>
 						<h2>Lifecycle hooks</h2>
 						<ul>
-							<li>Write lean hook methods to avoid performance issues
+							<li>Write <mark>lean</mark> hook methods to avoid performance issues
 								<ul>
-									<li>Be very careful about how much logic or computation you put into lifecycle methods</li>
-									<li>Some are called multiple times in quick succession</li>
+									<li>Be very careful about how much <mark>logic</mark> or <mark>computation</mark> you put into lifecycle methods</li>
+									<li>Some hooks are called <mark>multiple</mark> times in quick succession</li>
 								</ul>
 							</li>
 						</ul>
@@ -462,9 +463,9 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Fetching and manipulating data</li>
-							<li>Sharing data between unrelated components</li>
-							<li>A class with a narrow, well-defined purpose</li>
+							<li><mark>Fetching</mark> and <mark>manipulating</mark> data</li>
+							<li><mark>Sharing</mark> data between unrelated components</li>
+							<li>A class with a <mark>narrow</mark>, well-defined purpose</li>
 							<li>Used with dependency injection</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
@@ -510,7 +511,7 @@
 					</section>
 					<section>
 						<h2>Injecting a service into a component</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|2,13,16|"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|2,13|16|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { MyFirstService } from './my-first.service';
 							
@@ -558,8 +559,8 @@
 							<li>Dependency providers make services available to the application</li>
 							<li>A service can be provided in multiple ways
 								<ul>
-									<li>At application-level where the service is available to the whole application</li>
-									<li>At component-level where each component has it's own instance of the service (sandboxing)</li>
+									<li>At <mark>application-level</mark> where the service is available to the whole application</li>
+									<li>At <mark>component-level</mark> where each component has it's own instance of the service (sandboxing)</li>
 								</ul>
 							</li>
 						</ul>
@@ -736,28 +737,6 @@
 						<ul>
 							<li>Directives are classes that add additional behavior to elements</li>
 							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own attribute directives</li>
-							<li>Three different types of directives
-								<ul>
-									<li>Components
-										<ul>
-											<li>A component is simply a directive with a template</li>
-											<li>Use the <code>Component</code> decoratorwhen declaring components</li>
-										</ul>
-									</li>
-									<li>Attribute directives
-										<ul>
-											<li>Built-in attribute such as <code>NgClass</code> and <code>NgModel</code></li>
-											<li>Custom directives</li>
-										</ul>
-									</li>
-									<li>Structural directives
-										<ul>
-											<li>Change the DOM layout by adding and removing DOM elements</li>
-											<li>Examples are: <code>NgIf</code>, <code>NgForOf</code>, and <code>NgSwitch</code></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -766,6 +745,15 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Directives</h2>
+							<ul>
+								<li><mark>Components</mark> – A component is simply a directive with a template</li>
+								<li><mark>Attribute</mark> – Built-in attribute such as <code>NgClass</code> and <code>NgModel</code></li>
+								<li><mark>Structural</mark> – Changes the DOM layout by adding and removing DOM elements</li>	
+							</ul>
+						</li>
+					</section>
 					<section id="attribute-directives">
 						<h2>Attribute directives</h2>
 						<ul>
@@ -773,7 +761,6 @@
 							<li><code>NgStyle</code> – adds and removes a set of HTML styles</li>
 							<li><code>NgModel</code> – adds two-way data binding to an HTML form element</li>
 						</ul>
-						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -788,9 +775,8 @@
 						<ul>
 							<li><code>NgIf</code> – conditionally includes a template based on a boolean expression</li>
 							<li><code>NgForOf</code> – renders a template for each item in a collection</li>
-							<li><code>NgNgSwitch</code> –  specifies an expression to match against and show views in container</li>
+							<li><code>NgSwitch</code> –  specifies an expression to match against and show views in container</li>
 						</ul>
-						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 					</section>
 					<section id="custom-directive">
 						<h2>Custom directives</h2>
