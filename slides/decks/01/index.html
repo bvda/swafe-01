@@ -26,8 +26,8 @@
 					<h2>Agenda</h2>
 					<ul>
 						<li>What is Angular?</li>
-						<li>Why use Angular?</li>
-						<li></li>
+						<li>The nuts and bolts</li>
+						<li>Data binding</li>
 					</ul>
 				</section>
 				<section>
@@ -618,10 +618,14 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>A container for a group of related components, services, directives, and pipes</li>
-							<li>A package that contains certain business domain functionality</li>
-							<li>All apps must have at least one module (root module)</li>
-							<li>Modules can be loaded eagerly when the application starts or lazy loaded asynchrously by the router</li>
+							<li>A <mark>container</mark> for a group of related components, services, directives, and pipes</li>
+							<li>A package that contains certain <mark>business domain</mark> functionality</li>
+							<li><s>All apps must have at least one module (root module)</s>
+								<ul>
+									<li><mark>Standalone</mark> permits applications without modules</li>
+								</ul>
+							</li>
+							<li>Modules can be loaded <mark>eagerly</mark>when the application starts or <mark>lazy</mark> loaded asynchrously by a <code>Router</code></li>
 						</ul>
 					</section>
 					<section>
@@ -649,15 +653,32 @@
 							export class AppModule { }
 							</code></pre>
 							<small>examples/lesson01-introduction/projects/modules/src/app/app.module.ts</small>
-						</section>
+					</section>
+					<section>
+						<h2>Standalone module</h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|4-10|6|7|">
+							import { Component } from '@angular/core';
+							import { UserModule } from '../user/user.module';
+							
+							@Component({
+								selector: 'app-standalone',
+								standalone: true,
+								imports: [UserModule],
+								templateUrl: './standalone.component.html',
+								styleUrls: ['./standalone.component.scss']
+							})
+							export class StandaloneComponent { }
+						</code></pre>
+						<small>examples/lesson01-introduction/projects/standalone-components/src/standalone/standalone.component.ts</small>
+					</section>
 					<section id="angular-modules">
 						<h2>Angular Modules</h2>
 						<ul>
-							<li>Angular itself is split into modules
+							<li>Angular itself is split into <mark>modules</mark>
 								<ul>
 									<li><code>BrowserModule</code> – Exports infrastructure for all Angular apps</li>
-									<li><code>FormsModule</code> and <code>ReactiveFormsModule</code> – Exports the required providers and directives for template-driven and reactive forms</li>
-									<li><code>RouterModule</code> — Adds directives and providers for in-app navigation among views defined in an application</li>
+									<li><code>FormsModule</code> and <code>ReactiveFormsModule</code> – Exports the required providers and directives for <mark>template-driven</mark> and <mark>reactive forms</mark></li>
+									<li><code>RouterModule</code> — Adds directives and providers for in-app <mark>navigation</mark> among views defined in an application</li>
 									<li><code>HttpClientModule</code> –	 Configures the dependency injector for <code>HttpClient</code> service</li>
 								</ul>
 							</li>
@@ -700,16 +721,16 @@
 					<section id="feature-modules">
 						<h2>Feature modules</h2>
 						<ul>
-							<li>Feature modules are <code>NgModule</code> instances for the purpose of organizing code</li>
-							<li>Helps to apply clear boundaries for features
+							<li>Feature modules are <code>NgModule</code> instances for the purpose of <mark>organizing</mark> code</li>
+							<li>Helps to apply clear <mark>boundaries</mark> for features
 								<ul>
-									<li>Keep code related to a specific functionality or feature separate from other code</li>
+									<li>Keep code related to a <mark>specific</mark> functionality or <mark>feature</mark> separate from other code</li>
 								</ul>
 							</li>
-							<li>Helps with collaboration between developers and teams</li>
-							<li>Managing the size of the root module
+							<li>Helps with <mark>collaboration</mark> between developers and teams</li>
+							<li>Managing the <mark>size</mark> of the root module
 								<ul>
-									<li>Applications are split up in smaller chunks that gets delivered when needed</li>
+									<li>Applications are split up in smaller <mark>chunks</mark> that gets delivered when needed</li>
 								</ul>
 							</li>
 							<li>Only the root module should import <code>BrowserModule</code>, use <code>CommmonModule</code> instead in feature modules</li>
