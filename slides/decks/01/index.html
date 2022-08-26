@@ -721,19 +721,21 @@
 					<section id="feature-modules">
 						<h2>Feature modules</h2>
 						<ul>
-							<li>Feature modules are <code>NgModule</code> instances for the purpose of <mark>organizing</mark> code</li>
 							<li>Helps to apply clear <mark>boundaries</mark> for features
 								<ul>
 									<li>Keep code related to a <mark>specific</mark> functionality or <mark>feature</mark> separate from other code</li>
 								</ul>
 							</li>
-							<li>Helps with <mark>collaboration</mark> between developers and teams</li>
 							<li>Managing the <mark>size</mark> of the root module
 								<ul>
 									<li>Applications are split up in smaller <mark>chunks</mark> that gets delivered when needed</li>
 								</ul>
 							</li>
-							<li>Only the root module should import <code>BrowserModule</code>, use <code>CommmonModule</code> instead in feature modules</li>
+							<li>Only the root module should import <code>BrowserModule</code>
+								<ul>
+									<li>Use <code>CommmonModule</code> instead in feature modules</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -746,18 +748,12 @@
 				<section>
 					<section id="directives">
 						<h2>Directives</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
 					</section>
 					<section>
 						<h2>Directives</h2>
 						<ul>
-							<li>Directives are classes that add additional behavior to elements</li>
-							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own attribute directives</li>
+							<li>Directives are classes that add additional <mark>behavior</mark> to elements</li>
+							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own <mark>attribute</mark> directives</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -778,9 +774,9 @@
 					<section id="attribute-directives">
 						<h2>Attribute directives</h2>
 						<ul>
-							<li><code>NgClass</code> – adds and removes a set of CSS classes</li>
-							<li><code>NgStyle</code> – adds and removes a set of HTML styles</li>
-							<li><code>NgModel</code> – adds two-way data binding to an HTML form element</li>
+							<li><code>NgClass</code> – adds and removes a set of <mark>CSS</mark> classes</li>
+							<li><code>NgStyle</code> – adds and removes a set of <mark>HTML</mark> styles</li>
+							<li><code>NgModel</code> – adds two-way <mark>data binding</mark> to an HTML form element</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -840,6 +836,13 @@
 							}						
 						</script></code></pre>
 						<small>examples/lesson01-introduction/projects/directives/src/app/attribute/hover.directive.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h2>References</h2>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event">Element: mouseenter event - Web APIs | MDN</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event">Element: mouseleave event - Web APIs | MDN</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Custom structural directive</h2>
@@ -958,7 +961,7 @@
 					<section>
 						<h2>Pure vs. impure pipes</h2>
 						<ul>
-							<li>Pipes are <em>pure</em> by default</li>
+							<li>Pipes are <mark>pure</mark> by default</li>
 							<li>A pipe must use a pure function
 								<ul>
 									<li>A function that processes the input and returns an output without side effects</li>
