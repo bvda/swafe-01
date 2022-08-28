@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserModule } from '../user/user.module';
 
 @Component({
@@ -8,11 +8,4 @@ import { UserModule } from '../user/user.module';
   standalone: true,
   styleUrls: ['./standalone.component.scss']
 })
-export class StandaloneComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class StandaloneComponent { }
