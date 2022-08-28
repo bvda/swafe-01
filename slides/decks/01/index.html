@@ -22,57 +22,68 @@
 					<h3>Lesson 01</h3>
 					<h4>SWAFE-01</h4>
 				</section>
-				<section id="what-is-angular">
-					<h2>What is Angular?</h2>
+				<section id="agenda">
+					<h2>Agenda</h2>
 					<ul>
-						<li>An open source JavaScript client side MVC framework</li>
-						<li>Developed and maintained by Google</li>
-						<li>Angular is a complete rewrite of it's popular predecessor AngularJS
-							<ul>
-								<li>Initial released in 2016 (Angular) and 2010 (AngularJS)</li>
-								<li>Current versions 11.2.2 (Angular) and 1.8.2 (AngularJS)</li>
-							</ul>
-						</li>
-						<li>Angular applications are implemented with TypeScript</li>
-					</ul>
-				</section>
-				<section id="why-use-anuglar">
-					<h2>Why use Angular?</h2>
-					<ul>
-						<li>Modern web applications have lots of client-side JavaScript
-							<ul>
-								<li>Need a framework to structure the code</li>
-							</ul>
-						</li>
-						<li>Why select Angular, there are many client-side frameworks and libraries?
-							<ul>
-								<li>Angular is a complete framework</li>
-								<li>Component-based (as React)</li>
-								<li>Complies with upcoming Web Component standards</li>
-							</ul>
-						</li>
-						<li>Why Angular and not AngularJS?
-							<ul> 
-								<li>Better performance</li>
-								<li>Easier to learn</li>
-							</ul>
-						</li>
+						<li>What is Angular?</li>
+						<li>The nuts and bolts</li>
+						<li>Data binding</li>
 					</ul>
 				</section>
 				<section>
-					<h2>Angular is a complete framework</h2>
-					<ul>
-						<li>Organize code through <a href="#/modules">modules</a></li>
-						<li>UI widgets through <a href="#/components">components</a></li>
-						<li>Manipulate DOM through <a href="#/directives">directives</a></li>
-						<li>Format data with <a href="#/pipes">pipes</a></li>
-						<li>Access to APIs through the HTTP module</li>
-						<li>Enhances HTML <a href="../04/index.html">forms</a></li>
-						<li>Application routing with routing modules</li>
-						<li>Execellent tooling support</li>
-					</ul>
-				</section>
-				<section>
+					<section>
+						<h2>Angular overview</h2>
+					</section>	
+					<section id="what-is-angular">
+						<h2>What is Angular?</h2>
+						<ul>
+							<li>An open source JavaScript client side MVC framework</li>
+							<li>Developed and maintained by <mark>Google</mark></li>
+							<li>Angular is a complete rewrite of it's popular predecessor AngularJS
+								<ul>
+									<li>Initial released in 2016 (Angular) and 2010 (AngularJS)</li>
+									<li>Current versions 14.1.3 (Angular) and 1.8.3 (AngularJS)</li>
+								</ul>
+							</li>
+							<li>Angular applications are implemented with <mark>TypeScript</mark></li>
+						</ul>
+					</section>
+					<section id="why-use-anuglar">
+						<h2>Why use Angular?</h2>
+						<ul>
+							<li>Modern web applications have lots of <mark>client-side</mark> JavaScript
+								<ul>
+									<li>Need a framework to <mark>structure</mark> the code</li>
+								</ul>
+							</li>
+							<li>Why select Angular, there are many client-side frameworks and libraries?
+								<ul>
+									<li>Angular is a <mark>complete</mark> framework</li>
+									<li>Component-based (as React)</li>
+									<li>Complies with upcoming Web Component standards</li>
+								</ul>
+							</li>
+							<li>Why Angular and not AngularJS?
+								<ul> 
+									<li>Better <mark>performace</mark></li>
+									<li>Easier to learn</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Angular is a complete framework</h2>
+						<ul>
+							<li>Organize code through <a href="#/modules">modules</a></li>
+							<li>UI widgets through <a href="#/components">components</a></li>
+							<li>Manipulate DOM through <a href="#/directives">directives</a></li>
+							<li>Format data with <a href="#/pipes">pipes</a></li>
+							<li>Access to APIs through the HTTP module</li>
+							<li>Enhances HTML <a href="../04/index.html">forms</a></li>
+							<li>Application routing with routing modules</li>
+							<li>Execellent tooling support</li>
+						</ul>
+					</section>
 					<section id="angular-philosophy">
 						<h2>Angular philosophy</h2>
 						<ul>
@@ -114,10 +125,9 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Installation</li>
 							<li>Generate workspaces
 								<ul>
-									<li>Create and initialize new Angular workspaces and applications</li>
+									<li>Create and initialize new Angular <mark>workspaces</mark> and <mark>applications</mark></li>
 								</ul>
 							</li>
 							<li>Generate project files
@@ -125,14 +135,14 @@
 									<li>Generate and/or modify files based on scematics</li>
 								</ul>
 							</li>
-							<li>Build code for distribution
+							<li>Build code for <mark>distribution</mark>
 								<ul>
-									<li>Compile an Angular application and build a version optimized for distribution</li>
+									<li>Compiles Angular application and builds an <mark>optimized</mark> version for distribution</li>
 								</ul>
 							</li>
 							<li>Package management
 								<ul>
-									<li>Update applications and keep dependencies up to date</li>
+									<li>Update applications and keep <mark>dependencies</mark> up to date</li>
 								</ul>
 							</li>
 						</ul>
@@ -153,10 +163,14 @@
 					<section>
 						<h2>Workspace</h2>
 						<ul>
-							<li>A collection of Angular projects (this is, applications and libraries</li>
-							<li>Typically co-located in a single source-control repository</li>
-							<li>Commands that generate or operate on applications and libraries must be executed from within a workspace folder</li>
-							<li>Workspace configuration is located in <code>angular.json</code> in the root directory</li>
+							<li>A <mark>collection</mark> of Angular <mark>projects</mark> (this is, applications and libraries</li>
+							<li>Typically co-located in a single source-control <mark>repository</mark></li>
+							<li>Commands that generate or operate on applications and libraries 
+								<ul>
+									<li>Must be executed from within a workspace folder</li>
+								</ul>
+							</li>
+							<li>Workspace <mark>configuration</mark> is located in <code>angular.json</code> in the root directory</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -235,16 +249,20 @@
 					<section>
 						<h2>Strict mode</h2>
 							<ul>	
-								<li>Improves maintainability</li>
+								<li>Improves <mark>maintainability</mark>
+									<ul>
+										<li>Easier to run <code>ng update</code> when updating to future versions of Angular</li>
+									</ul>
+								</li>
 								<li>Helps you catch bugs ahead of time:
 									<ul>
 										<li>Enable <code>strict</code> mode in TypeScript</li>
 										<li>Turns on strict Angular compiler flags</li>
 									</ul>
 								</li>
-								<li>Reduces bundle size budgets by 75%</li>
+								<li>Reduces <mark>bundle</mark> size budgets by 75%</li>
 								<li>Can be applied at workspace and project level</li>
-								<li>Enabled by default for projects/workspaces created with <a href="#/angular-cli">Angular CLI</a></li>
+								<li>Enabled by <mark>default</mark> for projects/workspaces created with <a href="#/angular-cli">Angular CLI</a></li>
 							</ul>
 						<aside class="notes" aria-label="notes">
 							<ul>
@@ -278,13 +296,14 @@
 							<li>The main building block for Angular applications</li>
 							<li>Each component consists of:
 								<ul>
-									<li>HTML template</li>
-									<li>A TypeScript class that defines behavior</li>
-									<li>A CSS selector that defines how the component is used a template
-									<li>CSS styles applied to the template (optional)</li>
+									<li>HTML <mark>template</mark></li>
+									<li>A TypeScript <mark>class</mark> that defines behavior</li>
+									<li>A CSS <mark>selector</mark> that defines how the component is used a template
+									<li>CSS <mark>styles</mark> applied to the template (optional)</li>
 									</ul>
 							</li>
 							<li>Runtime behavior can be controlled by <a href="#/lifecycle-hooks">lifecycle hooks</a></li>
+							<li>A component can either be <mark>standalone</mark> or part of a <mark>module</mark></li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -387,7 +406,6 @@
 						<h2>Lifecycle hooks</h2>
 						<ul>
 							<li>You only need to implement the hooks you need, if any</li>
-							<li>You will most likely never implement all hooks</li>
 							<li>The most commonly used are:
 								<ul>
 									<li><code>ngOnInit()</code>
@@ -405,10 +423,21 @@
 									</li>
 								</ul>
 							</li>
-							<li>Write lean hook methods to avoid performance issues
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>References</h4>
+							<ul>
+								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Lifecycle hooks</h2>
+						<ul>
+							<li>Write <mark>lean</mark> hook methods to avoid performance issues
 								<ul>
-									<li>Be very careful about how much logic or computation you put into lifecycle methods</li>
-									<li>Some are called multiple times in quick succession</li>
+									<li>Be very careful about how much <mark>logic</mark> or <mark>computation</mark> you put into lifecycle methods</li>
+									<li>Some hooks are called <mark>multiple</mark> times in quick succession</li>
 								</ul>
 							</li>
 						</ul>
@@ -418,6 +447,7 @@
 								<li><a href="https://angular.io/guide/lifecycle-hooks">Angular - Lifecycle hooks</a></li>
 							</ul>
 						</aside>
+						</section>
 					</section>
 				</section>
 				<section>
@@ -433,9 +463,9 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Fetching and manipulating data</li>
-							<li>Sharing data between unrelated components</li>
-							<li>A class with a narrow, well-defined purpose</li>
+							<li><mark>Fetching</mark> and <mark>manipulating</mark> data</li>
+							<li><mark>Sharing</mark> data between unrelated components</li>
+							<li>A class with a <mark>narrow</mark>, well-defined purpose</li>
 							<li>Used with dependency injection</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
@@ -481,7 +511,7 @@
 					</section>
 					<section>
 						<h2>Injecting a service into a component</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|2,13,16|"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|2,13|16|"><script type="text/template">
 							import { Component, OnInit } from '@angular/core';
 							import { MyFirstService } from './my-first.service';
 							
@@ -529,8 +559,8 @@
 							<li>Dependency providers make services available to the application</li>
 							<li>A service can be provided in multiple ways
 								<ul>
-									<li>At application-level where the service is available to the whole application</li>
-									<li>At component-level where each component has it's own instance of the service (sandboxing)</li>
+									<li>At <mark>application-level</mark> where the service is available to the whole application</li>
+									<li>At <mark>component-level</mark> where each component has it's own instance of the service (sandboxing)</li>
 								</ul>
 							</li>
 						</ul>
@@ -588,10 +618,14 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>A container for a group of related components, services, directives, and pipes</li>
-							<li>A package that contains certain business domain functionality</li>
-							<li>All apps must have at least one module (root module)</li>
-							<li>Modules can be loaded eagerly when the application starts or lazy loaded asynchrously by the router</li>
+							<li>A <mark>container</mark> for a group of related components, services, directives, and pipes</li>
+							<li>A package that contains certain <mark>business domain</mark> functionality</li>
+							<li><s>All apps must have at least one module (root module)</s>
+								<ul>
+									<li><mark>Standalone</mark> permits applications without modules</li>
+								</ul>
+							</li>
+							<li>Modules can be loaded <mark>eagerly</mark>when the application starts or <mark>lazy</mark> loaded asynchrously by a <code>Router</code></li>
 						</ul>
 					</section>
 					<section>
@@ -619,15 +653,32 @@
 							export class AppModule { }
 							</code></pre>
 							<small>examples/lesson01-introduction/projects/modules/src/app/app.module.ts</small>
-						</section>
+					</section>
+					<section>
+						<h2>Standalone module</h2>
+						<pre><code class="typescript" data-trim data-line-numbers="|4-10|6|7|">
+							import { Component } from '@angular/core';
+							import { UserModule } from '../user/user.module';
+							
+							@Component({
+								selector: 'app-standalone',
+								standalone: true,
+								imports: [UserModule],
+								templateUrl: './standalone.component.html',
+								styleUrls: ['./standalone.component.scss']
+							})
+							export class StandaloneComponent { }
+						</code></pre>
+						<small>examples/lesson01-introduction/projects/standalone-components/src/standalone/standalone.component.ts</small>
+					</section>
 					<section id="angular-modules">
 						<h2>Angular Modules</h2>
 						<ul>
-							<li>Angular itself is split into modules
+							<li>Angular itself is split into <mark>modules</mark>
 								<ul>
 									<li><code>BrowserModule</code> – Exports infrastructure for all Angular apps</li>
-									<li><code>FormsModule</code> and <code>ReactiveFormsModule</code> – Exports the required providers and directives for template-driven and reactive forms</li>
-									<li><code>RouterModule</code> — Adds directives and providers for in-app navigation among views defined in an application</li>
+									<li><code>FormsModule</code> and <code>ReactiveFormsModule</code> – Exports the required providers and directives for <mark>template-driven</mark> and <mark>reactive forms</mark></li>
+									<li><code>RouterModule</code> — Adds directives and providers for in-app <mark>navigation</mark> among views defined in an application</li>
 									<li><code>HttpClientModule</code> –	 Configures the dependency injector for <code>HttpClient</code> service</li>
 								</ul>
 							</li>
@@ -670,19 +721,21 @@
 					<section id="feature-modules">
 						<h2>Feature modules</h2>
 						<ul>
-							<li>Feature modules are <code>NgModule</code> instances for the purpose of organizing code</li>
-							<li>Helps to apply clear boundaries for features
+							<li>Helps to apply clear <mark>boundaries</mark> for features
 								<ul>
-									<li>Keep code related to a specific functionality or feature separate from other code</li>
+									<li>Keep code related to a <mark>specific</mark> functionality or <mark>feature</mark> separate from other code</li>
 								</ul>
 							</li>
-							<li>Helps with collaboration between developers and teams</li>
-							<li>Managing the size of the root module
+							<li>Managing the <mark>size</mark> of the root module
 								<ul>
-									<li>Applications are split up in smaller chunks that gets delivered when needed</li>
+									<li>Applications are split up in smaller <mark>chunks</mark> that gets delivered when needed</li>
 								</ul>
 							</li>
-							<li>Only the root module should import <code>BrowserModule</code>, use <code>CommmonModule</code> instead in feature modules</li>
+							<li>Only the root module should import <code>BrowserModule</code>
+								<ul>
+									<li>Use <code>CommmonModule</code> instead in feature modules</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -695,40 +748,12 @@
 				<section>
 					<section id="directives">
 						<h2>Directives</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
 					</section>
 					<section>
 						<h2>Directives</h2>
 						<ul>
-							<li>Directives are classes that add additional behavior to elements</li>
-							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own attribute directives</li>
-							<li>Three different types of directives
-								<ul>
-									<li>Components
-										<ul>
-											<li>A component is simply a directive with a template</li>
-											<li>Use the <code>Component</code> decoratorwhen declaring components</li>
-										</ul>
-									</li>
-									<li>Attribute directives
-										<ul>
-											<li>Built-in attribute such as <code>NgClass</code> and <code>NgModel</code></li>
-											<li>Custom directives</li>
-										</ul>
-									</li>
-									<li>Structural directives
-										<ul>
-											<li>Change the DOM layout by adding and removing DOM elements</li>
-											<li>Examples are: <code>NgIf</code>, <code>NgForOf</code>, and <code>NgSwitch</code></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
+							<li>Directives are classes that add additional <mark>behavior</mark> to elements</li>
+							<li>Many modules, such as <code>RouterModule</code>, <code>FormsModule</code>, and <code>ReactiveFormsModule</code> define their own <mark>attribute</mark> directives</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -737,14 +762,22 @@
 							</ul>
 						</aside>
 					</section>
+					<section>
+						<h2>Directives</h2>
+							<ul>
+								<li><mark>Components</mark> – A component is simply a directive with a template</li>
+								<li><mark>Attribute</mark> – Built-in attribute such as <code>NgClass</code> and <code>NgModel</code></li>
+								<li><mark>Structural</mark> – Changes the DOM layout by adding and removing DOM elements</li>	
+							</ul>
+						</li>
+					</section>
 					<section id="attribute-directives">
 						<h2>Attribute directives</h2>
 						<ul>
-							<li><code>NgClass</code> – adds and removes a set of CSS classes</li>
-							<li><code>NgStyle</code> – adds and removes a set of HTML styles</li>
-							<li><code>NgModel</code> – adds two-way data binding to an HTML form element</li>
+							<li><code>NgClass</code> – adds and removes a set of <mark>CSS</mark> classes</li>
+							<li><code>NgStyle</code> – adds and removes a set of <mark>HTML</mark> styles</li>
+							<li><code>NgModel</code> – adds two-way <mark>data binding</mark> to an HTML form element</li>
 						</ul>
-						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
@@ -759,9 +792,8 @@
 						<ul>
 							<li><code>NgIf</code> – conditionally includes a template based on a boolean expression</li>
 							<li><code>NgForOf</code> – renders a template for each item in a collection</li>
-							<li><code>NgNgSwitch</code> –  specifies an expression to match against and show views in container</li>
+							<li><code>NgSwitch</code> –  specifies an expression to match against and show views in container</li>
 						</ul>
-						<small>See examples/lesson01-introduction/projects/directives for implementation details</small>
 					</section>
 					<section id="custom-directive">
 						<h2>Custom directives</h2>
@@ -804,6 +836,13 @@
 							}						
 						</script></code></pre>
 						<small>examples/lesson01-introduction/projects/directives/src/app/attribute/hover.directive.ts</small>
+						<aside class="notes" aria-label="notes">
+							<h2>References</h2>
+							<ul>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event">Element: mouseenter event - Web APIs | MDN</a></li>
+								<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event">Element: mouseleave event - Web APIs | MDN</a></li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h2>Custom structural directive</h2>
@@ -922,21 +961,21 @@
 					<section>
 						<h2>Pure vs. impure pipes</h2>
 						<ul>
-							<li>Pipes are <em>pure</em> by default</li>
+							<li>Pipes are <mark>pure</mark> by default</li>
 							<li>A pipe must use a pure function
 								<ul>
-									<li>A function that processes the input and returns an output without side effects</li>
-									<li>Given the same input, the function always returns the same output</li>
+									<li>A function that processes the input and returns an output <mark>without</mark> side effects</li>
+									<li>Given the same input, the function <mark>always</mark> returns the same output</li>
 								</ul>
 							</li>
-							<li>Angular only executes pipes when it detects pure change to the input value
+							<li>Angular only executes pipes when it detects <mark>pure</mark> change to the input value
 								<ul>
 									<li>A change to primitive value, such as <code>String</code>, <code>Number</code>, <code>Boolean</code>, or <code>Symbol</code></li>
 									<li>A changed object reference, such as <code>Date</code>, <code>Array</code>, or <code>Object</code></li>
-									<li>Angular does not execute pipes when <em>mutating</em> data, only when the references <em>change</em></li>
+									<li>Angular does not execute pipes when <mark>mutating</mark> data, only when the references <mark>change</mark></li>
 								</ul>
 							</li>
-							<li>Do not do heavy or long-running computation in impure pipes, it can dramatically slow down application execution</li>
+							<li>Do not do <mark>heavy</mark> or <mark>long-running</mark> computation in impure pipes, it can dramatically slow down application execution</li>
 						</ul>
 					</section>
 					<section>
@@ -961,29 +1000,23 @@
 				<section>
 					<section id="data-binding">
 						<h2>Data binding</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
 					</section>
 					<section >
 						<h2>Overview</h2>
 						<ul>
 							<li><a href="#/property-binding">Property binding</a>
 								<ul>
-									<li>One-way binding from a component's property to a target element</li>
+									<li><mark>One-way</mark> binding from a component's property to a target element</li>
 								</ul>
 							</li>
 							<li><a href="#/event-binding">Event binding</a>
 								<ul>
-									<li>Listen for and respond to user actions</li>
+									<li><mark>Listen</mark> for and respond to user <mark>actions</mark></li>
 								</ul>
 							</li>
 							<li><a href="#/two-way-binding">Two-way binding</a>
 								<ul>
-									<li>Listen for events and update values simultaneously between parent and child components</li>
+									<li>Listen for events and update values simultaneously between <mark>parent</mark> and <mark>child</mark> components</li>
 								</ul>
 							</li>
 						</ul>
@@ -991,13 +1024,12 @@
 					<section id="property-binding">
 						<h2>Property binding</h2>
 						<ul>
-							<li>Property binding set values for properties of HTML elements or directives</li>
-							<li>Property binding moves a value en one direction, from a component's property into a target element property</li>
+							<li>Property binding <mark>set</mark> values for properties of HTML <mark>elements</mark> or <mark>directives</mark></li>
 							<li>Use squared brackets (<code>[]</code>) to declare property as a target property	</li>
 							<li>Property binding best practices
 								<ul>
-									<li>Avoid side effects - Evaluation of a template expression should have no visible effect</li>
-									<li>Return proper type – A template expression should evaluate to the type of value that the target property expects</li>
+									<li>Avoid <mark>side effects</mark> - Evaluation of a template expression should have no visible effect</li>
+									<li>Return <mark>proper types</mark> – A template expression should evaluate to the type of value that the target property expects</li>
 								</ul>
 							</li>
 						</ul>
@@ -1010,7 +1042,7 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Them brackets</h2>
+						<h2>Brackets</h2>
 						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
 							<!-- Evaluate right-hand side of the assignment as a dynamic expression -->
 							<img [src]="itemImageUrl" alt="image">
@@ -1029,7 +1061,14 @@
 					<section id="event-binding">
 						<h2>Event binding</h2>
 						<ul>
-							<li>Listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches</li>
+							<li>Listen for and respond to user <mark>actions</mark> such as keystrokes, mouse movements, clicks, and touches</li>
+							<li>Use parentheses (<code>()</code>) followed by a qouted template statement</li>
+							<li>You can also bind specific <mark>keys/codes</mark> and/or combinations
+								<ul>
+									<li>Example: <code>(keydown.shift.t)="onKeydown($event)"</code></li>
+									<li>Watch out for MacOS! (use <code>code</code>)</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -1042,7 +1081,7 @@
 					<section>
 						<h2>Binding to events</h2>
 						<ul>
-							<li>This syntax consists of a target event name within parentheses to the left of an equal sign, and a quoted template statement to the right</li>
+							<li>This syntax consists of a <mark>target</mark> event name within parentheses to the left of an equal sign, and a quoted template statement to the right</li>
 						</ul>
 						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
 							<!-- Bind to click event -->
@@ -1055,13 +1094,13 @@
 					<section id="two-way-binding">
 						<h2>Two-way binding</h2>
 						<ul>
-							<li>Combines property binding with event binding
+							<li>Combines <mark>property</mark> binding with <mark>event</mark> binding
 								<ul>
 									<li>Property binding sets a specific element property</li>
 									<li>Event binding listens for en element change event</li>
 								</ul>
 							</li>
-							<li>Use a combination of square brackets and parentheses <code>[()]</code> to create a two-way binding in a template</li>
+							<li>Use a <mark>combination</mark> of square brackets and parentheses <code>[()]</code> to create a <mark>two-way</mark> binding in a template</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -1073,7 +1112,7 @@
 					<section>
 						<h2>Create a two-way binding</h2>
 						<ul>
-							<li>A two-way-binding must follow a specific naming convention
+							<li>A two-way binding must follow a specific naming <mark>convention</mark>
 								<ul>									
 									<li>The <code>@Output()</code> must end with <code>Change</code> prefixed with the <code>@Input()</code> property name </li>
 									<li>For example, if <code>@Input() size</code> then <code>@Output() sizeChange</code></li>
@@ -1122,20 +1161,20 @@
 					<ul>
 						<li>What is Angular?
 							<ul>
-								<li>A component-based framework for building scalable web applications</li>
-								<li>A suite of developer tools to help build, test and update code</li>
+								<li>A <mark>component-based</mark> framework for building scalable web applications</li>
+								<li>A suite of developer <mark>tools</mark> to help build, test and update code</li>
 							</ul>
 						</li>
 						<li>Angular CLI
 							<ul>
-								<li>A command-line interface used to build Angular applications</li>
+								<li>A <mark>command-line</mark> interface used to build Angular applications</li>
 							</ul>
 						</li>
 						<li>Angular artifacts
 							<ul>
-								<li>Directives additional behavior to elements</li>
-								<li>Services contains business logic</li>
-								<li>Modules organizes code</li>
+								<li><mark>Directives</mark> additional behavior to elements</li>
+								<li><mark>Services</mark> contains business logic</li>
+								<li><mark>Modules</mark> organizes code, or you can use standalone components</li>
 							</ul>
 						</li>
 					</ul>

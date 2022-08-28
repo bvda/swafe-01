@@ -65,3 +65,18 @@ $selectionColor: #fff;
 .reveal .image-ul {
 	font-size: 0.65em;
 }
+
+code {
+	font-family: monospace;
+	background-color: black;
+	color: lightgray;
+	border-radius: 10px;
+	padding: 5px 10px;
+}
+
+mark {
+	border-radius: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: khaki;
+}

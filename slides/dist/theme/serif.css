@@ -27,6 +27,21 @@
   font-size: 0.65em;
 }
 
+code {
+  font-family: monospace;
+  background-color: black;
+  color: lightgray;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+mark {
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: khaki;
+}
+
 .reveal a {
   line-height: 1.3em;
 }
@@ -96,8 +111,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 /*********************************************
- * HEADERS
- *********************************************/
+* HEADERS
+*********************************************/
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -136,8 +151,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 /*********************************************
- * OTHER
- *********************************************/
+* OTHER
+*********************************************/
 .reveal p {
   margin: var(--r-block-margin) 0;
   line-height: 1.3;
@@ -326,8 +341,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 /*********************************************
- * LINKS
- *********************************************/
+* LINKS
+*********************************************/
 .reveal a {
   color: var(--r-link-color);
   text-decoration: none;
@@ -346,8 +361,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 /*********************************************
- * Frame helper
- *********************************************/
+* Frame helper
+*********************************************/
 .reveal .r-frame {
   border: 4px solid var(--r-main-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -363,23 +378,23 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 /*********************************************
- * NAVIGATION CONTROLS
- *********************************************/
+* NAVIGATION CONTROLS
+*********************************************/
 .reveal .controls {
   color: var(--r-link-color);
 }
 
 /*********************************************
- * PROGRESS BAR
- *********************************************/
+* PROGRESS BAR
+*********************************************/
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
   color: var(--r-link-color);
 }
 
 /*********************************************
- * PRINT BACKGROUND
- *********************************************/
+* PRINT BACKGROUND
+*********************************************/
 @media print {
   .backgrounds {
     background-color: var(--r-background-color);
