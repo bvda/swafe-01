@@ -964,18 +964,18 @@
 							<li>Pipes are <mark>pure</mark> by default</li>
 							<li>A pipe must use a pure function
 								<ul>
-									<li>A function that processes the input and returns an output without side effects</li>
-									<li>Given the same input, the function always returns the same output</li>
+									<li>A function that processes the input and returns an output <mark>without</mark> side effects</li>
+									<li>Given the same input, the function <mark>always</mark> returns the same output</li>
 								</ul>
 							</li>
-							<li>Angular only executes pipes when it detects pure change to the input value
+							<li>Angular only executes pipes when it detects <mark>pure</mark> change to the input value
 								<ul>
 									<li>A change to primitive value, such as <code>String</code>, <code>Number</code>, <code>Boolean</code>, or <code>Symbol</code></li>
 									<li>A changed object reference, such as <code>Date</code>, <code>Array</code>, or <code>Object</code></li>
-									<li>Angular does not execute pipes when <em>mutating</em> data, only when the references <em>change</em></li>
+									<li>Angular does not execute pipes when <mark>mutating</mark> data, only when the references <mark>change</mark></li>
 								</ul>
 							</li>
-							<li>Do not do heavy or long-running computation in impure pipes, it can dramatically slow down application execution</li>
+							<li>Do not do <mark>heavy</mark> or <mark>long-running</mark> computation in impure pipes, it can dramatically slow down application execution</li>
 						</ul>
 					</section>
 					<section>
@@ -1000,29 +1000,23 @@
 				<section>
 					<section id="data-binding">
 						<h2>Data binding</h2>
-						<aside class="notes" aria-label="notes">
-							<h4>References</h4>
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
 					</section>
 					<section >
 						<h2>Overview</h2>
 						<ul>
 							<li><a href="#/property-binding">Property binding</a>
 								<ul>
-									<li>One-way binding from a component's property to a target element</li>
+									<li><mark>One-way</mark> binding from a component's property to a target element</li>
 								</ul>
 							</li>
 							<li><a href="#/event-binding">Event binding</a>
 								<ul>
-									<li>Listen for and respond to user actions</li>
+									<li><mark>Listen</mark> for and respond to user <mark>actions</mark></li>
 								</ul>
 							</li>
 							<li><a href="#/two-way-binding">Two-way binding</a>
 								<ul>
-									<li>Listen for events and update values simultaneously between parent and child components</li>
+									<li>Listen for events and update values simultaneously between <mark>parent</mark> and <mark>child</mark> components</li>
 								</ul>
 							</li>
 						</ul>
@@ -1030,13 +1024,12 @@
 					<section id="property-binding">
 						<h2>Property binding</h2>
 						<ul>
-							<li>Property binding set values for properties of HTML elements or directives</li>
-							<li>Property binding moves a value en one direction, from a component's property into a target element property</li>
+							<li>Property binding <mark>set</mark> values for properties of HTML <mark>elements</mark> or <mark>directives</mark></li>
 							<li>Use squared brackets (<code>[]</code>) to declare property as a target property	</li>
 							<li>Property binding best practices
 								<ul>
-									<li>Avoid side effects - Evaluation of a template expression should have no visible effect</li>
-									<li>Return proper type – A template expression should evaluate to the type of value that the target property expects</li>
+									<li>Avoid <mark>side effects</mark> - Evaluation of a template expression should have no visible effect</li>
+									<li>Return <mark>proper types</mark> – A template expression should evaluate to the type of value that the target property expects</li>
 								</ul>
 							</li>
 						</ul>
@@ -1049,7 +1042,7 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Them brackets</h2>
+						<h2>Brackets</h2>
 						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
 							<!-- Evaluate right-hand side of the assignment as a dynamic expression -->
 							<img [src]="itemImageUrl" alt="image">
@@ -1068,7 +1061,14 @@
 					<section id="event-binding">
 						<h2>Event binding</h2>
 						<ul>
-							<li>Listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches</li>
+							<li>Listen for and respond to user <mark>actions</mark> such as keystrokes, mouse movements, clicks, and touches</li>
+							<li>Use parentheses (<code>()</code>) followed by a qouted template statement</li>
+							<li>You can also bind specific <mark>keys/codes</mark> and/or combinations
+								<ul>
+									<li>Example: <code>(keydown.shift.t)="onKeydown($event)"</code></li>
+									<li>Watch out for MacOS! (use <code>code</code>)</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -1081,7 +1081,7 @@
 					<section>
 						<h2>Binding to events</h2>
 						<ul>
-							<li>This syntax consists of a target event name within parentheses to the left of an equal sign, and a quoted template statement to the right</li>
+							<li>This syntax consists of a <mark>target</mark> event name within parentheses to the left of an equal sign, and a quoted template statement to the right</li>
 						</ul>
 						<pre><code class="html" data-trim data-line-numbers><script type="text/template">
 							<!-- Bind to click event -->
@@ -1094,13 +1094,13 @@
 					<section id="two-way-binding">
 						<h2>Two-way binding</h2>
 						<ul>
-							<li>Combines property binding with event binding
+							<li>Combines <mark>property</mark> binding with <mark>event</mark> binding
 								<ul>
 									<li>Property binding sets a specific element property</li>
 									<li>Event binding listens for en element change event</li>
 								</ul>
 							</li>
-							<li>Use a combination of square brackets and parentheses <code>[()]</code> to create a two-way binding in a template</li>
+							<li>Use a <mark>combination</mark> of square brackets and parentheses <code>[()]</code> to create a <mark>two-way</mark> binding in a template</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -1112,7 +1112,7 @@
 					<section>
 						<h2>Create a two-way binding</h2>
 						<ul>
-							<li>A two-way-binding must follow a specific naming convention
+							<li>A two-way binding must follow a specific naming <mark>convention</mark>
 								<ul>									
 									<li>The <code>@Output()</code> must end with <code>Change</code> prefixed with the <code>@Input()</code> property name </li>
 									<li>For example, if <code>@Input() size</code> then <code>@Output() sizeChange</code></li>
@@ -1161,20 +1161,20 @@
 					<ul>
 						<li>What is Angular?
 							<ul>
-								<li>A component-based framework for building scalable web applications</li>
-								<li>A suite of developer tools to help build, test and update code</li>
+								<li>A <mark>component-based</mark> framework for building scalable web applications</li>
+								<li>A suite of developer <mark>tools</mark> to help build, test and update code</li>
 							</ul>
 						</li>
 						<li>Angular CLI
 							<ul>
-								<li>A command-line interface used to build Angular applications</li>
+								<li>A <mark>command-line</mark> interface used to build Angular applications</li>
 							</ul>
 						</li>
 						<li>Angular artifacts
 							<ul>
-								<li>Directives additional behavior to elements</li>
-								<li>Services contains business logic</li>
-								<li>Modules organizes code</li>
+								<li><mark>Directives</mark> additional behavior to elements</li>
+								<li><mark>Services</mark> contains business logic</li>
+								<li><mark>Modules</mark> organizes code, or you can use standalone components</li>
 							</ul>
 						</li>
 					</ul>
