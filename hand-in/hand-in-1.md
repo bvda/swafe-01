@@ -102,7 +102,7 @@ Our Principal Software Architect has chosen Angular to be used as the Front-end 
 ## Formalia
 
 - Group size: 1-3 people
-- Deadline: 15th October 2021 (2021-10-15)
+- Deadline: 14th October 2022 (2022-10-14)
 
 ## Submission
 Before submitting your solution, do the following:
@@ -114,6 +114,6 @@ Before submitting your solution, do the following:
 
 Example `participants.txt` contents:
 ```
-au01248 Alice
-au84210 Bob
+au01248 Alice Alison
+au84210 Bob Bobson
 ```
