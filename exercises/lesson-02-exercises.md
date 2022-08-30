@@ -35,7 +35,7 @@ Let us create a new module to encapsulate all user functionality, so we can use 
 
 ## Exercise 02-5
 ### Binding everything together
-1. Generate a service named `SharedService` in the root module and add the following content:
+1. Generate a service named `BillionaireService` in the root module and add the following content:
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -44,7 +44,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
+export class BillionaireService {
   
   getBillionaires(): Observable<Billionaire[]> {
     return of(this.billionaires)
