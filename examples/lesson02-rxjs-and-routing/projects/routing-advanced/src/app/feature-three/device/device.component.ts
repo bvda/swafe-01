@@ -11,16 +11,16 @@ import { Device, DEVICES } from '../device.type';
 })
 export class DeviceComponent implements OnInit {
 
-  device: Device
+  device!: Device
   paramMap$: Observable<ParamMap>
 
-  constructor(@Inject(DEVICES) private devices, private activatedRoute: ActivatedRoute) { 
+  constructor(@Inject(DEVICES) private devices: Device[], private activatedRoute: ActivatedRoute) { 
     this.paramMap$ = this.activatedRoute.paramMap.pipe(
       tap(route => console.log(route))
     )
   }
 
   ngOnInit(): void {
-    this.device = this.devices[this.activatedRoute.snapshot.paramMap.get('id')]
+    this.device = this.devices[+this.activatedRoute.snapshot.paramMap.get('id')!]
   }
 }

@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 export class AppComponent implements OnInit {
   title = 'route-guards';
 
-  authed$: Observable<boolean>
+  authed$!: Observable<boolean>
 
   constructor(private auth: AuthService) {
   }
