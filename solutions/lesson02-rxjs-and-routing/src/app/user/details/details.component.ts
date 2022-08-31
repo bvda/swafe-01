@@ -24,5 +24,4 @@ export class DetailsComponent implements OnInit {
       console.log(e)
     }
   }
-
 }
