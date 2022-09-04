@@ -29,9 +29,9 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>All application functionality exists in a single HTML page</li>
-							<li>Browsers only render the parts that matters to the user</li>
-							<li>Significantly improves the user experience</li>
+							<li>All application functionality exists in a <mark>single</mark> HTML page</li>
+							<li>Browsers <mark>only</mark> render the parts that matters to the user</li>
+							<li>Significantly <mark>improves</mark> the user experience</li>
 						</ul>
 					</section>
 					<section>
@@ -54,16 +54,24 @@
 						<small>examples/lesson02-rxjs-and-routing/projects/router-basic/src/index.html</small>	
 					</section>
 					<section>
-						<h2>&lt;BASE HREF&gt;</h2>
+						<h2><code>&lt;base href&gt;</code></h2>
 						<ul>
 							<li>The router uses the browser's <code>history.pushState</code> for navigation</li>
-							<li>The browser uses the <code>&lt;base href&gt;</code> to prefix relative URLs</li>
-							<li>This is needed to be able to locate other resources such as media assets, style, and script files</li>
+							<li>The browser uses the <code>&lt;base href&gt;</code> to <mark>prefix</mark> relative URLs</li>
+							<li>This is needed to be able to <mark>locate</mark> other <mark>resources</mark> 
+								<ul>
+									<li>Media assets, such as images, audio, etc.</li>
+									<li>Stylesheets</li>
+									<li>Scripts, such as third-party libraries, etc.</li>
+								</ul>
+							</li>
+							<li>Will throw a <code>404</code> if misconfigured (look at where it tried to locate the files to fix it)	</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
-								<li><a href="https://angular.io/guide/router#base-href-1">Angular - Common routing tasks</a></li>
+								<li><a href="https://angular.io/guide/router#base-href">Angular - Common routing tasks</a></li>
+								<li><a href="https://angular.io/guide/deployment#the-deploy-url">Angular - Deployment</a></li>
 							</ul>
 						</aside>
 					</section>
