@@ -153,16 +153,11 @@
 					<section>
 						<h2>Router outlets</h2>
 						<ul>
-							<li>Acts as a placeholder that Angular dynamically fills based on current router state</li>
-							<li>Each outlet can have a unique name
-								<ul>
-									<li>Determined by the optional<code>name</code> attribute</li>
-									<li>If not set, default value is "primary"</li>
-								</ul>
-							</li>
-							<li>Named outlets can be targets of secondary routes</li>
-							<li>Using named outlets and secondary routes, you can target multiple outlets in the same <code>RouterLink</code> directive</li>
-							<li>The router keeps track of separate branches in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
+							<li>Acts as a <mark>placeholder</mark> that Angular dynamically fills based on current router state</li>
+							<li>Each outlet can have a unique name</li>
+							<li><mark>Named</mark> outlets can be targets of secondary routes</li>
+							<li>Using named outlets and secondary routes, you can target <mark>multiple</mark> outlets in the same <code>RouterLink</code> directive</li>
+							<li>The router keeps track of separate <mark>branches</mark> in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -215,8 +210,8 @@
 					<section id="wildcard-routes">
 						<h2>Wildcard routes</h2>
 						<ul>
-							<li>A well-functiong application should gracefully handle when users attempt to navigate to a part of your application that does not exist</li>
-							<li>A wildcard route should be placed last because it matches any URL</li>
+							<li>A well-functiong application should <mark>gracefully</mark> handle when users attempt to navigate to a part of your application that does not exist</li>
+							<li>A wildcard route should be <mark>placed last</mark> because it matches any URL</li>
 						</ul>
 						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|3,7-9|"><script type="text/template">
 							import { NgModule } from '@angular/core';
@@ -251,14 +246,14 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Modules are eagerly loaded by default</li>
-							<li>Configure routes to only load when needed
+							<li>Modules are <mark>eagerly</mark> loaded by default</li>
+							<li>Configure routes to only load when <mark>needed</mark>
 								<ul>
 									<li>Rather than loading all modules when the application launches</li>
 								</ul>
 							</li>
-							<li>It is also possible to pre-load parts of the application in the background to improve user experience</li>
-							<li>Lazy-loading keeps the initial bundle sizes smaller
+							<li>It is also possible to <mark>pre-load</mark> parts of the application in the background to improve user experience</li>
+							<li>Lazy-loading keeps the initial bundle sizes <mark>smaller</mark>
 								<ul>
 									<li>Which helps to reduce load times (and thereby improve user experience)</li>
 								</ul>
@@ -312,8 +307,8 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Prevents clients from navigating to parts of an application without authorization</li>
-							<li>The router supports the following guard interfaces are available in Angular
+							<li><mark>Prevents</mark> clients from <mark>navigating</mark> to parts of an application without <mark>authorization</mark></li>
+							<li>The router supports the following <mark>guard</mark> interfaces are available in Angular
 								<ul>
 									<li><code>CanActivate</code> decide if route can be activated</li>
 									<li><code>CanActivateChild</code> decide if a child route can be activated</li>
@@ -321,7 +316,7 @@
 									<li><code>CanLoad</code> decide if children can be loaded</li>
 								</ul>
 							</li>
-							<li>A guard can return a synchronously (<code>boolean</code>) or asynchronously (<code>Observable</code>/<code>Promise</code>)</li>
+							<li>A guard can return <mark>synchronously</mark> (<code>boolean</code>) or <mark>asynchronously</mark> (<code>Observable</code>/<code>Promise</code>)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
@@ -415,10 +410,10 @@
 					<section>
 						<h2>Route guard usage</h2>
 						<ul>
-							<li>Route guards (or services) should not be used for verification
-								<ul>Check your tokens in a trusted environment (backend)</ul>
+							<li>Route guards (or services) <mark>should not</mark> be used for <mark>verification</mark>
+								<ul>Check your tokens in a <mark>trusted</mark> environment (backend)</ul>
 							</li>
-							<li>You can apply any number of guards to a path
+							<li>You can apply <mark>any number</mark> of guards to a path
 								<ul>
 									<li>When one returns <code>false</code>, the entire navigation will cancel</li>
 									<li>Pending guards that have not completed will be cancelled</li>
@@ -440,10 +435,10 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>A declarative programming paradigm concerned with data streams and the propagation of change</li>
+							<li>A declarative programming paradigm concerned with <mark>data streams</mark> and the <mark>propagation of change</mark></li>
 							<li>Data stream
 								<ul>
-									<li>Sequence of elements made available over time</li>
+									<li><mark>Sequence</mark> of elements made available over time</li>
 								</ul>
 							</li>
 							<li>Asynchronous and event-based</li>
@@ -453,9 +448,9 @@
 						<h2>ReactiveX</h2>
 						<ul>
 							<li>An API for asynchronous programming with observable streams</li>
-							<li>A combination of the best ideas from the <mark>Observer</mark> pattern, the <mark>Iterator</mark> pattern, and functional programming</li>
+							<li>A <mark>combination</mark> of the best ideas from the <mark>Observer</mark> pattern, the <mark>Iterator</mark> pattern, and functional programming</li>
 							<li>Created by Dutch computer scientist Erik Meijer in 2009</li>
-							<li>Initially designed to be used with .NET technology (Rx.NET), but have since been ported to multiple languages
+							<li>Initially designed to be used with .NET technology (Rx.NET), but have since been ported to <mark>multiple languages</mark>
 								<ul>
 									<li>Java (RxJava), JavaScript (RxJS), Swift (RxSwift), Kotlin (RxKotlin), Python (RxPY)</li>
 								</ul>
@@ -494,8 +489,8 @@
 							<li><mark>Consumer</mark> The code that is subscribing to an Observable</li>
 							<li><mark>Observer</mark> The manifestation of a Consumer, that may have some (or all) handlers</li>
 							<li><mark>Producer</mark> Any entity that is the source of values</li>
-							<li><mark>Observable</mark> A template for connecting an Observer, as a Consumer, to a Producer, via a subscribe action, resulting in a Subscription</li>
 							<li><mark>Subscription</mark> A contract where a consumer is observing values pushed by a producer</li>
+							<li><mark>Observable</mark> A template for connecting an Observer, as a Consumer, to a Producer, via a subscribe action, resulting in a Subscription</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -507,14 +502,14 @@
 					<section>
 						<h2>Hot vs. cold observables</h2>
 						<ul>
-							<li>Cold observables can only have one subscription
+							<li>Cold observables can only have <mark>one</mark> subscription
 								<ul>
 									<li>Do not create the value before it is subscribed to</li>
 									<li>Creates a new producer for each subscription</li>
 									<li>Always unicast: One producer observed by one consumer</li>
 								</ul>
 							</li>
-							<li>Hot observables can have multiple subscription
+							<li>Hot observables can have <mark>multiple</mark> subscription
 								<ul>
 									<li>The producer is created outside of the context of a subscription</li>
 									<li>Most likely multicast: One producer is observed by multiple observers</li>
@@ -571,15 +566,15 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>RxJS operators allow complex asynchronous code to be composed in a declarative manner</li>
-							<li>Operators are, simply speaking, just functions</li> 
+							<li>RxJS operators allow <mark>complex</mark> asynchronous code to be composed in a declarative manner</li>
+							<li>Operators are, simply speaking, just <mark>functions</mark></li> 
 							<li>There are two kinds of operators:
 								<ul>
 									<li><mark>Pipeable operators</mark> takes an <code>Observable</code> as input and generates a new <code>Observable</code> as output</li></li>
 									<li><mark>Creation operators</mark> are standalone functions that creates new <code>Observable</code> objects</li>
 								</ul>
 							</li>
-							<li>Marble diagrams are used to explain how operators work
+							<li><mark>Marble diagrams</mark> are used to explain how operators work
 								<ul>
 									<li>Many operators are related to time</li>
 									<li>Include the input <code>Observable</code> object(s), the operator and the output <code>Observable</code></li>
@@ -1004,10 +999,18 @@
 										tap(route => console.log(route))
 									)
 								}
-							}							
+							}
 						</script></code></pre>	
 						<small>examples/lesson02-rxjs-and-routing/projects/routing-advanced/src/app/feature-three/device/device.component.ts</small>				
 					</section>
+				</section>
+				<section>
+					<h2>Wrap-up</h2>
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
 				</section>
 			</div>
 		</div>

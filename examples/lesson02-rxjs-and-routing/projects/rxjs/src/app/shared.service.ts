@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, ReplaySubject } from 'rxjs';
 import { Billionaire } from './billionarie.type';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Billionaire } from './billionarie.type';
 })
 export class SharedService {
 
-  data$: BehaviorSubject<Billionaire | null> = new BehaviorSubject(null)
+  data$: ReplaySubject<Billionaire> = new ReplaySubject()
   
   getBillionaire(): Observable<Billionaire> {
     return this.data$
