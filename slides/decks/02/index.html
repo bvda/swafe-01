@@ -83,12 +83,11 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>A routing module exports a <code>RouterModule</code></li>
-							<li>A <code>Routes</code> is equivalent to <code>Route[]</code></li>
+							<li>A routing module <mark>exports</mark> a <code>RouterModule</code></li>
 							<li>The <code>Route</code> is a configuration <a href="#/route-interface">interface</a> that defines a single route</li>
-							<li>The order of routes is important
+							<li>The <mark>order</mark> of routes is important
 								<ul>
-									<li>The <code>Router</code> uses a first-match wins strategy</li>
+									<li>The <code>Router</code> uses a <mark>first-match</mark> wins strategy</li>
 									<li>More specific routes should be placed above less specific</li>
 								</ul>
 							</li>
@@ -131,22 +130,18 @@
 					<section id="route-interface">
 						<h2>Route interface</h2>
 						<ul>
-							<li>A subset of available properties
-								<ul>
-									<li><code>path</code> The path to match against</li>
-									<li><code>component</code> The component to instantiate  when the path matches</li>
-									<li><code>outlet</code> A name of a <code>RouterOutlet</code> object where the component can be placed when the path matches</li>
-									<li><code>redirectTo</code> A URL to redirect to when the path matches</li>
-									<li><code>canActivate</code> An array of DI tokens used to look up handlers to determine if the current user is allowed to activate the path</li>
-									<li><code>children</code> An array of child <code>Route</code> objects that specifies a nested route configuration</li>
-									<li><code>loadChildren</code> An object specifying <a href="#/lazy-loading-modules">lazy-loading</a> child routes</li>
-								</ul>
-							</li>
+							<li><code>path</code> The path to match against</li>
+							<li><code>component</code> The component to <mark>instantiate</mark>  when the path matches</li>
+							<li><code>outlet</code> A name of a <code>RouterOutlet</code> object where the component can be placed when the path matches</li>
+							<li><code>redirectTo</code> A URL to <mark>redirect</mark> to when the path matches</li>
+							<li><code>loadChildren</code> An object specifying <a href="#/lazy-loading-modules">lazy-loading</a> child routes</li>
+							<li><code>loadComponent</code> An object specifying <mark>standalone</mark> component route</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/api/router/Route">Angular - Route</a></li>
+								<li><a href="https://angular.io/guide/standalone-components#routing-and-lazy-loading">Angular - Getting started with standalone components</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -157,7 +152,6 @@
 							<li>Each outlet can have a unique name</li>
 							<li><mark>Named</mark> outlets can be targets of secondary routes</li>
 							<li>Using named outlets and secondary routes, you can target <mark>multiple</mark> outlets in the same <code>RouterLink</code> directive</li>
-							<li>The router keeps track of separate <mark>branches</mark> in a navigation tree for each named outlet and generates a representation of that tree in the URL</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
