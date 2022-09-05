@@ -10,8 +10,8 @@ import { SharedService } from '../shared.service';
 })
 export class OneComponent implements OnInit {
 
-  billionaire$: Observable<Billionaire>
-  billionaires$: Observable<Billionaire[]>
+  billionaire$!: Observable<Billionaire>
+  billionaires$!: Observable<Billionaire[]>
 
   constructor(private shared: SharedService) { }
 

@@ -1,0 +1,4 @@
+<p>list works!</p>
+<ul>
+  <li *ngFor="let billionaire of billionaires$ | async, index as index"><a routerLink="{{index}}">{{billionaire.name}}</a></li>
+</ul>

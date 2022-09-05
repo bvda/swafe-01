@@ -10,7 +10,7 @@ export class OverviewComponent implements OnInit {
 
   deviceList: Device[] = this.devices;
 
-  constructor(@Inject(DEVICES) private devices) { }
+  constructor(@Inject(DEVICES) private devices: Device[]) { }
 
   ngOnInit(): void { }
 }

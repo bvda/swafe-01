@@ -12,4 +12,7 @@ export const USERS: User[] = [{
 }, {
   name: 'Jeff Bezos',
   company: 'Amazon'
+}, {
+  name: 'Jack Ma',
+  company: 'Alibaba'
 }]

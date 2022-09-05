@@ -6,6 +6,7 @@ The first thing we need is a workspace with an application with a routing module
 
 1. Generate a new workspace with routing using the CLI `ng new <WORKSPACE_NAME> --routing`<sup>(<a href="https://angular.io/cli/new">docs</a>)</sup>
 2. We will need a component to display, when users tries to navigate to an unknown route. Use the CLI to generate it with `ng g c pageNotFound`<sup>(<a href="https://angular.io/cli/generate#component-command">docs</a>)</sup>
+3. We'll add another component to use as the initial component to load with `ng g c home`.
 
 ## Exercise 02-2
 ### Add root module routes
@@ -15,7 +16,7 @@ The first thing we need is a workspace with an application with a routing module
 2. Go to `./src/app/app.component.html` and remove the auto-generated code, and add an outlet<sup>(<a href="https://angular.io/api/router/RouterOutlet">docs</a>)</sup> with `<router-outlet>`
 3. Add a link<sup>(<a href="https://angular.io/api/router/RouterLink">docs</a>)</sup> to `''` above the outlet
 
-_Hint: Remeber that the order of the routes is significant_
+_Hint: Remember that the order of the routes is significant_
 
 ## Exercise 02-3
 ### Create a new module
@@ -27,14 +28,14 @@ Let us create a new module to encapsulate all user functionality, so we can use 
     - `''` which loads `ListComponent`
     - `:id` which loads `DetailsComponent`
 
-## Exercise 02-
+## Exercise 02-4
 ### Setup lazy-loading for User module
 1. Go to `./src/app/app-routing.module.ts` and add lazy-loading<sup>(<a href="https://angular.io/guide/lazy-loading-ngmodules">docs</a>)</sup> for path `'users'`
 2. Add a link<sup>(<a href="https://angular.io/api/router/RouterLink">docs</a>)</sup> to `'users'` in `./src/app/app.component.html`
 
 ## Exercise 02-5
 ### Binding everything together
-1. Generate a service named `SharedService` in the root module and add the following content:
+1. Generate a service named `BillionaireService` in the root module and add the following content:
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -43,7 +44,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
+export class BillionaireService {
   
   getBillionaires(): Observable<Billionaire[]> {
     return of(this.billionaires)
@@ -55,20 +56,26 @@ export class SharedService {
   
   billionaires: Billionaire[] = [{ 
     name: 'Bill Gates',
-    net_worth: 133200000000,
+    net_worth: 111000000000,
     nationality: 'US',
   }, {
     name: 'Jeff Bezos',
-    net_worth: 200100000000,
+    net_worth: 155300000000,
     nationality: 'US',
   }, {
     name: 'Elon Musk',
-    net_worth: 190700000000,
+    net_worth: 257300000000,
     nationality: 'US',
   }, {
     name: 'Mark Zuckerberg',
-    net_worth: 135200000000,
+    net_worth: 58200000000,
     nationality: 'US',
+  }, {
+    name: 'Russ Hanneman',
+    net_worth: 986000000
+  }, {
+    name: 'Jack Ma',
+    net_worth: 24000000000
   }]
 }
 
