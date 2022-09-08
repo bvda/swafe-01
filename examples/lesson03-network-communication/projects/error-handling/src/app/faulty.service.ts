@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FaultyService {
 
-  host = 'http://localhost:3000/faulty/astronauts'
+  host = 'http://localhost:3000/example/faulty/astronauts'
 
   constructor(private http: HttpClient) { }
 
