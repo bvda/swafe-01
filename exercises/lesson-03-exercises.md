@@ -31,12 +31,12 @@
 ### Set up routes
 
 1. Setup routes for `AppModule` in `src/app/app-routing.module.ts`
-2. Setup routes for `ClientModule` in `src/app/app.module.ts`
+2. Setup routes for `ClientModule` in `src/app/client/client-routing.module.ts`
 3. Add a `RouterOutlet` to `src/app/app.component.html`
 
 ## Exercise 03-4
 ### Setup a simple service
-1. Clone from GitHub `git clone https://github.com/bvda/lesson03-network-commication-service`
+1. Clone from GitHub `git clone https://github.com/bvda/swafe-01-backend`
 2. Run `npm i` to install all dependencies
 3. Run `npm start` to compile and run the service on port `3000`
 
@@ -46,12 +46,12 @@
 1. Go to `/src/app/client/client-overview/client-overview.component.ts` and inject `ClientService`
 2. Print out the result in `/src/app/client/client-overview/client-overview.component.html`
 
-Extra: Make a `CourseListItemComponent` in `ClientModule` and pimp it out with your I4GUI skills
+Extra: Make a `CourseListItemComponent` in `ClientModule` and pimp it out with your SW4FED-01 skills
 
 ## Exercise 03-5
 ### Setup error handling
-1. Add a `catchError` operator<sup>(<a href="https://rxjs.dev/api/operators/catchError">docs</a>)</sup> to the call to `GET /clients` call in `src/app/client.service.ts`
-2. Update the url to `/clients/faulty` to test it out. _Hint: It will fail ~50% of the time_
+1. Add a `catchError` operator<sup>(<a href="https://rxjs.dev/api/operators/catchError">docs</a>)</sup> to the call to `GET exercise/client` call in `src/app/client.service.ts`
+2. Update the url to `exercise/client/faulty` to test it out. _Hint: It will fail ~50% of the time_
 
 ## Exercise 03-6
 ### Add logging with `HttpInterceptor`
