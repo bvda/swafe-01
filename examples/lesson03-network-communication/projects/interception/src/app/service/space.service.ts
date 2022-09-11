@@ -9,7 +9,7 @@ import { auth } from '../http-interceptors/auth-token.interceptor';
 })
 export class SpaceService {
 
-  rootUrl = `http://localhost:3000/auth`  
+  rootUrl = `http://localhost:3000/example/auth`  
  
   constructor(private http: HttpClient) { }
 

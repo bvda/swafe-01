@@ -28,8 +28,8 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Most dynamic web applications gets data from other sources</li>
-							<li>Hypertext Transfer Protocol (HTTP) and WebSocket Protocol is commonly used to serve data</li>
+							<li>Most <mark>dynamic</mark> web applications gets data from other <mark>sources</mark></li>
+							<li>Hypertext Transfer Protocol (HTTP) and WebSocket Protocol is commonly used to serve data to web applications</li>
 						</ul>
 					</section>
 					<section>
@@ -55,9 +55,9 @@
 							</li>
 							<li>IETF is the Internet standards body
 								<ul>
-									<li>Developing open standards through open processes</li>
-									<li>An international community of network designers, operators, vendors, and researchers</li>
-									<li>Concerned with the evolution of the Internet architecture and the smooth operation of the Internet</li>
+									<li>Developing <mark>open</mark> standards through open processes</li>
+									<li>An international <mark>community</mark> of network designers, operators, vendors, and researchers</li>
+									<li>Concerned with the <mark>evolution</mark> of the Internet <mark>architecture</mark> and the smooth operation of the Internet</li>
 								</ul>
 							</li>
 							<li>An RFC is a publication format used by IETF
@@ -83,10 +83,10 @@
 						<ul>
 							<li><code>POST</code>—send data to the server</li>
 							<li><code>GET</code>—retrieve a resource from the server</li>
-							<li><code>HEAD</code>–retrieve resource metadata from the server</li>
+							<li><code>HEAD</code>—retrieve resource metadata from the server</li>
 							<li><code>PUT</code>—send data to the server and update an existing entity</li>
-							<li><code>DELETE</code>—Remove a resource on the server</li>
-							<li><code>OPTIONS</code>–Get information about the communication options available</li>
+							<li><code>DELETE</code>—remove a resource on the server</li>
+							<li><code>OPTIONS</code>—get information about the communication options available</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -164,10 +164,10 @@
 					<section id="http-communication-in-angular">
 						<h2>Overview</h2>
 						<ul>
-							<li>The ability to request typed response objects</li>
-							<li>Streamlined error handling</li>
-							<li>Request and response interception</li>
-							<li>Testability features</li>
+							<li>The ability to request <mark>typed</mark> response objects</li>
+							<li><mark>Streamlined</mark> error handling</li>
+							<li>Request and response <mark>interception</mark></li>
+							<li><mark>Testability</mark> features</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -205,7 +205,7 @@
 					<section>
 						<h2><code>HttpClient</code></h2>
 						<ul>
-							<li>Wraps HTTP requests in <code>Observable</code> objects</li>
+							<li><mark>Wraps</mark> HTTP requests in <code>Observable</code> objects</li>
 							<li>Contains methods for some of the most used HTTP requests
 								<ul>
 									<li><code>get()</code> returns a configured <code>GET</code> HTTP request</li>
@@ -214,7 +214,7 @@
 									<li><code>request()</code> returns a generic HTTP request</li>
 								</ul>
 							</li>
-							<li>Used in combination with RxJS operators to filter values and format to desired output</li>
+							<li>Used in combination with <mark>RxJS</mark> operators to filter values and format to desired output</li>
 							<li>Can be initiated with <code>subscribe()</code> or <code>async</code> pipe</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
@@ -260,17 +260,17 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Consume output more easily and obvious</li>
-							<li>Response types can act at type assertion at compile time
+							<li><mark>Consume</mark> output more easily and obvious</li>
+							<li>Response types can act at type <mark>assertion</mark> at compile time
 								<ul>
-									<li>But is not guranteed that the server will respond with the expected type</li>
-									<li>Be sure to have proper <a href="#/error-handling">error handling</a></li>
+									<li>It is <mark>NOT</mark> guaranteed that servers respond with the expected type</li>
+									<li>So be sure to have <mark>proper</mark> <a href="#/error-handling">error handling</a></li>
 								</ul>
 							</li>
-							<li>RxJS transformation
+							<li>RxJS operators
 								<ul>
-									<li>Use the <code>map</code> operator to transform response data as needed by the UI</li>
-									<li>Read the transformed data with the <code>async</code> pipe in the template</li>
+									<li>Use <mark>operators</mark> to transform/filter response data</li>
+									<li>Use the responses with <code>async</code> pipe in templates</li>
 								</ul>
 							</li>
 						</ul>
@@ -289,24 +289,6 @@
 							}
 						</script></code></pre>
 						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/astronaut.type.ts</small>
-					</section>
-					<section>
-						<h2>Response type for <code>LaunchVehicle</code></h2>
-						<pre><code class='typescript' data-trim data-line-numbers><script type="text/template">
-							export interface LaunchVehicles {
-								name: string;
-								country: string;
-								height: number;
-								status: string;
-								mass: number;
-								launch_history: {
-									first: number;
-									last?: number;
-									total: number;
-								} 
-							}
-						</script></code></pre>
-						<small>examples/lesson03-network-communication/projects/lib-space/src/lib/launch-vehicle.type.ts</small>
 					</section>
 					<section>
 						<h2>Requesting data from a server</h2>
@@ -374,8 +356,16 @@
 					<section>
 					<h2>Overview</h2>
 						<ul> 
-							<li>The Cross-Origin Resource Sharing (CORS) standard adds new HTTP headers, that let servers describe which origins are premitted to access data from a web browser</li>
-							<li>CORS failures results in errors, but for security reasons, specifics about the error are not available to JavaScript</li>
+							<li>The Cross-Origin Resource Sharing (CORS) standard let servers describe which origins are <mark>permitted</mark> from the browser
+								<ul>
+									<li>Resources are only available at the same origin per default</li>
+								</ul>
+							</li>
+							<li>CORS failures results in errors, but for security reasons, <mark>specifics</mark> about the error are not available to JavaScript
+								<ul>
+									<li>Detailed insights can compromise our application</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -387,14 +377,14 @@
 					<section>
 						<h2>Same-origin policy</h2>
 						<ul>
-							<li>The same-origin policy is a critical security mechanism that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
+							<li>The same-origin policy is a critical <mark>security mechanism</mark> that restricts how documents and scripts loaded by one origin can interact with a resource from another origin</li>
 							<li>Definition of an origin</li>
 							<ul>
 								<li>A origin is a tuple comprised of <code>[protocol, host, port]</code>
 									<ul>
 										<li><code>protocol</code>—The protocol used: <code>http://</code>, <code>https://</code>, etc.</li>
 										<li><code>host</code>—The resource location: swafe-01.dk, ece.au.dk, etc.</li>
-										<li><code>port</code>—The port number, if specified</li>
+										<li><code>port</code>—The port number, if specified (<code>80</code>, <code>443</code>, etc.)</li>
 									</ul>
 								</li>
 							</ul>
@@ -411,15 +401,15 @@
 					<section>
 						<h2>Cross-Origin Resource Sharing (CORS)</h2>
 						<ul>
-							<li>The need to relax the same origin policy</li>
+							<li>The need to <mark>relax</mark> the same-origin policy</li>
 							<li>CORS is a protocol</li>
-							<li>Simple and preflighted requests
+							<li><mark>Simple</mark> and <mark>preflighted</mark> requests
 								<ul>
 									<li>Simple requests (<code>GET</code>, <code>POST</code>, and <code>HEAD</code>) does not trigger a CORS preflight</li>
 									<li>Methods like <code>PUT</code>, <code>DELETE</code>, and <code>PATCH</code> trigger a CORS preflight</li>
 								</ul>
 							</li>
-							<li>Preflight requests happens when requests that causes side-effects on server data</li>
+							<li>Preflight requests happens when requests that causes <mark>side-effects</mark> on server data</li>
 							<li>Set in the header of HTTP requests and responses</li>
 						</ul>
 					</section>
@@ -451,18 +441,21 @@
 					<section>
 						<h2>Preflight requests</h2>
 						<ul>
-							<li>A CORS preflight request checks to see if the host supports CORS protocol</li>
-							<li>It is sent as an <code>OPTIONS</code> using three three HTTP request headers:
+							<li>Preflight request check if the host <mark>supports</mark> CORS
 								<ul>
-									<li><code>Access-Control-Request-Method</code>—defines what HTTP method(s) will be used for the actual request</li>
-									<li><code>Access-Control-Request-Headers</code>—defines what HTTP headers the client might send with the request</li>
-									<li><code>Origin</code>—indicates where the request originates from</li>	
+									<li>Sent as an <code>OPTIONS</code> using three HTTP request headers:
+										<ul>
+											<li><code>Access-Control-Request-Method</code>—defines what HTTP method(s) will be used for the actual request</li>
+											<li><code>Access-Control-Request-Headers</code>—defines what HTTP headers the client might send with the request</li>
+											<li><code>Origin</code>—indicates where the request originates from</li>	
+										</ul>
+									</li>
 								</ul>
 							</li>
-						<li>A preflight response will contain </li>
-						<li>Preflight request are automatically issued by the browser
+						<li>A preflight response will contain a list of <mark>allowed</mark> methods and origin</li>
+						<li>Preflight request are <mark>automatically</mark> issued by the browser
 							<ul>
-								<li>In normal cases, this means that front-ends developers do not need to craft such requests themselves</li>
+								<li>In normal cases, this means that frontends developers do not need to craft such requests themselves 🥳</li>
 							</ul>
 						</li>
 						</ul>
@@ -504,7 +497,7 @@
 									<li>Check service URLs in the code</li>
 								</ul>
 							</li>
-							<li>Remember to relaunch the application when changing proxy configuration (rerun <code>ng serve</code>)</li>
+							<li><mark>Remember</mark> to relaunch the application when changing proxy configuration (rerun <code>ng serve</code>)</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -550,10 +543,10 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>If the request fails, HttpClient returns an <code>HttpErrorResponse</code> error object instead of a successfully response</li>
+							<li>If the request fails, HttpClient returns an <code>HttpErrorResponse</code> error object instead of a successful response</li>
 							<li>Two types of errors can occur:
 								<ul>
-									<li><mark>Error responses</mark> The backend might reject a request and return a response with status code <code>4xx</code> or <code>5xx</code></li>
+									<li><mark>Error responses</mark> The backend might reject a request and return a response with status code (<code>4xx</code> or <code>5xx</code>)</li>
 									<li><mark>Client-side errors</mark> Network errors or unhandled exceptions thrown in RxJS operators</li>
 								</ul>
 							</li>
@@ -570,9 +563,9 @@
 					<section>
 						<h2>RxJS operators</h2>
 						<ul>
-							<li><code>catchError</code> catches errors on the <code>Observable</code> to be handled by returning a new observable or throwing an error</li>
-							<li><code>retry</code> retries the <code>Observable</code> a predefined number of times. Defaults to <code>Infinity</code></li>
-							<li><code>retryWhen</code> retries the <code>Observable</code> based on custom criteria</li>
+							<li><code>catchError</code> catches errors on the <code>Observable</code> to be <mark>handled</mark> by returning a <mark>new</mark> observable or <mark>throwing</mark> an error</li>
+							<li><code>retry</code> retries the <code>Observable</code> a <mark>predefined</mark> number of times. Defaults to <code>Infinity</code></li>
+							<li><code>retryWhen</code> retries the <code>Observable</code> based on <mark>custom</mark> criteria</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
@@ -730,7 +723,7 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>JSON Web Token (JWT) is a compact claims representation format</li>
+							<li>JSON Web Token (JWT) is a compact <mark>claims representation</mark> format</li>
 							<li>A JWT consists of three partitions
 								<ul>
 									<li><code>Header</code> contains type and signing information</li>
@@ -738,7 +731,7 @@
 									<li><code>Signature</code> contains a hash of <code>header</code> and <code>payload</code></li>
 								</ul>
 							</li>
-							<li>Some relevant IETF standards
+							<li>Relevant IETF standards
 								<ul>
 									<li>RFC7519 JSON Web Token </li>
 									<li>RFC8725 JSON Web Token Best Current Practices</li>
@@ -759,27 +752,9 @@
 							<li><code>aud</code> Audience—what resource is this token intended for?</li>
 							<li><code>iss</code> Issuer—who issued the token?</li>
 							<li><code>iat</code> Issued At—identifies the time the claim was issued</li>
-							<li><code>nbf</code> Not Before–identifies the time before which the JWT must not be accepted</li>
+							<li><code>nbf</code> Not Before—identifies the time before which the JWT must not be accepted</li>
 							<li><code>exp</code> Expires—identifies the time on or after which the JWT must not be accepted</li>
 						</ul>
-					</section>
-					<section>
-						<h2>Best practices</h2>
-						<ul>
-							<li>Validate JWTs on the client before using them
-								<ul>
-									<li>Use JSON Set URL (<code>jku</code>) or JSON Web Key (<code>jwk</code>) in the <code>header</code> for verification</li>
-								</ul>
-							</li>
-							<li>Always verify the issuer (<code>iss</code>) and audience (<code>sud</code>)</li>
-							<li>Always add an expiration time (<code>exp</code>)</li>
-						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>Reference</h4>
-							<ul>
-								<li><a href="https://datatracker.ietf.org/doc/html/rfc7515">rfc7515</a></li>
-							</ul>
-						</aside>
 					</section>
 				</section>
 				<section>
@@ -789,13 +764,13 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Request and response transformation
+							<li>Request and response <mark>transformation</mark>
 								<ul>
 									<li>Before sending a request to the server</li>
 									<li>Before receiving a response in the application</li>
 								</ul>
 							</li>
-							<li>Perform implicit tasks
+							<li>Perform <mark>implicit</mark> tasks
 								<ul>
 									<li>Such as setting an authentication token for all requests sent to the server</li>
 									<li>Alternatively implemented explicitly for every method call</li>
@@ -813,10 +788,10 @@
 					<section>
 						<h2><code>HttpInterceptor</code></h2>
 						<ul>
-							<li>All interceptors is managed by Angular's DI system (just like services)</li>
+							<li>All interceptors is <mark>managed</mark> by Angular's DI system (just like services)</li>
 							<li>Interceptors are dependencies of <code>HttpClient</code>
 								<ul>
-									<li>Therefore, they must be provided in the same injector (or a parent of the injector) that provides <code>HttpClient</code></li>
+									<li>Therefore, they must be provided in the <mark>same</mark> injector (or a parent of the injector) that provides <code>HttpClient</code></li>
 									<li>If added after <code>HttpClient</code> is created, they are ignored</li>
 								</ul>
 							</li>
@@ -828,7 +803,7 @@
 							</li>
 							<li><code>HttpRequest</code> and <code>HttpResponse</code> are immutable
 								<ul>
-									<li>Cannot be modified after it is created</li>
+									<li>Cannot be modified after creation</li>
 									<li>Use the <code>clone</code> method</li>
 								</ul>
 							</li>

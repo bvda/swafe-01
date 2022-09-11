@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  rootUrl = `http://localhost:3000/auth`  
+  rootUrl = `http://localhost:3000/example/auth`  
 
   constructor(private http: HttpClient) { }
 
