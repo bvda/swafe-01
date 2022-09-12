@@ -23,7 +23,7 @@
 				</section>
 				<section>
 					<section id="network-communication">
-						<h2>Network application</h2>
+						<h2>Client-side applications</h2>
 					</section>
 					<section>
 						<h2>Overview</h2>
@@ -84,7 +84,7 @@
 							<li><code>POST</code>—send data to the server</li>
 							<li><code>GET</code>—retrieve a resource from the server</li>
 							<li><code>HEAD</code>—retrieve resource metadata from the server</li>
-							<li><code>PUT</code>—send data to the server and update an existing entity</li>
+							<li><code>PUT</code>—send data to the server and update an existing entity (overwrite)</li>
 							<li><code>DELETE</code>—remove a resource on the server</li>
 							<li><code>OPTIONS</code>—get information about the communication options available</li>
 						</ul>
@@ -251,6 +251,37 @@
 							}
 						</script></code></pre>
 						<small>examples/lesson03-network-communication/projects/server-communication/src/app/space.service.ts</small>
+					</section>
+					<section>
+						<h2><code>AppComponent</code></h2>
+						<pre><code class='typescript' data-trim data-line-numbers="|17|14-15|20|21-23|"><script type="text/template">
+							import { Component, OnInit } from '@angular/core';
+							import { LaunchVehicles } from 'lib-space';
+							import { Observable } from 'rxjs';
+							import { map } from 'rxjs/operators';
+							import { SpaceService } from './space.service';
+							
+							@Component({
+								selector: 'app-root',
+								templateUrl: './app.component.html',
+								styleUrls: ['./app.component.scss']
+							})
+							export class AppComponent implements OnInit {
+							
+								launchVehicles$: Observable<LaunchVehicles[]> | null = null;
+								astronauts$: Observable<string[]> | null = null;
+							
+								constructor(private spaceService: SpaceService) { }
+							
+								ngOnInit() {
+									this.launchVehicles$ = this.spaceService.getLaunchVehicles();
+									this.astronauts$ = this.spaceService.getAstronauts().pipe(
+										map(astronauts => astronauts.map(astronaut => astronaut.name))
+									);
+								}
+							}
+						</script></code></pre>
+						<small>examples/lesson03-network-communication/projects/server-communication/src/app/app.component.ts</small>
 					</section>
 				</section>
 				<section>
