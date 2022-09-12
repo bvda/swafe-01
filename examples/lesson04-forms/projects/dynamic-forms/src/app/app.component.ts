@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,21 +14,21 @@ export class AppComponent {
     loot: this.formBuilder.array([''])
   })
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   onSubmit() {
     console.log(this.profileForm.value)
   }
 
   addLoot() {
-    this.loot.push(this.formBuilder.control(''))
+    this.profileForm.controls.loot.push(this.formBuilder.control(''))
   }
 
   removeLoot(index: number) {
-    this.loot.removeAt(index)
+    this.profileForm.controls.loot.removeAt(index)
   }
 
   get loot() {
-    return this.profileForm.get('loot') as UntypedFormArray
+    return this.profileForm.get('loot') as FormArray
   }
 }
