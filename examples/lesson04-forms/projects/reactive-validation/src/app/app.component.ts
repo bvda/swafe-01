@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, UntypedFormBuilder, UntypedFormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Class, WarcraftService } from 'warcraft';
 
@@ -17,12 +17,12 @@ export class AppComponent {
     }, { validators: this.fullNameRequired, updateOn: 'change' }),
     phone: ['', Validators.nullValidator],
     email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-    class:[''],
+    class:[{ name: '', roles: [{name: ''}]}],
   })
 
   classes$: Observable<Class[]>;
   
-  constructor(private formBuilder: UntypedFormBuilder, warcraftService: WarcraftService) { 
+  constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
     this.classes$ = warcraftService.getClasses()
   }
   
@@ -32,8 +32,10 @@ export class AppComponent {
 
   onAutofill() {
     this.profileForm.patchValue({
-      first_name: 'Anduin',
-      last_name: 'Wrynn',
+      name: {
+        first_name: 'Anduin',
+        last_name: 'Wrynn',
+      },
       phone: '1-800-HEALZ',
       email: 'aw@stormwind.az',
       class:  {
@@ -55,11 +57,11 @@ export class AppComponent {
     return c1 && c2 ? c1.name === c2.name : c1 === c2; 
   }
 
-  get name(): UntypedFormControl {
-    return this.profileForm.get('name') as UntypedFormControl
+  get name(): FormControl {
+    return this.profileForm.get('name') as FormControl
   }
 
-  get email(): UntypedFormControl {
-    return this.profileForm.get('email') as UntypedFormControl
+  get email(): FormControl {
+    return this.profileForm.get('email') as FormControl
   }
 }
