@@ -35,7 +35,7 @@
 					<section>
 						<h2>Client-server model</h2>
 						<figure>
-							<blockquote cite="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client–server model is a <mark>distributed</mark> application structure that <mark>partitions</mark> tasks or workloads between the <mark>providers</mark> of a resource or service, called servers, and service <mark>requesters</mark>, called clients.</blockquote>
+							<blockquote cite="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client—server model is a <mark>distributed</mark> application structure that <mark>partitions</mark> tasks or workloads between the <mark>providers</mark> of a resource or service, called servers, and service <mark>requesters</mark>, called clients.</blockquote>
 							<figcaption>Client-server model—<cite>Wikipedia</cite></figcaption>
 						</figure>
 					</section>
@@ -615,14 +615,13 @@
 					<section>
 						<h2><code>catchError</code></h2>
 						<p>Catch errors that happens inside the stream</p>
-						<pre><code class="typescript" data-trim data-line-numbers="|15|21-31|22,30|24-28|29|"><script type="text/template">
+						<pre><code class="typescript" data-trim data-line-numbers="|14|20-33|21,33|23-27|28-32|"><script type="text/template">
 							import { HttpErrorResponse } from '@angular/common/http';
 							import { Component, OnInit } from '@angular/core';
-							import { Astronaut } from 'lib-space';
+							import { AstronautResponse } from 'projects/lib-space/src/lib/astronaut-response.type';
 							import { Observable, of } from 'rxjs';
 							import { catchError } from 'rxjs/operators';
 							import { FaultyService } from '../faulty.service';
-							import { SpaceError } from '../space-error.type';
 							
 							@Component({
 								selector: 'app-catch-error',
@@ -630,7 +629,7 @@
 								styleUrls: ['./catch-error.component.scss']
 							})
 							export class CatchErrorComponent implements OnInit {
-								observable$: Observable<Astronaut[] | SpaceError> | null = null
+								observable$: Observable<AstronautResponse> | null = null
 								error = ''
 							
 								constructor(private faultyService: FaultyService) { }
@@ -644,11 +643,15 @@
 											} else {
 												this.error = 'Endpoint returned an unsuccessful response code'
 											}
-											return of({ message: e.message, status_code: e.status });
+											return of({
+												error: {
+												message: e.message,
+												status_code: e.status
+											}})
 										}),
 									)
 								}
-							}
+							}							
 						</script></code></pre>
 						<small>examples/lesson03-network-communication/projects/error-handling/src/app/catch-error/catch-error.component.ts</small>	
 					</section>
@@ -832,6 +835,17 @@
 									<li>Use <code>HTTP_INTERCEPTORS</code> multi-provider token when providing interceptors</li>
 								</ul>
 							</li>
+						</ul>
+						<aside class="notes" aria-label="notes">
+							<h4>Reference</h4>
+							<ul>
+								<a href="https://angular.io/api/common/http/HttpContext">Angular - HttpContext</a>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2><code>HttpInterceptor</code></h2>	
+						<ul>
 							<li><code>HttpRequest</code> and <code>HttpResponse</code> are immutable
 								<ul>
 									<li>Cannot be modified after creation</li>
@@ -844,12 +858,6 @@
 								</ul>
 							</li>
 						</ul>
-						<aside class="notes" aria-label="notes">
-							<h4>Reference</h4>
-							<ul>
-								<a href="https://angular.io/api/common/http/HttpContext">Angular - HttpContext</a>
-							</ul>
-						</aside>
 					</section>
 					<section>
 						<h2>Interceptor</h2>

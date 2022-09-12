@@ -1,6 +1,4 @@
 <h2>Data</h2>
-<!-- <p>{{ observable$ | async | json }}</p> -->
-
 <div *ngIf="observable$ | async as s">
   <ul *ngIf="s.astronauts; else error">
     <li *ngFor="let a of s.astronauts">
