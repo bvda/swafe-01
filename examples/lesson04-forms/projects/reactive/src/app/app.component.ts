@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import { FormBuilder, UntypedFormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Class, WarcraftService } from 'warcraft';
 
@@ -15,7 +15,9 @@ export class AppComponent {
     last_name: [''],
     phone: [''],
     email: [''],
-    class:[''],
+    class:[{
+      name: '', roles: [{ name: ''}]
+    }],
   })
 
   classes$: Observable<Class[]>;
