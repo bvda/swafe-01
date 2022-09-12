@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Class, WarcraftService } from 'warcraft';
 
@@ -22,7 +22,7 @@ export class AppComponent {
 
   classes$: Observable<Class[]>;
   
-  constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+  constructor(private formBuilder: UntypedFormBuilder, warcraftService: WarcraftService) { 
     this.classes$ = warcraftService.getClasses()
   }
   
@@ -55,11 +55,11 @@ export class AppComponent {
     return c1 && c2 ? c1.name === c2.name : c1 === c2; 
   }
 
-  get name(): FormControl {
-    return this.profileForm.get('name') as FormControl
+  get name(): UntypedFormControl {
+    return this.profileForm.get('name') as UntypedFormControl
   }
 
-  get email(): FormControl {
-    return this.profileForm.get('email') as FormControl
+  get email(): UntypedFormControl {
+    return this.profileForm.get('email') as UntypedFormControl
   }
 }

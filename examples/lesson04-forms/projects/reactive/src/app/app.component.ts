@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Class, WarcraftService } from 'warcraft';
 
@@ -20,7 +20,7 @@ export class AppComponent {
 
   classes$: Observable<Class[]>;
   
-  constructor(private formBuilder: FormBuilder, warcraftService: WarcraftService) { 
+  constructor(private formBuilder: UntypedFormBuilder, warcraftService: WarcraftService) { 
     this.classes$ = warcraftService.getClasses()
   }
   

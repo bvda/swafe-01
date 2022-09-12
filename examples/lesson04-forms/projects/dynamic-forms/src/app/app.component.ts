@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
     loot: this.formBuilder.array([''])
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   onSubmit() {
     console.log(this.profileForm.value)
@@ -29,6 +29,6 @@ export class AppComponent {
   }
 
   get loot() {
-    return this.profileForm.get('loot') as FormArray
+    return this.profileForm.get('loot') as UntypedFormArray
   }
 }
