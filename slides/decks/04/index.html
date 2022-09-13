@@ -467,50 +467,50 @@
 					<section>
 						<h2>Dynamic forms</h2>
 						<ul>
-							<li>Some use cases requires adding/removing controls based on input and/or state</li>
-							<li>Use <code>FormArray</code> to manage any number of unnamed controls</li>
+							<li>Some use cases requires <mark>adding/removing</mark> controls based on input and/or state</li>
+							<li>Use <code>FormArray</code> to <mark>manage</mark> any number of unnamed controls</li>
 							<li>A great option when the number of controls is not known in advance
 								<ul>
 									<li>Use <code>push(control: AbstractControl)</code> to add controls</li>
 									<li>Use <code>removeAt(index: number)</code> to remove controls</li>
 								</ul>
 							</li>
-							<li>Bind in template with the <code>formArrayName</code> directive</li>
+							<li>Bind in <mark>template</mark> with the <code>formArrayName</code> directive</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Dynamic form – Class</h2>
 						<pre><code class='typescript' data-trim data-line-numbers="|11-15|14|31-33|23-25,27-29|"><script type="text/template">
 							import { Component } from '@angular/core';
-							import { FormArray, FormBuilder } from '@angular/forms';
-	
+							import { FormBuilder, FormArray } from '@angular/forms';
+							
 							@Component({
 								selector: 'app-root',
 								templateUrl: './app.component.html',
 								styleUrls: ['./app.component.scss']
 							})
 							export class AppComponent {
-	
+							
 								profileForm = this.formBuilder.group({
 									first_name: [''],
 									last_name: [''],
 									loot: this.formBuilder.array([''])
 								})
-	
+							
 								constructor(private formBuilder: FormBuilder) { }
-	
+							
 								onSubmit() {
 									console.log(this.profileForm.value)
 								}
-	
+							
 								addLoot() {
-									this.loot.push(this.formBuilder.control(''))
+									this.profileForm.controls.loot.push(this.formBuilder.control(''))
 								}
-	
+							
 								removeLoot(index: number) {
-									this.loot.removeAt(index)
+									this.profileForm.controls.loot.removeAt(index)
 								}
-	
+							
 								get loot() {
 									return this.profileForm.get('loot') as FormArray
 								}
@@ -551,16 +551,15 @@
 						<small>examples/lesson04-forms/projects/dynamic-forms/src/app/app.component.html</small>
 					</section>
 					<section>
-						<h2>Updating form control values</h2>
+						<h2>Updating <code>FormControl</code> values</h2>
 						<ul>
-							<li>Reactive forms methods to change a form control's value programmatically</li>
-							<li>There are two methods
+							<li>Reactive forms methods provides <mark>two</mark> methods to change values
 								<ul>
-									<li><code>setValue()</code>—updates the values in the form data model. Must match the complete form date model</li>
-									<li><code>patchValue()</code>—updates selected properties in the form data model. Used when partially updating form data model</li>
+									<li><code>setValue()</code>—updates the values in the form data model. Must match the <mark>complete</mark> form date model</li>
+									<li><code>patchValue()</code>—updates selected properties in the form data model. Used to do <mark>partial</mark> updates to the form data model</li>
 								</ul>
 							</li>
-							<li>Provide developers with the flexibility to change control values without user interaction</li>
+							<li>Provide <mark>flexibility</mark> to change control values <mark>without</mark> user interaction</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
