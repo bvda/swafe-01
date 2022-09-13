@@ -283,7 +283,7 @@
 						<h2>Overview</h2>
 						<ul>
 							<li>The reactive directives come with <code>ReactiveFormsModule</code></li>
-							<li>Reactive directives
+							<li>Directives
 								<ul>
 									<li><code>formGroup</code>—binds to an instance of <code>FormGroup</code> that represents the entire form model</li>
 									<li><code>formGroupName</code>—used when binding to nested <code>FormGroup</code> objects</li>
@@ -301,7 +301,7 @@
 						</aside>
 					</section>
 					<section>
-						<h2>ReactiveForm – Class</h2>
+						<h2>ReactiveForm — Class</h2>
 						<pre><code class='typescript' data-trim data-line-numbers="|23-25|13-19|"><script type="text/template">
 							import { Component } from '@angular/core';
 							import { FormBuilder } from '@angular/forms';
@@ -577,25 +577,25 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Improve overall data quality
+							<li>Improve overall data <mark>quality</mark>
 								<ul>
-									<li>Accuracy-are users providing a usable value?</li>
-									<li>Completeness-are they providing all values needed?</li>
+									<li>Accuracy—are users providing a usable value?</li>
+									<li>Completeness—are they providing all values needed?</li>
 								</ul>
 							</li>
-							<li>Display useful messages to users
+							<li>Display <mark>useful</mark> messages to users
 								<ul>
 									<li>Guide the user to input valid data</li>
 								</ul>
 							</li>
-							<li>Every time the value of a form control changes
+							<li>Every time the value of a form control <mark>changes</mark>
 								<ul>
 									<li>Angular runs validation</li>
 									<li>Generates a list of validation errors</li>
 									<li>Results in <code>VALID</code> or <code>INVALID</code></li>
 								</ul>
 							</li>
-							<li>The class <code>Validators</code> from Forms API provide built-in validators for the most common use cases</li>
+							<li>The class <code>Validators</code> from Forms API provide <mark>built-in</mark> validators for the most common use cases</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -754,22 +754,22 @@
 					<section>
 						<h2>Custom validators</h2>
 						<ul>
-							<li>Apply application-specific validation</li>
+							<li>Apply <mark>application-specific</mark> validation</li>
 							<li>Cross-field validation
 								<ul>
-									<li>Validate values in two different form controls in a form</li>
-									<li>Mutually incompatible–Select only one of two options</li>
+									<li>Validate values in two <mark>different</mark> form controls in a form</li>
+									<li>Mutually incompatible—Select only one of two options</li>
 									<li>Dependencies—Select only an option, if another one is selected</li>
 								</ul>
 							</li>
 							<li>Asynchronous validators
 								<ul>
-									<li>Similar to thier synchronous counterparts</li>
+									<li><mark>Similar</mark> to their synchronous counterparts</li>
 									<li>They must return a <code>Promise</code> or an <code>Observable</code></li>
-									<li>The observable must be finite (is has to complete at some point in time)</li>
+									<li>The observable must be <mark>finite</mark> (is has to complete at some point in time)</li>
 								</ul>
 							</li>
-							<li>Add directive for template-driven forms
+							<li>Add <mark>directive</mark> for template-driven forms
 								<ul>
 									<li>Create a <code>Directive</code> and implement the <code>Validator</code> interface</li>
 								</ul>
@@ -787,12 +787,12 @@
 					<section>
 						<h2>Triggering validation</h2>
 						<ul>
-							<li>Angular will trigger validation whenever a form control changes per default</li>
-							<li>This can be overridden with <code>updateOn</code> property
+							<li>Angular will <mark>trigger</mark> validation whenever a form control changes per default</li>
+							<li>This can be <mark>overridden</mark> with <code>updateOn</code> property
 								<ul>
-									<li><code>change</code>—the value is checked as soon as it changes. Default setting</li>
-									<li><code>blur</code>—the value is checked when the control loses focus</li>
-									<li><code>submit</code>—the value is checked when the form is submitted</li>
+									<li><code>change</code>—the value is checked as soon as it <mark>changes</mark> (<em>default</em>).</li>
+									<li><code>blur</code>—the value is checked when the control loses <mark>focus</mark></li>
+									<li><code>submit</code>—the value is checked when the form is <mark>submitted</mark></li>
 								</ul>
 							</li>
 							<li>Can be applied to individual form controls or complete forms</li>
@@ -801,12 +801,12 @@
 					<section>
 						<h2>Angular vs. HTML5 validation</h2>
 						<ul>
-							<li>HTML5 offers native contraint validation
+							<li>HTML5 offers <mark>native</mark> constraint validation
 								<ul>
-									<li>Disabled by Angular by default</li>
+									<li>Disabled by Angular per default</li>
 								</ul>
 							</li>
-							<li>Add <code>ngNativeValidate</code> to the <code>&lt;form&gt;</code> element to use native validation in combination with the Angular-based validation</li>
+							<li>Add <code>ngNativeValidate</code> to the <code>&lt;form&gt;</code> element to use native validation in <mark>combination</mark> with the Angular-based validation</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
