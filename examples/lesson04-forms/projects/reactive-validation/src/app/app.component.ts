@@ -17,7 +17,7 @@ export class AppComponent {
     }, { validators: this.fullNameRequired, updateOn: 'change' }),
     phone: ['', Validators.nullValidator],
     email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-    class:[''],
+    class:[{ name: '', roles: [{name: ''}]}],
   })
 
   classes$: Observable<Class[]>;
@@ -32,8 +32,10 @@ export class AppComponent {
 
   onAutofill() {
     this.profileForm.patchValue({
-      first_name: 'Anduin',
-      last_name: 'Wrynn',
+      name: {
+        first_name: 'Anduin',
+        last_name: 'Wrynn',
+      },
       phone: '1-800-HEALZ',
       email: 'aw@stormwind.az',
       class:  {

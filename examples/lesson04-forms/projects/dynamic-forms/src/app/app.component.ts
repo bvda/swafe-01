@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +21,11 @@ export class AppComponent {
   }
 
   addLoot() {
-    this.loot.push(this.formBuilder.control(''))
+    this.profileForm.controls.loot.push(this.formBuilder.control(''))
   }
 
   removeLoot(index: number) {
-    this.loot.removeAt(index)
+    this.profileForm.controls.loot.removeAt(index)
   }
 
   get loot() {
