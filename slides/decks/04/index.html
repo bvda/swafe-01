@@ -28,14 +28,14 @@
 					<section>
 						<h2>Overview</h2>
 						<ul>
-							<li>Handling user input with forms is the cornerstone of many web applications</li>
-							<li>Angular provides two different approaches:
+							<li>Handling <mark>user input</mark> with forms is the cornerstone of many web applications</li>
+							<li>Angular provides <mark>two</mark> different approaches:
 								<ul>
 									<li>Template-driven forms</li>	
 									<li>Reactive forms</li>
 								</ul>
 							</li>
-							<li>Reactive and template-driven forms process and manage data differently</li>	
+							<li>Reactive and template-driven forms process and manage data <mark>differently</mark></li>	
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -49,15 +49,15 @@
 						<ul>
 							<li>Reactive forms
 								<ul>
-									<li>They provide a direct explicit access to the underlying forms object model</li>
-									<li>More scalable, reuseable and testable</li>
-									<li>Choose reactive forms if forms are a key part of the application</li>
+									<li>They provide a <mark>direct</mark> explicit access to the underlying forms object model</li>
+									<li>More scalable, <mark>reuseable</mark> and testable</li>
+									<li>Choose reactive forms if forms are a <mark>key part</mark> of the application</li>
 								</ul>
 							</li>
 							<li>Template-driven forms
 								<ul>
-									<li>Easier to implement</li>
-									<li>Choose if the requirements and logic can be managed solely in the template</li>
+									<li><mark>Easier</mark> to implement</li>
+									<li>Choose if the requirements and logic can be managed solely in the <mark>template</mark></li>
 								</ul>
 							</li>
 						</ul>
@@ -71,13 +71,14 @@
 					<section>
 						<h2>Common form foundation classes</h2>
 						<ul>
-							<li>Both reactive and template-driven forms are built on the following base classes</li>
-							<ul>
-								<li><code>FormControl</code> tracks the value and validation status of an individual form control</li>
-								<li><code>FormGroup</code> tracks the same values and status for a collection of form controls</li>
-								<li><code>FormArray</code> tracks the same values and status for an array of form controls</li>
-								<li><code>ControlValueAccessor</code> creates a bridge between Angular FormControl instances and native DOM elements</li>
-							</ul>
+							<li>Both <mark>reactive</mark> and <mark>template-driven</mark> forms are built on the following <mark>base classes</mark>
+								<ul>
+									<li><code>FormControl</code> tracks the value and validation status of an <mark>individual</mark> form control</li>
+									<li><code>FormGroup</code> tracks the same values and status for a <mark>collection</mark> of form controls</li>
+									<li><code>FormArray</code> tracks the same values and status for an <mark>array</mark> of form controls</li>
+									<li><code>ControlValueAccessor</code> creates a <mark>bridge</mark> between Angular FormControl instances and <mark>native</mark> DOM elements</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -106,22 +107,16 @@
 					<section>
 						<h2>Data flow<h2>
 						<h4>Reactive (View to model)</h4>
-						<div style="display: flex; align-content: flex-start; justify-items: center;">
-							<div>
-								<img src="../../assets/dataflow-reactive-forms-vtm.png" alt="" />
-							</div>
-							<div class="image-ul">
-								<ul>
-									<li>The user types a value into the input element, in this case the favorite color 'Blue'.</li>
-									<li>The form input element emits an "input" event with the latest value.</li>
-									<li>The control value accessor listening for events on the form input element immediately relays the new value to the <code>FormControl</code> instance.</li>
-									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
-									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
-								</ul>
-							</div>
-						</div>
+						<img style="height: 400px;" src="../../assets/dataflow-reactive-forms-vtm.png" alt="" />
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
+							<ul>
+								<li>The user types a value into the input element, in this case the favorite color 'Blue'.</li>
+								<li>The form input element emits an "input" event with the latest value.</li>
+								<li>The control value accessor listening for events on the form input element immediately relays the new value to the <code>FormControl</code> instance.</li>
+								<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
+								<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
+							</ul>
 							<ul>
 								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-reactive-forms">Angular - Introduction to forms</a></li>
 							</ul>
@@ -130,20 +125,14 @@
 					<section>
 						<h2>Data flow</h2>
 						<h4>Reactive (Model to view)</h4>
-						<div style="display: flex; align-content: flex-start; justify-items: center;">
-							<div>
-								<img src="../../assets/dataflow-reactive-forms-mtv.png" alt="" />
-							</div>
-							<div class="image-ul">
-								<ul>
-									<li>The user calls the <code>favoriteColorControl.setValue()</code> method, which updates the <code>FormControl</code> value.</li>
-									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
-									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
-									<li>The control value accessor on the form input element updates the element with the new value.</li>
-								</ul>
-							</div>
-						</div>
+						<img style="height: 400px;" src="../../assets/dataflow-reactive-forms-mtv.png" alt="" />
 						<aside class="notes" aria-label="notes">
+							<ul>
+								<li>The user calls the <code>favoriteColorControl.setValue()</code> method, which updates the <code>FormControl</code> value.</li>
+								<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable.</li>
+								<li>Any subscribers to the <code>valueChanges</code> observable receive the new value.</li>
+								<li>The control value accessor on the form input element updates the element with the new value.</li>
+							</ul>
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-reactive-forms">Angular - Introduction to forms</a></li>
@@ -153,23 +142,17 @@
 					<section>
 						<h2>Data flow<h2>
 						<h4>Template-driven (View to model)</h4>
-						<div style="display: flex; align-content: flex-start; justify-items: center;">
-							<div>
-								<img src="../../assets/dataflow-td-forms-vtm.png" alt="" />
-							</div>
-							<div class="image-ul">
-								<ul>
-									<li>The user types a value into the input element, in this case the favorite color 'Blue'</li>
-									<li>The form input element emits an "input" event with the latest value</li>
-									<li>The control value accessor attached to the input triggers the <code>setValue()</code> method on the <code>FormControl</code> instance</li>
-									<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable</li>
-									<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
-									<li>The control value accessor also calls the <code>NgModel.viewToModelUpdate()</code> method which emits an <code>ngModelChange</code> event</li>
-									<li>Because the component template uses two-way data binding for the <code>favoriteColor</code> property, the <code>favoriteColor</code> property in the component is updated to the value emitted by the <code>ngModelChange</code> event (Blue)</li>
-								</ul>
-							</div>
-						</div>
+						<img style="height: 400px;" src="../../assets/dataflow-td-forms-vtm.png" alt="" />
 						<aside class="notes" aria-label="notes">
+							<ul>
+								<li>The user types a value into the input element, in this case the favorite color 'Blue'</li>
+								<li>The form input element emits an "input" event with the latest value</li>
+								<li>The control value accessor attached to the input triggers the <code>setValue()</code> method on the <code>FormControl</code> instance</li>
+								<li>The <code>FormControl</code> instance emits the new value through the <code>valueChanges</code> observable</li>
+								<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
+								<li>The control value accessor also calls the <code>NgModel.viewToModelUpdate()</code> method which emits an <code>ngModelChange</code> event</li>
+								<li>Because the component template uses two-way data binding for the <code>favoriteColor</code> property, the <code>favoriteColor</code> property in the component is updated to the value emitted by the <code>ngModelChange</code> event (Blue)</li>
+							</ul>
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-template-driven-forms">Angular - Introduction to forms</a></li>
@@ -179,31 +162,25 @@
 					<section>
 						<h2>Data flow<h2>
 						<h4>Template-driven (Model to view)</h4>
-						<div style="display: flex; align-content: flex-start; justify-items: center;">
-							<div>
-								<img src="../../assets/dataflow-td-forms-mtv.png" alt="" />
-							</div>
-							<div class="image-ul">
-								<ul>
-									<li>The <code>favoriteColor</code> value is updated in the component</li>
-									<li>Change detection begins
-										<ul>
-											<li>During change detection, the <code>ngOnChanges</code> lifecycle hook is called on the <code>NgModel</code> directive instance because the value of one of its inputs has changed</li>
-											<li>The <code>ngOnChanges()</code> method queues an async task to set the value for the internal <code>FormControl</code> instance</li>
-										</ul>
-									</li>
-									<li>Change detection completes</li>
-									<li>On the next tick, the task to set the <code>FormControl</code> instance value is executed
-										<ul>
-											<li>The <code>FormControl</code> instance emits the latest value through the <code>valueChanges</code> observable</li>			
-											<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
-										</ul>
-									</li>
-									<li>The control value accessor updates the form input element in the view with the latest <code>favoriteColor</code> value</li>
-								</ul>
-							</div>
-						</div>
+						<img style="height: 400px;" src="../../assets/dataflow-td-forms-mtv.png" alt="" />
 						<aside class="notes" aria-label="notes">
+							<ul>
+								<li>The <code>favoriteColor</code> value is updated in the component</li>
+								<li>Change detection begins
+									<ul>
+										<li>During change detection, the <code>ngOnChanges</code> lifecycle hook is called on the <code>NgModel</code> directive instance because the value of one of its inputs has changed</li>
+										<li>The <code>ngOnChanges()</code> method queues an async task to set the value for the internal <code>FormControl</code> instance</li>
+									</ul>
+								</li>
+								<li>Change detection completes</li>
+								<li>On the next tick, the task to set the <code>FormControl</code> instance value is executed
+									<ul>
+										<li>The <code>FormControl</code> instance emits the latest value through the <code>valueChanges</code> observable</li>			
+										<li>Any subscribers to the <code>valueChanges</code> observable receive the new value</li>
+									</ul>
+								</li>
+								<li>The control value accessor updates the form input element in the view with the latest <code>favoriteColor</code> value</li>
+							</ul>
 							<h4>References</h4>
 							<ul>
 								<li><a href="https://angular.io/guide/forms-overview#data-flow-in-template-driven-forms">Angular - Introduction to forms</a></li>
