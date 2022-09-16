@@ -1,5 +1,5 @@
 # Credit Card Management System
-## SWAFE 2021 – Hand in 1
+## SWAFE 2022 – Hand in 1
 ## Introduction
 We have been contacted by a new client who runs a consultant business. Each of their consultants has a company credit card, and they want to keep track of expenses for each credit card. They have drafted with a requirement specification for a credit card management system.
 
@@ -38,15 +38,13 @@ The solution will provide the accounting department with an overview of use for 
 - `F4.3.1` Field `cardholder_name` is required
 - `F4.4.1` Field `expiration_date_month` must be in range `1-12`
 - `F4.4.2` Field `expiration_date_month` is required
-- `F4.5.1` Field `expiration_date_year` must be in range `1-31`
-<!-- What is the maximum  validity period for at credit card--> 
-- `F4.5.2` Field `expiration_date_year` is required
+- `F4.5.1` Field `expiration_date_year` is required
 
 `F5` Transactions screen
 - `F5.1` Screen shall show a list of all transactions registered in the system
 - `F5.1.2` Screen shall present the option to add a transaction to the transaction list
 - `F5.1.3` Screen shall present the option to filter transactions
-- `F5.1.4` Transactions must be filtered based on `credit_card` 
+- `F5.1.4` Screen shall provide filtering based on `card_number` 
 
 `F6` Transactions list
 - `F6.1.1` Each transaction shall display properties `credit_card`, `amount`, `currency`, `comment`, `date`
@@ -63,6 +61,7 @@ Futhermore, the solution must include the following:
 - [ ] At least one module must be lazy-loaded<sup>(<a href="https://angular.io/guide/lazy-loading-ngmodules">docs</a>)</sup>
 - [ ] The application must implement at least one custom pipe <sup>(<a href="https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations">docs</a>)</sup> _Hint: Obvious candidates could be expiration date_
 - [ ] At least one module must contain a routing module<sup>(<a href="https://angular.io/guide/lazy-loading-ngmodules">docs</a>)</sup>
+- [ ] At least one component must be standalone<sup>(<a href="https://angular.io/guide/standalone-components">docs</a>)</sup>
 - [ ] The application must be seeded with data from the server found @ `hand-in/credit-card-server`
 
 # Credit card server documentation
@@ -73,31 +72,33 @@ Futhermore, the solution must include the following:
 The server is running @ http://localhost:3000
 
 **Available endpoint**
-- `GET /credit_cards`—returns an array of credit cards
-- `POST /credit_cards`—creates a credit card
+- `GET /cards`—returns an array of credit cards
+- `GET /cards/:card_number`—returns credit card with `card_number`
+- `POST /cards`—creates a credit card
+- `DELETE /cards/:card_number`–deletes a credit card
 - `GET /transactions`—returns an array of transactions
 - `POST /transactions`—creates a transaction
-- `DELETE /credit_cards/:card_number`–deletes a credit card
 - `DELETE /transactions/:transaction_uid`–deletes a transaction
 
 # Internal notes
-Our Principal Software Architect has chosen Angular to be used as the Front-end Framework. They have defined a proposal for an initial architecture. _Note: that some details is left out for the developer teams to decide. The list is not complete_
+Our Senior Vice Principal Software Engineering Architect has chosen Angular to be used as the frontend framework. They have defined a proposal for an initial architecture. _Note: that some details is left out for the developer teams to decide. The list is not complete_
 
 **Angular Artifact Checklist**
-
-- [ ] `AppModule`
-  - [ ] `HomeComponent`
-  - [ ] `NavigationBarComponent`
-- [ ] `CreditCardModule`
-  - [ ] `CreditCardService`
-  - [ ] `CreditCardAddComponent`
-  - [ ] `CreditCardListComponent`
-  - [ ] `CreditCardListItemComponent`
-- [ ] `TransactionModule`
-  - [ ] `TransactionOverviewComponent`
+- Modules
+  - [ ] `AppModule`
+    - [ ] `HomeComponent`
+    - [ ] `NavigationBarComponent`
+  - [ ] `CreditCardModule`
+    - [ ] `CreditCardListComponent`
+  - [ ] `TransactionModule`
+    - [ ] `TransactionOverviewComponent`
+    - [ ] `TransactionAddComponent`
+- Standalone components
   - [ ] `TransactionListComponent`
-  - [ ] `TransactionListItemComponent`
-  - [ ] `TransactionAddComponent`
+  - [ ] `CreditCardAddComponent`
+- Services
+  - [ ] `CreditCardService`
+  - [ ] `TransactionService`
 
 ## Formalia
 

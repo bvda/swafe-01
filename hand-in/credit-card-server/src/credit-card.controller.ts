@@ -6,6 +6,10 @@ export const list = function(_, res) {
   res.json(CREDIT_CARD_DATA)
 }
 
+export const card = function(req, res) {
+  res.json(...CREDIT_CARD_DATA.filter(c => c.card_number == req.params.card_number))
+}
+
 export const create = function(req, res) {
   console.log(req.body as CreditCard)
   const credit_card = {...req.body as CreditCard, uid: v4()}
