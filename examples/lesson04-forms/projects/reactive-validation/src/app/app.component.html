@@ -7,8 +7,8 @@
       <label for="last_name">Last name</label>
       <input type="text"  formControlName="last_name">
       <div *ngIf="name.invalid && (name.dirty || name.touched)">
-        <div *ngIf="name.errors?.must_be_set">
-          {{ name.errors?.must_be_set }}
+        <div *ngIf="name.errors?.['must_be_set']">
+          {{ name.errors?.['must_be_set'] }}
         </div>
       </div>
     </div>
@@ -18,14 +18,14 @@
     <label for="email">E-mail</label>
     <input type="text" formControlName="email">    
     <div *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors?.required">
+      <div *ngIf="email.errors?.['required']">
         Email is required.
       </div>
-      <div *ngIf="email.errors?.email">
+      <div *ngIf="email.errors?.['email']">
         Invalid email.
       </div>
-      <div *ngIf="email.errors?.minlength">
-        Must be at least {{ email.errors?.minlength.requiredLength }}.
+      <div *ngIf="email.errors?.['minlength']">
+        Must be at least {{ email.errors?.['minlength'].requiredLength }}.
       </div>
     </div>
     <hr />
