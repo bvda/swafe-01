@@ -15,7 +15,7 @@ export class AppComponent {
     last_name: [''],
     phone: [''],
     email: [''],
-    class:[{
+    class: [{
       name: '', roles: [{ name: ''}]
     }],
   })

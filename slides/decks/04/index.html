@@ -196,7 +196,7 @@
 						<h2>Overview</h2>
 						<ul>
 							<li>Control elements are bound to data properties</li>
-							<li>Implicitly creates data model</li>
+							<li><mark>Implicitly</mark> creates data model</li>
 							<li>Template directives
 								<ul>
 									<li><code>NgForm</code>–Creates a top-level instance and binds it to a form to track aggregate form value and validation status</li>
@@ -204,7 +204,7 @@
 									<li><code>NgModelGroup</code>—represents a part of the form. Used to group elements together</li>
 								</ul>
 							</li>
-							<li>Template-driven forms rely on mutability of the data model</li>
+							<li>Template-driven forms rely on <mark>mutability</mark> of the data model</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>Reference</h4>
@@ -291,7 +291,7 @@
 									<li><code>formControlName</code>—used when binding to nested <code>FormControl</code> objects</li>
 								</ul>
 							</li>
-							<li>Define data model in component class</li>
+							<li>Define data model in <mark>component</mark> class</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
@@ -302,7 +302,7 @@
 					</section>
 					<section>
 						<h2>ReactiveForm — Class</h2>
-						<pre><code class='typescript' data-trim data-line-numbers="|23-25|13-19|"><script type="text/template">
+						<pre><code class='typescript' data-trim data-line-numbers="|25-27|13-21|"><script type="text/template">
 							import { Component } from '@angular/core';
 							import { FormBuilder } from '@angular/forms';
 							import { Observable } from 'rxjs';
@@ -320,7 +320,9 @@
 									last_name: [''],
 									phone: [''],
 									email: [''],
-									class:[''],
+									class: [{
+										name: '', roles: [{ name: ''}]
+									}],
 								})
 							
 								classes$: Observable<Class[]>;
@@ -336,7 +338,7 @@
 								onAutofill() {
 									this.profileForm.patchValue({
 										first_name: 'Anduin',
-										last_name: ' Wrynn',
+										last_name: 'Wrynn',
 										phone: '1-800-HEALZ',
 										email: 'aw@stormwind.az',
 										class:  {
@@ -353,7 +355,7 @@
 								compareClasses(c1: Class, c2: Class) {
 									return c1 && c2 ? c1.name === c2.name : c1 === c2; 
 								}
-							}
+							}							
 						</script></code></pre>
 						<small>examples/lesson04-forms/projects/reactive/src/app/app.component.ts</small>
 						<aside class="notes" aria-label="notes">
