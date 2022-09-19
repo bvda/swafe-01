@@ -19,8 +19,7 @@ The solution will provide the accounting department with an overview of use for 
 `F2` Credit card list
 - `F2.1`: List shall contain an element for each credit card
 - `F2.1.1`: List item shall contain properties `card_number`, `cardholder_name`, `issuer`
-- `F2.1.2`: List shall be responsive
-- `F2.2.1`: Navigate to a credit card details screen when an entry is clicked/pressed
+- `F2.1.2`: Navigate to a credit card details screen when an entry is clicked/pressed
 
 `F3` Credit card details screen
 - `F3.1` Screen shall contain elements displaying the following credit card properties: `card_number`, `cardholder_name`, `csc_code`, `expiration_date_month`, `expiration_date_year`, `issuer`
