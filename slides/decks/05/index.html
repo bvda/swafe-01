@@ -26,17 +26,16 @@
 				<section id="responsive-web-design">
 					<h2>Overview</h2>
 					<ul>
-						<li>In the early days of web design, pages where built to target a particular screen size
-						<li>If users had different screen sizes than expected
+						<li>In the early days of web design, pages where built to target a <mark>particular</mark> screen size
+						<li>If users had different screen sizes than expected:
 							<ul>
 								<li>Unwanted scrollbars</li>
 								<li>Overly long line lengths</li>
 								<li>Poor use of space</li>
 							</ul>
 						</li>
-						<li>As more diverse screen sizes became available, the concept of <em>responsive web design</em> appeared
-						</li>
-						<li>Responsive web design allow web pages to alter layout and appearance to suits different screen widths and resolutions</li>
+						<li>As more <mark>diverse</mark> screen sizes became available, the concept of <mark>responsive</mark> appeared</li>
+						<li>Responsive web design allow web pages to <mark>alter</mark> layout and appearance to suits <mark>different</mark> screen widths and resolutions</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -54,19 +53,19 @@
 				<section>
 					<h2>What needs to be responsive?</h2>
 					<ul>
-						<li>Containers – Document divisions, sections, articles</li>
-						<li>Text – Headings</li>
-						<li>Media – Images, Video players</li>
+						<li><mark>Containers</mark> – Document divisions, sections, articles</li>
+						<li><mark>Text</mark> – Headings</li>
+						<li><mark>Media</mark> – Images, Video players</li>
 					</ul>
 				</section>
 				<section>
 					<h2>Mobile-first design</h2>
 					<ul>
-						<li>Design with mobile users in focus</li>
-						<li>Identify most the important content to present</li>
-						<li>Make it easy to navigate</li>
-						<li>There is a difference between a mobile-first design and a mobile-reponsive design</li>
-						<li>Start with a very basic design and gradually add more complexity</li>
+						<li>Design with <mark>mobile</mark> users in focus</li>
+						<li>Identify most the <mark>important</mark> content to present</li>
+						<li>Make it <mark>easy</mark> to navigate</li>
+						<li>There is a <mark>difference</mark> between a mobile-first design and a mobile-reponsive design</li>
+						<li>Start with a very <mark>basic</mark> design and gradually add more complexity</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -85,20 +84,18 @@
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>The user's visible area of a web page</li>
+						<li>The user's <mark>visible</mark> area of a web page</li>
 						<li>The <code>viewport</code> meta tag instructs the device to set the width to the device width
 							<ul>
 								<li>Why is this needed? Devices lie about their width!</li>
+								<li>iPhone set viewport to 960px</li>
 							</ul>
 						</li>
-						<li><code>width=device-width</code> tells the browser to set the viewport to the actual device width</li>
-						<li><code>initial-scale=1</code> tells the browser scale the document to 100% of it's intended size</li>
+						<li>Layout that kicks in at specific breakpoints will never kick in</li>
+						<li>Override with <code>width</code> property to set device width</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<ul>
-							<li>iPhone set viewport to 960px</li>
-							<li>Layout that kicks in at 480px will never kick in</li>
-							<li>Override with <code>width</code> property to set device width</li>
 						</ul>
 						<h4>References</h4>
 						<ul>
@@ -125,11 +122,15 @@
 						</html>						
 					</script></code></pre>
 					<small>examples/lesson05-reactive-web-design/projects/media-breakpoints/src/index.html</small>
+					<ul>
+						<li><code>width=device-width</code> tells the browser to set the viewport to the actual device width</li>
+						<li><code>initial-scale=1</code> tells the browser scale the document to 100% of it's intended size</li>
+					</ul>
 				</section>
 				<section>
 					<h2>Media queries</h2>
 					<ul>
-						<li>Media queries adapt web applications depending on the various device characteristics and parameters</li>
+						<li>Media queries <mark>adapt</mark> web applications depending on the various device <mark>characteristics</mark> and <mark>parameters</mark></li>
 						<li>In CSS, use <code>@media</code> rule to conditionally apply styles</li>
 						<li>Media types
 							<ul>
@@ -141,9 +142,9 @@
 						</li>
 						<li>Logical operators
 							<ul>
-								<li><code>not</code>–negates the query. Must be used with media type</li>
-								<li><code>and</code>–combines multiple queries into one. Also used to combine media types with media features</li>
-								<li><code>only</code>–apply only styles if entire query matches. Useful when writing backwards compatible queries</li>
+								<li><code>not</code>–<mark>negates</mark> the query (must be used with media type)</li>
+								<li><code>and</code>–<mark>combines</mark> multiple queries into one (also used to combine media types with media features)</li>
+								<li><code>only</code>–apply only styles if <mark>entire</mark> query matches (useful when writing backwards compatible queries)</li>
 							</ul>
 						</li>
 					</ul>
@@ -157,19 +158,18 @@
 				<section>
 					<h2>Media features</h2>
 					<ul>
-						<li>Media features describe specific characteristics of the user agent:
+						<li>Media features describe specific <mark>characteristics</mark> of the user agent</li>
+						<li><code>orientation</code>–specifies the viewport orientation, can be the following values:
 							<ul>
-								<li><code>orientation</code>–specifies the viewport orientation, can be the following values:
-									<ul>
-										<li><code>portrait</code>The viewport is in a portrait orientation, i.e.,  the height is greater than or equal to the width</li>
-										<li><code>landscape</code>The viewport is in a landscape orientation, i.e., the width is greater than the height</li>
-									</ul>
-								</li>
-								<li><code>width</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
-								<li><code>height</code>can be prefixed with <code>min-</code> and <code>max-</code></li>
+								<li><code>portrait</code>The viewport is in a portrait orientation, i.e.,  the height is greater than or equal to the width</li>
+								<li><code>landscape</code>The viewport is in a landscape orientation, i.e., the width is greater than the height</li>
 							</ul>
+							</li>
 						</li>
-						<li>Check out the documentation for complete list of available media features</li>
+						<li><code>width</code> and <code>height</code><ul>
+							<li>Can be prefixed with <code>min-</code> and <code>max-</code></li>
+						</ul>
+						<li>Check out the <mark>documentation</mark> for complete list of available media features</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
