@@ -91,7 +91,7 @@
 								<li>iPhone set viewport to 960px</li>
 							</ul>
 						</li>
-						<li>Layout that kicks in at specific breakpoints will never kick in</li>
+						<li>Layout that kicks in at specific <mark>breakpoints</mark> will never kick in</li>
 						<li>Override with <code>width</code> property to set device width</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
@@ -316,7 +316,7 @@
 					<h2>Alignment</h2>
 					<ul>
 						<li>A key feature of Flexbox is the ability to align and justify items to the main- and cross-axes</li>
-						<li>It enabled propper vertical alignment</li>
+						<li>It enabled propper <mark>vertical</mark> alignment</li>
 						<li>Offers the following properties
 							<ul>
 								<li><code>justify-content</code>–aligns items on the main-axis</li>
@@ -337,7 +337,7 @@
 				<section>
 					<h2><code>justify-content</code></h2>
 					<ul>
-						<li>Align items across the main-axis</li>
+						<li>Align items across the <mark>main</mark>-axis</li>
 						<li>Available values for <code>justify-content</code>
 							<ul>
 								<li><code>flex-start</code>–items aligns to <span style="font-family: monospace; color: lightskyblue;">main-start</span></li>
@@ -354,15 +354,14 @@
 				<section>
 					<h2><code>align-items</code> and <code>align-self</code></h2>
 					<ul>
-						<li>Align items across the cross-axis</li>
+						<li>Align items across the <mark>cross</mark>-axis</li>
 						<li>Available values for <code>align-items</code>
 							<ul>
 								<li><code>stretch</code>–streches a flex children vertically</li>
 								<li><code>flex-start</code>–items aligns to cross-start</li>
 								<li><code>flex-end</code>–items aligns to cross-end</li>
 								<li><code>center</code>–items are vertically centered in the container</li>
-								<li><code>baseline</code>–items are placed after largest distance between its baseline and its
-									cross-start</li>
+								<li><code>baseline</code>–items are placed after largest distance between its baseline and its cross-start</li>
 							</ul>
 							<li>Use <code>align-self</code> to override values set with <code>align-items</code>
 							<ul>
@@ -539,45 +538,64 @@
 				</section>
 			</section>
 			<section>
-				<h2>Relationship of layout methods</h2>
-				<ul>
-					<li>Grid and flexbox
-						<ul>
-							<li>One-dimensional vs. two-dimentional layout
-								<ul>
-									<li>Control the layout by row OR column? Use <code>flexbox</code></li>
-									<li>Control the layout by row AND column? Use <code>grid</code></li>
-								</ul>
-							</li>
-							<li>Content out or layout in?
-								<ul>
-									<li>Flexbox is content out</li>
-									<li>Grid is layout in</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li>Other layout methods
-						<ul>
-							<li><mark>Simple</mark> positioning
-								<ul>
-									<li>Relative, absolute, fixed, sticky</li>
-								</ul>
-							</li>
-							<li>Float positioning
-								<ul>
-									<li>Remove elements from the normal flow and float around them</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<aside class="notes" aria-label="notes">
-					<h4>References</h4>
+				
+				<section>
+					<h2>Relationship of layout methods</h2>
 					<ul>
-						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout">Relationship of grid layout to other layout methods - CSS: Cascading Style Sheets | MDN</a></li>
+						<li>Grid and flexbox
+							<ul>
+								<li>One-dimensional vs. two-dimentional layout
+									<ul>
+										<li>Control the layout by row OR column? Use <code>flexbox</code></li>
+										<li>Control the layout by row AND column? Use <code>grid</code></li>
+									</ul>
+								</li>
+								<li>Content out or layout in?
+									<ul>
+										<li>Flexbox is <mark>content out</mark></li>
+										<li>Grid is <mark>layout in</mark></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>Other layout methods
+							<ul>
+								<li><mark>Simple</mark> positioning
+									<ul>
+										<li>Relative, absolute, fixed, sticky</li>
+									</ul>
+								</li>
+								<li>Float positioning
+									<ul>
+										<li>Remove elements from the normal flow and float around them</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
 					</ul>
-				</aside>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout">Relationship of grid layout to other layout methods - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Typical use cases</h2>
+					<ul>
+						<li>Navigation</li>
+						<li>Split navigation</li>
+						<li>Centering items</li>
+						<li>Card layout pushing footer down</li>
+						<li>Form controls</li>
+					</ul>
+					<aside class="notes" aria-label="notes">
+						<h4>References</h4>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Typical_Use_Cases_of_Flexbox">Typical use cases of Flexbox - CSS: Cascading Style Sheets | MDN</a></li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 			<section>
 				<section id="css-preprocessing">
@@ -623,12 +641,12 @@
 				<section>
 					<h2>Variables</h2>
 					<ul>
-						<li>Assign a value to a name that begins with '<code>$</code>'</li>
+						<li><mark>Assign</mark> a value to a name that begins with '<code>$</code>'</li>
 						<li>Refer to that value instead of the value itself</li>
-						<li>A variable declaration is written <code>&lt;variable&gt;: expression;</code></li>
+						<li>A variable <mark>declaration</mark> is written <code>&lt;variable&gt;: expression;</code></li>
 						<li>Default values
 							<ul>
-								<li>Allows configuration of variables in modules</li>
+								<li>Allows <mark>configuration</mark> of variables in modules</li>
 								<li>Use the <code>!default</code> to set default values</li>
 								<li>Load module with
 									<code> @use &lt;url&gt; with (&lt;variable&gt;: &lt;value&gt;, &lt;variable&gt;: &lt;value&gt;, ...</code>
@@ -683,9 +701,9 @@
 						</li>
 						<li>Modules
 							<ul>
-								<li>Modules can be loaded into other files with the <code>@use</code> rule</li>
-								<li>Access mixins and functions with a namespace based on filename</li>
-								<li>Using a module will include the generated CSS in the compiled output</li>
+								<li>Modules can be <mark>loaded</mark> into other files with the <code>@use</code> rule</li>
+								<li>Access mixins and functions with a <mark>namespace</mark> based on filename</li>
+								<li>Using a module will <mark>include</mark> the generated CSS in the compiled output</li>
 							</ul>
 						</li>
 					</ul>
@@ -724,9 +742,9 @@
 				<section>
 					<h2>Extend/Inheritance</h2>
 					<ul>
-						<li>Keep Sass code very DRY</li>
+						<li>Keep Sass code very <mark>DRY</mark></li>
 						<li>Use <code>@extend</code> to share CSS properties from one selector to another</li>
-						<li>Placeholder classes optimizes compiled CSS output
+						<li><code>Placeholder</code> classes optimizes compiled CSS output
 							<ul>
 								<li>Only included if extended</li>
 								<li>This keeps the output neat and clean</li>
@@ -757,7 +775,6 @@
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
 						<ul>
-							<li></li>
 							<li></li>
 						</ul>
 					</aside>
@@ -884,12 +901,12 @@
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>CSS animations makes it possible to animate transtions from one style to another</li>
+						<li>CSS animations makes it possible to animate <mark>transtions</mark> from one style to another</li>
 						<li>Three key advantages to CSS animations
 							<ul>
-								<li>Easy and simple to implement</li>
+								<li><mark>Easy</mark> and <mark>simple</mark> to implement</li>
 								<li>The animations runs well under moderate system load. Simple animations often perform poorly when written in JavaScript</li>
-								<li>Browser optimizes performance and efficiency</li>
+								<li>Browser <mark>optimizes</mark> performance and efficiency</li>
 							</ul>
 						</li>
 					</ul>
