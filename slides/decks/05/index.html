@@ -210,19 +210,19 @@
 			<section>
 				<section id="flexbox">
 					<h2>Flexbox</h2>
-					<small>Run <code>ng serve flexbox</code> in <code>examples/lesson05-reactive-web-design</code></small>
+					<small>Run <code>ng serve --project flexbox</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>Flexbos is a one-dimensional layout model concerned with one dimension at a time</li>
+						<li>Flexbox is a <mark>one-dimensional</mark> layout model concerned with one dimension at a time</li>
 						<li>An element with the <code>display</code> property set to <code>flex</code> is a <mark>flex
 								container</mark></li>
 						<li>An child element in a flex container is called a <mark>flex item</mark></li>
 						<li>The two axes of flexbox
 							<ul>
-								<li>Main axis – defined by the <code>flex-direction</code> property</li>
-								<li>Cross axis – runs perpendicular to the main axis</li>
+								<li><mark>Main</mark> axis – defined by the <code>flex-direction</code> property</li>
+								<li><mark>Cross</mark> axis – runs perpendicular to the main axis</li>
 							</ul>
 						</li>
 					</ul>
@@ -242,9 +242,9 @@
 						<li>It has four possible values:
 							<ul>
 								<li><code>row</code>–orientation matches the inline axis of the current writing mode</li>
-								<li><code>row-reverse</code>–same as <code>row</code>, but main-start and main-end are switched around</li>
+								<li><code>row-reverse</code>–same as <code>row</code>, but <span style="font-family: monospace; color: lightskyblue;">main-start</span> and <span style="font-family: monospace; color: lightskyblue;">main-end</span> are switched around</li>
 								<li><code>column</code>–orientation matches the block axis of the current writing mode</li>
-								<li><code>column-reverse</code>–same as <code>column</code>, but main-start and main-end are switched around</li>
+								<li><code>column-reverse</code>–same as <code>column</code>, but <span style="font-family: monospace; color: lightskyblue;">main-start</span> and <span style="font-family: monospace; color: lightskyblue;">main-end</span> are switched around</li>
 						</li>
 					</ul>
 					</li>
@@ -264,13 +264,12 @@
 				<section>
 					<h2>Flex Items</h2>
 					<ul>
-						<li>All direct children of a flex container becomes a flex item</li>
+						<li>All <mark>direct</mark> children of a flex container becomes a flex item</li>
 						<li>Flex items have three properties:
 							<ul>
-								<li><code>flex-grow</code>–Positive free space. Causes items to take up more space</li>
-								<li><code>flex-shrink</code>—Negative free space. Causes items to take up less space</li>
-								<li><code>flex-basis</code>—Size before shrink and grow. Defines the size space items leaves as
-									available space</li>
+								<li><code>flex-grow</code>–Positive free space. Causes items to take up <mark>more</mark> space</li>
+								<li><code>flex-shrink</code>—Negative free space. Causes items to take up <mark>less</mark> space</li>
+								<li><code>flex-basis</code>—Size before shrink and grow. Defines the size space items <mark>leaves</mark> as available space</li>
 							</ul>
 						</li>
 						<li>Often expressed with the shorthand notation: <code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code></li>
@@ -287,19 +286,19 @@
 				<section>
 					<h2>Wrapping</h2>
 					<ul>
-						<li>Flexbox is designed as a single dimensional layout
+						<li>Flexbox is designed as a <mark>one-dimensional</mark> layout
 							<ul>
-								<li>Layout items as rows</li>
-								<li>Layout items as columns</li>
+								<li>Layout items as <mark>rows</mark></li>
+								<li>Layout items as <mark>columns</mark></li>
 							</ul>
 						</li>
-						<li>Flexbox can also wrap items, creating a multi-line container</li>
+						<li>Flexbox can also wrap items, creating a <mark>multi-line</mark> container</li>
 						<li>Line wrapping is controlled by the <code>flex-wrap</code> property, which can have the following values
 							<ul>
 								<li><code>nowrap</code>It items are too wide to fit the container, they will overflow it</li>
 								<li><code>wrap</code>An item wraps to a new line if they there is not enough available space to place it
 									on the current line</li>
-								<li><code>wrap-reverse</code>Same as <code>wrap</code> but will start at main-end</li>
+								<li><code>wrap-reverse</code>Same as <code>wrap</code> but will start at <span style="font-family: monospace; color: lightskyblue;">main-end</span></li>
 							</ul>
 						</li>
 						<li>Can be combined with <code>flex-direction</code></li>
@@ -341,13 +340,13 @@
 						<li>Align items across the main-axis</li>
 						<li>Available values for <code>justify-content</code>
 							<ul>
-								<li><code>flex-start</code>–items aligns to main-start</li>
-								<li><code>flex-end</code>–items aligns to main-end</li>
+								<li><code>flex-start</code>–items aligns to <span style="font-family: monospace; color: lightskyblue;">main-start</span></li>
+								<li><code>flex-end</code>–items aligns to <span style="font-family: monospace; color: lightskyblue;">main-end</span></li>
 								<li><code>center</code>–items are horizontally centered in the container</li>
 								<li><code>space-between</code>–items are placed with even space between each other. First item is
-									aligned with main-start and last item is aligned with main-end </li>
+									aligned with main-start and last item is aligned with <span style="font-family: monospace; color: lightskyblue;">main-end</span></li>
 								<li><code>space-around</code>––items are placed with even space between each other. First and last item
-									will have half-size space between main-start/end</li>
+									will have half-size space between <span style="font-family: monospace; color: lightskyblue;">main-start|end</span></li>
 							</ul>
 						</li>
 					</ul>
@@ -402,12 +401,12 @@
 			<section>
 				<section id="grid">
 					<h2>CSS Grid Layout</h2>
-					<small>Run <code>ng serve grid</code> in <code>examples/lesson05-reactive-web-design</code></small>
+					<small>Run <code>ng serve --project grid</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>CSS Grid layout introduces a two-dimentional grid system to CSS</li>
+						<li>CSS Grid layout introduces a <mark>two-dimentional</mark> grid system to CSS</li>
 						<li>Terminology
 							<ul>
 								<li><mark>Grid line</mark>–are the horizontal and vertical dividing lines</li>
@@ -416,12 +415,15 @@
 								<li><mark>Grid area</mark>–consists of one or more adjacent grid cells</li>
 							</ul>
 						</li>
-						<li>Tracks is a generic term for a grid row or grid column</li>
-						<li>Fixed and flexible track sizes</li>
-						<li>Item placement</li>
-						<li>Creation of additional tracks to hold content</li>
-						<li>Alignment control</li>
-						<li>Control of overlapping content</li>
+						<li>Tracks is a <mark>generic</mark> term for a grid row or grid column
+						<ul>
+							<li>Fixed and flexible track sizes</li>
+							<li>Item placement</li>
+							<li>Creation of additional tracks to hold content</li>
+							<li>Alignment control</li>
+							<li>Control of overlapping content</li>
+						</ul>
+					</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -444,7 +446,7 @@
 						<li>Functions
 							<ul>
 								<li><code>repeat()</code>–represent a repeated fragment of tracks</li>
-								<li><code>minmax(min, max)</code>–defines a size range greater than or equal to <em>min</em> and less than or equal to <em>max</em></li>
+								<li><code>minmax(min, max)</code>–defines a size range greater than or equal to <code>min</code> and less than or equal to <code>max</code></li>
 							</ul>
 						</li>
 						<li>Unit <code>fr</code> defines flexible space in terms of a fraction of the available leftover space</li>
@@ -559,8 +561,8 @@
 						<ul>
 							<li>One-dimensional vs. two-dimentional layout
 								<ul>
-									<li>Control the layout by row or column? Use flexbox</li>
-									<li>Control the layout by row and column? Use grid</li>
+									<li>Control the layout by row OR column? Use <code>flexbox</code></li>
+									<li>Control the layout by row AND column? Use <code>grid</code></li>
 								</ul>
 							</li>
 							<li>Content out or layout in?
@@ -573,12 +575,12 @@
 					</li>
 					<li>Other layout methods
 						<ul>
-							<li>Simple positioning
+							<li><mark>Simple</mark> positioning
 								<ul>
 									<li>Relative, absolute, fixed, sticky</li>
 								</ul>
 							</li>
-							<li>Floats
+							<li>Float positioning
 								<ul>
 									<li>Remove elements from the normal flow and float around them</li>
 								</ul>
@@ -600,24 +602,19 @@
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>Extends CSS by providing paradigms known from conventional programming languages</li>
+						<li><mark>Extends</mark> Cascading Style Sheets (CSS) by providing paradigms known from conventional programming languages</li>
 						<li>Preprocessors
 							<ul>
 								<li>Sass
 									<ul>
-										<li>Two syntaxes
-											<ul>
-												<li>Sass</li>
-												<li>SCSS — Sassy Cascading Style Sheets</li>
-											</ul>
-										</li>
+										<li>Two syntaxes: Sass, Sassy Cascading Style Sheets (SCSS)</li>
 										<li>Biggest difference between Sass and SCSS is curly brackets and semicolon</li>
 									</ul>
 							</li>
 						<li>Less – Leaner Style Sheets</li>
 					</ul>
 					</li>
-					<li>Compiles into CSS</li>
+					<li>They ALL compiles into CSS</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -665,14 +662,14 @@
 				<section>
 					<h2>Nesting</h2>
 					<ul>
-						<li>HTML has a clear nested and visual hierachy, CSS does not</li>
+						<li>HTML has a <mark>clear</mark> nested and visual <mark>hierarchy</mark>, CSS does not</li>
 						<li>Sass enables nesting of CSS selector
 							<ul>
-								<li>Follows the same visual hierachy as HTML</li>
-								<li>A great way to organize CSS code and make it more readable</li>
+								<li>Follows the same visual hierarchy as HTML</li>
+								<li>A great way to <mark>organize</mark> CSS code and make it more <mark>readable</mark></li>
 							</ul>
 						</li>
-						<li>Beware that overly nested rules will produce over-qualified CSS
+						<li>Beware that overly nested rules will produce <mark>over-qualified</mark> CSS
 							<ul>
 								<li>Hard to maintain</li>
 								<li>Generally considered bad practice</li>
@@ -691,13 +688,13 @@
 					<ul>
 						<li>Partials
 							<ul>
-								<li>Partial Sass files are snippets of CSS code that is included in other Sass files</li>
-								<li>Partial files are named with aleading underscore, e.g. <code>_base.scss</code>
+								<li>Partial Sass files are <mark>snippets</mark> of CSS code that is included in other Sass files</li>
+								<li>Partial files are named with a leading underscore, e.g. <code>_base.scss</code>
 									<ul>
 										<li>The underscore tells Sass that it is a partial file and should not compiled</li>
 									</ul>
 								</li>
-								<li>A great way to modularize CSS code, that makes it easier to maintain</li>
+								<li>A great way to <mark>modularize</mark> CSS code, that makes it easier to maintain</li>
 							</ul>
 						</li>
 						<li>Modules
