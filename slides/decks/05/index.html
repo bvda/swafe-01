@@ -616,7 +616,7 @@
 						<li>Less – Leaner Style Sheets</li>
 					</ul>
 					</li>
-					<li>They ALL compiles into CSS</li>
+					<li>They <mark>ALL</mark> compiles into CSS</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -718,8 +718,8 @@
 					<h2>Mixins</h2>
 					<ul>
 						<li>Some things in CSS are a bit tedious to write</li>
-						<li>Mixins lets you make groups of CSS delarations and reuse them</li>
-						<li>You can pass in values to make it even more flexible</li>
+						<li>Mixins lets you make <mark>groups</mark> of CSS delarations and <mark>reuse</mark> them</li>
+						<li>You can pass in values to make it even more <mark>flexible</mark></li>
 						<li>Use the <code>@mixin</code> directive to create a mixin, e.g.
 							<code>@mixin theme($theme &lt;value&gt;)</code></li>
 						<li>A good use for mixins is for vendor prefixes
@@ -731,7 +731,7 @@
 						<li>Use mixins in CSS declarations with <code>@include</code> followed by the name of the mixin</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
-						<h4>References</h4>
+						<h4>References</h4>	
 						<ul>
 							<li><a href="https://sass-lang.com/guide">Sass: Sass basics</a></li>
 							<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - MDN Web Docs
@@ -868,11 +868,12 @@
 						</div>
 						<div class="two-columns">
 							<h4>Output</h4>
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|5-10|8-9|16-18|"><script type="text/template">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|6-11|9-10|18-20|"><script type="text/template">
 									@font-face {
 										font-family: "RobotoMono-Bold";
 										src: url("./assets/fonts/roboto-mono/static/RobotoMono-Bold.ttf");
 									}
+
 									h1 {
 										font-family: "Lobster";
 										font-size: 2em;
@@ -884,6 +885,7 @@
 										background-color: #333333;
 										padding: 10px 20px;
 									}
+
 									.wrapper h1 {
 										margin: 0;
 									}
@@ -896,17 +898,18 @@
 			<section>
 				<section id="css-animations">
 					<h2>Animations</h2>
-					<small>Run <code>ng serve animations</code> in <code>examples/lesson05-reactive-web-design</code></small>
+					<small>Run <code>ng serve --project animations</code> in <code>examples/lesson05-reactive-web-design</code></small>
 				</section>
 				<section>
 					<h2>Overview</h2>
 					<ul>
-						<li>CSS animations makes it possible to animate <mark>transtions</mark> from one style to another</li>
+						<li>CSS animations makes it possible to animate <mark>transitions</mark> from one style to another</li>
 						<li>Three key advantages to CSS animations
 							<ul>
 								<li><mark>Easy</mark> and <mark>simple</mark> to implement</li>
-								<li>The animations runs well under moderate system load. Simple animations often perform poorly when written in JavaScript</li>
-								<li>Browser <mark>optimizes</mark> performance and efficiency</li>
+								<li>The animations runs well under moderate system load.</li>
+								<li>Simple animations often perform <mark>poorly</mark> when written in JavaScript</li>
+								<li>The browser <mark>optimizes</mark> performance and efficiency</li>
 							</ul>
 						</li>
 					</ul>
@@ -931,7 +934,7 @@
 					<h2>Animation</h2>
 					<div class="two-columns-container">
 						<div class="two-columns">
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|1-14|2|3|4|6-13|7-9|10-12|28-48|29-31|33-47|34-37,43-46|38-42|50-65|51|53-64|"><script type="text/template">
 								.block-animation {
 									animation-name: round;
 									animation-duration: 5s;
@@ -958,6 +961,7 @@
 									justify-content: center;
 									align-items: center;
 								}
+
 								.radius-animation {
 									animation-name: color-and-margin;
 									animation-duration: 1.5s;
@@ -1007,7 +1011,7 @@
 				<section>
 					<h2>Transitions</h2>
 					<ul>
-						<li>CSS transitions provide a way to control animation speed when changing CSS properties</li>
+						<li>CSS transitions provide a way to control animation <mark>speed</mark> when <mark>changing</mark> CSS properties</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
@@ -1021,10 +1025,10 @@
 					<ul>
 						<li>Transitions has the following sub-properties:
 							<ul>
-								<li><code>transition-property</code>–specifies the name of the CSS properties to which transistions should be applied</li>
-								<li><code>transition-duration</code>–specifies over which duration the transistion should occur</li>
-								<li><code>transition-timing-function</code>–specifies how intermediate property values are computed</li>
-								<li><code>transition-delay</code>–specifies the time from when property is changed to when transistion begins</li>
+								<li><code>transition-property</code>–specifies the name of the CSS properties to which transistions should be <mark>applied</mark></li>
+								<li><code>transition-duration</code>–specifies over which <mark>duration</mark> the transition should occur</li>
+								<li><code>transition-timing-function</code>–specifies how <mark>intermediate</mark> property values are computed</li>
+								<li><code>transition-delay</code>–specifies the time from <mark>when</mark> property is changed to when transistion begins</li>
 							</ul>
 						</li>
 					</ul>
@@ -1039,7 +1043,7 @@
 					<h2>Transitions</h2>
 					<div class="two-columns-container">
 						<div class="two-columns">
-							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers><script type="text/template">
+							<pre data-id="code-animation"><code class='css' data-trim data-line-numbers="|8,14|12-13|15,19|16-18|"><script type="text/template">
 								.container {
 									display: flex;
 									align-items: center;
@@ -1083,7 +1087,7 @@
 								<li>Use <code>transition</code> for simple animation sequences</li>
 							</ul>
 						</li>
-						<li>Check out the shorthand notation in the documentation and the example code	</li>
+						<li>Check out the <mark>shorthand</mark> notation in the documentation and the example code	</li>
 					</ul>
 					<aside class="notes" aria-label="notes">
 						<h4>References</h4>
