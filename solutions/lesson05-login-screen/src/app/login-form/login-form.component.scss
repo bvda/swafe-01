@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.user {
+  grid-row: 1;
+  grid-column: 1/5;
+}
+
+.password {
+  grid-row: 2;
+  grid-column: 1/5;
+}
+
+.submit {
+  grid-row: 3;
+  grid-column: 4;
+}
