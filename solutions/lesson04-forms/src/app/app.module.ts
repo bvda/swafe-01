@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveModule } from './reactive/reactive.module';
 import { TemplateModule } from './template/template.module';
+import { PasswordsEqualDirective } from './passwords-equal.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

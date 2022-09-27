@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { combineLatest, map, merge, Observable } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { Class } from 'src/app/class.type';
+import { passwordsEqual } from 'src/app/passwords-equal.directive';
 import { Race } from 'src/app/race.type';
 import { WarcraftService } from 'src/app/warcraft.service';
 
@@ -14,11 +15,13 @@ export class FormComponent implements OnInit {
 
   form = this.fb.group({
     name: ['', [Validators.required]],
-    password: [''],
-    confirm_password: [''],
+    passwordGroup: this.fb.group({
+      password: [''],
+      confirm_password: [''],
+    }, { validators: passwordsEqual, updateOn: 'blur'}),
     race: ['', [Validators.required]],
     class: ['', [Validators.required]],
-    level: ['', [Validators.min(1), Validators.max(60)]],
+    level: [, [Validators.min(1), Validators.max(60)]],
     description: [''],
   })
 
@@ -37,6 +40,12 @@ export class FormComponent implements OnInit {
     console.log('onSubmit')
   }
 
+  compareClasses(c1: Race, c2: Race) {
+    return c1 && c2 ? c1.name === c2.name : c1 === c2; 
+  }
+
   get name() { return this.form.get('name') }
+  get level() { return this.form.get('level') }
+  get passwordGroup() { return this.form.get('passwordGroup')}
 
 }
