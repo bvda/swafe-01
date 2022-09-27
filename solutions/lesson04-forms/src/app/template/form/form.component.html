@@ -1,1 +1,17 @@
 <p>form works!</p>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <input type="text" autocomplete="username email" name="name" placeholder="Name" required #name="ngModel" ngModel />
+  <input type="password" autocomplete="new-password" name="password" ngModel placeholder="Password" />
+  <input type="password" autocomplete="new-password" name="confirm_passowrd" ngModel placeholder="Confirm password" />
+  <select name="race" ngModel>
+    <option>Race</option>
+  </select>
+  <select name="class" ngModel>
+    <option>Class</option>
+  </select>
+  <input name="level" id="level" ngModel required type="number" placeholder="Level"/> 
+  <input name="description" ngModel required type="description"/>
+  <input type="submit" value="Submit" />
+</form>
+<p>value: {{ f.value | json}}</p>
+<p>errors: {{ name.errors?.['required'] | json}}</p>

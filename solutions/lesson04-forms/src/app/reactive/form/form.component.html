@@ -1,1 +1,23 @@
 <p>form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="text" autocomplete="username email" formControlName="name" placeholder="Name" />
+  <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+    <div *ngIf="name?.errors?.['required']">
+      {{name?.errors! | json}}
+      asd
+    </div>
+  </div>
+  <input type="password" formControlName="password" autocomplete="new-password" placeholder="Password" />
+  <input type="password" autocomplete="new-password"formControlName="confirm_password" placeholder="Confirm password" />
+  <select formControlName="race">
+    <option>Race</option>
+  </select>
+  <select formControlName="class">
+    <option>Class</option>
+  </select>
+  <input formControlName="level" type="number" placeholder="Level"/> 
+  <input formControlName="description" type="description"/>
+  <input type="submit" value="Submit" />
+</form>
+{{ form.value | json }}
+{{ form.valid }}
