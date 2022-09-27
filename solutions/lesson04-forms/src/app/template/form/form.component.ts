@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { combineLatest, map, Observable } from 'rxjs';
+import { Class } from 'src/app/class.type';
+import { Race } from 'src/app/race.type';
+import { WarcraftService } from 'src/app/warcraft.service';
 
 @Component({
   selector: 'app-template-form',
@@ -8,7 +12,13 @@ import { NgForm } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  classes$: Observable<Class[]>
+  races$: Observable<Race[]>
+
+  constructor(private service: WarcraftService) { 
+    this.classes$ = this.service.getClasses()
+    this.races$ = combineLatest([this.service.getAllianceRaces(), this.service.getHordeRaces()]).pipe(map(c => [...c[0], ...c[1]]))
+  }
 
   ngOnInit(): void {
   }

@@ -15,12 +15,24 @@
       </div>
     </div>
   </div>
-  <select formControlName="race" [compareWith]="compareClasses">
-    <option *ngFor="let race of races$ | async" [ngValue]="race">{{race.name}}</option>
+  <select formControlName="race" [compareWith]="compare">
+    <option [ngValue]="" disabled selected>Race</option>
+    <option *ngFor="let race of races$ | async" [ngValue]="race">{{ race.name }}</option>
   </select>
-  <select formControlName="class">
-    <option>Class</option>
+  <div *ngIf="race?.invalid && (race?.dirty || race?.touched)" class="alert alert-danger">
+    <div *ngIf="race?.errors?.['required']">
+      {{race?.errors! | json}}
+    </div>
+  </div>
+  <select formControlName="class" [compareWith]="compare">
+    <option [ngValue]="" disabled selected>Class</option>
+    <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
   </select>
+  <div *ngIf="class?.invalid && (class?.dirty || class?.touched)" class="alert alert-danger">
+    <div *ngIf="class?.errors?.['required']">
+      {{class?.errors! | json}}
+    </div>
+  </div>
   <input formControlName="level" type="number" placeholder="Level"/> 
   <div *ngIf="level?.errors?.['min']">
     {{level?.errors! | json}}

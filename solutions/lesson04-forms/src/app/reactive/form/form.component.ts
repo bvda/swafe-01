@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
     passwordGroup: this.fb.group({
       password: [''],
       confirm_password: [''],
-    }, { validators: passwordsEqual, updateOn: 'blur'}),
+    }, { validators: [passwordsEqual, Validators.required], updateOn: 'blur'}),
     race: ['', [Validators.required]],
     class: ['', [Validators.required]],
     level: [, [Validators.min(1), Validators.max(60)]],
@@ -40,12 +40,14 @@ export class FormComponent implements OnInit {
     console.log('onSubmit')
   }
 
-  compareClasses(c1: Race, c2: Race) {
+  compare(c1: Race | Class, c2: Race | Class) {
     return c1 && c2 ? c1.name === c2.name : c1 === c2; 
   }
 
   get name() { return this.form.get('name') }
   get level() { return this.form.get('level') }
-  get passwordGroup() { return this.form.get('passwordGroup')}
+  get passwordGroup() { return this.form.get('passwordGroup') }
+  get class() { return this.form.get('race') }
+  get race() { return this.form.get('class') }
 
 }

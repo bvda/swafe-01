@@ -10,12 +10,24 @@
       </div>
     </div>
   </div>
-  <select name="race" ngModel>
-    <option>Race</option>
+  <select name="class" required ngModel #race="ngModel" ngModel>
+    <option [ngValue]="" disabled selected>Race</option>
+    <option *ngFor="let race of races$ | async" [ngValue]="race">{{ race.name }}</option>
   </select>
-  <select name="class" ngModel>
-    <option>Class</option>
+  <div *ngIf="race?.invalid && (race?.dirty || race?.touched)" class="alert alert-danger">
+    <div *ngIf="race?.errors?.['required']">
+      {{race?.errors! | json}}
+    </div>
+  </div>
+  <select name="class" ngModel required #class="ngModel">
+    <option [ngValue]="" disabled selected>Class</option>
+    <option *ngFor="let class of classes$ | async" [ngValue]="class">{{ class.name }}</option>
   </select>
+  <div *ngIf="class?.invalid && (class?.dirty || class?.touched)" class="alert alert-danger">
+    <div *ngIf="class?.errors?.['required']">
+      {{class?.errors! | json}}
+    </div>
+  </div>
   <input name="level" id="level" #level="ngModel" ngModel required min="1" max="60" type="number" placeholder="Level"/>
   <div *ngIf="level?.errors?.['min']">
     {{level?.errors! | json}}
@@ -26,5 +38,7 @@
   <input name="description" ngModel required type="description"/>
   <input type="submit" value="Submit" />
 </form>
-<p>value: {{ f.value | json}}</p>
-<p>errors: {{ name.errors?.['required'] | json}}</p>
+<pre>
+  <p>value: {{ f.value | json}}</p>
+  <p>valid: {{ f.valid }}</p>
+</pre>
