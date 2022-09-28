@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>settings_ethernet</mat-icon>
+    </button>
+    <span>Network Monitor</span>
+    <a mat-button routerLink="">Home</a>
+    <a mat-button routerLink="access-log">Access Log</a>
+    <a mat-button routerLink="hosts">Hosts</a>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
