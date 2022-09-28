@@ -34,10 +34,13 @@ $lesson06-exercises-theme: mat.define-light-theme((
 @include mat.all-component-themes($lesson06-exercises-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container {
   margin: auto 25%
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

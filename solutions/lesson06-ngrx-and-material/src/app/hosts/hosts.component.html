@@ -1,2 +1,4 @@
 <h1>Hosts</h1>
-<app-host-card *ngFor="let host of hosts$ | async" [host]="host"></app-host-card>
+<div class="grid grid-cols-2 gap-4">
+  <app-host-card class="flex-1" *ngFor="let host of hosts$ | async" [host]="host"></app-host-card>
+</div>
