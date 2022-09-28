@@ -277,11 +277,11 @@
 						<section>
 							<h2>Selectors</h2>
 							<ul>
-								<li>Selectors are pure functions used for obtaining slices of store state</li>
-								<li>Selectors implements memoization
+								<li>Selectors are <mark>pure</mark> functions used for obtaining <mark>slices</mark> of store state</li>
+								<li>Selectors implements <mark>memoization</mark>
 									<ul>
 										<li>The store keeps track of latest selector argument values, and since they are pure functions, it can return the current state without invoking the function</li>
-										<li>This can provide performance benefits, if selectors perform expensive computation or I/O operations</li>
+										<li>This can provide <mark>performance</mark> benefits, if selectors perform <mark>expensive</mark> computation and/or I/O operations</li>
 									</ul>
 								</li>
 								<li><code>createSelector</code> can be used to select data from several slices (up to 8) of the same state</li>
@@ -324,17 +324,17 @@
 						<section>
 							<h2>Effects</h2>
 							<ul>
-								<li>RxJS powered side effect model for <code>Store</code></li>
-								<li>Effect uses streams to provide new sources of actions to reduce state based on external actions
+								<li>RxJS-powered <mark>side effect</mark> model for <code>Store</code></li>
+								<li>Effects uses streams to provide new sources of actions to reduce state based on external actions
 									<ul>
 										<li>Network requests</li>
 										<li>Web socket message</li>
 										<li>Time-based events</li>
 									</ul>
 								</li>
-								<li>Effects isolate side effects from components, allowing for more pure components</li>
+								<li>Effects <mark>isolate</mark> side effects from components, allowing for more <mark>pure</mark> components</li>
 								<li>Long-running services that listens to an <code>Observable</code> of every <code>Action</code> dispatched from the <code>Store</code></li>
-								<li>Effects filter <code>Action</code> objects based on interest</li>
+								<li>Effects <mark>filter</mark> <code>Action</code> objects based on interest</li>
 								<li>Effects perform tasks that produces new <code>Action</code> objects which is handled by the <code>Store</code></li>
 							</ul>
 							<aside class="notes" aria-label="notes">
@@ -379,8 +379,8 @@
 							<h2>Effects</h2>
 							<ul><li>NgRx and Redux differences:
 								<ul>
-									<li>Effect lives outside <code>Store</code> objects</li>
-									<li>Effets communicate with services (which can produce side-effects</li>
+									<li>Effects lives <mark>outside</mark> <code>Store</code> objects</li>
+									<li>Effects <mark>communicate</mark> with services (which can produce side-effects</li>
 									<li>Redux actions are only handled in reducers, but in NgRx, some actions are handled in reducers, some in effects, and some in both</li>
 								</ul>
 							</li>
@@ -434,7 +434,7 @@
 										<li><mark>I–Impacted</mark> State that is impacted by actions from other sources</li>
 									</ul>
 								</li>
-								<li>Using NgRx comes with the price of code complexity, indirection and high code cost</li>
+								<li>Using NgRx comes with the price of code <mark>complexity</mark>, <mark>indirection</mark> and high code cost</li>
 							</ul> 
 							<aside class="notes" aria-label="notes">
 								<ul>
@@ -477,7 +477,7 @@
 					<section id="material">
 						<section>
 							<h2>Angular Material</h2>
-							<small>Run <code>ng serve --port 4200 slide-examples</code> in <code>examples/lesson06-angular-libraries</code></small>
+							<small>Run <code>ng serve --port 4200 --project slide-examples</code> in <code>examples/lesson06-angular-libraries</code></small>
 						</section>
 						<section>
 							<h2>Overview</h2>

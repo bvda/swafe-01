@@ -20,7 +20,7 @@ Create a pane of cards that displays data for `Host` objects (located in `exerci
 
 - Create a new component named `HostCard`  
 - Add a `<mat-card>`<sup>(<a href="https://material.angular.io/components/card/overview">docs</a>)</sup> element
-- Use Tailwind CSS<sup>(<a href="https://tailwindcss.com/docs/flex-basis">docs</a>) to create rows of two elements
+- Use Tailwind CSS<sup>(<a href="https://tailwindcss.com/docs/grid-template-columns">docs</a>) to create rows of two elements
 - Check out the Material Design guidelines<sup>(<a href="https://material.io/components/cards">docs</a>)</sup> for inspiration
 
 ## Exercise 06-4
