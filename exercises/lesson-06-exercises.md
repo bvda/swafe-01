@@ -9,10 +9,10 @@ Do the following steps to run the provided Angular project:
 When everything is up and running, you are ready to continue with the exercises.
 
 ## Exercise 06-2
-### Add `@angular/flex` to the project
-Install Angular Flex Layout in the project:
+### Add `Tailwind CSS` to the project
+Install Tailwind CSS in the project:
 
-- Go to https://github.com/angular/flex-layout and follow the instructions there
+- Go to https://tailwindcss.com/docs/guides/angular and follow the instructions there
 
 ## Exercise 06-3
 ### Add a grid of cards to `HostsComponent`
@@ -20,7 +20,7 @@ Create a pane of cards that displays data for `Host` objects (located in `exerci
 
 - Create a new component named `HostCard`  
 - Add a `<mat-card>`<sup>(<a href="https://material.angular.io/components/card/overview">docs</a>)</sup> element
-- Use `fxLayout`<sup>(<a href="https://github.com/angular/flex-layout/wiki/fxLayout-API">docs</a>) to create rows of two elements
+- Use Tailwind CSS<sup>(<a href="https://tailwindcss.com/docs/flex-basis">docs</a>) to create rows of two elements
 - Check out the Material Design guidelines<sup>(<a href="https://material.io/components/cards">docs</a>)</sup> for inspiration
 
 ## Exercise 06-4

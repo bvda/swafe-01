@@ -60,7 +60,6 @@
 									<ul>
 										<li><mark>AngularFire</mark>–brings the framework-agnostic Firebase JavaScript SDK to Angular</li>
 										<li><mark>Angular Material</mark>–material design components<code></code></li>
-										<li><mark>Angular Flex</mark>–provides a sophisticated layout API using Flexbox CSS + mediaQuery</li>
 										<li><mark>Angular Universal</mark>–expands Core Angular APIs to enable server-side rendering</li>
 										<li><mark>NgRx</mark>–Reactive Redux-inspired state management for Angular</li>
 									</ul>
@@ -69,7 +68,6 @@
 									<ul>
 										<li><mark>Axios</mark>–promise based HTTP client for the browser and node.js</li>
 										<li><mark>Lodash</mark>–a modern JavaScript utility library delivering modularity, performance & extras</li>
-										<li><mark>jQuery</mark>–a JavaScript library, that makes document traversal and manipulation, event handling, animation, and Ajax simpler</li>
 										<li><mark>Underscore</mark>—a JavaScript library with useful functional programming helpers</li>
 									</ul>
 								</li>
@@ -766,176 +764,9 @@
 							</div>
 						</section>
 					</section>
-					<section id="flex">
-						<section>
-							<h2>Angular Flex</h2>
-						</section>
-						<section>
-							<h2>Overview</h2>
-							<ul>
-								<li>Angular Flex Layout combines Flexbox CSS and media queries</li>
-								<li>Automates the process of applying appropiate Flexboxx CSS to browser view hierarchies</li>
-								<li>Addresses many of the complexities and workarounds with traditional, manual application of Flexbox CSS</li>
-								<li>The Responsive API enables developers to easily specify different layout, sizing for different viewports sizes and display devices</li>
-								<li>It provides an Angular-friendly API for dealing with media queries</li>
-							</ul>
-							<aside class="notes" aria-label="notes">
-								<h4>References</h4>
-								<ul>
-									<li><a href="https://github.com/angular/flex-layout">angular/flex-layout: Provides HTML UI layout for Angular applications; using Flexbox and a Responsive API</a></li>
-									<li><a href="https://www.w3.org/TR/css-flexbox-1/">CSS Flexible Box Layout Module Level 1</a></li>
-									<li><a href="https://www.w3.org/TR/mediaqueries-5/">Media Queries Level 5</a></li>
-								</ul>
-							</aside>
-						</section>
-						<section>
-							<h2>Declarative API Overview</h2>
-							<ul>
-								<li>Contains two APIs
-									<ul>
-										<li><mark>Static API</mark>–provides directives to create responsive and adaptive layouts</li>
-										<li><mark>Responsive API</mark>–provides responsive features to change layouts configuration for different display devices</li>
-									</ul>
-								</li>
-							</ul>
-							<aside class="notes" aria-label="notes">
-								<h4>References</h4>
-								<ul>
-									<li><a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">Declarative API Overview · angular/flex-layout Wiki</a></li>
-								</ul>
-							</aside>
-						</section>
-						<section>
-							<h2>API for DOM containers — <code>flex</code></h2>
-							<ul>
-								<li>These directives affects the flow and layout of children elements in the container
-									<ul>
-										<li><code>fxLayout</code>–Used on DOM container whose children should layout
-											<ul>
-												<li>A combination of <code>display: flex</code> and <code>flex-direction: row|column|row-reverse|column-reverse</code></li>
-											</ul>
-										</li>
-										<li><code>fxLayoutAlign</code>
-											<ul>
-												<li>A combination of <code>justify-content</code> and <code>align-items</code></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h2>API for DOM containers — <code>grid</code></h2>
-							<ul>
-								<li>These directives affects the flow and layout of children elements in the container
-									<ul>
-										<li><code>gdColumns</code>–equivalent to <code>grid-template-columns</code></li>
-										<li><code>gdRows</code>–equivalent to <code>grid-template-rows</code></li>
-										<li><code>gdAlignRows</code>–aligns items row-wise
-											<ul>
-												<li><code>justify-content</code>(container) and <code>justify-items</code>(items)</li>
-											</ul>
-										</li>
-										<li><code>gdAlignColumns</code>–aligns items column-wise
-											<ul>
-												<li><code>align-content</code>(container) and <code>align-items</code>(items)</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h2>API for DOM elements</h2>
-							<ul>
-								<li>These directives affects the layout and size of the host element (expected to be in a container)
-									<ul>
-										<li><code>fxFlex</code>–sets properties for grow, shrink and basis for an item</li>
-										<li><code>fxFlexAlign</code>–equivalent to <code>align-self</code></li>
-										<li><code>gdRow</code>-determines start and end row for an item</li>
-										<li><code>gdColumn</code>—determines start and end column for an item</li>
-									</ul>
-								</li>
-								<li>These are directives for any element
-									<ul>
-										<li><code>fxShow</code>–specifies if its host element should be displayed</li>
-										<li><code>fxHide</code>–specifies if its host element should NOT be displayed</li>
-									</ul>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h2>Responsive API</h2>
-							<ul>
-								<li>Enhances the Static API by adding responsive suffixes</li>
-								<li>Angular Layout will automatically handle all the details
-									<ul>
-										<li>Monitoring media queries activations</li>
-										<li>Applying responsive values to the host DOM elements</li>
-									</ul>
-								</li>
-							</ul>
-						</aside>
-					</section>
-					<section>
-						<h2>Breakpoints and aliases</h2>
-						<ul>
-							<ul>
-								<li>Breakpoints
-									<ul>
-										<li><code>xs</code>–Extra small <code>screen and (max-width: 599px)</code></li>
-										<li><code>sm</code>–Small <code>screen and (min-width: 600px) and (max-width: 959px)</code></li>
-										<li><code>md</code>–Medium<code>screen and (min-width: 960px) and (max-width: 1279px)</code></li>
-										<li><code>lg</code>–Large<code>screen and (min-width: 1280px) and (max-width: 1919px)</code></li>
-										<li><code>xl</code>–Extra large<code>screen and (min-width: 1920px) and (max-width: 5000px)</code></li>
-									</ul>
-								</li>
-								<li>Less than
-									<ul>
-										<li><code>lt-sm</code>–Less than small <code>screen and (max-width: 599px)</code></li>
-										<li><code>lt-md</code>–Less than medium <code>screen and (max-width: 959px)</code></li>
-										<li><code>lt-lg</code>–Less than large <code>screen and (max-width: 1279px)</code></li>
-										<li><code>lt-xl</code>–Less than extra large <code>screen and (max-width: 1919px)</code></li>
-									</ul>
-								</li>
-								<li>Greater than
-									<ul>
-										<li><code>gt-xs</code>–Greater than extra small <code>screen and (min-width: 600px)</code></li>
-										<li><code>gt-sm</code>–Greater than small <code>screen and (min-width: 960px)</code></li>
-										<li><code>gt-md</code>–Greater than medium<code>screen and (min-width: 1280px)</code></li>
-										<li><code>gt-lg</code>–Greater than large<code>screen and (min-width: 1920px</code></li>
-									</ul>
-								</li>
-							</ul>
-						</ul>
-					</section>
-					<section>
-						<h2>Combine Static API and <code>alias</code></h2>
-						<p>Support resposive breakpoints by combining an <code>alias</code> with a directive</p>
-						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers><script type="text/template">
-							<api>.<breakpoint alias>="<value>"
-							[<api>.<breakpoint alias>]="<expression>"
-						</script></code></pre>
-					</section>
-					<section>
-						<h2>Breakpoint</h2>
-						<pre data-id="code-animation"><code class='html' data-trim data-line-numbers="|2|3|4|5|8-9|12-13|"><script type="text/template">
-							<div 
-								fxLayout.gt-xs="row" 
-								fxLayout.xs="column" 
-								[ngStyle.lt-sm]="{'background-color': 'cornflowerblue'}">
-								<div fxFlex.xs="1 0 auto" fxFlexAlign.lt-sm="end" class="child"></div>
-								<div class="child"></div>  
-								<div class="child" 
-									[ngClass.xs]="{'small-border small': hasStyle }" 
-									[ngClass.gt-xs]="{'small': hasStyle }">
-								</div>
-							</div>
-							<p fxShow.xs fxHide.gt-xs>Hidden element</p>
-							<div fxHide.xs class="child"></div>
-						</script></code></pre>
-						<small>examples/lesson06-angular-libraries/projects/flex/src/app/breakpoint/breakpoint.component.html</small>
-					</section>
+				</section>
+				<section>
+					<h2>Wrap-up</h2>
 				</section>
 			</div>
 		</div>
