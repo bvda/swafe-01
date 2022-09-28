@@ -11,8 +11,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HostsComponent } from './hosts/hosts.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HostCardComponent } from './host-card/host-card.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AccessLogComponent,
     NavigationComponent,
     HomeComponent,
-    HostsComponent
+    HostsComponent,
+    HostCardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

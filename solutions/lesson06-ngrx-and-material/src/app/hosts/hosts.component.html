@@ -1,4 +1,2 @@
 <h1>Hosts</h1>
-<ul>
-  <li *ngFor="let host of hosts$ | async">{{ host | json }}</li>
-</ul>
+<app-host-card *ngFor="let host of hosts$ | async" [host]="host"></app-host-card>
