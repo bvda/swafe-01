@@ -1,11 +1,12 @@
-import { Action, createReducer }from '@ngrx/store';
-import { AccessLogEntry } from '../access-log.service';
+import { Action, createReducer, on }from '@ngrx/store';
+import { hostsLoaded } from './hosts.actions';
 import { Host } from '../hosts.service';
 
 export const initialState: ReadonlyArray<Host> = []
 
 const _hostsReducer = createReducer(
-  initialState
+  initialState,
+  on(hostsLoaded, (_, { hosts }) => [...hosts])
 )
 
 export function hostsReducer(state: ReadonlyArray<Host> | undefined, action: Action) {
