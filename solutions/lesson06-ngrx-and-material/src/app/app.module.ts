@@ -15,6 +15,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HostCardComponent } from './host-card/host-card.component';
+import { hostsReducer } from './state/hosts.reducer';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HostEffects } from './state/hosts.effects';
 
 
 @NgModule({
@@ -29,6 +33,8 @@ import { HostCardComponent } from './host-card/host-card.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StoreModule.forRoot({ hosts: hostsReducer}),
+    EffectsModule.forRoot([HostEffects]),
     BrowserAnimationsModule, 
     HttpClientModule,
     MatButtonModule,

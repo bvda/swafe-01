@@ -35,7 +35,9 @@ Before we can start to dispatch actions<sup>(<a href="https://ngrx.io/guide/stor
 We want to isolate `HostsService` from `HostsCompoent`, and for that, we are introducing an effect, that listens for a fetch event and dispatches a retrieved event when the service has fetched data. 
 
 - Set up effects<sup>(<a href="https://ngrx.io/guide/effects">docs</a>)</sup> for `Host` data in the store
-- Configure the effect in `exercises/lesson06-exercises/src/app/state/hosts.effects.ts` to fetch all hosts and dispatch an action for the `Host` reducer
+- Configure the effect in `exercises/lesson06-exercises/src/app/state/hosts.effects.ts` to fetch all hosts and dispatch an action for the `Host` reducer (inject `Store` and remove `HostsService`)
+
+_Hint: Be sure that everything is registered correctly in `app.module.ts`, see `StoreModule` and `EffectsModule` for more information_
 
 ## Exercise 06-6
 ### Create a table for `AccessLogEntry` data
