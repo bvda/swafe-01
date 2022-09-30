@@ -10,6 +10,7 @@ import { AccessLogService } from '../access-log.service';
 export class AccessLogComponent implements OnInit {
 
   logs$: Observable<ReadonlyArray<any>>
+  displayedColumns: string[] = ['id', 'ip_address.v4', 'ip_address.v6'];
 
   constructor(private accessLogService: AccessLogService) {
     this.logs$ = this.accessLogService.getLog()
