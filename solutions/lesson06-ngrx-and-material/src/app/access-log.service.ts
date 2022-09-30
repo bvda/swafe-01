@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,14 @@ export class AccessLogService {
     return this.http.get<ReadonlyArray<AccessLogEntry>>('./assets/MOCK_ACCESS.json')
   }
 
+  getLogs(pageNumber: number, pageSize: number) {
+    return this.getLog().pipe(
+      switchMap(data => of({
+        data: data.slice(pageNumber * pageSize, pageNumber * pageSize + pageSize),
+        total: data.length
+      }))
+    )
+  }
 }
 
 export interface AccessLogEntry {
@@ -23,4 +32,9 @@ export interface AccessLogEntry {
     v6: string;
   }
   user_agent: string;
+}
+
+export interface AccessLogEntriesPage {
+  data: ReadonlyArray<AccessLogEntry>;
+  total: number;
 }

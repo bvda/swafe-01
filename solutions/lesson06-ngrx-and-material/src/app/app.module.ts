@@ -20,6 +20,7 @@ import { hostsReducer } from './state/hosts.reducer';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HostEffects } from './state/hosts.effects';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -39,10 +40,11 @@ import { HostEffects } from './state/hosts.effects';
     BrowserAnimationsModule, 
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
+    MatPaginatorModule,
     MatTableModule,
     MatToolbarModule,
-    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
