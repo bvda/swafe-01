@@ -790,6 +790,39 @@
 					</section>
 				</section>
 				<section>
+					<section>
+						<h2>Change detection</h2>
+					</section>
+					<section>
+						<h2>Overview</h2>
+						<ul>
+							<li>Most changes happens asynchrously</li>
+							<li>Angular uses the <code>zone.js</code> library
+								<ul>
+									<li>Subscribes to Zone events</li>
+									<li>Keeps the component's model and UI in sync</li>
+								</ul>
+							</li>
+							<li>An Angular application is structured as a tree of views</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Change detection strategies</h2>
+						<ul>
+							<li>Angular offers two CD strategies for UI updates
+								<ul>
+									<li><code>Default</code>—the Zone checks the entire component tree</li>
+									<li><code>OnPush</code>—the Zone checks the component and children only if the component's input properties has changed</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Change detection</h2>
+						<img src="../../assets/cd.png" alt="cd" />
+					</section>
+				</section>
+				<section>
 					<h2>Wrap-up</h2>
 					<ul>
 						<li>Dependencies</li>
@@ -806,6 +839,7 @@
 								<li>Components</li>
 							</ul>
 						</li>
+						<li>Change detection</li>
 					</ul>
 				</section>
 			</div>
