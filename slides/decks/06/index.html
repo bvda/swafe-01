@@ -95,21 +95,20 @@
 						<section>
 							<h2>Overview</h2>
 							<ul>
-								<li>NgRX is global state management for Angular applications
+								<li>NgRX is <mark>global</mark> state management for Angular applications
 									<ul>
 										<li>Powered by RxJS</li>
-										<li>Inspired by Redux</li>
 									</ul>
 								</li>
-								<li>Based on Redux architecture
+								<li>Based on <mark>Redux</mark> architecture
 									<ul>
-										<li>Single source of thruth</li>
-										<li>Immutable state</li>
-										<li>State changes is triggered by pure functions</li>
+										<li>Single source of thruth (store)</li>
+										<li><mark>Immutable</mark> state</li>
+										<li>State changes is triggered by <mark>pure</mark> functions</li>
 									</ul>
 								</li>
 								<li>Use when building applications with a lot of user interaction and multiple data sources</li>
-								<li>A solid understanding of RxJS and Redux is beneficial before starting using NgRx</li>
+								<li>A <mark>solid</mark> understanding of RxJS and Redux is beneficial before starting using NgRx</li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -124,6 +123,19 @@
 							<img src="../../assets/one-way-data-flow.svg" width="60%" alt="one-way-data-flow"/>
 						</section>
 						<section>
+							<h2>Break</h2>
+							<p>We''ll be back</p>
+							<p>@</p>
+							<p id="break-1"></p>
+							<script>
+								go_time = new Date()
+								go_time.setMinutes(go_time.getMinutes() + 10)
+								p = document.getElementById('break-1')
+								txt = document.createTextNode(go_time.toTimeString())
+								p.appendChild(txt)
+								</script>
+						</section>
+						<section>
 							<h2>Redux</h2>
 							<img src="../../assets/redux.svg" width="60%" alt="redux" />
 						</section>
@@ -134,7 +146,7 @@
 							</script></code></pre>
 							<small>https://github.com/ngrx/platform/blob/master/modules/store/src/store.ts</small>
 							<ul>
-								<li>Manages global application state</li>
+								<li><mark>Manages</mark> global application state</li>
 								<li>Two different store are available:
 									<ul>
 										<li><code>Store</code>—used for global application-wide state managemeent</li>
@@ -181,17 +193,17 @@
 						<section>
 							<h2>Actions</h2>
 							<ul>
-								<li>Actions are the main building blocks of NgRx</li>
+								<li>Actions are the <mark>main</mark> building blocks of NgRx</li>
 								<li>They define <em>unique</em> events that happens in applications</li>
 								<li>Writing actions
 									<ul>
-										<li>Define action upfront to understand and gain knowledge about the feature being implemented</li>
-										<li>Categorize actions based on event sources</li>
-										<li>Capture events not commands, separate description and handling of events</li>
-										<li>Provide unique context for events to aid debugging</li>
+										<li>Define action <mark>upfront</mark> to understand and gain knowledge about the feature being implemented</li>
+										<li><mark>Categorize</mark> actions based on event sources</li>
+										<li>Capture <mark>events</mark> not commands, <mark>separate</mark> description and handling of events</li>
+										<li>Provide <mark>unique</mark> context for events to aid debugging</li>
 									</ul>
 								</li>
-								<li>They serve as both <em>inputs</em> and <em>outputs</em></li>
+								<li>They serve as both <mark>inputs</mark> and <mark>outputs</mark></li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -230,13 +242,13 @@
 						<section>
 							<h2>Reducers</h2>
 							<ul>
-								<li>Reducers are responsible for handling state transitions in applications</li>
-								<li>Reducers are pure functions that produce the same output for a given input</li>
+								<li>Reducers are responsible for handling state <mark>transitions</mark> in applications</li>
+								<li>Reducers are pure functions that produce the <mark>same</mark> output for a given input</li>
 								<li>A reducer function consists of:
 									<ul>
 										<li>An <code>interface</code> or type that defines the shape of the state</li>
-										<li>Arguments for current state and the current action</li>
-										<li>A function that handles state change</li>
+										<li><mark>Arguments</mark> for current state and action</li>
+										<li>A <mark>function</mark> that handles state change</li>
 									</ul>
 								</li>
 								<li>Reducers are registered with the <code>Store</code> in module files
@@ -280,7 +292,7 @@
 								<li>Selectors are <mark>pure</mark> functions used for obtaining <mark>slices</mark> of store state</li>
 								<li>Selectors implements <mark>memoization</mark>
 									<ul>
-										<li>The store keeps track of latest selector argument values, and since they are pure functions, it can return the current state without invoking the function</li>
+										<li>The store keeps track of <mark>latest</mark> selector argument values, and since they are pure functions, it can return the current state without invoking the function</li>
 										<li>This can provide <mark>performance</mark> benefits, if selectors perform <mark>expensive</mark> computation and/or I/O operations</li>
 									</ul>
 								</li>
@@ -325,17 +337,28 @@
 							<h2>Effects</h2>
 							<ul>
 								<li>RxJS-powered <mark>side effect</mark> model for <code>Store</code></li>
-								<li>Effects uses streams to provide new sources of actions to reduce state based on external actions
+								<li>Effects uses <mark>streams</mark> to provide new sources of actions to reduce state based on <mark>external</mark> actions
 									<ul>
 										<li>Network requests</li>
 										<li>Web socket message</li>
 										<li>Time-based events</li>
 									</ul>
 								</li>
+								</ul>
+								<aside class="notes" aria-label="notes">
+									<h4>References</h4>
+									<ul>
+										<li><a href="https://ngrx.io/guide/effects">NgRx - @ngrx/effects</a></li>
+									</ul>
+								</aside>
+						</section>
+						<section>
+							<h2>Effects</h2>
+							<ul>
 								<li>Effects <mark>isolate</mark> side effects from components, allowing for more <mark>pure</mark> components</li>
 								<li>Long-running services that listens to an <code>Observable</code> of every <code>Action</code> dispatched from the <code>Store</code></li>
 								<li>Effects <mark>filter</mark> <code>Action</code> objects based on interest</li>
-								<li>Effects perform tasks that produces new <code>Action</code> objects which is handled by the <code>Store</code></li>
+								<li>Effects perform tasks that <mark>produces</mark> new <code>Action</code> objects which is handled by the <code>Store</code></li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<h4>References</h4>
@@ -381,10 +404,23 @@
 								<ul>
 									<li>Effects lives <mark>outside</mark> <code>Store</code> objects</li>
 									<li>Effects <mark>communicate</mark> with services (which can produce side-effects</li>
-									<li>Redux actions are only handled in reducers, but in NgRx, some actions are handled in reducers, some in effects, and some in both</li>
+									<li>Redux actions are <mark>only</mark> handled in <mark>reducers</mark>, but in NgRx, some actions are handled in <mark>reducers</mark>, some in <mark>effects</mark>, and some in <mark>both</mark></li>
 								</ul>
 							</li>
 							</ul>
+						</section>
+						<section>
+							<h2>Break</h2>
+							<p>We''ll be back</p>
+							<p>@</p>
+							<p id="break-2"></p>
+							<script>
+								go_time = new Date()
+								go_time.setMinutes(go_time.getMinutes() + 10)
+								p = document.getElementById('break-2')
+								txt = document.createTextNode(go_time.toTimeString())
+								p.appendChild(txt)
+							</script>
 						</section>
 						<section>
 							<h2>Component</h2>
@@ -439,7 +475,7 @@
 							<aside class="notes" aria-label="notes">
 								<ul>
 									<li>Shared: Authentication</li>
-									<li>Hydrated: Local storage and Anuglar universal</li>
+									<li>Hydrated: Local storage and Angular Universal</li>
 									<li>Available: Keep state available across routes</li>
 									<li>Retrieved: HTTP request, save response</li>
 									<li>Impacted: Pagination, data source impact data in table</li>
@@ -453,12 +489,12 @@
 						<section>
 							<h2>Wrap-up</h2>
 							<ul>
-								<li>NgRx is a global state management system for Angular
+								<li>NgRx is a global state management <mark>system</mark> for Angular
 									<ul>
-										<li>Extends Redux with effects to accommodate Angular patterns</li>
+										<li>Extends Redux with <mark>effects</mark> to accommodate Angular patterns</li>
 									</ul>
 								</li>
-								<li>Encapsulates side-effects in injectable effects
+								<li>Encapsulates <mark>side-effects</mark> in injectable effects
 									<ul>
 										<li>Allows implementation of pure and simple components</li>
 										<li>Promotes the single responsibility principle</li>
@@ -467,7 +503,7 @@
 								<li>Immutability and performance
 									<ul>
 										<li>Immutable data structures makes change detection easy</li>
-										<li>Memoized selectors optimizes retrieval of data from state</li>
+										<li>Memoized selectors <mark>optimizes</mark> retrieval of data from state</li>
 									</ul>
 								</li>
 								<li>Consider the SHARI principles to determine if you really need NgRx</li>
@@ -482,8 +518,8 @@
 						<section>
 							<h2>Overview</h2>
 							<ul>
-								<li>The Angular Material library provides common UI components and tools to build custom components</li>
-								<li>The library is maintained by the Angular team</li>
+								<li>The Angular Material library provides <mark>common</mark> UI components and tools to build custom components</li>
+								<li>The library is <mark>maintained</mark> by the Angular team</li>
 								<li>Other interesting libraries:
 									<ul>
 										<li><code>@angular/cdk</code>—write custom UI components with common interaction patterns</li>
@@ -505,16 +541,16 @@
 						<section>
 							<h2>Design systems</h2>
 							<ul>
-								<li>A design systems is a system of patterns and styles that is used when creating applications
+								<li>A design systems is a system of <mark>patterns</mark> and <mark>styles</mark> that is used when creating applications
 									<ul>
-										<li>Patterns describes flows, behaviors and how to combine elements
+										<li>Patterns describes <mark>flows</mark>, <mark>behaviors</mark> and how to combine elements
 											<ul>
 												<li>Animation</li>
 												<li>Layout</li>
 												<li>Sounds</li>
 											</ul>
 										</li>
-										<li>Styles describes visual elements
+										<li>Styles describes <mark>visual</mark> elements
 											<ul>
 												<li>Typography</li>
 												<li>Colors</li>
@@ -523,14 +559,7 @@
 										</li>
 									</ul>
 								</li>
-								<li>There are several design systems available
-									<ul>
-										<li>Material Design (Google)</li>
-										<li>Fluent Design System (Microsoft)</li>
-										<li>Carbon Design System (IBM)</li>
-										<li>Lightning Design System (Salesforce)</li>
-									</ul>
-								</li>
+								<li>There are several design systems available (see notes)</li>
 							</ul>
 							<aside class="notes" aria-label="notes">
 								<ul>
@@ -544,14 +573,19 @@
 						<section>
 							<h2>Themes</h2>
 							<ul>
-								<li>A theme is used to define colors and typography for an application</li>
+								<li>A theme is used to define <mark>colors</mark> and <mark>typography</mark> for an application</li>
 								<li>It is what makes up "the look and feel" of applications</li>
 								<li>The framework exposes a theming API
 									<ul>
 										<li>Built with <a href="../05/#css-preprocessing">Sass</a></li>
 									</ul>
 								</li>
-								<li>Material Design comes with built-in themes, that can be used as-is</li>
+								<li>Material Design comes with <mark>built-in</mark> themes, that can be used as-is</li>
+								</ul>
+							</section>
+							<section>
+								<h2>Palettes</h2>
+								<ul>
 								<li>Palettes apply color to UI in a meaningful way
 									<ul>
 										<li>Primary and secondary colors</li>
@@ -678,26 +712,15 @@
 							<div class="two-columns-container">
 								<div class="two-columns">
 									<ul>
-										<ul>
+										<li>Content container for text, photos, and actions the context of a single subject</li>
+										<li>A <code>mat-card</code> has sections
 											<ul>
-												<li>Content container for text, photos, and actions the context of a single subject</li>
-												<li>A <code>mat-card</code> has sections
-													<ul>
-														<li>Header
-																<ul>
-																	<li>Title</li>
-																	<li>Subtitle</li>
-																	<li>Avatar</li>
-																</ul>
-														</li>
-														<li>Content</li>
-														<li>Actions</li>
-														<li>Footer</li>
-														</ul>											
-													</ul>
-												</li>
+												<li>Header</li>
+												<li>Content</li>
+												<li>Actions</li>
+												<li>Footer</li>
 											</ul>
-										</ul>
+										</li>
 									</ul>
 								</div>
 								<div class="two-columns">
@@ -709,64 +732,81 @@
 							<h2><code>mat-table</code></h2>
 							<div class="two-columns-container">
 								<div class="two-columns">
-									<ul>
-										<ul>
 											<ul>
 												<li><code>mat-table</code> is focused on rendering rows of table data</li>
-												<li>Table features
-													<li>Define column and row templates with <code>matColumnDef</code> and <code>matRowDef</code></li>
-													<ul>
-														<li>Pagination</li>
-														<li>Sorting</li>
-														<li>Filtering</li>
-														<li>Selection</li>
-													</ul>
-												</li>
 												<li>Bind array or a <code>DataSource</code> instance</li>
 												<li>Provide <code>Observable</code> streams where the table will render when new data is emitted</li>
-											</ul>
-										</ul>
 									</ul>
 								</div>
 								<div class="two-columns">
 									<iframe height="100%" width="100%" data-src="http://localhost:4200/table" title="/card"></iframe>	
 								</div>
 							</div>
+							<aside class="notes" aria-label="notes">
+								<h4>Table features</h4>
+									<ul>
+										<li>Define column and row templates with <code>matColumnDef</code> and <code>matRowDef</code></li>
+										<ul>
+											<li>Pagination</li>
+											<li>Sorting</li>
+											<li>Filtering</li>
+											<li>Selection</li>
+										</ul>
+									</li>
+								</ul>
+							</aside>
 						</section>
 						<section>
 							<h2><code>mat-date-range-input</code></h2>
 							<div class="two-columns-container">
 								<div class="two-columns">
 									<ul>
-										<ul>
+										<li>Allow users to enter a date through text input, or by choosing a date from the calendar
 											<ul>
-												<li>Allow users to enter a date through text input, or by choosing a date from the calendar
-													<ul>
-														<li>Made up of several components, directives and modules</li>
-													</ul>
-												</li>
-												<li>Can be used with <code>FormGroup</code> directive from <code>@angular/forms</code></li>
-												<li>Can be used with various date libraries (date implementation agnostic)
-													<ul>
-														<li><code>MatNativeDateModule</code></li>
-														<li><code>MatLuxonDateModule</code></li>
-														<li><code>MatLuxonDateModule</code></li>
-													</ul>
-												</li>
-												<li>A datepicker is composed of a text input and a calendar pop-up, connected via the <code>matDatepicker</code> property on the text input.</li>
-											</ul>											
-										</ul>
-									</ul>
+												<li>Made up of several components, directives and modules</li>
+											</ul>
+										</li>
+										<li>Can be used with <code>FormGroup</code> directive from <code>@angular/forms</code></li>
+									</ul>											
 								</div>
 								<div class="two-columns">
 									<iframe height="100%" width="100%" data-src="http://localhost:4200/date-picker" title="/button"></iframe>	
 								</div>
 							</div>
 						</section>
+						<aside class="notes" aria-label="notes">
+							<h4>Implementation details</h4>
+							<ul>
+								<li>Can be used with various date libraries (date implementation agnostic)
+									<ul>
+										<li><code>MatNativeDateModule</code></li>
+										<li><code>MatLuxonDateModule</code></li>
+										<li><code>MatLuxonDateModule</code></li>
+									</ul>
+								</li>
+								<li>A datepicker is composed of a text input and a calendar pop-up, connected via the <code>matDatepicker</code> property on the text input.</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
 					<h2>Wrap-up</h2>
+					<ul>
+						<li>Dependencies</li>
+						<li>State management
+							<ul>
+								<li>Actions</li>
+								<li>Reducers</li>
+								<li>Stores</li>
+							</ul>
+						</li>
+						<li>Angular Material
+							<ul>
+								<li>Patterns and styles</li>
+								<li>Components</li>
+							</ul>
+						</li>
+					</ul>
 				</section>
 			</div>
 		</div>
