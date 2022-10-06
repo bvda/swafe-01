@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
@@ -55,12 +55,12 @@ describe('HomeComponent', () => {
     })
   
     it('should update the value in username control', () => {
-      (component.authForm.get('username') as FormControl)?.setValue(expectedUsername)
+      (component.authForm.get('username') as UntypedFormControl)?.setValue(expectedUsername)
       expect(inputUsername.value).toBe(expectedUsername)
     })
     
     it('should update the value in password control', () => {
-      (component.authForm.get('password') as FormControl)?.setValue(expectedPassword)
+      (component.authForm.get('password') as UntypedFormControl)?.setValue(expectedPassword)
       expect(inputPassword.value).toBe(expectedPassword)
     })
   })

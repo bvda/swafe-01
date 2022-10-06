@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { AccessLogService } from '../../access-log.service';
+import { AccessLogEntry, AccessLogService } from '../../access-log.service';
 
 import { AccessLogListComponent } from './access-log-list.component';
 
@@ -63,4 +63,6 @@ class AccessLogEntryListPage {
 }
 
 @Component({ selector: 'app-access-log-list-item', template: ''})
-class AccessLogListItemComponentStub { }
+class AccessLogListItemComponentStub { 
+  @Input() entry!: AccessLogEntry;
+}

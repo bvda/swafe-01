@@ -75,26 +75,30 @@
 					<section>
 						<h2>Testing services</h2>
 						<ul>
-							<li>Services are (for the most part) straightforward to test
+							<li>Services are (for the most part) <mark>straightforward</mark> to test
 								<ul>
-									<li>Services with out dependencies can be tested without Angular testing utilities</li>
+									<li>Services <mark>without</mark> dependencies can be tested <mark>without</mark> Angular testing utilities</li>
 								</ul>
 							</li>
 							<li>Services with dependencies
 								<ul>
 									<li>Services often depend on other services
 										<ul>
-											<li>They can be injected by hand while calling the service's constructor</li>
-											<li>Injecting real services rarely works well as most dependant services are difficult to create and control</li>
+											<li>They can be injected by hand while calling the service's <mark>constructor</mark></li>
+											<li>Injecting <mark>real</mark> services rarely works well as most dependant services are <mark>difficult</mark> to create and control</li>
 										</ul>
 										<li>Instead, mock the dependency
 											<ul>
-												<li>Use dummy values</li>
-												<li>Create a spies for relevant methods</li>
+												<li>Use <mark>dummy</mark> values</li>
+												<li>Create a <mark>spies</mark> for relevant methods</li>
 											</ul>
 										</li>
-										<li>However, you almost always inject services into application classes using Angular dependency injection and you should have tests that reflect that usage pattern</li>
 									</li>
+								</ul>
+							</li>
+							<li>You almost always <mark>inject</mark> services into classes using DI
+								<ul>
+									<li>Tests should reflect that usage <mark>pattern</mark></li>
 								</ul>
 							</li>
 						</ul>
@@ -176,24 +180,24 @@
 					<section>
 						<h2>Testing components</h2>
 						<ul>
-							<li>A component combines an HTML template and a TypeScript class
+							<li>A component <mark>combines</mark> an HTML template and a TypeScript class
 								<ul>
-									<li>In most cases, the component can be validated by testing only the TypeScript class</li>
-									<li>To adequately test a component, you should test that they work together as intended</li>
+									<li>In most cases, the component can be validated by testing <mark>only</mark> the TypeScript class</li>
+									<li>To adequately test a component, you should test that they work <mark>together</mark> as intended</li>
 								</ul>
 							</li>
 							<li>The Angular <code>TestBed</code> facilitates testing the template and the class
 								<ul>
 									<li>Component with <code>@Input()</code> and <code>@Output()</code></li>
-									<li>Components with dependencies</li>
-									<li>Components with nested components</li>
+									<li>Components with <mark>dependencies</mark></li>
+									<li>Components with <mark>nested</mark> components</li>
 								</ul>
 							</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Testing dependencies</h2>
-						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4,11-13|7-10|24-25|14-21|18-20|27-33|"><script type="text/template">
+						<pre data-id="code-animation"><code class='typescript' data-trim data-line-numbers="|2-4,11-13|7-10|24-27|14-21|18-20|29-35|"><script type="text/template">
 							beforeEach(async () => {
 								const spy = jasmine.createSpyObj('AccessLogService', {
 									getAccessLogEntries: of(expectedEntries)
@@ -218,7 +222,9 @@
 							});
 							...
 							@Component({ selector: 'app-access-log-list-item', template: ''})
-							class AccessLogListItemComponentStub { }
+							class AccessLogListItemComponentStub { 
+								@Input() entry!: AccessLogEntry;
+							}
 
 							class AccessLogEntryListPage {
 								accessLogEntryRows: HTMLElement[]
@@ -331,9 +337,9 @@
 					<section>
 						<h2>Code coverage</h2>
 						<ul>
-							<li>Code coverage pecentages estimate how much of a codebase is tested</li>
+							<li>Code coverage pecentages <mark>estimate</mark> how much of a codebase is tested</li>
 							<li>Angular projects (generated with the CLI) can generate coverage reports with <code>ng test --no-watch --code-coverage</code></li>
-							<li>Can be generated automatically every time tests run if configured in <code>angular.json</code></li>
+							<li>Can be generated <mark>automatically</mark> every time tests run if configured in <code>angular.json</code></li>
 						</ul>
 					</section>
 				</section>

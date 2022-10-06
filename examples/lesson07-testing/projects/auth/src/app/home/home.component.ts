@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -16,7 +16,7 @@ export class HomeComponent {
     password: [''],
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   onSubmit() {
     console.log(this.authForm.value)
