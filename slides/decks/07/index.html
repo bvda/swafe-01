@@ -357,12 +357,11 @@
 									<li>Pages render more quickly, making them visible earlier to the client</li>
 								</ul>
 							</li>
-							<li>Angular Universal applications are compiled with Ahead-of-Time (AOT) compilation
+							<li>Angular Universal are compiled with <mark>Ahead-of-Time</mark> (AOT) compilation
 								<ul>
-									<li>Default for all applications since Angular 9</li>
-									<li>Faster rendering—the browser downloads a pre-compiled version of the application</li>
-									<li>Fewer asynchronous requests—the compiler <em>inlines</em> external HTML and CSS within the application JavaScript</li>
-									<li>Smaller Angular framework download size—No need to download the Angular compiler</li>
+									<li><mark>Faster</mark> rendering—the browser downloads a <mark>pre-compiled</mark> version of the application</li>
+									<li><mark>Fewer</mark> asynchronous requests—the compiler <mark>inlines</mark> external HTML and CSS within the application JavaScript</li>
+									<li><mark>Smaller</mark> framework download size—No need to download the compiler</li>
 								</ul>
 							</li>
 						</ul>
@@ -378,26 +377,30 @@
 						<ul>
 							<li>Facilitate web crawlers through search engine optimization (SEO)
 								<ul>
-									<li>Search engines rely on web crawlers to index pages and their content searchable on the web</li>
-									<li>Web crawlers do not load JavaScript. They only read static content</li>
-									<li>Server-side rendering returns a static version of pages that makes them readable for web crawlers</li>
+									<li>Search engines rely on web <mark>crawlers</mark> to index pages and their content searchable on the web</li>
+									<li>Web crawlers only read <mark>static</mark> content</li>
+									<li>SSR returns a <mark>static</mark> version of pages that makes them readable for web crawlers</li>
 								</ul>
 							</li>
-							<li>Improve performance on mobile and low-powered devices
+							<li>Improve <mark>performance</mark> on mobile and low-powered devices
 								<ul>
 									<li>Some devices might not support JavaScript</li>
-									<li>Even if the no-JavaScript version has limited functionality, it is still better than nothing</li>
 								</ul>
 							</li>
 							<li>Show the first page quickly
 								<ul>
-									<li>Displaying the first page quickly can be critical for user engagement</li>
-									<li>Serve a static version of the landing page to hold the user's attention, while loading the full application in the background</li>
+									<li>Displaying the first page quickly can be <mark>critical</mark> for user engagement</li>
+									<li>Serve a <mark>static</mark> version of the landing page to hold the user's attention
+										<ul>
+											<li>While loading the full application in the <mark>background</mark></li>
+										</ul>
+									</li>
 								</ul>
 							</li>
 						</ul>
 						<aside class="notes" aria-label="notes">
 							<h4>References</h4>
+							<p>Even if the no-JavaScript version has limited functionality, it is still better than nothing</p>
 							<ul>
 								<li><a href="https://angular.io/guide/universal#why-use-server-side-rendering">Angular - Server-side rendering (SSR) with Angular Universal</a></li>
 							</ul>
@@ -405,43 +408,40 @@
 					</section>
 					<section>
 						<h2>Terminology</h2>
+						<h3>Rendering</h3>
 						<ul>
-							<ul>
-								<li>Rendering
-									<ul>
-										<li><mark>SSR</mark>—Server-side rendering. Rendering a client-side application or universal app to HTML on the server</li>
-										<li><mark>CSR</mark>—Client-side rendering. Rendering an app in a browser, generally using the DOM</li>
-										<li><mark>Rehydration</mark>—“Booting up” JavaScript views on the client such that they reuse the server-rendered HTML's DOM tree and data</li>
-										<li><mark>Prerendering</mark>—Running a client-side application at build time to capture its initial state as static HTML</li>
-									</ul>
-								</li>
-								<li>Performance
-									<ul>
-										<li><mark>TTFB</mark>—Time to First Byte. Seen as the time between clicking a link and the first bit of content coming in</li>
-										<li><mark>FP</mark>—First Paint. The first time any pixel gets becomes visible to the user</li>
-										<li><mark>FCP</mark>—First Contentful Paint. The time when requested content (article body, etc) becomes visible</li>
-										<li><mark>TTI</mark>—Time To Interactive. The time at which a page becomes interactive (events wired up, etc)</li>
-									</ul>
-								</li>
-							</ul>
+							<li><mark>SSR</mark>—Server-side rendering. Rendering a client-side application or universal app to HTML on the server</li>
+							<li><mark>CSR</mark>—Client-side rendering. Rendering an app in a browser, generally using the DOM</li>
+							<li><mark>Rehydration</mark>—“Booting up” JavaScript views on the client such that they reuse the server-rendered HTML's DOM tree and data</li>
+							<li><mark>Prerendering</mark>—Running a client-side application at build time to capture its initial state as static HTML</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Terminology</h2>
+						<h3>Performance</h3>
+						<ul>
+							<li><mark>TTFB</mark>—Time to First Byte. Seen as the time between clicking a link and the first bit of content coming in</li>
+							<li><mark>FP</mark>—First Paint. The first time any pixel gets becomes visible to the user</li>
+							<li><mark>FCP</mark>—First Contentful Paint. The time when requested content (article body, etc) becomes visible</li>
+							<li><mark>TTI</mark>—Time To Interactive. The time at which a page becomes interactive (events wired up, etc)</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Server rendering vs. Client-side rendering</h2>
 						<ul>
-							<li>Server rendering
+							<li><mark>Server</mark> rendering
 								<ul>
 									<li>👍—Fast FP, FCP, and TTI</li>
 									<li>👎—Slow TTFB</li>
 								</ul>
 							</li>
-							<li>Static rendering
+							<li><mark>Static</mark> rendering
 								<ul>
 									<li>👍—Fast FP, FCP, TTI, and TTFB</li>
 									<li>👎—All HTML must be rendered, infeasable if unable to predict</li>
 								</ul>
 							</li>
-							<li>Client-side rendering
+							<li><mark>Client-side</mark> rendering
 								<ul>
 									<li>👍—Flexible, fast TTFB</li>
 									<li>👎—Slow TTI and FCP</li>
@@ -461,7 +461,8 @@
 							<li>A Universal web server responds with static HTML
 								<ul>
 									<li>Rendered with the Universal template engine</li>
-									<li>The server receives and responds to HTTP requests and serve static HTML, JavaScript and CSS</li>
+									<li>The server receives and responds to HTTP requests</li>
+									<li>Serve static HTML, JavaScript and CSS</li>
 								</ul>
 							</li>
 							<li>There are different rendering engines:
