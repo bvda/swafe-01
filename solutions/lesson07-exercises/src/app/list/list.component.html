@@ -1,0 +1,4 @@
+<h2>Available cars</h2>
+<app-filter></app-filter>
+<hr />
+<app-item *ngFor="let car of cars$ | async" [car]="car" (remove)="remove(car.id)"></app-item>
