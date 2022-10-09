@@ -25,7 +25,7 @@ export class CarService {
     this.data$.next(DATA.filter(c => c.make.toLowerCase() === make.toLowerCase()) as ReadonlyArray<Car>)
   }
 
-  getAllCars() {
+  getCarMakes() {
     return this.getCars().pipe(
       switchMap(v => from(v)),
       distinct(v => v.make)

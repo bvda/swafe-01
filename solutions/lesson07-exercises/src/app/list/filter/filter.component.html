@@ -1,5 +1,7 @@
 Filter by make:
-<select class="car-make-select" (change)="makeSelected($event)">
-  <option *ngFor="let c of cars" [value]="c">{{c}}</option>
+<form [formGroup]="selectMakeForm">
+<select formControlName="make" class="car-make-select" (change)="makeSelected()">
+  <option *ngFor="let c of cars" [ngValue]="c">{{c}}</option>
 </select>
-<button (click)="clear()">Clear</button>
+<button class="clear" (click)="clear()">Clear</button>
+{{ selectMakeForm.value | json }}
