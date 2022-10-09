@@ -1,5 +1,7 @@
 import { ViewEncapsulation } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { first } from 'rxjs/operators';
 import { Car } from 'src/app/car.service';
 
 import { ItemComponent } from './item.component';
@@ -27,11 +29,19 @@ describe('ItemComponent', () => {
     fixture = TestBed.createComponent(ItemComponent);
     component = fixture.componentInstance;
     component.car = expectedCar;
-    
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should raise remove event when clicked', () => {
+    let clickedCarEntry: string | undefined
+		let de = fixture.debugElement.query(By.css('.remove'))
+		component.remove.pipe(first()).subscribe((clicked: string) => clickedCarEntry = clicked)
+		  de.triggerEventHandler('click', expectedCar.id)
+		  expect(clickedCarEntry).toBe(expectedCar.id)
   });
 });
