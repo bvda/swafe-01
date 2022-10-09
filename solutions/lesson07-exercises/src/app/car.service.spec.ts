@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { toArray } from 'rxjs/operators';
 
 import { Car, CarService } from './car.service';
 import { DATA } from './MOCK_DATA';
@@ -24,6 +25,7 @@ describe('CarService', () => {
   it('should return a list of car object', (done: DoneFn) => {
     service.getCars().subscribe(value => {
       expect(value).toEqual(DATA);
+      expect(value).toHaveSize(DATA.length)
       done();
     })
   });
@@ -33,7 +35,34 @@ describe('CarService', () => {
     service.getCarsByMake(make)
     service.data$.subscribe(value => {
       expect(value).toEqual(DATA.filter(c => c.make == make))
-      done()
+      done();
     })
+  });
+
+  it('should reset filter', (done: DoneFn) => {
+    service.clear()
+    service.data$.subscribe(value => {
+      expect(value).toEqual(DATA);
+      expect(value).toHaveSize(DATA.length);
+      done();
+    })
+  });
+
+  it('should remove car from data$', (done: DoneFn) => {
+    service.remove(expectedEntries[0].id)
+    service.data$.subscribe(value => {
+      expect(value).toHaveSize(DATA.length - 1)
+      done();
+    })
+  });
+
+  it('Get car makes', (done: DoneFn) => {
+    let values = []
+    service.getCarMakes().subscribe(value => {
+      values.push(value)
+    })
+    const data = new Set(DATA.map(c => c.make))
+    expect(values.length).toEqual(data.size)
+    done();
   });
 });
