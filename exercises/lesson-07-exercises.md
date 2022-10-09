@@ -11,7 +11,7 @@ When everything is up and running, you are ready to continue with the exercises.
 
 ## Exercise 07-2
 ### Setup automatic code coverage generation for `lesson07-exercises`
-Let's setup auto generation of code coverage reports<sup>(<a href="https://angular.io/guide/testing-code-coverage">docs</a>)</sup>, so we can keep track while working with the code
+Let's setup auto generation of code coverage reports<sup>(<a href="https://angular.io/guide/testing-code-coverage">docs</a>)</sup>, so we can keep track while working with the code:
 
 - Open `angular.json` in the project root directory
 - Find `test` node and add the `codeCoverage` set to `true` in the `options` node.

@@ -11,7 +11,6 @@ export class ListComponent implements OnInit {
 
   cars$: Observable<ReadonlyArray<Car>>
 
-
   constructor(private carService: CarService) { 
     this.cars$ = this.carService.getCars()
   }
