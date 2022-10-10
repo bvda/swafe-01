@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { CarService } from 'src/app/car.service';
 
 @Component({
@@ -7,8 +8,14 @@ import { CarService } from 'src/app/car.service';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  
+  selectMakeForm = this.fb.group({
+    make: ['']
+  })
+
   cars: string[] = []
-  constructor(private carService: CarService) { }
+  
+  constructor(private carService: CarService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.carService.getAllCars().subscribe(c => this.cars.push(c.make))
@@ -19,6 +26,7 @@ export class FilterComponent implements OnInit {
   }
 
   clear() {
+    this.selectMakeForm.reset()
     this.carService.clear()
   }
 

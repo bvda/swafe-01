@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReativeFormsModule } from '@angular/forms';
 import { ListComponent } from './list.component';
 import { ItemComponent } from './item/item.component';
 import { FilterComponent } from './filter/filter.component';
@@ -13,6 +14,7 @@ import { ListRoutingModule } from './list-routing.module';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ListRoutingModule,
   ]
 })
